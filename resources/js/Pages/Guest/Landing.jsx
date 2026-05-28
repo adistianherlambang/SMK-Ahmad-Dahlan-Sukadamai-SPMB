@@ -405,7 +405,6 @@ export default function Landing({ announcements = [], news = [], achievements = 
                         src={getImageUrl(item.image_path)}
                         alt={item.title}
                         className={styles.newsImg}
-                        style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
                       />
                     ) : (
                       <div className={styles.newsImgPlaceholder}>📰</div>
