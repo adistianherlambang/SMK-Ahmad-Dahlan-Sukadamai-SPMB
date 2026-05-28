@@ -68,6 +68,29 @@ export default function Landing({ announcements = [], news = [], achievements = 
     }
   ]
 
+  const ekstra = [
+    {
+      "title": "Fulsal",
+      "img": "/landingPage/landing/dummy.png",
+    },
+    {
+      "title": "Paskibra",
+      "img": "/landingPage/landing/dummy.png",
+    },
+    {
+      "title": "Rohis",
+      "img": "/landingPage/landing/dummy.png",
+    },
+    {
+      "title": "PMR",
+      "img": "/landingPage/landing/dummy.png",
+    },
+    {
+      "title": "Pramuka",
+      "img": "/landingPage/landing/dummy.png",
+    }
+  ]
+
   // Auto-slide for announcement banner
   useEffect(() => {
     if (announcements.length > 1) {
@@ -89,7 +112,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
   const renderFasilitas = () => (
     <div className={styles.accBody}>
       {fasilitas.map((item, index) => (
-        <div className={styles.perkItem}>
+        <div className={styles.perkItem} key={index}>
           <div className={styles.perkImg}>
             <img src={item.img} alt={item.title} />
           </div>
@@ -101,27 +124,18 @@ export default function Landing({ announcements = [], news = [], achievements = 
       ))}
     </div>
   );
-
   const renderEkskul = () => (
     <div className={styles.accBody}>
-      <div className={styles.ekskulGrid}>
-        <div className={styles.ekskulItem}>
-          <div className={styles.ekskulImg}>🕌</div>
-          <h4>Ikatan Remaja Muhammadiyah (IRM)</h4>
+      {ekstra.map((item, index) => (
+        <div className={styles.perkItem} key={index}>
+          <div className={styles.perkImg}>
+            <img src={item.img} alt={item.title} />
+          </div>
+          <div>
+            <h4>{item.title}</h4>
+          </div>
         </div>
-        <div className={styles.ekskulItem}>
-          <div className={styles.ekskulImg}>⚽</div>
-          <h4>Futsal & Sepakbola</h4>
-        </div>
-        <div className={styles.ekskulItem}>
-          <div className={styles.ekskulImg}>🥋</div>
-          <h4>Tapak Suci (Pencak Silat)</h4>
-        </div>
-        <div className={styles.ekskulItem}>
-          <div className={styles.ekskulImg}>🏕️</div>
-          <h4>Hizbul Wathan (Pramuka)</h4>
-        </div>
-      </div>
+      ))}
     </div>
   );
 
@@ -144,16 +158,13 @@ export default function Landing({ announcements = [], news = [], achievements = 
         {filteredAchievements.length > 0 ? (
           filteredAchievements.map((item) => (
             <div key={item.id} className={styles.achievementCard}>
-              {item.image_path ? (
-                <img
-                  src={getImageUrl(item.image_path)}
-                  alt={item.title}
-                  className={styles.achImage}
-                  style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '6px', flexShrink: 0 }}
-                />
-              ) : (
-                <div className={styles.achImagePlaceholder}>🏆</div>
-              )}
+              <div className={styles.perkImg}>
+                {item.image_path ? (
+                  <img src={getImageUrl(item.image_path)} alt={item.student_name} />
+                ) : (
+                  <div className={styles.achImagePlaceholder}>{item.student_name}</div>
+                )}
+              </div>
               <div className={styles.achContent}>
                 <h4>{item.title}</h4>
                 <p className={styles.achName}>{item.student_name}</p>

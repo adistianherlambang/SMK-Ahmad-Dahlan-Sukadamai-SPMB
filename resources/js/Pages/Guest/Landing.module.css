@@ -373,7 +373,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 16px;
+  padding: 16px 0;
 }
 
 .perkImg {
@@ -388,6 +388,8 @@
 
 .perkImg img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .perkItem h4 {
@@ -441,9 +443,9 @@
 }
 
 .filterBtn {
-  background-color: #E2E8F0;
+  background-color: #ffffff;
   color: var(--color-text-main);
-  border: none;
+  border: 1px solid var(--color-primary-dark);
   padding: 6px 12px;
   font-size: 12px;
   border-radius: 20px;
@@ -453,8 +455,8 @@
 }
 
 .filterBtnActive {
-  background-color: var(--color-accent-yellow);
-  color: var(--color-text-main);
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
 }
 
 .achievementsSlider {
@@ -469,6 +471,7 @@
   border-radius: 6px;
   padding: 12px;
   display: flex;
+  flex-direction: column;
   gap: 16px;
   align-items: center;
 }
@@ -485,26 +488,28 @@
   flex-shrink: 0;
 }
 
+.achContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .achContent h4 {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 300;
   margin-bottom: 2px;
   color: var(--color-primary-dark);
 }
 
 .achName {
   font-size: 12px;
+  font-style: italic;
   color: #4A5568;
 }
 
 .achYear {
-  font-size: 11px;
-  background-color: #EDF2F7;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: 600;
-  display: inline-block;
-  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 /* Berita Section */
@@ -524,10 +529,9 @@
 }
 
 .newsSection h2 {
-  font-size: 22px;
-  font-weight: 800;
+  font-size: 24px;
+  font-weight: 400;
   color: var(--color-primary-dark);
-  text-transform: uppercase;
 }
 
 .newsList {
