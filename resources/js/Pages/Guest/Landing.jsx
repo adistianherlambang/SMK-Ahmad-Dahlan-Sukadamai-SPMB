@@ -19,8 +19,8 @@ export default function Landing({ announcements = [], news = [], achievements = 
   // Navigation Links
   const links = [
     { url: '/', label: 'Beranda' },
-    { 
-      label: 'Profil', 
+    {
+      label: 'Profil',
       dropdown: [
         { url: '/profil/sambutan', label: 'Sambutan Kepala Sekolah' },
         { url: '/profil/visi-misi', label: 'Visi & Misi' },
@@ -28,8 +28,8 @@ export default function Landing({ announcements = [], news = [], achievements = 
         { url: '/profil/sejarah', label: 'Sejarah Singkat' }
       ]
     },
-    { 
-      label: 'Informasi Pendaftaran', 
+    {
+      label: 'Informasi Pendaftaran',
       dropdown: [
         { url: '/informasi/jadwal', label: 'Jadwal SPMB' },
         { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
@@ -110,8 +110,8 @@ export default function Landing({ announcements = [], news = [], achievements = 
       {/* Horizontal Year Filter */}
       <div className={styles.yearFilters}>
         {years.map((year) => (
-          <button 
-            key={year} 
+          <button
+            key={year}
             className={`${styles.filterBtn} ${selectedYear === year ? styles.filterBtnActive : ''}`}
             onClick={() => setSelectedYear(year)}
           >
@@ -125,10 +125,10 @@ export default function Landing({ announcements = [], news = [], achievements = 
           filteredAchievements.map((item) => (
             <div key={item.id} className={styles.achievementCard}>
               {item.image_path ? (
-                <img 
-                  src={getImageUrl(item.image_path)} 
-                  alt={item.title} 
-                  className={styles.achImage} 
+                <img
+                  src={getImageUrl(item.image_path)}
+                  alt={item.title}
+                  className={styles.achImage}
                   style={{ width: '48px', height: '48px', objectFit: 'cover', borderRadius: '6px', flexShrink: 0 }}
                 />
               ) : (
@@ -160,18 +160,18 @@ export default function Landing({ announcements = [], news = [], achievements = 
             <div className={styles.slider}>
               {announcements.map((slide, idx) => {
                 const isActive = idx === activeSlide;
-                const bgStyle = slide.image_path 
+                const bgStyle = slide.image_path
                   ? {
-                      backgroundImage: `linear-gradient(228deg, rgba(0, 0, 0, 0) 44.49%, rgba(0, 0, 0, 0.8) 94.37%), url('${encodeURI(getImageUrl(slide.image_path))}')`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      backgroundRepeat: 'no-repeat',
-                    }
+                    backgroundImage: `linear-gradient(228deg, rgba(0, 0, 0, 0) 44.49%, rgba(0, 0, 0, 0.8) 94.37%), url('${encodeURI(getImageUrl(slide.image_path))}')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                  }
                   : {};
 
                 return (
-                  <div 
-                    key={slide.id} 
+                  <div
+                    key={slide.id}
                     className={`${styles.slide} ${isActive ? styles.slideActive : ''}`}
                     style={bgStyle}
                   >
@@ -187,8 +187,8 @@ export default function Landing({ announcements = [], news = [], achievements = 
               })}
               <div className={styles.sliderIndicators}>
                 {announcements.map((_, idx) => (
-                  <button 
-                    key={idx} 
+                  <button
+                    key={idx}
                     className={`${styles.indicator} ${idx === activeSlide ? styles.indicatorActive : ''}`}
                     onClick={() => setActiveSlide(idx)}
                   ></button>
@@ -233,7 +233,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
           <div className={styles.aboutContainer}>
             <h2>Kompetensi Keahlian</h2>
             <p className={styles.aboutSubtitle}>SMK Ahmad Dahlan Sukadamai berfokus pada dua pilar kompetensi utama yang dikembangkan secara intensif:</p>
-            
+
             <div className={styles.departmentGrid}>
               <div className={styles.departmentCard}>
                 <div className={styles.depIcon}>🏍️</div>
@@ -255,10 +255,10 @@ export default function Landing({ announcements = [], news = [], achievements = 
             <h2>Video Profil Sekolah</h2>
             <p>Saksikan sekilas kegiatan belajar mengajar dan fasilitas praktek di sekolah kami.</p>
             <div className={styles.videoWrapper}>
-              <iframe 
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                title="Profile Video" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              <iframe
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="Profile Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               ></iframe>
             </div>
@@ -269,23 +269,23 @@ export default function Landing({ announcements = [], news = [], achievements = 
         <section className={styles.perksSection}>
           <div className={styles.perksContainer}>
             <h2>Keunggulan Sekolah</h2>
-            
+
             {/* Desktop Tabs Layout */}
             <div className={styles.desktopTabs}>
               <div className={styles.tabSidebar}>
-                <button 
+                <button
                   className={`${styles.tabBtn} ${openSection === 'fasilitas' ? styles.tabBtnActive : ''}`}
                   onClick={() => setOpenSection('fasilitas')}
                 >
                   ⚙️ Fasilitas & Layanan
                 </button>
-                <button 
+                <button
                   className={`${styles.tabBtn} ${openSection === 'ekskul' ? styles.tabBtnActive : ''}`}
                   onClick={() => setOpenSection('ekskul')}
                 >
                   ⚽ Ekstrakurikuler
                 </button>
-                <button 
+                <button
                   className={`${styles.tabBtn} ${openSection === 'prestasi' ? styles.tabBtnActive : ''}`}
                   onClick={() => setOpenSection('prestasi')}
                 >
@@ -303,8 +303,8 @@ export default function Landing({ announcements = [], news = [], achievements = 
             <div className={styles.mobileAccordion}>
               {/* Accordion Item 1: Fasilitas */}
               <div className={styles.accItem}>
-                <button 
-                  className={styles.accHeader} 
+                <button
+                  className={styles.accHeader}
                   onClick={() => setOpenSection(openSection === 'fasilitas' ? '' : 'fasilitas')}
                 >
                   <span>Fasilitas & Layanan</span>
@@ -315,8 +315,8 @@ export default function Landing({ announcements = [], news = [], achievements = 
 
               {/* Accordion Item 2: Ekstrakurikuler */}
               <div className={styles.accItem}>
-                <button 
-                  className={styles.accHeader} 
+                <button
+                  className={styles.accHeader}
                   onClick={() => setOpenSection(openSection === 'ekskul' ? '' : 'ekskul')}
                 >
                   <span>Ekstrakurikuler</span>
@@ -327,8 +327,8 @@ export default function Landing({ announcements = [], news = [], achievements = 
 
               {/* Accordion Item 3: Prestasi */}
               <div className={styles.accItem}>
-                <button 
-                  className={styles.accHeader} 
+                <button
+                  className={styles.accHeader}
                   onClick={() => setOpenSection(openSection === 'prestasi' ? '' : 'prestasi')}
                 >
                   <span>Daftar Prestasi Siswa</span>
@@ -349,10 +349,10 @@ export default function Landing({ announcements = [], news = [], achievements = 
                 news.map((item) => (
                   <div key={item.id} className={styles.newsCard}>
                     {item.image_path ? (
-                      <img 
-                        src={getImageUrl(item.image_path)} 
-                        alt={item.title} 
-                        className={styles.newsImg} 
+                      <img
+                        src={getImageUrl(item.image_path)}
+                        alt={item.title}
+                        className={styles.newsImg}
                         style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px', flexShrink: 0 }}
                       />
                     ) : (
