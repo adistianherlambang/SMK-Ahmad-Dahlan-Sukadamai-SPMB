@@ -1,0 +1,74 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-main);
+  text-align: left;
+}
+.hiddenInput {
+  display: none;
+}
+.uploadBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border: 1px dashed var(--color-text-main);
+  background-color: var(--color-white);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-text-main);
+  font-weight: 500;
+  box-sizing: border-box;
+}
+.uploadBtn:active {
+  background-color: #F8F9FA;
+}
+.uploadedContainer {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+.viewBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border: none;
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-main);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  flex: 1;
+  box-sizing: border-box;
+}
+.viewBtn:active {
+  opacity: 0.8;
+}
+.changeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  background-color: var(--color-white);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-text-main);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+.changeBtn:active {
+  background-color: #EEEEEE;
+}

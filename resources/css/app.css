@@ -1,0 +1,93 @@
+@import './variables.css';
+
+.contentWrapper {
+  padding: var(--spacing-mobile-tb) var(--spacing-mobile-lr);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-mobile-gap);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 600px; /* Standard premium mobile-first container max-width */
+  margin: 0 auto;
+}
+
+/* Global utility classes for lists and cards */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-primary:active {
+  opacity: 0.8;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-main);
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-secondary:active {
+  opacity: 0.8;
+}
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: var(--color-danger);
+  color: var(--color-white);
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-danger:active {
+  opacity: 0.8;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: var(--color-white);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-text-main);
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-outline:active {
+  background-color: #EEEEEE;
+}

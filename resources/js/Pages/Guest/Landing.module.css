@@ -1,0 +1,869 @@
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Hero & Slider Banner */
+.sliderSection {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroBanner {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #001228 100%);
+  color: var(--color-white);
+  padding: 60px 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+}
+
+.heroContent {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heroContent h1 {
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-accent-yellow);
+}
+
+.heroContent h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.heroContent p {
+  font-size: 14px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.ctaGroup {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.ctaBtnPrimary {
+  flex: 1;
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-main);
+  padding: 14px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+
+.ctaBtnPrimary:active {
+  transform: scale(0.98);
+}
+
+.ctaBtnSecondary {
+  flex: 1;
+  background-color: transparent;
+  color: var(--color-white);
+  padding: 14px;
+  border: 1px solid var(--color-white);
+  border-radius: 4px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+/* Slider with Active Announcements */
+.slider {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #001228 100%);
+  color: var(--color-white);
+  position: relative;
+  height: 380px; /* Matching the height of the hero banner */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  padding: 48px 24px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.slideActive {
+  opacity: 1;
+  z-index: 2;
+}
+
+.slideTag {
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-main);
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.slideTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--color-white);
+}
+
+.slideDesc {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.85;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sliderIndicators {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.4);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.indicatorActive {
+  background-color: var(--color-accent-yellow);
+  width: 24px;
+  border-radius: 10px;
+}
+
+/* Quick CTA Link boxes below slider */
+.quickCta {
+  padding: 24px 16px;
+  background-color: #F0F4F8;
+}
+
+.ctaGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ctaCard {
+  background-color: var(--color-white);
+  padding: 20px;
+  border-radius: 6px;
+  border-left: 4px solid var(--color-accent-yellow);
+  position: relative;
+  color: var(--color-text-main);
+}
+
+.ctaCard h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.ctaCard p {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.cardArrow {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--color-primary-dark);
+  font-weight: bold;
+}
+
+/* Tentang Kami / Kompetensi Keahlian */
+.aboutSection {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  padding: 48px 16px;
+  text-align: center;
+}
+
+.aboutContainer {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.aboutSection h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  color: var(--color-accent-yellow);
+}
+
+.aboutSubtitle {
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.departmentGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.departmentCard {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 24px;
+  text-align: left;
+}
+
+.depIcon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.departmentCard h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--color-accent-yellow);
+}
+
+.departmentCard p {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* Video Section */
+.videoSection {
+  padding: 48px 16px;
+  background-color: var(--color-white);
+  text-align: center;
+}
+
+.videoContainer {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.videoSection h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+}
+
+.videoSection p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Perks Section Accordion */
+.perksSection {
+  padding: 48px 16px;
+  background-color: #F8F9FA;
+}
+
+.perksContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.perksSection h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.accItem {
+  background-color: var(--color-white);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.accHeader {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  cursor: pointer;
+  text-align: left;
+}
+
+.accArrow {
+  font-size: 12px;
+  color: #A0AEC0;
+}
+
+.accBody {
+  padding: 0 16px 20px 16px;
+  border-top: 1px solid #F1F5F9;
+  text-align: left;
+}
+
+/* Perk items inside accordion (Fasilitas) */
+.perkItem {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.perkImg {
+  font-size: 28px;
+  width: 48px;
+  height: 48px;
+  background-color: #EBF8FF;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.perkItem h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--color-primary-dark);
+}
+
+.perkItem p {
+  font-size: 12px;
+  color: #718096;
+  line-height: 1.5;
+}
+
+/* Ekstrakurikuler inside Accordion */
+.ekskulGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ekskulItem {
+  background-color: #F8FAFC;
+  border-radius: 6px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ekskulImg {
+  font-size: 24px;
+}
+
+.ekskulItem h4 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+/* Achievements slide horizontal */
+.yearFilters {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.filterBtn {
+  background-color: #E2E8F0;
+  color: var(--color-text-main);
+  border: none;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.filterBtnActive {
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-main);
+}
+
+.achievementsSlider {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.achievementCard {
+  background-color: #F8FAFC;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.achImagePlaceholder {
+  width: 48px;
+  height: 48px;
+  background-color: #FEFCBF;
+  border-radius: 6px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.achContent h4 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 2px;
+  color: var(--color-primary-dark);
+}
+
+.achName {
+  font-size: 12px;
+  color: #4A5568;
+}
+
+.achYear {
+  font-size: 11px;
+  background-color: #EDF2F7;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* Berita Section */
+.newsSection {
+  padding: 48px 16px;
+  background-color: var(--color-white);
+  text-align: center;
+}
+
+.newsContainer {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsSection h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+}
+
+.newsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.newsCard {
+  background-color: var(--color-white);
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  text-align: left;
+}
+
+.newsImgPlaceholder {
+  width: 60px;
+  height: 60px;
+  background-color: #EDF2F7;
+  border-radius: 4px;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.newsContent h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--color-primary-dark);
+}
+
+.newsContent p {
+  font-size: 12px;
+  color: #718096;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.newsDate {
+  font-size: 10px;
+  color: #A0AEC0;
+  font-weight: bold;
+}
+
+.allNewsBtn {
+  display: block;
+  margin: 32px auto 0 auto;
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  padding: 14px 28px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  max-width: 250px;
+}
+
+.allNewsBtn:active {
+  opacity: 0.9;
+}
+
+/* Footer styling */
+.footer {
+  background-color: #001228;
+  color: var(--color-white);
+  padding: 48px 16px 16px 16px;
+  text-align: center;
+}
+
+.footerContent h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--color-accent-yellow);
+}
+
+.footerContent p {
+  font-size: 13px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+.footerMeta {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.developerCta {
+  margin-top: 32px;
+}
+
+.adminLoginLink {
+  color: var(--color-accent-yellow);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.footerBottom {
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-size: 11px;
+  opacity: 0.5;
+}
+
+.emptyText {
+  color: #718096;
+  font-size: 13px;
+  padding: 16px 0;
+  font-style: italic;
+}
+
+.desktopTabs {
+  display: none;
+}
+
+.mobileAccordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  /* Slider Banner */
+  .slider, .heroBanner {
+    height: 480px;
+    padding: 80px 48px;
+  }
+  .heroContent h1 {
+    font-size: 36px;
+  }
+  .heroContent h2 {
+    font-size: 28px;
+  }
+  .heroContent p {
+    font-size: 16px;
+  }
+  .slideTitle {
+    font-size: 32px;
+  }
+  .slideDesc {
+    font-size: 16px;
+  }
+  
+  /* Quick CTA Section */
+  .quickCta {
+    padding: 32px 20px;
+  }
+  .ctaGrid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .ctaCard {
+    padding: 24px;
+  }
+  
+  /* Tentang Kami / Kompetensi Keahlian */
+  .aboutSection {
+    padding: 80px 20px;
+  }
+  .aboutContainer {
+    max-width: 1200px;
+  }
+  .aboutSection h2 {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .aboutSubtitle {
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+  .departmentGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .departmentCard {
+    padding: 32px;
+    transition: transform 0.2s ease;
+  }
+  .departmentCard:hover {
+    transform: translateY(-4px);
+  }
+  
+  /* Video Section */
+  .videoSection {
+    padding: 80px 20px;
+  }
+  .videoContainer {
+    max-width: 800px; /* larger player on desktop */
+  }
+  .videoSection h2 {
+    font-size: 32px;
+  }
+  
+  /* Perks Section Accordion vs Tabs */
+  .perksSection {
+    padding: 80px 20px;
+  }
+  .perksContainer {
+    max-width: 1200px;
+  }
+  .perksSection h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+  .mobileAccordion {
+    display: none;
+  }
+  .desktopTabs {
+    display: flex;
+    gap: 32px;
+    text-align: left;
+    width: 100%;
+  }
+  .tabSidebar {
+    flex: 0 0 28%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tabBtn {
+    background-color: var(--color-white);
+    border: none;
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-text-main);
+    text-align: left;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .tabBtn:hover {
+    background-color: #EDF2F7;
+  }
+  .tabBtnActive {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+    border-left: 4px solid var(--color-accent-yellow);
+  }
+  .tabBtnActive:hover {
+    background-color: var(--color-primary-dark);
+  }
+  .tabContent {
+    flex: 1;
+    background-color: var(--color-white);
+    padding: 32px;
+    border-radius: 8px;
+  }
+  /* Expand ekskul grid on desktop tab content */
+  .ekskulGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  
+  /* News Section */
+  .newsSection {
+    padding: 80px 20px;
+  }
+  .newsContainer {
+    max-width: 1200px;
+  }
+  .newsSection h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+  .newsList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .newsCard {
+    flex-direction: column;
+    padding: 24px;
+    align-items: flex-start;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .newsImg, .newsImgPlaceholder {
+    width: 100%;
+    height: 160px;
+    margin-bottom: 16px;
+    font-size: 48px;
+    border-radius: 6px;
+  }
+  
+  /* Footer Section */
+  .footer {
+    padding: 80px 20px 40px 20px;
+  }
+  .footerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .footerContent > div:first-child {
+    flex: 1 1 40%;
+  }
+  .footerMeta {
+    flex: 1 1 40%;
+    margin-top: 0;
+    text-align: right;
+    align-items: flex-end;
+  }
+  .developerCta {
+    margin-top: 16px;
+    width: 100%;
+    text-align: left;
+  }
+  .footerBottom {
+    max-width: 1200px;
+    margin: 48px auto 0 auto;
+  }
+}

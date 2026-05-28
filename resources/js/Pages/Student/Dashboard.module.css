@@ -1,0 +1,289 @@
+.header {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  padding: 24px 16px;
+  text-align: left;
+}
+
+.headerContent {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-accent-yellow);
+  text-transform: uppercase;
+}
+
+.header p {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Status Cards Grid */
+.statusSection h2 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.statusGrid {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.statusCard {
+  flex: 1;
+  background-color: var(--color-white);
+  border-radius: 6px;
+  padding: 16px 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardTitle {
+  font-size: 11px;
+  font-weight: 700;
+  color: #718096;
+  text-transform: uppercase;
+}
+
+.badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.badgeWarning {
+  background-color: #FEFCBF;
+  color: #744210;
+}
+
+.badgeSuccess {
+  background-color: #C6F6D5;
+  color: #22543D;
+}
+
+.badgeDanger {
+  background-color: #FED7D7;
+  color: #742A2A;
+}
+
+/* Alert Info/Danger boxes */
+.alertBox {
+  border-radius: 6px;
+  padding: 20px;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.alertInfo {
+  background-color: #EBF8FF;
+  border: 1px solid #BEE3F8;
+  color: #2B6CB0;
+}
+
+.alertInfo h3 {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.alertInfo p {
+  font-size: 13px;
+}
+
+.alertSuccess {
+  background-color: #E6FFFA;
+  border: 1px solid #B2F5EA;
+  color: #234E52;
+}
+
+.alertSuccess h3 {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.alertSuccess p {
+  font-size: 13px;
+}
+
+.alertDanger {
+  background-color: #FFF5F5;
+  border: 1px solid #FED7D7;
+  color: #742A2A;
+}
+
+.alertDanger h3 {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.alertDanger p {
+  font-size: 13px;
+}
+
+.rejectionReason {
+  background-color: var(--color-white);
+  border: 1px dashed var(--color-danger);
+  padding: 12px;
+  border-radius: 4px;
+  margin: 8px 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-danger);
+}
+
+.alertBtnDanger {
+  display: inline-block;
+  margin-top: 12px;
+  background-color: var(--color-danger);
+  color: var(--color-white);
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.alertBtnDanger:active {
+  opacity: 0.9;
+}
+
+/* Lulus / Graduated alert box */
+.alertGraduated {
+  background-color: #F0FFF4;
+  border: 2px solid #38A169;
+  color: #276749;
+  text-align: center;
+}
+
+.alertGraduated h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.alertGraduated p {
+  font-size: 13px;
+}
+
+.alertBtnGraduated {
+  display: block;
+  margin: 16px auto 0 auto;
+  background-color: #38A169;
+  color: var(--color-white);
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  max-width: 250px;
+}
+
+.alertBtnGraduated:active {
+  background-color: #2F855A;
+}
+
+/* Details table Section */
+.detailsSection {
+  background-color: var(--color-white);
+  border-radius: 6px;
+  padding: 20px;
+  text-align: left;
+}
+
+.detailsSection h3 {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--color-accent-yellow);
+  padding-bottom: 6px;
+}
+
+.detailsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.detailsTable td {
+  padding: 8px 4px;
+  font-size: 13px;
+  vertical-align: top;
+}
+
+.detailsTable td:first-child {
+  width: 130px;
+  color: #718096;
+  font-weight: 600;
+}
+
+.detailsTable td:nth-child(2) {
+  width: 15px;
+}
+
+.detailsTable td:last-child {
+  color: var(--color-text-main);
+  font-weight: 600;
+}
+
+.footer {
+  background-color: #001228;
+  color: var(--color-white);
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 48px;
+}
+
+@media (min-width: 1024px) {
+  .headerContent {
+    max-width: 1200px;
+  }
+  .container {
+    max-width: 1200px;
+    padding: 32px 20px;
+    gap: 32px;
+  }
+  .statusGrid {
+    gap: 20px;
+  }
+  .statusCard {
+    padding: 24px 20px;
+  }
+  .detailsSection {
+    padding: 32px;
+  }
+}

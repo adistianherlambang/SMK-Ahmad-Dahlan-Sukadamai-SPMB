@@ -1,0 +1,142 @@
+.header {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.headerContent {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.breadcrumb {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.breadcrumb a {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  box-sizing: border-box;
+}
+
+.historyArticle {
+  line-height: 1.7;
+  font-size: 14px;
+  color: var(--color-text-main);
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.historyArticle h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  margin-top: 12px;
+  margin-bottom: 4px;
+  border-bottom: 2px solid var(--color-accent-yellow);
+  padding-bottom: 4px;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.milestones h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-left: 2px solid #E2E8F0;
+  padding-left: 16px;
+  margin-left: 8px;
+}
+
+.timelineItem {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.timeBadge {
+  background-color: var(--color-primary-dark);
+  color: var(--color-accent-yellow);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  align-self: flex-start;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.timeBadge::before {
+  content: '';
+  position: absolute;
+  left: -23px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-accent-yellow);
+  border: 2px solid var(--color-primary-dark);
+}
+
+.timeContent h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 2px;
+}
+
+.timeContent p {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.footer {
+  background-color: #001228;
+  color: var(--color-white);
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 48px;
+}
+
+@media (min-width: 1024px) {
+  .headerContent {
+    max-width: 1000px;
+  }
+  .container {
+    max-width: 1000px;
+    padding: 48px 20px;
+  }
+}

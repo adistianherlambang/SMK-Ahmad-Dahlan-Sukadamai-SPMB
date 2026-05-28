@@ -1,0 +1,232 @@
+.navbar {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 16px 20px;
+}
+.navContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: 1px;
+}
+.hamburger {
+  background: none;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-overlay);
+  z-index: 1999;
+}
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background-color: var(--color-primary-dark);
+  transition: right 0.3s ease;
+  z-index: 2000;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.drawerOpen {
+  right: 0;
+}
+.drawerHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+.drawerBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+.navItem {
+  display: flex;
+  flex-direction: column;
+}
+.mainLink, .dropdownTitle {
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: left;
+}
+.mainLinkBtn {
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+}
+.dropdownGroup {
+  display: flex;
+  flex-direction: column;
+}
+.dropdownItems {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 16px;
+  margin-top: 12px;
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+.subLink {
+  color: #CCCCCC;
+  font-size: 15px;
+  text-decoration: none;
+  text-align: left;
+}
+.subLink:active, .mainLink:active {
+  color: var(--color-accent-yellow);
+}
+.subLinkBtn {
+  background: none;
+  border: none;
+  color: #CCCCCC;
+  font-size: 15px;
+  text-decoration: none;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+}
+.subLinkBtn:active {
+  color: var(--color-accent-yellow);
+}
+
+.desktopNav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hamburger {
+    display: none;
+  }
+  .desktopNav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .desktopNavItem {
+    position: relative;
+    padding: 8px 0;
+  }
+  .desktopLink, .desktopLinkBtn {
+    color: var(--color-white);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .desktopLinkBtn {
+    font-family: inherit;
+  }
+  .desktopLink:hover, .desktopLinkBtn:hover {
+    color: var(--color-accent-yellow);
+  }
+  .caret {
+    font-size: 9px;
+    transition: transform 0.2s ease;
+  }
+  .desktopNavItem:hover .caret {
+    transform: rotate(180deg);
+  }
+  .desktopDropdownGroup {
+    position: relative;
+  }
+  .desktopDropdownMenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: var(--color-white);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    padding: 8px 0;
+    min-width: 200px;
+    display: none;
+    flex-direction: column;
+    z-index: 1100;
+  }
+  .desktopNavItem:hover .desktopDropdownMenu {
+    display: flex;
+  }
+  /* Arrow indicator above dropdown */
+  .desktopDropdownMenu::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent var(--color-white) transparent;
+  }
+  .desktopSubLink, .desktopSubLinkBtn {
+    color: var(--color-text-main);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-family: inherit;
+  }
+  .desktopSubLink:hover, .desktopSubLinkBtn:hover {
+    background-color: #F8FAFC;
+    color: var(--color-accent-yellow);
+  }
+}

@@ -1,0 +1,77 @@
+import React from 'react';
+import { Head, Link } from '@inertiajs/react';
+import Navbar from '../../Components/Navbar/Navbar';
+import styles from './JadwalSpmb.module.css';
+
+export default function JadwalSpmb({ schedules = [] }) {
+  const links = [
+    { url: '/', label: 'Beranda' },
+    { 
+      label: 'Profil', 
+      dropdown: [
+        { url: '/profil/sambutan', label: 'Sambutan Kepala Sekolah' },
+        { url: '/profil/visi-misi', label: 'Visi & Misi' },
+        { url: '/profil/struktur', label: 'Struktur Organisasi' },
+        { url: '/profil/sejarah', label: 'Sejarah Singkat' }
+      ]
+    },
+    { 
+      label: 'Informasi Pendaftaran', 
+      dropdown: [
+        { url: '/informasi/jadwal', label: 'Jadwal SPMB' },
+        { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
+      ]
+    },
+    { url: '/berita', label: 'Berita' }
+  ];
+
+  const formatDate = (dateStr) => {
+    return new Date(dateStr).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+  };
+
+  return (
+    <>
+      <Head title="Jadwal Pendaftaran SPMB - SMK Ahmad Dahlan" />
+      <Navbar links={links} />
+
+      <header className={styles.header}>
+        <div className={styles.headerContent}>
+          <h1>Jadwal Pendaftaran SPMB</h1>
+          <p className={styles.breadcrumb}>
+            <Link href="/">Beranda</Link> / Informasi Pendaftaran / Jadwal
+          </p>
+        </div>
+      </header>
+
+      <main className={styles.container}>
+        <section className={styles.intro}>
+          <h2>Timeline Alur & Tahapan Seleksi</h2>
+          <p>Berikut adalah agenda penting pelaksanaan Penerimaan Peserta Didik Baru (PPDB/SPMB) SMK Ahmad Dahlan Sukadamai Tahun Ajaran 2026/2027.</p>
+        </section>
+
+        <section className={styles.scheduleTimeline}>
+          {schedules.length > 0 ? (
+            schedules.map((stage, idx) => (
+              <div key={stage.id} className={styles.timelineCard}>
+                <div className={styles.numberBadge}>{idx + 1}</div>
+                <div className={styles.content}>
+                  <div className={styles.dateRange}>
+                    <span>📅 {formatDate(stage.start_date)} s/d {formatDate(stage.end_date)}</span>
+                  </div>
+                  <h3>{stage.title}</h3>
+                  <p>{stage.description}</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className={styles.emptyText}>Belum ada jadwal pendaftaran yang dirilis.</p>
+          )}
+        </section>
+      </main>
+
+      <footer className={styles.footer}>
+        <p>&copy; 2026 SMK Ahmad Dahlan Sukadamai. All Rights Reserved.</p>
+      </footer>
+    </>
+  );
+}

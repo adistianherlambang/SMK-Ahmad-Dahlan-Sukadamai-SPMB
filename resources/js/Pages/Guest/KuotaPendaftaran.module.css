@@ -1,0 +1,202 @@
+.header {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.headerContent {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.breadcrumb {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.breadcrumb a {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.intro {
+  text-align: center;
+}
+
+.intro h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.intro p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.quotaGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quotaCard {
+  background-color: var(--color-white);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.quotaCardHeader {
+  padding: 16px 20px;
+  background-color: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.quotaCardHeader h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+}
+
+.seatsBadge {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.seatsLeft {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-success);
+}
+
+.seatsTotal {
+  font-size: 11px;
+  color: #718096;
+  font-weight: 600;
+}
+
+.quotaCardBody {
+  padding: 20px;
+  text-align: left;
+}
+
+.quotaCardBody p {
+  font-size: 13px;
+  color: #4A5568;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.quotaCardFooter {
+  padding: 12px 20px;
+  border-top: 1px dashed #E2E8F0;
+  text-align: right;
+}
+
+.statusText {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.statusOpen {
+  background-color: #E6FFFA;
+  color: #319795;
+}
+
+.statusClosed {
+  background-color: #FFF5F5;
+  color: var(--color-danger);
+}
+
+.guideCard {
+  background-color: #F7FAFC;
+  border: 1px solid #EDF2F7;
+  border-radius: 6px;
+  padding: 20px;
+  text-align: left;
+}
+
+.guideCard h3 {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.guideCard ul {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12px;
+  color: #4A5568;
+  line-height: 1.6;
+}
+
+.emptyText {
+  color: #718096;
+  font-size: 14px;
+  text-align: center;
+  font-style: italic;
+  padding: 32px 0;
+}
+
+.footer {
+  background-color: #001228;
+  color: var(--color-white);
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 48px;
+}
+
+@media (min-width: 1024px) {
+  .headerContent {
+    max-width: 1000px;
+  }
+  .container {
+    max-width: 1000px;
+    padding: 48px 20px;
+    gap: 32px;
+  }
+  .quotaGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .guideCard {
+    padding: 28px;
+  }
+}

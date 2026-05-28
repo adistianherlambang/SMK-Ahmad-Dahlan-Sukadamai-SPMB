@@ -1,0 +1,39 @@
+:root {
+  --color-primary-dark: #002147;
+  --color-accent-yellow: #FDCD2D;
+  --color-text-main: #1F1B18;
+  --color-danger: #FF0200;
+  --color-success: #18C927;
+  --color-white: #FFFFFF;
+  --color-overlay: rgba(0, 0, 0, 0.6);
+  
+  --spacing-mobile-lr: 16px;
+  --spacing-mobile-tb: 32px;
+  --spacing-mobile-gap: 48px;
+  
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-base);
+  color: var(--color-text-main);
+  background-color: var(--color-white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}

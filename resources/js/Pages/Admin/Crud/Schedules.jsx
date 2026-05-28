@@ -1,0 +1,235 @@
+import React, { useState } from 'react';
+import { Head, router, usePage, useForm } from '@inertiajs/react';
+import Navbar from '../../../Components/Navbar/Navbar';
+import Popup from '../../../Components/Popup/Popup';
+import Input from '../../../Components/Input/Input';
+import styles from '../AdminDashboard.module.css';
+
+export default function Schedules({ schedules = [] }) {
+  const { flash } = usePage().props;
+  const [isOpen, setIsOpen] = useState(false);
+  const [editId, setEditId] = useState(null);
+
+  const { data, setData, post, put, reset, processing, errors } = useForm({
+    title: '',
+    description: '',
+    start_date: '',
+    end_date: '',
+  });
+
+  const links = [
+    { url: '/admin/dashboard', label: 'Dasbor' },
+    { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
+    { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
+    { 
+      label: 'Data Master', 
+      dropdown: [
+        { url: '/admin/schedules', label: 'Kelola Jadwal' },
+        { url: '/admin/quotas', label: 'Kelola Kuota' },
+        { url: '/admin/posts', label: 'Kelola Berita/Pengumuman' },
+        { url: '/admin/achievements', label: 'Kelola Prestasi' }
+      ]
+    },
+    { url: '/logout', label: 'Keluar', method: 'post' }
+  ];
+
+  const handleOpenAdd = () => {
+    reset();
+    setEditId(null);
+    setIsOpen(true);
+  };
+
+  const handleOpenEdit = (schedule) => {
+    setData({
+      title: schedule.title,
+      description: schedule.description || '',
+      start_date: schedule.start_date,
+      end_date: schedule.end_date,
+    });
+    setEditId(schedule.id);
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    reset();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (editId) {
+      put(`/admin/schedules/${editId}`, {
+        onSuccess: () => handleClose(),
+      });
+    } else {
+      post('/admin/schedules', {
+        onSuccess: () => handleClose(),
+      });
+    }
+  };
+
+  const handleDelete = (id, title) => {
+    if (confirm(`Apakah Anda yakin ingin menghapus agenda "${title}"?`)) {
+      router.delete(`/admin/schedules/${id}`);
+    }
+  };
+
+  const formatDate = (dateStr) => {
+    return new Date(dateStr).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+  };
+
+  return (
+    <>
+      <Head title="Kelola Jadwal SPMB - SMK Ahmad Dahlan" />
+      <Navbar links={links} />
+
+      <header className={styles.header}>
+        <div className={styles.headerContent} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <div>
+            <h1>Kelola Jadwal SPMB</h1>
+            <p>Atur lini masa gelombang dan tahapan pendaftaran siswa baru.</p>
+          </div>
+          <button 
+            onClick={handleOpenAdd}
+            className={styles.submitBtn} 
+            style={{ width: 'auto', marginTop: 0, padding: '10px 20px', backgroundColor: 'var(--color-accent-yellow)', color: 'var(--color-text-main)' }}
+          >
+            ➕ Tambah Jadwal Baru
+          </button>
+        </div>
+      </header>
+
+      <main className={styles.container}>
+        {/* Flash Notifications */}
+        {flash?.success && (
+          <div className={`${styles.alertBox} ${styles.alertSuccess}`} style={{ marginBottom: '16px' }}>
+            ✓ {flash.success}
+          </div>
+        )}
+
+        {/* Schedules Table */}
+        <section className={styles.tableSection}>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Agenda / Gelombang</th>
+                  <th>Deskripsi</th>
+                  <th>Mulai</th>
+                  <th>Selesai</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {schedules.length > 0 ? (
+                  schedules.map((stage, idx) => (
+                    <tr key={stage.id}>
+                      <td>{idx + 1}</td>
+                      <td className={styles.boldCell}>{stage.title}</td>
+                      <td>{stage.description}</td>
+                      <td>{formatDate(stage.start_date)}</td>
+                      <td>{formatDate(stage.end_date)}</td>
+                      <td>
+                        <div className={styles.actionBtnGrid}>
+                          <button 
+                            className={`${styles.iconBtn} ${styles.iconBtnWarning}`}
+                            onClick={() => handleOpenEdit(stage)}
+                            title="Edit"
+                          >
+                            ✏️ Edit
+                          </button>
+                          <button 
+                            className={`${styles.iconBtn} ${styles.iconBtnDanger}`}
+                            onClick={() => handleDelete(stage.id, stage.title)}
+                            title="Hapus"
+                          >
+                            🗑️ Hapus
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="6" className={styles.emptyCell}>Belum ada agenda jadwal pendaftaran yang ditambahkan.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Add/Edit Popup Modal */}
+        <Popup isOpen={isOpen} onClose={handleClose}>
+          <div style={{ textAlign: 'left' }}>
+            <h3 style={{ fontSize: '15px', fontWeight: '800', color: 'var(--color-primary-dark)', borderBottom: '1px solid #EDF2F7', paddingBottom: '12px', marginBottom: '16px', textTransform: 'uppercase' }}>
+              {editId ? 'Ubah Agenda Jadwal' : 'Tambah Agenda Baru'}
+            </h3>
+
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <Input 
+                label="Nama Agenda / Gelombang"
+                placeholder="Contoh: Gelombang I Pendaftaran..."
+                value={data.title}
+                onChange={(e) => setData('title', e.target.value)}
+                required
+              />
+              {errors.title && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.title}</div>}
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#4A5568' }}>Keterangan Deskripsi</label>
+                <textarea 
+                  value={data.description}
+                  onChange={(e) => setData('description', e.target.value)}
+                  placeholder="Rincian informasi agenda..."
+                  style={{ width: '100%', minHeight: '80px', padding: '10px', border: '1px solid #CBD5E0', borderRadius: '4px', fontSize: '13px', boxSizing: 'border-box' }}
+                ></textarea>
+              </div>
+
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <div style={{ flex: 1 }}>
+                  <Input 
+                    label="Tanggal Mulai"
+                    type="date"
+                    value={data.start_date}
+                    onChange={(e) => setData('start_date', e.target.value)}
+                    required
+                  />
+                  {errors.start_date && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.start_date}</div>}
+                </div>
+                <div style={{ flex: 1 }}>
+                  <Input 
+                    label="Tanggal Selesai"
+                    type="date"
+                    value={data.end_date}
+                    onChange={(e) => setData('end_date', e.target.value)}
+                    required
+                  />
+                  {errors.end_date && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.end_date}</div>}
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid #EDF2F7', paddingTop: '16px', marginTop: '8px' }}>
+                <button 
+                  type="button" 
+                  onClick={handleClose} 
+                  style={{ flex: 1, padding: '12px', border: '1px solid #CBD5E0', borderRadius: '4px', backgroundColor: 'white', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                >
+                  Batal
+                </button>
+                <button 
+                  type="submit" 
+                  disabled={processing}
+                  style={{ flex: 1, padding: '12px', border: 'none', borderRadius: '4px', backgroundColor: 'var(--color-primary-dark)', color: 'white', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                >
+                  {processing ? 'Menyimpan...' : 'Simpan Agenda'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </Popup>
+      </main>
+    </>
+  );
+}

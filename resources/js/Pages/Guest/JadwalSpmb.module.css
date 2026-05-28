@@ -1,0 +1,151 @@
+.header {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.headerContent {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.breadcrumb {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.breadcrumb a {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.intro {
+  text-align: center;
+}
+
+.intro h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.intro p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.scheduleTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.timelineCard {
+  background-color: var(--color-white);
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.numberBadge {
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-main);
+  font-size: 16px;
+  font-weight: 800;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid var(--color-primary-dark);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.dateRange {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.content h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  line-height: 1.4;
+}
+
+.content p {
+  font-size: 13px;
+  color: #4A5568;
+  line-height: 1.6;
+}
+
+.emptyText {
+  color: #718096;
+  font-size: 14px;
+  text-align: center;
+  font-style: italic;
+  padding: 32px 0;
+}
+
+.footer {
+  background-color: #001228;
+  color: var(--color-white);
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 48px;
+}
+
+@media (min-width: 1024px) {
+  .headerContent {
+    max-width: 1000px;
+  }
+  .container {
+    max-width: 1000px;
+    padding: 48px 20px;
+  }
+  .scheduleTimeline {
+    gap: 24px;
+  }
+  .timelineCard {
+    padding: 24px;
+    transition: transform 0.2s ease;
+  }
+  .timelineCard:hover {
+    transform: translateX(4px);
+  }
+}
