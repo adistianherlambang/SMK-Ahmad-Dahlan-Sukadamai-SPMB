@@ -3,6 +3,8 @@ import { Head, Link } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
 import styles from './Landing.module.css';
 
+import Batik from '../../Components/Batik/Batik';
+
 const getImageUrl = (path) => {
   if (!path) return '';
   if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('/')) {
@@ -38,6 +40,13 @@ export default function Landing({ announcements = [], news = [], achievements = 
     { url: '/berita', label: 'Berita' }
   ];
 
+  const fasilitas = [
+    {
+      "title": "Gedung Sekolah",
+      "img": "Gedung sekolah dan fasilitas pendukung digunakan untuk menunjang kegiatan belajar mengajar secara optimal."
+    }
+  ]
+
   // Auto-slide for announcement banner
   useEffect(() => {
     if (announcements.length > 1) {
@@ -59,24 +68,40 @@ export default function Landing({ announcements = [], news = [], achievements = 
   const renderFasilitas = () => (
     <div className={styles.accBody}>
       <div className={styles.perkItem}>
-        <div className={styles.perkImg}>⚙️</div>
+        <div className={styles.perkImg}>
+          <img src="" alt="" />
+        </div>
         <div>
-          <h4>Bengkel Praktek TBSM Standar Astra</h4>
+          <h4>Gedung Sekolah</h4>
           <p>Ruang praktek khusus dengan fasilitas tools modern setara bengkel resmi untuk praktek motor injeksi.</p>
         </div>
       </div>
       <div className={styles.perkItem}>
         <div className={styles.perkImg}>💻</div>
         <div>
-          <h4>Laboratorium Bank Mini Syariah</h4>
-          <p>Aplikasi simulasi perbankan syariah riil bagi praktek teller, customer service, dan pembukuan.</p>
+          <h4>Laboratorium Komputer</h4>
+          <p>Laboratorium komputer digunakan untuk praktik teknologi informasi dan pembelajaran berbasis digital.</p>
         </div>
       </div>
       <div className={styles.perkItem}>
         <div className={styles.perkImg}>📚</div>
         <div>
-          <h4>Perpustakaan Lengkap & Wifi Area</h4>
-          <p>Koleksi ribuan buku pelajaran, umum, keagamaan, serta layanan akses internet gratis.</p>
+          <h4>Perpustakaan</h4>
+          <p>Perpustakaan menyediakan sumber belajar dan ruang membaca yang nyaman bagi siswa dan guru.</p>
+        </div>
+      </div>
+      <div className={styles.perkItem}>
+        <div className={styles.perkImg}>📚</div>
+        <div>
+          <h4>Sarana Ibadah</h4>
+          <p>Sarana ibadah digunakan untuk kegiatan keagamaan dan pembinaan karakter spiritual siswa.</p>
+        </div>
+      </div>
+      <div className={styles.perkItem}>
+        <div className={styles.perkImg}>📚</div>
+        <div>
+          <h4>Kantin Sekolah</h4>
+          <p>Kantin sekolah menyediakan makanan dan minuman yang bersih, sehat, dan terjangkau.</p>
         </div>
       </div>
     </div>
@@ -162,7 +187,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
                 const isActive = idx === activeSlide;
                 const bgStyle = slide.image_path
                   ? {
-                    backgroundImage: `linear-gradient(228deg, rgba(0, 0, 0, 0) 44.49%, rgba(0, 0, 0, 0.8) 94.37%), url('${encodeURI(getImageUrl(slide.image_path))}')`,
+                    backgroundImage: `url('${encodeURI(getImageUrl(slide.image_path))}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
@@ -176,10 +201,9 @@ export default function Landing({ announcements = [], news = [], achievements = 
                     style={bgStyle}
                   >
                     <div className={styles.slideContent}>
-                      <span className={styles.slideTag}>PENGUMUMAN</span>
                       <h2 className={styles.slideTitle}>{slide.title}</h2>
                       <p className={styles.slideDesc}>
-                        {slide.content.substring(0, 100)}{slide.content.length > 100 ? '...' : ''}
+                        {slide.content.substring(0, 50)}{slide.content.length > 50 ? '...' : ''}
                       </p>
                     </div>
                   </div>
@@ -211,7 +235,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
         </section>
 
         {/* Hero CTA for when announcements are showing */}
-        {announcements.length > 0 && (
+        {/* {announcements.length > 0 && (
           <section className={styles.quickCta}>
             <div className={styles.ctaGrid}>
               <Link href="/siswa/formulir" className={styles.ctaCard}>
@@ -226,34 +250,23 @@ export default function Landing({ announcements = [], news = [], achievements = 
               </Link>
             </div>
           </section>
-        )}
+        )} */}
 
         {/* SECTION 2: Tentang Kami */}
         <section className={styles.aboutSection}>
           <div className={styles.aboutContainer}>
-            <h2>Kompetensi Keahlian</h2>
+            <h2>Tentang Kami</h2>
             <p className={styles.aboutSubtitle}>SMK Ahmad Dahlan Sukadamai berfokus pada dua pilar kompetensi utama yang dikembangkan secara intensif:</p>
-
-            <div className={styles.departmentGrid}>
-              <div className={styles.departmentCard}>
-                <div className={styles.depIcon}>🏍️</div>
-                <h3>Teknik & Bisnis Sepeda Motor (TBSM)</h3>
-                <p>Membekali siswa dengan keahlian pemeliharaan, diagnosis kerusakan, kelistrikan, serta manajemen perbengkelan sepeda motor standar industri.</p>
-              </div>
-              <div className={styles.departmentCard}>
-                <div className={styles.depIcon}>🏦</div>
-                <h3>Perbankan Syariah (PBS)</h3>
-                <p>Membentuk profesional muda di bidang keuangan syariah, administrasi bank, pengelolaan akuntansi syariah, dan dasar hukum transaksi muamalah.</p>
-              </div>
-            </div>
+          </div>
+          <div className={styles.batik}>
+            <Batik section="atas" color="var(--color-primary-dark)" />
+            <Batik section="bawah" color="var(--color-primary-dark)" />
           </div>
         </section>
 
         {/* SECTION 3: Video Embed */}
-        <section className={styles.videoSection}>
+        {/* <section className={styles.videoSection}>
           <div className={styles.videoContainer}>
-            <h2>Video Profil Sekolah</h2>
-            <p>Saksikan sekilas kegiatan belajar mengajar dan fasilitas praktek di sekolah kami.</p>
             <div className={styles.videoWrapper}>
               <iframe
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ"
@@ -263,7 +276,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
               ></iframe>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* SECTION 4: Accordion Keunggulan */}
         <section className={styles.perksSection}>
@@ -307,8 +320,19 @@ export default function Landing({ announcements = [], news = [], achievements = 
                   className={styles.accHeader}
                   onClick={() => setOpenSection(openSection === 'fasilitas' ? '' : 'fasilitas')}
                 >
-                  <span>Fasilitas & Layanan</span>
-                  <span className={styles.accArrow}>{openSection === 'fasilitas' ? '▲' : '▼'}</span>
+                  <div className={styles.accTitle}>
+                    <span>Fasilitas & Layanan</span>
+                    <p>Meliputi gedung sekolah, ruang belajar, laboratorium, lapangan olahraga, ruang ibadah, dll. </p>
+                  </div>
+                  <span className={styles.accArrow}>{openSection === 'fasilitas' ?
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14.6924 3.39763L16 4.78573L8.8734 12.3464C8.75921 12.4683 8.62342 12.565 8.47384 12.631C8.32426 12.697 8.16386 12.731 8.00185 12.731C7.83985 12.731 7.67944 12.697 7.52986 12.631C7.38029 12.565 7.2445 12.4683 7.1303 12.3464L1.04668e-06 4.78573L1.30763 3.39893L8 10.4951L14.6924 3.39763Z" fill="white" />
+                    </svg>
+                    :
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.30763 12.6024L-9.47459e-08 11.2143L7.1266 3.65362C7.24079 3.53174 7.37658 3.43502 7.52616 3.36902C7.67574 3.30302 7.83614 3.26904 7.99815 3.26904C8.16016 3.26904 8.32056 3.30302 8.47014 3.36902C8.61971 3.43502 8.75551 3.53174 8.8697 3.65362L16 11.2143L14.6924 12.6011L8 5.50486L1.30763 12.6024Z" fill="white" />
+                    </svg>
+                  }</span>
                 </button>
                 {openSection === 'fasilitas' && renderFasilitas()}
               </div>
@@ -319,8 +343,19 @@ export default function Landing({ announcements = [], news = [], achievements = 
                   className={styles.accHeader}
                   onClick={() => setOpenSection(openSection === 'ekskul' ? '' : 'ekskul')}
                 >
-                  <span>Ekstrakurikuler</span>
-                  <span className={styles.accArrow}>{openSection === 'ekskul' ? '▲' : '▼'}</span>
+                  <div className={styles.accTitle}>
+                    <span>Ekstrakurikuler</span>
+                    <p>Ekstrakurikuler untuk mengembangkan potensi dan keterampilan siswa.</p>
+                  </div>
+                  <span className={styles.accArrow}>{openSection === 'fasilitas' ?
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14.6924 3.39763L16 4.78573L8.8734 12.3464C8.75921 12.4683 8.62342 12.565 8.47384 12.631C8.32426 12.697 8.16386 12.731 8.00185 12.731C7.83985 12.731 7.67944 12.697 7.52986 12.631C7.38029 12.565 7.2445 12.4683 7.1303 12.3464L1.04668e-06 4.78573L1.30763 3.39893L8 10.4951L14.6924 3.39763Z" fill="white" />
+                    </svg>
+                    :
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.30763 12.6024L-9.47459e-08 11.2143L7.1266 3.65362C7.24079 3.53174 7.37658 3.43502 7.52616 3.36902C7.67574 3.30302 7.83614 3.26904 7.99815 3.26904C8.16016 3.26904 8.32056 3.30302 8.47014 3.36902C8.61971 3.43502 8.75551 3.53174 8.8697 3.65362L16 11.2143L14.6924 12.6011L8 5.50486L1.30763 12.6024Z" fill="white" />
+                    </svg>
+                  }</span>
                 </button>
                 {openSection === 'ekskul' && renderEkskul()}
               </div>
@@ -331,8 +366,19 @@ export default function Landing({ announcements = [], news = [], achievements = 
                   className={styles.accHeader}
                   onClick={() => setOpenSection(openSection === 'prestasi' ? '' : 'prestasi')}
                 >
-                  <span>Daftar Prestasi Siswa</span>
-                  <span className={styles.accArrow}>{openSection === 'prestasi' ? '▲' : '▼'}</span>
+                  <div className={styles.accTitle}>
+                    <span>Daftar Prestasi Siswa</span>
+                    <p>Banyak prestasi yang telah diraih oleh sekolah kami, baik prestasi tingkat nasional maupun internasional.</p>
+                  </div>
+                  <span className={styles.accArrow}>{openSection === 'fasilitas' ?
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14.6924 3.39763L16 4.78573L8.8734 12.3464C8.75921 12.4683 8.62342 12.565 8.47384 12.631C8.32426 12.697 8.16386 12.731 8.00185 12.731C7.83985 12.731 7.67944 12.697 7.52986 12.631C7.38029 12.565 7.2445 12.4683 7.1303 12.3464L1.04668e-06 4.78573L1.30763 3.39893L8 10.4951L14.6924 3.39763Z" fill="white" />
+                    </svg>
+                    :
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.30763 12.6024L-9.47459e-08 11.2143L7.1266 3.65362C7.24079 3.53174 7.37658 3.43502 7.52616 3.36902C7.67574 3.30302 7.83614 3.26904 7.99815 3.26904C8.16016 3.26904 8.32056 3.30302 8.47014 3.36902C8.61971 3.43502 8.75551 3.53174 8.8697 3.65362L16 11.2143L14.6924 12.6011L8 5.50486L1.30763 12.6024Z" fill="white" />
+                    </svg>
+                  }</span>
                 </button>
                 {openSection === 'prestasi' && renderPrestasi()}
               </div>
