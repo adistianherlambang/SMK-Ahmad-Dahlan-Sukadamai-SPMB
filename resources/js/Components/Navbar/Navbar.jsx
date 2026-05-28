@@ -8,8 +8,11 @@ export default function Navbar({ navType = 'landing', links = [] }) {
     <>
       <nav className={styles.navbar}>
         <div className={styles.navContainer}>
-          <Link href="/" className={styles.logo}>SMK Ahmad Dahlan</Link>
-          
+          <Link href="/" className={styles.logo}>
+            <img src="/mainLogo.png" alt="" className={styles.imgLogo} />
+            <p>SMK Ahmad<br />Dahlan Sukadamai</p>
+          </Link>
+
           {/* Desktop Horizontal Menu Links */}
           <div className={styles.desktopNav}>
             {links.map((link, i) => (
@@ -70,10 +73,10 @@ export default function Navbar({ navType = 'landing', links = [] }) {
           </div>
 
           <button className={styles.hamburger} onClick={() => setIsOpen(true)}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
+            <svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="19" height="2" fill="#939596" />
+              <rect x="4" y="4.5" width="15" height="2" fill="#939596" />
+              <rect x="7" y="9.5" width="12" height="2" fill="#939596" />
             </svg>
           </button>
         </div>
