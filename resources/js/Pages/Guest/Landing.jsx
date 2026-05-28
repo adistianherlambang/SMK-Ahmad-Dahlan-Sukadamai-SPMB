@@ -43,7 +43,28 @@ export default function Landing({ announcements = [], news = [], achievements = 
   const fasilitas = [
     {
       "title": "Gedung Sekolah",
-      "img": "Gedung sekolah dan fasilitas pendukung digunakan untuk menunjang kegiatan belajar mengajar secara optimal."
+      "desc": "Gedung sekolah dan fasilitas pendukung digunakan untuk menunjang kegiatan belajar mengajar secara optimal.",
+      "img": "/landingPage/landing/dummy.png",
+    },
+    {
+      "title": "Laboratorium Komputer",
+      "desc": "Laboratorium komputer digunakan untuk praktik teknologi informasi dan pembelajaran berbasis digital.",
+      "img": "/landingPage/landing/dummy.png",
+    },
+    {
+      "title": "Perpustakaan",
+      "desc": "Perpustakaan menyediakan sumber belajar dan ruang membaca yang nyaman bagi siswa dan guru.",
+      "img": "/landingPage/landing/dummy.png",
+    },
+    {
+      "title": "Sarana Ibadah",
+      "desc": "Sarana ibadah digunakan untuk kegiatan keagamaan dan pembinaan karakter spiritual siswa.",
+      "img": "/landingPage/landing/dummy.png",
+    },
+    {
+      "title": "Kantin Sekolah",
+      "desc": "Kantin sekolah menyediakan makanan dan minuman yang bersih, sehat, dan terjangkau.",
+      "img": "/landingPage/landing/dummy.png",
     }
   ]
 
@@ -67,43 +88,17 @@ export default function Landing({ announcements = [], news = [], achievements = 
   // Contents Renderers to avoid code duplication
   const renderFasilitas = () => (
     <div className={styles.accBody}>
-      <div className={styles.perkItem}>
-        <div className={styles.perkImg}>
-          <img src="" alt="" />
+      {fasilitas.map((item, index) => (
+        <div className={styles.perkItem}>
+          <div className={styles.perkImg}>
+            <img src={item.img} alt={item.title} />
+          </div>
+          <div>
+            <h4>{item.title}</h4>
+            <p>{item.desc}</p>
+          </div>
         </div>
-        <div>
-          <h4>Gedung Sekolah</h4>
-          <p>Ruang praktek khusus dengan fasilitas tools modern setara bengkel resmi untuk praktek motor injeksi.</p>
-        </div>
-      </div>
-      <div className={styles.perkItem}>
-        <div className={styles.perkImg}>💻</div>
-        <div>
-          <h4>Laboratorium Komputer</h4>
-          <p>Laboratorium komputer digunakan untuk praktik teknologi informasi dan pembelajaran berbasis digital.</p>
-        </div>
-      </div>
-      <div className={styles.perkItem}>
-        <div className={styles.perkImg}>📚</div>
-        <div>
-          <h4>Perpustakaan</h4>
-          <p>Perpustakaan menyediakan sumber belajar dan ruang membaca yang nyaman bagi siswa dan guru.</p>
-        </div>
-      </div>
-      <div className={styles.perkItem}>
-        <div className={styles.perkImg}>📚</div>
-        <div>
-          <h4>Sarana Ibadah</h4>
-          <p>Sarana ibadah digunakan untuk kegiatan keagamaan dan pembinaan karakter spiritual siswa.</p>
-        </div>
-      </div>
-      <div className={styles.perkItem}>
-        <div className={styles.perkImg}>📚</div>
-        <div>
-          <h4>Kantin Sekolah</h4>
-          <p>Kantin sekolah menyediakan makanan dan minuman yang bersih, sehat, dan terjangkau.</p>
-        </div>
-      </div>
+      ))}
     </div>
   );
 
