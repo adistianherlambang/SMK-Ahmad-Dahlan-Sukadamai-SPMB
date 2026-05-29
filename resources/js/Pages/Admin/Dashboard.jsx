@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, router } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 import styles from './AdminDashboard.module.css';
 
 export default function Dashboard({ registrations = [], quotas = [], years = [], stats = {}, filters = {} }) {
@@ -168,6 +169,7 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }

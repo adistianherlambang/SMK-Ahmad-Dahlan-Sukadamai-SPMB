@@ -3,6 +3,7 @@ import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
 import FileInput from '../../Components/FileInput/FileInput';
 import Button from '../../Components/Button/Button';
+import Footer from '../../Components/Footer/Footer';
 import styles from './Dashboard.module.css'; // Re-use general layouts
 import formStyles from '../Student/Auth/Formulir.module.css'; // Re-use form sections styling
 
@@ -262,9 +263,7 @@ export default function DataPendaftaran({ registration = {} }) {
         </div>
       </main>
 
-      <footer className={styles.footer}>
-        <p>&copy; 2026 SMK Ahmad Dahlan Sukadamai. All Rights Reserved.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

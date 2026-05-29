@@ -2,6 +2,7 @@ import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
 import Button from '../../Components/Button/Button';
+import Footer from '../../Components/Footer/Footer';
 import styles from './Dashboard.module.css';
 
 export default function Dashboard({ registration = {} }) {
@@ -145,9 +146,7 @@ export default function Dashboard({ registration = {} }) {
         </section>
       </main>
 
-      <footer className={styles.footer}>
-        <p>&copy; 2026 SMK Ahmad Dahlan Sukadamai. All Rights Reserved.</p>
-      </footer>
+      <Footer />
     </>
   );
 }
