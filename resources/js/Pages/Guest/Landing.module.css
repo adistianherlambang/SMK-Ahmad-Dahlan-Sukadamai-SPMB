@@ -717,10 +717,6 @@
     /* larger player on desktop */
   }
 
-  .videoSection h2 {
-    font-size: 32px;
-  }
-
   /* Tentang Kami / Kompetensi Keahlian Layout */
   .aboutContainer {
     max-width: 1200px;
@@ -734,13 +730,11 @@
   }
 
   .aboutSection h2 {
-    font-size: 32px;
     margin: 0;
     flex: 0 0 30%;
   }
 
   .aboutSubtitle {
-    font-size: 16px;
     margin: 0;
     flex: 1;
   }
@@ -765,7 +759,6 @@
   }
 
   .perksSection h2 {
-    font-size: 32px;
     margin-bottom: 40px;
     text-align: center;
   }
@@ -806,7 +799,6 @@
   }
 
   .newsSection h2 {
-    font-size: 32px;
     margin-bottom: 40px;
   }
 
