@@ -50,7 +50,7 @@ export default function Navbar({ navType = 'landing', links = [] }) {
                     </div>
                   </div>
                 ) : (
-                  link.method === 'post' ? (
+                  link.method === 'post' && link.label !== 'Daftar Sekarang' ? (
                     <Link
                       href={link.url}
                       method="post"
@@ -60,6 +60,7 @@ export default function Navbar({ navType = 'landing', links = [] }) {
                       {link.label}
                     </Link>
                   ) : (
+
                     <Link
                       href={link.url}
                       className={styles.desktopLink}
@@ -132,23 +133,35 @@ export default function Navbar({ navType = 'landing', links = [] }) {
                   </div>
                 </div>
               ) : (
-                link.method === 'post' ? (
+                (link.method === 'post' || link.label === 'Daftar Sekarang') ? (
                   <div className={styles.mainLinkContainer}>
                     <Link
                       href={link.url}
-                      method="post"
-                      as="button"
+                      method={link.label === 'Daftar Sekarang' ? 'get' : 'post'}
+                      as={link.label === 'Daftar Sekarang' ? 'a' : 'button'}
                       className={styles.mainLinkBtn}
                       onClick={() => setIsOpen(false)}
                     >
                       {link.label}
                     </Link>
                     {link.label == "Daftar Sekarang" ?
-                      <Link style={{ color: "white", backgroundColor: "var(--color-primary-dark)", border: "solid white 1px" }} as="button" className={styles.mainLinkBtn} href="/admin/login">
+                      <Link
+                        style={{ color: "white", backgroundColor: "var(--color-primary-dark)", border: "solid white 1px" }}
+                        as="a"
+                        className={styles.mainLinkBtn}
+                        href="/admin/login"
+                        onClick={() => setIsOpen(false)}
+                      >
                         Login Admin
                       </Link>
                       :
-                      <Link style={{ color: "white", backgroundColor: "var(--color-primary-dark)", border: "solid white 1px" }} as="button" className={styles.mainLinkBtn} href="/">
+                      <Link
+                        style={{ color: "white", backgroundColor: "var(--color-primary-dark)", border: "solid white 1px" }}
+                        as="a"
+                        className={styles.mainLinkBtn}
+                        href="/"
+                        onClick={() => setIsOpen(false)}
+                      >
                         Ke Halaman Utama
                       </Link>
                     }

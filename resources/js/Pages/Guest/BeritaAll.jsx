@@ -17,8 +17,8 @@ export default function BeritaAll({ news = [] }) {
 
   const links = [
     { url: '/', label: 'Beranda' },
-    { 
-      label: 'Profil', 
+    {
+      label: 'Profil',
       dropdown: [
         { url: '/profil/sambutan', label: 'Sambutan Kepala Sekolah' },
         { url: '/profil/visi-misi', label: 'Visi & Misi' },
@@ -26,8 +26,8 @@ export default function BeritaAll({ news = [] }) {
         { url: '/profil/sejarah', label: 'Sejarah Singkat' }
       ]
     },
-    { 
-      label: 'Informasi Pendaftaran', 
+    {
+      label: 'Informasi Pendaftaran',
       dropdown: [
         { url: '/informasi/jadwal', label: 'Jadwal SPMB' },
         { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
@@ -56,11 +56,12 @@ export default function BeritaAll({ news = [] }) {
       </header>
 
       <main className={styles.container}>
+        <div className={styles.title}>Berita Terkini</div>
         {/* Search Bar */}
         <div className={styles.searchBox}>
-          <input 
-            type="text" 
-            placeholder="Cari berita atau pengumuman..." 
+          <input
+            type="text"
+            placeholder="Cari berita atau pengumuman..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className={styles.searchInput}
@@ -73,10 +74,10 @@ export default function BeritaAll({ news = [] }) {
             filteredNews.map((item) => (
               <Link key={item.id} href={`/berita/${item.id}`} className={styles.newsCard}>
                 {item.image_path ? (
-                  <img 
-                    src={getImageUrl(item.image_path)} 
-                    alt={item.title} 
-                    className={styles.newsImg} 
+                  <img
+                    src={getImageUrl(item.image_path)}
+                    alt={item.title}
+                    className={styles.newsImg}
                   />
                 ) : (
                   <div className={styles.newsImgPlaceholder}>📰</div>
