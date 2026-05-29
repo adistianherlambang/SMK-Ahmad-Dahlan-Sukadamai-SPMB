@@ -64,11 +64,16 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 14px;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ctaBtnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(254, 252, 191, 0.4);
 }
 
 .ctaBtnPrimary:active {
-  transform: scale(0.98);
+  transform: translateY(0) scale(0.98);
 }
 
 .ctaBtnSecondary {
@@ -82,6 +87,17 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 14px;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.ctaBtnSecondary:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.ctaBtnSecondary:active {
+  transform: translateY(0) scale(0.98);
 }
 
 /* Slider with Active Announcements */
@@ -230,13 +246,15 @@
   flex-direction: column;
   gap: 12px;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 auto 16px auto;
   background-color: var(--color-primary-dark);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .aboutSection h2 {
   font-size: 22px;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--color-white);
 }
 
@@ -249,6 +267,15 @@
 .batik {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.batik > div {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* Video Section */
@@ -326,39 +353,63 @@
 
 .accItem {
   overflow: hidden;
+  background-color: var(--color-white);
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accItem:hover {
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .accHeader {
   width: 100%;
-  padding: 16px;
+  padding: 20px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: none;
+  background-color: #F8FAFC;
   border: none;
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--color-white);
   cursor: pointer;
   text-align: left;
   gap: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.accHeader:hover {
+  background-color: #F1F5F9;
 }
 
 .accTitle {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+}
+
+.accTitle span {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
 }
 
 .accTitle p {
   font-size: 12px;
   font-weight: 400;
-  color: var(--color-white);
+  color: #64748B;
+  margin: 0;
+  line-height: 1.5;
 }
 
 .accArrow {
   font-size: 12px;
-  color: #A0AEC0;
+  color: var(--color-primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .accCollapse {
@@ -633,7 +684,6 @@
   flex-direction: column;
   gap: 12px;
   width: 100%;
-  background-color: var(--color-primary-dark);
 }
 
 @media (min-width: 1024px) {
@@ -685,25 +735,64 @@
   /* Tentang Kami / Kompetensi Keahlian */
   .aboutSection {
     padding: 80px 20px;
+    background-color: #F8FAFC;
   }
 
   .aboutContainer {
     max-width: 1200px;
+    width: 100%;
+    margin: 0 auto 40px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 64px;
+    padding: 40px 48px;
+    background-color: var(--color-primary-dark);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   }
 
   .aboutSection h2 {
-    font-size: 32px;
-    margin-bottom: 16px;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-white);
+    flex: 0 0 30%;
+    line-height: 1.2;
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+    padding-right: 40px;
   }
 
   .aboutSubtitle {
-    font-size: 16px;
-    margin-bottom: 48px;
+    font-size: 18px;
+    margin: 0;
+    color: var(--color-white);
+    opacity: 0.9;
+    flex: 1;
+    line-height: 1.6;
   }
 
   .batik {
     display: flex;
     flex-direction: row;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 24px;
+  }
+
+  .batik > div {
+    flex: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .batik > div:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   }
 
   /* Video Section */
@@ -802,6 +891,18 @@
     margin-bottom: 16px;
     font-size: 48px;
     border-radius: 6px;
+  }
+
+  .allNewsBtn {
+    width: auto;
+    display: inline-block;
+    padding: 14px 40px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .allNewsBtn:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
   }
 
 
