@@ -826,9 +826,13 @@
   }
 
   /* Perks Section Layout */
+  .perksSection {
+    padding: var(--spacing-6xl) var(--spacing-lg);
+  }
+
   .perksContainer {
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
@@ -862,6 +866,10 @@
   }
 
   /* News Section Layout */
+  .newsSection {
+    padding: var(--spacing-6xl) var(--spacing-lg);
+  }
+
   .newsContainer {
     max-width: 1200px;
   }
@@ -876,7 +884,7 @@
 
   .newsCard {
     flex-direction: column;
-    padding: 16px;
+
     /* Elegant consistent padding! */
     align-items: flex-start;
     height: 100%;

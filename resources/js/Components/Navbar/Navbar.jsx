@@ -20,7 +20,11 @@ export default function Navbar({ navType = 'landing', links = [] }) {
                 {link.dropdown ? (
                   <div className={styles.desktopDropdownGroup}>
                     <span className={styles.desktopLink}>
-                      {link.label} <span className={styles.caret}>▼</span>
+                      {link.label} <span className={styles.caret}>
+                        <svg width="8" height="8" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M14.6924 3.39763L16 4.78573L8.8734 12.3464C8.75921 12.4683 8.62342 12.565 8.47384 12.631C8.32426 12.697 8.16386 12.731 8.00185 12.731C7.83985 12.731 7.67944 12.697 7.52986 12.631C7.38029 12.565 7.2445 12.4683 7.1303 12.3464L1.04668e-06 4.78573L1.30763 3.39893L8 10.4951L14.6924 3.39763Z" fill="currentColor" />
+                        </svg>
+                      </span>
                     </span>
                     <div className={styles.desktopDropdownMenu}>
                       {link.dropdown.map((sub, idx) => {
@@ -183,3 +187,13 @@ export default function Navbar({ navType = 'landing', links = [] }) {
     </>
   );
 }
+
+{/* <span className={styles.accArrow}>{openSection === 'fasilitas' ?
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M14.6924 3.39763L16 4.78573L8.8734 12.3464C8.75921 12.4683 8.62342 12.565 8.47384 12.631C8.32426 12.697 8.16386 12.731 8.00185 12.731C7.83985 12.731 7.67944 12.697 7.52986 12.631C7.38029 12.565 7.2445 12.4683 7.1303 12.3464L1.04668e-06 4.78573L1.30763 3.39893L8 10.4951L14.6924 3.39763Z" fill="currentColor" />
+  </svg>
+  :
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1.30763 12.6024L-9.47459e-08 11.2143L7.1266 3.65362C7.24079 3.53174 7.37658 3.43502 7.52616 3.36902C7.67574 3.30302 7.83614 3.26904 7.99815 3.26904C8.16016 3.26904 8.32056 3.30302 8.47014 3.36902C8.61971 3.43502 8.75551 3.53174 8.8697 3.65362L16 11.2143L14.6924 12.6011L8 5.50486L1.30763 12.6024Z" fill="currentColor" />
+  </svg>
+}</span> */}
