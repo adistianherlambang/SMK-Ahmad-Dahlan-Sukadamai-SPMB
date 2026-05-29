@@ -39,19 +39,23 @@
 /* Page Main Container - Directly containing and constraining the form */
 .container {
   width: 100%;
-  max-width: 440px; /* Directly constrain the width of the login layout */
+  max-width: 440px;
+  /* Directly constrain the width of the login layout */
   margin: 0 auto;
   padding: 64px 20px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   background-color: var(--color-white);
-  min-height: calc(100vh - 300px); /* Fill screen space nicely */
+  min-height: calc(100vh - 300px);
+  /* Fill screen space nicely */
+  gap: 2rem;
 }
 
 .cardHeader {
   text-align: center;
-  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
 }
 
 .cardHeader h2 {
@@ -59,7 +63,6 @@
   font-weight: 800;
   color: var(--color-primary-dark);
   text-transform: uppercase;
-  margin-bottom: 8px;
   letter-spacing: -0.5px;
 }
 
@@ -132,10 +135,8 @@
 }
 
 .footerLink {
-  margin-top: 28px;
   font-size: 14px;
   color: #718096;
-  border-top: 1px solid #E2E8F0;
   padding-top: 20px;
   text-align: center;
 }

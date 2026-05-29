@@ -79,11 +79,13 @@ export default function Login() {
           <Button type="submit" loading={processing} style={{ width: '100%' }}>
             Masuk Portal
           </Button>
+
+          <div className={styles.footerLink}>
+            <p>Belum melakukan pendaftaran? <Link href="/siswa/formulir">Daftar Sekarang</Link></p>
+          </div>
         </form>
 
-        <div className={styles.footerLink}>
-          <p>Belum melakukan pendaftaran? <Link href="/siswa/formulir">Daftar Sekarang</Link></p>
-        </div>
+
       </main>
 
       <Footer />
