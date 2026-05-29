@@ -87,8 +87,14 @@ export default function Navbar({ navType = 'landing', links = [] }) {
 
       {/* Side Slide-in Drawer */}
       <div className={`${styles.drawer} ${isOpen ? styles.drawerOpen : ''}`}>
-        <div className={styles.drawerHeader}>
-          <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>×</button>
+        <div className={styles.navContainer} style={{ padding: "24px", borderBottom: "solid rgb(255, 255, 255) 1px" }}>
+          <div className={styles.logo}>
+            <img src="/mainLogo.png" alt="" className={styles.imgLogo} />
+            <p style={{ color: "white" }}>SMK Ahmad<br />Dahlan Sukadamai</p>
+          </div>
+          <div className={styles.drawerHeader}>
+            <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>×</button>
+          </div>
         </div>
         <div className={styles.drawerBody}>
           {links.map((link, i) => (
@@ -148,6 +154,7 @@ export default function Navbar({ navType = 'landing', links = [] }) {
               )}
             </div>
           ))}
+          <div style={{ color: "white" }}>asda</div>
         </div>
       </div>
     </>
