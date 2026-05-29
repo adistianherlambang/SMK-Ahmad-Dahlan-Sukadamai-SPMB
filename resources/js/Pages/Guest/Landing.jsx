@@ -40,6 +40,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
       ]
     },
     { url: '/berita', label: 'Berita' },
+    { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' },
   ];
 
   const fasilitas = [
@@ -249,24 +250,6 @@ export default function Landing({ announcements = [], news = [], achievements = 
           )}
         </section>
 
-        {/* Hero CTA for when announcements are showing */}
-        {/* {announcements.length > 0 && (
-          <section className={styles.quickCta}>
-            <div className={styles.ctaGrid}>
-              <Link href="/siswa/formulir" className={styles.ctaCard}>
-                <h3>Daftar Calon Siswa</h3>
-                <p>Isi formulir pendaftaran online di sini.</p>
-                <span className={styles.cardArrow}>→</span>
-              </Link>
-              <Link href="/siswa/login" className={styles.ctaCard}>
-                <h3>Dasbor Calon Siswa</h3>
-                <p>Periksa hasil seleksi dan verifikasi berkas.</p>
-                <span className={styles.cardArrow}>→</span>
-              </Link>
-            </div>
-          </section>
-        )} */}
-
         {/* SECTION 2: Tentang Kami */}
         <section className={styles.aboutSection}>
           <div className={styles.aboutContainer}>
@@ -390,53 +373,53 @@ export default function Landing({ announcements = [], news = [], achievements = 
         <section className={styles.newsSection}>
           <div className={styles.newsContainer}>
             <h2>Berita Terkini</h2>
-              {news.length > 0 ? (
-                <div className={styles.newsList}>
-                  {firstNews &&
-                    <Link key={firstNews.id} href={`/berita/${firstNews.id}`} className={styles.firstNewsCard}>
-                      {firstNews.image_path ? (
-                        <img
-                          src={getImageUrl(firstNews.image_path)}
-                          alt={firstNews.title}
-                          className={styles.firstNewsImg}
-                        />
-                      ) : (
-                        <div className={styles.firstNewsPlaceholder}></div>
-                      )}
-                      <div className={styles.firstNewsOverlay}></div>
-                      <div className={styles.firstNewsContent}>
-                        <span className={styles.firstNewsDate}>
-                          {new Date(firstNews.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
-                        </span>
-                        <h3>{firstNews.title}</h3>
-                        <p>{firstNews.content.substring(0, 150)}...</p>
-                      </div>
-                    </Link>
-                  }
-                  {restNews.map((item) => (
-                    <Link key={item.id} href={`/berita/${item.id}`} className={styles.newsCard}>
-                      {item.image_path ? (
-                        <img
-                          src={getImageUrl(item.image_path)}
-                          alt={item.title}
-                          className={styles.newsImg}
-                        />
-                      ) : (
-                        <div className={styles.newsImgPlaceholder}></div>
-                      )}
-                      <div className={styles.newsContent}>
-                        <h3>{item.title}</h3>
-                        <p>{item.content.substring(0, 80)}...</p>
-                        <span className={styles.newsDate}>
-                          {new Date(item.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              ) : (
-                <p className={styles.emptyText}>Belum ada berita yang diunggah.</p>
-              )}
+            {news.length > 0 ? (
+              <div className={styles.newsList}>
+                {firstNews &&
+                  <Link key={firstNews.id} href={`/berita/${firstNews.id}`} className={styles.firstNewsCard}>
+                    {firstNews.image_path ? (
+                      <img
+                        src={getImageUrl(firstNews.image_path)}
+                        alt={firstNews.title}
+                        className={styles.firstNewsImg}
+                      />
+                    ) : (
+                      <div className={styles.firstNewsPlaceholder}></div>
+                    )}
+                    <div className={styles.firstNewsOverlay}></div>
+                    <div className={styles.firstNewsContent}>
+                      <span className={styles.firstNewsDate}>
+                        {new Date(firstNews.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                      </span>
+                      <h3>{firstNews.title}</h3>
+                      <p>{firstNews.content.substring(0, 150)}...</p>
+                    </div>
+                  </Link>
+                }
+                {restNews.map((item) => (
+                  <Link key={item.id} href={`/berita/${item.id}`} className={styles.newsCard}>
+                    {item.image_path ? (
+                      <img
+                        src={getImageUrl(item.image_path)}
+                        alt={item.title}
+                        className={styles.newsImg}
+                      />
+                    ) : (
+                      <div className={styles.newsImgPlaceholder}></div>
+                    )}
+                    <div className={styles.newsContent}>
+                      <h3>{item.title}</h3>
+                      <p>{item.content.substring(0, 80)}...</p>
+                      <span className={styles.newsDate}>
+                        {new Date(item.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <p className={styles.emptyText}>Belum ada berita yang diunggah.</p>
+            )}
             <Link href="/berita" className={styles.allNewsBtn}>Tampilkan Semua Berita</Link>
           </div>
         </section>

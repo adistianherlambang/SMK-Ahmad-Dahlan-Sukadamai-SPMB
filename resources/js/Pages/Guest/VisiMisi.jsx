@@ -22,7 +22,8 @@ export default function VisiMisi() {
         { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
       ]
     },
-    { url: '/berita', label: 'Berita' }
+    { url: '/berita', label: 'Berita' },
+    { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' }
   ];
 
   return (
