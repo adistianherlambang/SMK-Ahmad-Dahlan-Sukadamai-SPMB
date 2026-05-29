@@ -4,6 +4,7 @@ import Navbar from '../../Components/Navbar/Navbar';
 import Button from '../../Components/Button/Button';
 import Footer from '../../Components/Footer/Footer';
 import styles from './Dashboard.module.css';
+import Batik from '../../Components/Batik/Batik';
 
 export default function Dashboard({ registration = {} }) {
   const links = [
@@ -32,15 +33,15 @@ export default function Dashboard({ registration = {} }) {
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <h1>Dasbor Calon Siswa</h1>
-          <p>Selamat datang kembali, <strong>{registration.full_name}</strong></p>
+          <p>Selamat datang kembali, <strong>{registration.full_name}!</strong></p>
         </div>
       </header>
 
       <main className={styles.container}>
         {/* Status Card Grid */}
         <section className={styles.statusSection}>
-          <h2>Status Pendaftaran Anda</h2>
-          <div className={styles.statusGrid}>
+          <h2>Status Kelulusan</h2>
+          {/* <div className={styles.statusGrid}>
             <div className={styles.statusCard}>
               <span className={styles.cardTitle}>Verifikasi Berkas</span>
               <div className={`${styles.badge} ${getVerificationClass(registration.verification_status)}`}>
@@ -53,22 +54,25 @@ export default function Dashboard({ registration = {} }) {
                 {registration.graduation_status}
               </div>
             </div>
-          </div>
+          </div> */}
         </section>
 
         {/* Dynamic Alerts based on States */}
         <section className={styles.alertSection}>
           {registration.verification_status === 'Berkas Ditolak' && (
-            <div className={`${styles.alertBox} ${styles.alertDanger}`}>
-              <h3>Berkas Pendaftaran Ditolak</h3>
-              <p>Mohon maaf, berkas persyaratan yang Anda unggah ditolak oleh panitia dengan alasan:</p>
-              <div className={styles.rejectionReason}>
-                "{registration.rejection_reason}"
+            <div>
+              <div className={`${styles.alertBox} ${styles.alertDanger}`}>
+                <h2>Berkas Pendaftaran Ditolak</h2>
+                <p>Terdapat data atau berkas yang belum sesuai, silakan lakukan perbaikan.</p>
+                <i>Pesan: "{registration.rejection_reason}"</i>
+                {/* <Button href="/dashboard/siswa/data-pendaftaran" variant="danger" style={{ marginTop: '16px' }}>
+                  Ubah & Kirim Berkas
+                </Button> */}
               </div>
-              <p style={{ marginTop: '12px' }}>Silakan perbaiki dokumen Anda dan lakukan kirim ulang berkas yang valid sekarang.</p>
-              <Button href="/dashboard/siswa/data-pendaftaran" variant="danger" style={{ marginTop: '16px' }}>
-                Ubah & Kirim Berkas
-              </Button>
+              <div className={styles.batik}>
+                <Batik section="atas" color="#FF0200" />
+                <Batik section="bawah" color="#FF0200" />
+              </div>
             </div>
           )}
 
@@ -96,10 +100,10 @@ export default function Dashboard({ registration = {} }) {
               <h3>Selamat, Anda Lulus Seleksi!</h3>
               <p>Berdasarkan hasil rapat pleno panitia penerimaan siswa baru, Anda secara resmi dinyatakan <strong>DITERIMA</strong> sebagai siswa baru di SMK Ahmad Dahlan Sukadamai Tahun Pelajaran 2026/2027.</p>
               <p style={{ marginTop: '12px', fontSize: '12px', opacity: 0.9, marginBottom: '16px' }}>Silakan cetak bukti kelulusan pendaftaran resmi Anda untuk ditunjukkan saat melakukan proses daftar ulang fisik di sekolah:</p>
-              <Button 
-                href="/dashboard/siswa/unduh-bukti" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <Button
+                href="/dashboard/siswa/unduh-bukti"
+                target="_blank"
+                rel="noopener noreferrer"
                 variant="success"
               >
                 Cetak Bukti Pendaftaran

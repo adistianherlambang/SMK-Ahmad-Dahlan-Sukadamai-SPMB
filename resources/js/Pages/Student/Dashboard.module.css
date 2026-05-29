@@ -1,6 +1,4 @@
 .header {
-  background-color: var(--color-primary-dark);
-  color: var(--color-white);
   padding: 24px 16px;
   text-align: left;
 }
@@ -14,14 +12,18 @@
 .header h1 {
   font-size: 20px;
   font-weight: 800;
-  color: var(--color-accent-yellow);
+  color: var(--color-text-main);
   text-transform: uppercase;
 }
 
 .header p {
-  font-size: 13px;
+  font-size: 12px;
   opacity: 0.9;
   margin-top: 4px;
+}
+
+p strong {
+  color: var(--color-accent-yellow);
 }
 
 .container {
@@ -32,16 +34,6 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-}
-
-/* Status Cards Grid */
-.statusSection h2 {
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--color-primary-dark);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  text-align: left;
 }
 
 .statusGrid {
@@ -113,7 +105,7 @@
 }
 
 .alertInfo p {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .alertSuccess {
@@ -129,23 +121,29 @@
 }
 
 .alertSuccess p {
-  font-size: 13px;
+  font-size: 12px;
+}
+
+.batik {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .alertDanger {
-  background-color: #FFF5F5;
-  border: 1px solid #FED7D7;
-  color: #742A2A;
+  background-color: #FF0200;
+  color: rgb(255, 255, 255);
 }
 
-.alertDanger h3 {
+.alertDanger h2 {
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 400;
   margin-bottom: 8px;
 }
 
-.alertDanger p {
-  font-size: 13px;
+.alertDanger p,
+i {
+  font-size: 12px;
 }
 
 .rejectionReason {
@@ -154,7 +152,7 @@
   padding: 12px;
   border-radius: 4px;
   margin: 8px 0;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--color-danger);
 }
@@ -193,7 +191,7 @@
 }
 
 .alertGraduated p {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .alertBtnGraduated {
@@ -203,7 +201,7 @@
   color: var(--color-white);
   padding: 12px 24px;
   border-radius: 4px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   text-decoration: none;
@@ -239,12 +237,12 @@
 
 .detailsTable td {
   padding: 8px 4px;
-  font-size: 13px;
+  font-size: 12px;
   vertical-align: top;
 }
 
 .detailsTable td:first-child {
-  width: 130px;
+  width: 120px;
   color: #718096;
   font-weight: 600;
 }
@@ -272,18 +270,28 @@
   .headerContent {
     max-width: 1200px;
   }
+
   .container {
     max-width: 1200px;
     padding: 32px 20px;
     gap: 32px;
   }
+
   .statusGrid {
     gap: 20px;
   }
+
   .statusCard {
     padding: 24px 20px;
   }
+
   .detailsSection {
     padding: 32px;
+  }
+
+  .batik {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
   }
 }
