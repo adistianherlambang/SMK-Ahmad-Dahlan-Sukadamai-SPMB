@@ -340,7 +340,11 @@ export default function Landing({ announcements = [], news = [], achievements = 
                     </svg>
                   }</span>
                 </button>
-                {openSection === 'fasilitas' && renderFasilitas()}
+                <div className={`${styles.accCollapse} ${openSection === 'fasilitas' ? styles.accCollapseOpen : ''}`}>
+                  <div className={styles.accCollapseInner}>
+                    {renderFasilitas()}
+                  </div>
+                </div>
               </div>
 
               {/* Accordion Item 2: Ekstrakurikuler */}
@@ -353,7 +357,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
                     <span>Ekstrakurikuler</span>
                     <p>Ekstrakurikuler untuk mengembangkan potensi dan keterampilan siswa.</p>
                   </div>
-                  <span className={styles.accArrow}>{openSection === 'fasilitas' ?
+                  <span className={styles.accArrow}>{openSection === 'ekskul' ?
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M14.6924 3.39763L16 4.78573L8.8734 12.3464C8.75921 12.4683 8.62342 12.565 8.47384 12.631C8.32426 12.697 8.16386 12.731 8.00185 12.731C7.83985 12.731 7.67944 12.697 7.52986 12.631C7.38029 12.565 7.2445 12.4683 7.1303 12.3464L1.04668e-06 4.78573L1.30763 3.39893L8 10.4951L14.6924 3.39763Z" fill="white" />
                     </svg>
@@ -363,7 +367,11 @@ export default function Landing({ announcements = [], news = [], achievements = 
                     </svg>
                   }</span>
                 </button>
-                {openSection === 'ekskul' && renderEkskul()}
+                <div className={`${styles.accCollapse} ${openSection === 'ekskul' ? styles.accCollapseOpen : ''}`}>
+                  <div className={styles.accCollapseInner}>
+                    {renderEkskul()}
+                  </div>
+                </div>
               </div>
 
               {/* Accordion Item 3: Prestasi */}
@@ -376,7 +384,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
                     <span>Daftar Prestasi Siswa</span>
                     <p>Banyak prestasi yang telah diraih oleh sekolah kami, baik prestasi tingkat nasional maupun internasional.</p>
                   </div>
-                  <span className={styles.accArrow}>{openSection === 'fasilitas' ?
+                  <span className={styles.accArrow}>{openSection === 'prestasi' ?
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M14.6924 3.39763L16 4.78573L8.8734 12.3464C8.75921 12.4683 8.62342 12.565 8.47384 12.631C8.32426 12.697 8.16386 12.731 8.00185 12.731C7.83985 12.731 7.67944 12.697 7.52986 12.631C7.38029 12.565 7.2445 12.4683 7.1303 12.3464L1.04668e-06 4.78573L1.30763 3.39893L8 10.4951L14.6924 3.39763Z" fill="white" />
                     </svg>
@@ -386,7 +394,11 @@ export default function Landing({ announcements = [], news = [], achievements = 
                     </svg>
                   }</span>
                 </button>
-                {openSection === 'prestasi' && renderPrestasi()}
+                <div className={`${styles.accCollapse} ${openSection === 'prestasi' ? styles.accCollapseOpen : ''}`}>
+                  <div className={styles.accCollapseInner}>
+                    {renderPrestasi()}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
