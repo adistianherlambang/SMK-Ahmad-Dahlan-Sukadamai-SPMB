@@ -726,7 +726,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 64px;
+    gap: 12px; /* Matches mobile gap exactly! */
   }
 
   .aboutSection h2 {
@@ -745,72 +745,56 @@
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+    gap: 12px; /* Consistent layout gap! */
   }
 
   /* Perks Section Layout */
-  .perksSection {
-    padding: 80px 20px;
-  }
-
   .perksContainer {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
   }
 
-  .perksSection h2 {
-    margin-bottom: 40px;
-    text-align: center;
-  }
-
   .mobileAccordion {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 12px; /* Matches mobile accordion gap exactly! */
     width: 100%;
   }
 
   .perkList {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 12px; /* Matches mobile accordion item spacing gap! */
   }
 
   .yearFilters {
     justify-content: center;
     margin-top: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .achievementsSlider {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 12px; /* Matches mobile achievements gap exactly! */
     margin-top: 16px;
   }
 
   /* News Section Layout */
-  .newsSection {
-    padding: 80px 20px;
-  }
-
   .newsContainer {
     max-width: 1200px;
-  }
-
-  .newsSection h2 {
-    margin-bottom: 40px;
   }
 
   .newsList {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 16px; /* Matches mobile news list gap exactly! */
   }
 
   .newsCard {
     flex-direction: column;
-    padding: 24px;
+    padding: 16px; /* Elegant consistent padding! */
     align-items: flex-start;
     height: 100%;
     box-sizing: border-box;
@@ -828,8 +812,7 @@
   .allNewsBtn {
     width: auto;
     display: inline-block;
-    padding: 14px 40px;
+    padding: 14px 28px; /* Matches mobile button padding exactly! */
   }
-
 
 }
