@@ -15,8 +15,8 @@ const getImageUrl = (path) => {
 export default function BeritaShow({ post }) {
   const links = [
     { url: '/', label: 'Beranda' },
-    { 
-      label: 'Profil', 
+    {
+      label: 'Profil',
       dropdown: [
         { url: '/profil/sambutan', label: 'Sambutan Kepala Sekolah' },
         { url: '/profil/visi-misi', label: 'Visi & Misi' },
@@ -24,8 +24,8 @@ export default function BeritaShow({ post }) {
         { url: '/profil/sejarah', label: 'Sejarah Singkat' }
       ]
     },
-    { 
-      label: 'Informasi Pendaftaran', 
+    {
+      label: 'Informasi Pendaftaran',
       dropdown: [
         { url: '/informasi/jadwal', label: 'Jadwal SPMB' },
         { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
@@ -61,6 +61,7 @@ export default function BeritaShow({ post }) {
 
       <header className={styles.header}>
         <div className={styles.headerContent}>
+          <h1>Berita</h1>
           <p className={styles.breadcrumb}>
             <Link href="/">Beranda</Link> / <Link href="/berita">Berita</Link> / {post.title}
           </p>
@@ -70,7 +71,7 @@ export default function BeritaShow({ post }) {
       <main className={styles.container}>
         <article className={styles.article}>
           <h1 className={styles.title}>{post.title}</h1>
-          
+
           <div className={styles.meta}>
             <span className={styles.date}>📅 {formattedDate}</span>
             <span className={styles.type}>🏷️ {post.type === 'pengumuman' ? 'Pengumuman' : 'Berita'}</span>
@@ -78,9 +79,9 @@ export default function BeritaShow({ post }) {
 
           {post.image_path && (
             <div className={styles.imageWrapper}>
-              <img 
-                src={getImageUrl(post.image_path)} 
-                alt={post.title} 
+              <img
+                src={getImageUrl(post.image_path)}
+                alt={post.title}
                 className={styles.image}
               />
             </div>
