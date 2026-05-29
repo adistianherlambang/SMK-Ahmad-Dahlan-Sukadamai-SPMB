@@ -5,18 +5,53 @@
   text-align: center;
 }
 
-.footerContent h3 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--color-accent-yellow);
+.footerContent {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px
 }
 
-.footerContent p {
-  font-size: 13px;
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logo {
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 16px;
+  line-height: 1;
+  color: white;
+}
+
+.imgLogo {
+  width: 4rem;
+  height: 4rem;
+}
+
+.desc {
+  font-size: 14px;
   opacity: 0.8;
-  line-height: 1.5;
-  margin: 0;
+  text-align: left;
+}
+
+.mainLinkBtn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--color-accent-yellow);
+  border: none;
+  color: var(--color-text-main);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
 }
 
 .footerMeta {
@@ -26,10 +61,19 @@
   gap: 8px;
   font-size: 12px;
   opacity: 0.7;
+  text-align: left;
 }
 
 .footerMeta p {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footerRow {
+  display: flex;
+  gap: 8px;
 }
 
 .developerCta {
