@@ -64,16 +64,11 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 14px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.ctaBtnPrimary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(254, 252, 191, 0.4);
+  transition: transform 0.2s ease;
 }
 
 .ctaBtnPrimary:active {
-  transform: translateY(0) scale(0.98);
+  transform: scale(0.98);
 }
 
 .ctaBtnSecondary {
@@ -87,17 +82,6 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 14px;
-  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
-}
-
-.ctaBtnSecondary:hover {
-  background-color: var(--color-white);
-  color: var(--color-primary-dark);
-  transform: translateY(-2px);
-}
-
-.ctaBtnSecondary:active {
-  transform: translateY(0) scale(0.98);
 }
 
 /* Slider with Active Announcements */
@@ -246,15 +230,13 @@
   flex-direction: column;
   gap: 12px;
   max-width: 600px;
-  margin: 0 auto 16px auto;
+  margin: 0 auto;
   background-color: var(--color-primary-dark);
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .aboutSection h2 {
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--color-white);
 }
 
@@ -267,15 +249,6 @@
 .batik {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.batik > div {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* Video Section */
@@ -353,68 +326,39 @@
 
 .accItem {
   overflow: hidden;
-  background-color: var(--color-white);
-  border: 1px solid #E2E8F0;
-  border-radius: 12px;
-  margin-bottom: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.accItem:hover {
-  border-color: var(--color-primary-dark);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.accItemActive {
-  border-color: var(--color-primary-dark);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .accHeader {
   width: 100%;
-  padding: 20px 24px;
+  padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #F8FAFC;
+  background: none;
   border: none;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-white);
   cursor: pointer;
   text-align: left;
   gap: 1rem;
-  transition: background-color 0.2s ease;
-}
-
-.accHeader:hover {
-  background-color: #F1F5F9;
 }
 
 .accTitle {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-
-.accTitle span {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--color-primary-dark);
+  gap: 8px;
 }
 
 .accTitle p {
   font-size: 12px;
   font-weight: 400;
-  color: #64748B;
-  margin: 0;
-  line-height: 1.5;
+  color: var(--color-white);
 }
 
 .accArrow {
   font-size: 12px;
-  color: var(--color-primary-dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #A0AEC0;
 }
 
 .accCollapse {
@@ -437,7 +381,6 @@
   background-color: white;
   border-top: 1px solid #F1F5F9;
   text-align: left;
-  padding: 16px;
 }
 
 /* Perk items inside accordion (Fasilitas) */
@@ -450,7 +393,7 @@
 
 .perkImg {
   width: 100%;
-  background-color: #F1F5F9;
+  background-color: red;
   aspect-ratio: 1/1;
   overflow: hidden;
   display: flex;
@@ -682,13 +625,16 @@
   font-style: italic;
 }
 
-
+.desktopTabs {
+  display: none;
+}
 
 .mobileAccordion {
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
+  background-color: var(--color-primary-dark);
 }
 
 @media (min-width: 1024px) {
@@ -735,6 +681,66 @@
 
   .ctaCard {
     padding: 24px;
+  }
+
+  /* Tentang Kami / Kompetensi Keahlian */
+  .aboutSection {
+    padding: 80px 20px;
+  }
+
+  .aboutContainer {
+    max-width: 1200px;
+  }
+
+  .aboutSection h2 {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .aboutSubtitle {
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+
+  .batik {
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* Video Section */
+  .videoSection {
+    padding: 80px 20px;
+  }
+
+  .videoContainer {
+    max-width: 800px;
+    /* larger player on desktop */
+  }
+
+  .videoSection h2 {
+    font-size: 32px;
+  }
+
+  .ctaBtnPrimary {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .ctaBtnPrimary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(254, 252, 191, 0.4);
+  }
+  .ctaBtnPrimary:active {
+    transform: translateY(0) scale(0.98);
+  }
+  .ctaBtnSecondary {
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  }
+  .ctaBtnSecondary:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary-dark);
+    transform: translateY(-2px);
+  }
+  .ctaBtnSecondary:active {
+    transform: translateY(0) scale(0.98);
   }
 
   /* Tentang Kami / Kompetensi Keahlian */
@@ -800,21 +806,7 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
   }
 
-  /* Video Section */
-  .videoSection {
-    padding: 80px 20px;
-  }
-
-  .videoContainer {
-    max-width: 800px;
-    /* larger player on desktop */
-  }
-
-  .videoSection h2 {
-    font-size: 32px;
-  }
-
-  /* Perks Section Accordion vs Tabs */
+  /* Perks Section Accordion */
   .perksSection {
     padding: 80px 20px;
   }
@@ -836,10 +828,76 @@
     flex-direction: column;
     gap: 16px;
     width: 100%;
+    background-color: transparent !important;
+  }
+
+  .accItem {
+    overflow: hidden;
+    background-color: var(--color-white);
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .accItem:hover {
+    border-color: var(--color-primary-dark);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .accHeader {
+    width: 100%;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F8FAFC;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 1rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .accHeader:hover {
+    background-color: #F1F5F9;
+  }
+
+  .accTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .accTitle span {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+  }
+
+  .accTitle p {
+    font-size: 12px;
+    font-weight: 400;
+    color: #64748B;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .accArrow {
+    font-size: 12px;
+    color: var(--color-primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .accBody {
     padding: 24px 32px;
+  }
+
+  .perkImg {
+    background-color: #F1F5F9 !important;
   }
 
   .accItemActive {
