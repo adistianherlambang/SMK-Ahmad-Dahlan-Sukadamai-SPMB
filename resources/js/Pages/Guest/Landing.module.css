@@ -366,6 +366,11 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
+.accItemActive {
+  border-color: var(--color-primary-dark);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
 .accHeader {
   width: 100%;
   padding: 20px 24px;
@@ -835,6 +840,27 @@
 
   .accBody {
     padding: 24px 32px;
+  }
+
+  .accItemActive {
+    border-color: var(--color-primary-dark) !important;
+    box-shadow: 0 10px 30px rgba(0, 32, 74, 0.08) !important;
+  }
+
+  .accItemActive .accHeader {
+    background-color: var(--color-primary-dark) !important;
+  }
+
+  .accItemActive .accTitle span {
+    color: var(--color-white) !important;
+  }
+
+  .accItemActive .accTitle p {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .accItemActive .accArrow {
+    color: var(--color-accent-yellow) !important;
   }
 
   .perkList {
