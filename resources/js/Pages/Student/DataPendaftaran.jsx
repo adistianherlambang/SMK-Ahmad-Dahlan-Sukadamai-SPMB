@@ -9,7 +9,7 @@ import formStyles from '../Student/Auth/Formulir.module.css'; // Re-use form sec
 
 export default function DataPendaftaran({ registration = {} }) {
   const { flash } = usePage().props;
-  
+
   const { data, setData, post, processing, errors } = useForm({
     file_kk: null,
     file_akta: null,
@@ -52,60 +52,60 @@ export default function DataPendaftaran({ registration = {} }) {
       <main className={styles.container}>
         {/* Flash Notifications */}
         {flash?.success && (
-          <div className={`${styles.alertBox} ${styles.alertSuccess}`} style={{ marginBottom: '16px' }}>
+          <div className={`${styles.alertBox} ${styles.alertSuccess} ${styles.flashAlert}`}>
             {flash.success}
           </div>
         )}
         {flash?.error && (
-          <div className={`${styles.alertBox} ${styles.alertDanger}`} style={{ marginBottom: '16px' }}>
+          <div className={`${styles.alertBox} ${styles.alertDanger} ${styles.flashAlert}`}>
             {flash.error}
           </div>
         )}
 
         {/* Reupload Section: active ONLY when rejected */}
         {registration.verification_status === 'Berkas Ditolak' && (
-          <section className={formStyles.formCard} style={{ border: '2px dashed var(--color-danger)', marginBottom: '24px' }}>
-            <h3 style={{ fontSize: '15px', fontWeight: '800', color: 'var(--color-danger)', margin: '0 0 12px 0', textTransform: 'uppercase' }}>
-              Kirim Ulang Berkas Persyaratan
+          <section className={`${formStyles.formCard} ${styles.reuploadCard}`}>
+            <h3 className={styles.reuploadTitle}>
+              Upload berkas persyaratan
             </h3>
-            <p style={{ fontSize: '12px', color: '#718096', lineHeight: '1.5', marginBottom: '20px' }}>
+            <p className={styles.reuploadDesc}>
               Silakan pilih dokumen baru berformat PDF (Maks 2MB) untuk menggantikan berkas yang ditolak oleh panitia. Kosongkan berkas yang tidak ingin diubah.
             </p>
 
             <form onSubmit={handleReuploadSubmit} className={formStyles.form}>
-              <FileInput 
+              <FileInput
                 label="Unggah Ulang Kartu Keluarga (KK)"
                 isUploaded={!!data.file_kk}
                 onFileView={() => window.open(URL.createObjectURL(data.file_kk))}
                 onChange={(e) => handleFileChange('file_kk', e.target.files[0])}
               />
-              {errors.file_kk && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.file_kk}</div>}
+              {errors.file_kk && <div className={styles.fieldError}>{errors.file_kk}</div>}
 
-              <FileInput 
+              <FileInput
                 label="Unggah Ulang Akta Kelahiran"
                 isUploaded={!!data.file_akta}
                 onFileView={() => window.open(URL.createObjectURL(data.file_akta))}
                 onChange={(e) => handleFileChange('file_akta', e.target.files[0])}
               />
-              {errors.file_akta && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.file_akta}</div>}
+              {errors.file_akta && <div className={styles.fieldError}>{errors.file_akta}</div>}
 
-              <FileInput 
+              <FileInput
                 label="Unggah Ulang SKHU / SKL"
                 isUploaded={!!data.file_skhu_skl}
                 onFileView={() => window.open(URL.createObjectURL(data.file_skhu_skl))}
                 onChange={(e) => handleFileChange('file_skhu_skl', e.target.files[0])}
               />
-              {errors.file_skhu_skl && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.file_skhu_skl}</div>}
+              {errors.file_skhu_skl && <div className={styles.fieldError}>{errors.file_skhu_skl}</div>}
 
-              <FileInput 
+              <FileInput
                 label="Unggah Ulang SKTM / KIP / PKH (Opsional)"
                 isUploaded={!!data.file_sktm}
                 onFileView={() => window.open(URL.createObjectURL(data.file_sktm))}
                 onChange={(e) => handleFileChange('file_sktm', e.target.files[0])}
               />
-              {errors.file_sktm && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.file_sktm}</div>}
+              {errors.file_sktm && <div className={styles.fieldError}>{errors.file_sktm}</div>}
 
-              <Button type="submit" loading={processing} variant="danger" style={{ width: '100%' }}>
+              <Button type="submit" loading={processing} variant="danger" className={styles.btnFullWidth}>
                 Kirim Ulang Berkas Persyaratan
               </Button>
             </form>
@@ -115,7 +115,7 @@ export default function DataPendaftaran({ registration = {} }) {
         {/* Detailed Info Categories */}
         <div className={formStyles.formCard}>
           {/* Section A: Identitas */}
-          <div className={formStyles.section} style={{ marginBottom: '24px' }}>
+          <div className={`${formStyles.section} ${styles.sectionSpacer}`}>
             <h2 className={formStyles.sectionTitle}>A. Data Calon Siswa</h2>
             <table className={styles.detailsTable}>
               <tbody>
@@ -169,7 +169,7 @@ export default function DataPendaftaran({ registration = {} }) {
           </div>
 
           {/* Section B: Orang Tua */}
-          <div className={formStyles.section} style={{ marginBottom: '24px' }}>
+          <div className={`${formStyles.section} ${styles.sectionSpacer}`}>
             <h2 className={formStyles.sectionTitle}>B. Keterangan Orang Tua / Wali</h2>
             <table className={styles.detailsTable}>
               <tbody>
@@ -193,7 +193,7 @@ export default function DataPendaftaran({ registration = {} }) {
           </div>
 
           {/* Section C: Asal Sekolah */}
-          <div className={formStyles.section} style={{ marginBottom: '24px' }}>
+          <div className={`${formStyles.section} ${styles.sectionSpacer}`}>
             <h2 className={formStyles.sectionTitle}>C. Keterangan Asal Sekolah</h2>
             <table className={styles.detailsTable}>
               <tbody>
@@ -212,7 +212,7 @@ export default function DataPendaftaran({ registration = {} }) {
           </div>
 
           {/* Section D: Kontak & Alamat */}
-          <div className={formStyles.section} style={{ marginBottom: '24px' }}>
+          <div className={`${formStyles.section} ${styles.sectionSpacer}`}>
             <h2 className={formStyles.sectionTitle}>D. Kontak & Alamat</h2>
             <table className={styles.detailsTable}>
               <tbody>
@@ -233,29 +233,29 @@ export default function DataPendaftaran({ registration = {} }) {
           {/* Section E: Berkas Terunggah */}
           <div className={formStyles.section}>
             <h2 className={formStyles.sectionTitle}>E. Berkas Terunggah (Digital)</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '8px' }}>
+            <div className={styles.fileList}>
               {registration.document?.file_kk && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: '1px solid #E2E8F0', padding: '12px', borderRadius: '4px' }}>
-                  <span style={{ fontSize: '13px', fontWeight: '600' }}>Kartu Keluarga (KK)</span>
-                  <a href={registration.document.file_kk} target="_blank" rel="noopener noreferrer" style={{ fontSize: '12px', color: 'var(--color-primary-dark)', fontWeight: 'bold', textDecoration: 'underline' }}>Lihat PDF</a>
+                <div className={styles.fileRow}>
+                  <span className={styles.fileRowLabel}>Kartu Keluarga (KK)</span>
+                  <a href={registration.document.file_kk} target="_blank" rel="noopener noreferrer" className={styles.fileRowLink}>Lihat PDF</a>
                 </div>
               )}
               {registration.document?.file_akta && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: '1px solid #E2E8F0', padding: '12px', borderRadius: '4px' }}>
-                  <span style={{ fontSize: '13px', fontWeight: '600' }}>Akta Kelahiran</span>
-                  <a href={registration.document.file_akta} target="_blank" rel="noopener noreferrer" style={{ fontSize: '12px', color: 'var(--color-primary-dark)', fontWeight: 'bold', textDecoration: 'underline' }}>Lihat PDF</a>
+                <div className={styles.fileRow}>
+                  <span className={styles.fileRowLabel}>Akta Kelahiran</span>
+                  <a href={registration.document.file_akta} target="_blank" rel="noopener noreferrer" className={styles.fileRowLink}>Lihat PDF</a>
                 </div>
               )}
               {registration.document?.file_skhu_skl && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: '1px solid #E2E8F0', padding: '12px', borderRadius: '4px' }}>
-                  <span style={{ fontSize: '13px', fontWeight: '600' }}>SKHU / SKL</span>
-                  <a href={registration.document.file_skhu_skl} target="_blank" rel="noopener noreferrer" style={{ fontSize: '12px', color: 'var(--color-primary-dark)', fontWeight: 'bold', textDecoration: 'underline' }}>Lihat PDF</a>
+                <div className={styles.fileRow}>
+                  <span className={styles.fileRowLabel}>SKHU / SKL</span>
+                  <a href={registration.document.file_skhu_skl} target="_blank" rel="noopener noreferrer" className={styles.fileRowLink}>Lihat PDF</a>
                 </div>
               )}
               {registration.document?.file_sktm && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', border: '1px solid #E2E8F0', padding: '12px', borderRadius: '4px' }}>
-                  <span style={{ fontSize: '13px', fontWeight: '600' }}>SKTM / KIP / PKH</span>
-                  <a href={registration.document.file_sktm} target="_blank" rel="noopener noreferrer" style={{ fontSize: '12px', color: 'var(--color-primary-dark)', fontWeight: 'bold', textDecoration: 'underline' }}>Lihat PDF</a>
+                <div className={styles.fileRow}>
+                  <span className={styles.fileRowLabel}>SKTM / KIP / PKH</span>
+                  <a href={registration.document.file_sktm} target="_blank" rel="noopener noreferrer" className={styles.fileRowLink}>Lihat PDF</a>
                 </div>
               )}
             </div>

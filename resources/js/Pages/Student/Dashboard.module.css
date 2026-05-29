@@ -256,6 +256,72 @@ i {
   font-weight: 600;
 }
 
+/* DataPendaftaran specific classes */
+.flashAlert {
+  margin-bottom: 16px;
+}
+
+.reuploadCard {
+  border: 2px dashed var(--color-danger);
+  margin-bottom: 24px;
+}
+
+.reuploadTitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--color-danger);
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+}
+
+.reuploadDesc {
+  font-size: 12px;
+  color: #718096;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.fieldError {
+  font-size: 11px;
+  color: var(--color-danger);
+}
+
+.btnFullWidth {
+  width: 100%;
+}
+
+.sectionSpacer {
+  margin-bottom: 24px;
+}
+
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.fileRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #E2E8F0;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.fileRowLabel {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fileRowLink {
+  font-size: 12px;
+  color: var(--color-primary-dark);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .footer {
   background-color: #001228;
   color: var(--color-white);
