@@ -1,5 +1,7 @@
 import React from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
+import Navbar from '../../../Components/Navbar/Navbar';
+import Footer from '../../../Components/Footer/Footer';
 import Input from '../../../Components/Input/Input';
 import Button from '../../../Components/Button/Button';
 import styles from './Login.module.css';
@@ -15,53 +17,84 @@ export default function Login() {
     post('/siswa/login');
   };
 
+  const links = [
+    { url: '/', label: 'Beranda' },
+    {
+      label: 'Profil',
+      dropdown: [
+        { url: '/profil/sambutan', label: 'Sambutan Kepala Sekolah' },
+        { url: '/profil/visi-misi', label: 'Visi & Misi' },
+        { url: '/profil/struktur', label: 'Struktur Organisasi' },
+        { url: '/profil/sejarah', label: 'Sejarah Singkat' }
+      ]
+    },
+    {
+      label: 'Informasi Pendaftaran',
+      dropdown: [
+        { url: '/informasi/jadwal', label: 'Jadwal SPMB' },
+        { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
+      ]
+    },
+    { url: '/berita', label: 'Berita' },
+    { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' }
+  ];
+
   return (
     <>
       <Head title="Login Portal Siswa - SMK Ahmad Dahlan" />
-      
+      <Navbar links={links} />
+
+      <header className={styles.header}>
+        <div className={styles.headerContent}>
+          <h1>Portal Siswa</h1>
+          <p className={styles.breadcrumb}>
+            <Link href="/">Beranda</Link> / Login Siswa
+          </p>
+        </div>
+      </header>
+
       <main className={styles.container}>
-        <div className={styles.card}>
-          <div className={styles.header}>
-            <Link href="/" className={styles.logo}>SMK AD</Link>
-            <h1>Portal Siswa</h1>
-            <p>Sistem Penerimaan Peserta Didik Baru (SPMB)</p>
+        <div className={styles.cardHeader}>
+          <h2>Portal Siswa</h2>
+          <p>Silakan masuk menggunakan akun terdaftar Anda.</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className={styles.form}>
+          {errors.email && <div className={styles.errorAlert}>{errors.email}</div>}
+
+          <Input
+            label="Email Calon Siswa"
+            type="email"
+            placeholder="contoh@gmail.com"
+            value={data.email}
+            onChange={(e) => setData('email', e.target.value)}
+            required
+          />
+
+          <Input
+            label="Kata Sandi"
+            type="password"
+            placeholder="Masukkan kata sandi..."
+            value={data.password}
+            onChange={(e) => setData('password', e.target.value)}
+            required
+          />
+
+          <div className={styles.forgotLink}>
+            <Link href="/siswa/lupa-password">Lupa Kata Sandi?</Link>
           </div>
 
-          <form onSubmit={handleSubmit} className={styles.form}>
-            {errors.email && <div className={styles.errorAlert}>{errors.email}</div>}
-            
-            <Input 
-              label="Email Calon Siswa"
-              type="email"
-              placeholder="contoh@gmail.com"
-              value={data.email}
-              onChange={(e) => setData('email', e.target.value)}
-              required
-            />
+          <Button type="submit" loading={processing} style={{ width: '100%' }}>
+            Masuk Portal
+          </Button>
+        </form>
 
-            <Input 
-              label="Kata Sandi"
-              type="password"
-              placeholder="Masukkan kata sandi..."
-              value={data.password}
-              onChange={(e) => setData('password', e.target.value)}
-              required
-            />
-
-            <div className={styles.forgotLink}>
-              <Link href="/siswa/lupa-password">Lupa Kata Sandi?</Link>
-            </div>
-
-            <Button type="submit" loading={processing} style={{ width: '100%' }}>
-              Masuk Portal
-            </Button>
-          </form>
-
-          <div className={styles.footerLink}>
-            <p>Belum melakukan pendaftaran? <Link href="/siswa/formulir">Daftar Sekarang</Link></p>
-          </div>
+        <div className={styles.footerLink}>
+          <p>Belum melakukan pendaftaran? <Link href="/siswa/formulir">Daftar Sekarang</Link></p>
         </div>
       </main>
+
+      <Footer />
     </>
   );
 }

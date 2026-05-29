@@ -1,113 +1,153 @@
-.container {
-  width: 100vw;
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-accent-yellow) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  box-sizing: border-box;
-}
-
-.card {
-  width: 100%;
-  max-width: 400px;
-  background-color: var(--color-white);
-  border-radius: 8px;
-  padding: 32px 24px;
-  box-sizing: border-box;
+/* Page Header Banner (consistent with subpages like KuotaPendaftaran) */
+.header {
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  padding: 48px 20px;
   text-align: center;
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
+.headerContent {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.logo {
-  width: 60px;
-  height: 60px;
-  background-color: var(--color-primary-dark);
+.header h1 {
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.breadcrumb a {
   color: var(--color-accent-yellow);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
+/* Page Main Container - Directly containing and constraining the form */
+.container {
+  width: 100%;
+  max-width: 440px; /* Directly constrain the width of the login layout */
+  margin: 0 auto;
+  padding: 64px 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: var(--color-white);
+  min-height: calc(100vh - 300px); /* Fill screen space nicely */
+}
+
+.cardHeader {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.cardHeader h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.cardHeader p {
+  font-size: 13px;
+  color: #718096;
+  line-height: 1.5;
+}
+
+/* Status Icon Styles for password states */
+.statusCircle {
+  width: 56px;
+  height: 56px;
+  background-color: #F8FAFC;
+  color: var(--color-primary-dark);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
-  font-size: 18px;
-  text-decoration: none;
+  margin: 0 auto 16px auto;
+  border: 2px solid #E2E8F0;
 }
 
-.header h1 {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--color-primary-dark);
-  text-transform: uppercase;
+.statusSuccess {
+  background-color: #F0FDF4;
+  color: var(--color-success);
+  border-color: #DCFCE7;
 }
 
-.header p {
-  font-size: 12px;
-  color: #718096;
+.statusDanger {
+  background-color: #FEF2F2;
+  color: var(--color-danger);
+  border-color: #FEE2E2;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
   text-align: left;
 }
 
 .errorAlert {
-  background-color: #FFF5F5;
+  background-color: #FEF2F2;
   color: var(--color-danger);
-  border: 1px solid #FED7D7;
-  padding: 10px 12px;
+  border: 1px solid #FEE2E2;
+  padding: 12px 14px;
   font-size: 12px;
-  border-radius: 4px;
+  border-radius: 8px;
   font-weight: 600;
+  line-height: 1.4;
 }
 
 .forgotLink {
   text-align: right;
+  margin-top: -4px;
 }
 
 .forgotLink a {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--color-primary-dark);
   font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.forgotLink a:hover {
+  color: var(--color-accent-yellow);
   text-decoration: underline;
 }
 
-.submitBtn {
-  width: 100%;
-  padding: 14px;
-  background-color: var(--color-primary-dark);
-  color: var(--color-white);
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-  margin-top: 8px;
-}
-
-.submitBtn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
 .footerLink {
-  margin-top: 24px;
-  font-size: 13px;
+  margin-top: 28px;
+  font-size: 14px;
   color: #718096;
+  border-top: 1px solid #E2E8F0;
+  padding-top: 20px;
+  text-align: center;
 }
 
 .footerLink a {
   color: var(--color-primary-dark);
   font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footerLink a:hover {
+  color: var(--color-accent-yellow);
   text-decoration: underline;
 }

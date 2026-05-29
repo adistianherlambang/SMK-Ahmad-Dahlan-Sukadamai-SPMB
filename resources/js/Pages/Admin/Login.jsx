@@ -1,8 +1,10 @@
 import React from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
+import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
-import styles from '../Student/Auth/Login.module.css'; // Re-use auth visuals
+import styles from '../Student/Auth/Login.module.css';
 
 export default function Login() {
   const { data, setData, post, processing, errors } = useForm({
@@ -15,54 +17,80 @@ export default function Login() {
     post('/admin/login');
   };
 
+  const links = [
+    { url: '/', label: 'Beranda' },
+    {
+      label: 'Profil',
+      dropdown: [
+        { url: '/profil/sambutan', label: 'Sambutan Kepala Sekolah' },
+        { url: '/profil/visi-misi', label: 'Visi & Misi' },
+        { url: '/profil/struktur', label: 'Struktur Organisasi' },
+        { url: '/profil/sejarah', label: 'Sejarah Singkat' }
+      ]
+    },
+    {
+      label: 'Informasi Pendaftaran',
+      dropdown: [
+        { url: '/informasi/jadwal', label: 'Jadwal SPMB' },
+        { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
+      ]
+    },
+    { url: '/berita', label: 'Berita' },
+    { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' }
+  ];
+
   return (
     <>
       <Head title="Admin Login - SMK Ahmad Dahlan" />
-      
-      <main className={styles.container} style={{ background: 'linear-gradient(135deg, #1A202C 0%, var(--color-primary-dark) 100%)' }}>
-        <div className={styles.card} style={{ borderTop: '4px solid var(--color-accent-yellow)' }}>
-          <div className={styles.header}>
-            <Link href="/" className={styles.logo} style={{ backgroundColor: 'var(--color-accent-yellow)', color: 'var(--color-primary-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="3" />
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-              </svg>
-            </Link>
-            <h1>Portal Admin</h1>
-            <p>Sistem Manajemen Pendaftaran (SPMB)</p>
-          </div>
+      <Navbar links={links} />
 
-          <form onSubmit={handleSubmit} className={styles.form}>
-            {errors.email && <div className={styles.errorAlert}>{errors.email}</div>}
-            
-            <Input 
-              label="Email Administrator"
-              type="email"
-              placeholder="admin@gmail.com"
-              value={data.email}
-              onChange={(e) => setData('email', e.target.value)}
-              required
-            />
+      <header className={styles.header}>
+        <div className={styles.headerContent}>
+          <h1>Portal Admin</h1>
+          <p className={styles.breadcrumb}>
+            <Link href="/">Beranda</Link> / Login Admin
+          </p>
+        </div>
+      </header>
 
-            <Input 
-              label="Password"
-              type="password"
-              placeholder="Masukkan password..."
-              value={data.password}
-              onChange={(e) => setData('password', e.target.value)}
-              required
-            />
+      <main className={styles.container}>
+        <div className={styles.cardHeader}>
+          <h2>Portal Admin</h2>
+          <p>Sistem Manajemen Penerimaan Peserta Didik Baru (SPMB)</p>
+        </div>
 
-            <Button type="submit" loading={processing} variant="secondary" style={{ width: '100%' }}>
-              Masuk Portal
-            </Button>
-          </form>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          {errors.email && <div className={styles.errorAlert}>{errors.email}</div>}
 
-          <div className={styles.footerLink}>
-            <Link href="/">Kembali ke Beranda</Link>
-          </div>
+          <Input
+            label="Email Administrator"
+            type="email"
+            placeholder="admin@gmail.com"
+            value={data.email}
+            onChange={(e) => setData('email', e.target.value)}
+            required
+          />
+
+          <Input
+            label="Password"
+            type="password"
+            placeholder="Masukkan password..."
+            value={data.password}
+            onChange={(e) => setData('password', e.target.value)}
+            required
+          />
+
+          <Button type="submit" loading={processing} variant="secondary" style={{ width: '100%' }}>
+            Masuk Portal
+          </Button>
+        </form>
+
+        <div className={styles.footerLink}>
+          <Link href="/">Kembali ke Beranda</Link>
         </div>
       </main>
+
+      <Footer />
     </>
   );
 }
