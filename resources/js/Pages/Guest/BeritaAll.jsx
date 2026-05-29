@@ -41,6 +41,9 @@ export default function BeritaAll({ news = [] }) {
     item.content.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const firstNews = news[0]
+  const restNews = news.slice(1)
+
   return (
     <>
       <Head title="Berita & Informasi - SMK Ahmad Dahlan" />
@@ -70,30 +73,75 @@ export default function BeritaAll({ news = [] }) {
 
         {/* News Grid */}
         <section className={styles.newsList}>
-          {filteredNews.length > 0 ? (
-            filteredNews.map((item) => (
-              <Link key={item.id} href={`/berita/${item.id}`} className={styles.newsCard}>
-                {item.image_path ? (
-                  <img
-                    src={getImageUrl(item.image_path)}
-                    alt={item.title}
-                    className={styles.newsImg}
-                  />
-                ) : (
-                  <div className={styles.newsImgPlaceholder}>📰</div>
-                )}
-                <div className={styles.newsContent}>
-                  <h3>{item.title}</h3>
-                  <p>{item.content.substring(0, 80)}...</p>
-                  <span className={styles.newsDate}>
-                    {new Date(item.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
-                  </span>
-                </div>
-              </Link>
-            ))
-          ) : (
-            <p className={styles.emptyText}>Tidak ada berita yang cocok dengan pencarian Anda.</p>
-          )}
+          {searchTerm ?
+            filteredNews.length > 0 ? (
+              filteredNews.map((item) => (
+                <Link key={item.id} href={`/berita/${item.id}`} className={styles.newsCard}>
+                  {item.image_path ? (
+                    <img
+                      src={getImageUrl(item.image_path)}
+                      alt={item.title}
+                      className={styles.newsImg}
+                    />
+                  ) : (
+                    <div className={styles.newsImgPlaceholder}>📰</div>
+                  )}
+                  <div className={styles.newsContent}>
+                    <h3>{item.title}</h3>
+                    <p>{item.content.substring(0, 80)}...</p>
+                    <span className={styles.newsDate}>
+                      {new Date(item.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </span>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <p className={styles.emptyText}>Tidak ada berita yang cocok dengan pencarian Anda.</p>
+            ) :
+            <div className={styles.newsList}>
+              {firstNews &&
+                <Link key={firstNews.id} href={`/berita/${firstNews.id}`} className={styles.firstNewsCard}>
+                  {firstNews.image_path ? (
+                    <img
+                      src={getImageUrl(firstNews.image_path)}
+                      alt={firstNews.title}
+                      className={styles.firstNewsImg}
+                    />
+                  ) : (
+                    <div className={styles.firstNewsPlaceholder}>📰</div>
+                  )}
+                  <div className={styles.firstNewsOverlay}></div>
+                  <div className={styles.firstNewsContent}>
+                    <span className={styles.firstNewsDate}>
+                      {new Date(firstNews.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </span>
+                    <h3>{firstNews.title}</h3>
+                    <p>{firstNews.content.substring(0, 150)}...</p>
+                  </div>
+                </Link>
+              }
+              {restNews.map((item) => (
+                <Link key={item.id} href={`/berita/${item.id}`} className={styles.newsCard}>
+                  {item.image_path ? (
+                    <img
+                      src={getImageUrl(item.image_path)}
+                      alt={item.title}
+                      className={styles.newsImg}
+                    />
+                  ) : (
+                    <div className={styles.newsImgPlaceholder}>📰</div>
+                  )}
+                  <div className={styles.newsContent}>
+                    <h3>{item.title}</h3>
+                    <p>{item.content.substring(0, 80)}...</p>
+                    <span className={styles.newsDate}>
+                      {new Date(item.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          }
         </section>
       </main>
 

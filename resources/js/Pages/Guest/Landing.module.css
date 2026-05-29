@@ -31,15 +31,15 @@
 }
 
 .heroContent h1 {
-  font-size: 24px;
-  font-weight: 800;
+  font-size: 24px !important;
+  font-weight: 800 !important;
   text-transform: uppercase;
   color: var(--color-accent-yellow);
 }
 
 .heroContent h2 {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 20px !important;
+  font-weight: 700 !important;
 }
 
 .heroContent p {
@@ -648,11 +648,13 @@
   }
 
   .heroContent h1 {
-    font-size: 36px;
+    font-size: 36px !important;
+    font-weight: 800 !important;
   }
 
   .heroContent h2 {
-    font-size: 28px;
+    font-size: 28px !important;
+    font-weight: 700 !important;
   }
 
   .heroContent p {
