@@ -48,6 +48,29 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
     setIsPopupOpen(false);
   };
 
+  const handleDirectAction = (student, actionType, additionalData = {}) => {
+    if (actionType === 'delete') {
+      if (!window.confirm(`Apakah Anda yakin ingin menghapus data pendaftaran ${student.full_name} secara permanen? Akun portal siswa juga akan ikut terhapus.`)) {
+        return;
+      }
+    }
+
+    if (actionType === 'reject') {
+      const reason = window.prompt(`Masukkan alasan penolakan berkas untuk ${student.full_name}:`);
+      if (reason === null) return; // Cancelled
+      if (!reason.trim()) {
+        alert('Alasan penolakan berkas wajib diisi.');
+        return;
+      }
+      additionalData.reason = reason;
+    }
+
+    router.post(`/admin/verifikasi-berkas/${student.id}/aksi`, {
+      action: actionType,
+      ...additionalData
+    });
+  };
+
   const handleAction = (actionType, additionalData = {}) => {
     if (actionType === 'delete') {
       if (!window.confirm(`Apakah Anda yakin ingin menghapus data pendaftaran ${selectedStudent.full_name} secara permanen? Akun portal siswa juga akan ikut terhapus.`)) {
@@ -185,13 +208,45 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                       </td>
                       <td>
                         <div className={styles.actionBtnGrid}>
-                          <Button 
-                            variant="outline"
-                            size="sm"
+                          <button
+                            type="button"
+                            className={`${styles.iconBtn} ${styles.iconBtnInfo}`}
                             onClick={() => handleOpenDetail(student)}
+                            title="Tinjau Berkas & Detail"
                           >
-                            Tinjau
-                          </Button>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <circle cx="12" cy="12" r="10" />
+                              <line x1="12" y1="16" x2="12" y2="12" />
+                              <line x1="12" y1="8" x2="12.01" y2="8" />
+                            </svg>
+                          </button>
+                          
+                          {student.verification_status !== 'Terverifikasi' && (
+                            <button
+                              type="button"
+                              className={`${styles.iconBtn} ${styles.iconBtnSuccess}`}
+                              onClick={() => handleDirectAction(student, 'verify')}
+                              title="Setujui Berkas"
+                            >
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                            </button>
+                          )}
+                          
+                          {student.verification_status !== 'Berkas Ditolak' && (
+                            <button
+                              type="button"
+                              className={`${styles.iconBtn} ${styles.iconBtnDanger}`}
+                              onClick={() => handleDirectAction(student, 'reject')}
+                              title="Tolak Berkas"
+                            >
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                              </svg>
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>

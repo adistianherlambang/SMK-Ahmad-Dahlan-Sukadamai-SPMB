@@ -226,43 +226,66 @@
 }
 
 .iconBtn {
-  background: none;
-  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  background-color: var(--color-white);
   cursor: pointer;
-  padding: 6px;
-  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.iconBtn:active {
+  transform: scale(0.9);
 }
 
 .iconBtnInfo {
   color: var(--color-primary-dark);
+  background-color: var(--color-white);
 }
 .iconBtnInfo:hover {
-  background-color: #EBF8FF;
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
 }
 
 .iconBtnSuccess {
   color: var(--color-success);
+  background-color: var(--color-white);
 }
 .iconBtnSuccess:hover {
-  background-color: #E6FFFA;
+  background-color: var(--color-success);
+  color: var(--color-white);
 }
 
 .iconBtnDanger {
   color: var(--color-danger);
+  background-color: var(--color-white);
 }
 .iconBtnDanger:hover {
-  background-color: #FFF5F5;
+  background-color: var(--color-danger);
+  color: var(--color-white);
 }
 
 .iconBtnWarning {
   color: #D69E2E;
+  background-color: var(--color-white);
 }
 .iconBtnWarning:hover {
-  background-color: #FFFDF0;
+  background-color: #D69E2E;
+  color: var(--color-white);
+}
+.iconBtnSecondary {
+  color: #4A5568;
+  background-color: var(--color-white);
+}
+.iconBtnSecondary:hover {
+  background-color: #4A5568;
+  color: var(--color-white);
 }
 
 @media (min-width: 1024px) {

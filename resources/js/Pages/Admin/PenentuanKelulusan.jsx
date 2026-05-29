@@ -42,6 +42,18 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
     setIsPopupOpen(false);
   };
 
+  const handleDirectAction = (student, actionType) => {
+    if (actionType === 'delete') {
+      if (!window.confirm(`Apakah Anda yakin ingin menghapus data pendaftaran ${student.full_name} secara permanen? Akun portal siswa juga akan ikut terhapus.`)) {
+        return;
+      }
+    }
+
+    router.post(`/admin/penentuan-kelulusan/${student.id}/aksi`, {
+      action: actionType
+    });
+  };
+
   const handleAction = (actionType) => {
     if (actionType === 'delete') {
       if (!window.confirm(`Apakah Anda yakin ingin menghapus data pendaftaran ${selectedStudent.full_name} secara permanen? Akun portal siswa juga akan ikut terhapus.`)) {
@@ -169,13 +181,40 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
                       </td>
                       <td>
                         <div className={styles.actionBtnGrid}>
-                          <Button 
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleOpenDetail(student)}
+                          {student.graduation_status !== 'Diterima' && (
+                            <button
+                              className={`${styles.iconBtn} ${styles.iconBtnSuccess}`}
+                              title="Nyatakan Diterima"
+                              onClick={() => handleDirectAction(student, 'accept')}
+                            >
+                              ✓
+                            </button>
+                          )}
+                          {student.graduation_status !== 'Tidak Lulus' && (
+                            <button
+                              className={`${styles.iconBtn} ${styles.iconBtnWarning}`}
+                              title="Nyatakan Tidak Lulus"
+                              onClick={() => handleDirectAction(student, 'reject')}
+                            >
+                              ✗
+                            </button>
+                          )}
+                          {student.graduation_status !== 'Menunggu Kelulusan' && (
+                            <button
+                              className={`${styles.iconBtn} ${styles.iconBtnSecondary}`}
+                              title="Kembalikan ke Menunggu Kelulusan"
+                              onClick={() => handleDirectAction(student, 'undo')}
+                            >
+                              ↩
+                            </button>
+                          )}
+                          <button
+                            className={`${styles.iconBtn} ${styles.iconBtnDanger}`}
+                            title="Hapus Pendaftaran"
+                            onClick={() => handleDirectAction(student, 'delete')}
                           >
-                            Kelulusan
-                          </Button>
+                            🗑
+                          </button>
                         </div>
                       </td>
                     </tr>

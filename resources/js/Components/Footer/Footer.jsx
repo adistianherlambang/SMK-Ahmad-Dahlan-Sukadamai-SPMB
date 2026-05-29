@@ -1,9 +1,12 @@
 import React from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import Button from '../Button/Button';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+  const { url } = usePage();
+  const isDashboard = url.startsWith('/dashboard') || url.startsWith('/admin');
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
@@ -13,13 +16,25 @@ export default function Footer() {
             <p className={styles.logoText}>SMK Ahmad<br />Dahlan Sukadamai</p>
           </Link>
           <p className={styles.desc}>SMK dengan program keahlian Teknik dan Bisnis Sepeda Motor serta Perbankan Syariah yang berlokasi di Sukadamai, Lampung Selatan.</p>
-          <Button
-            href="/siswa/login"
-            variant="secondary"
-            className={styles.footerBtn}
-          >
-            Daftar Sekarang
-          </Button>
+          {isDashboard ? (
+            <Button
+              href="/logout"
+              method="post"
+              as="button"
+              variant="secondary"
+              className={styles.footerBtn}
+            >
+              Keluar
+            </Button>
+          ) : (
+            <Button
+              href="/siswa/login"
+              variant="secondary"
+              className={styles.footerBtn}
+            >
+              Daftar Sekarang
+            </Button>
+          )}
         </div>
         <div className={styles.footerMeta}>
           <div className={styles.footerRow}>
