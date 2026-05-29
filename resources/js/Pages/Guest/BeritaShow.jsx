@@ -73,8 +73,7 @@ export default function BeritaShow({ post }) {
           <h1 className={styles.title}>{post.title}</h1>
 
           <div className={styles.meta}>
-            <span className={styles.date}>📅 {formattedDate}</span>
-            <span className={styles.type}>🏷️ {post.type === 'pengumuman' ? 'Pengumuman' : 'Berita'}</span>
+            <span className={styles.date}>{formattedDate}</span>
           </div>
 
           {post.image_path && (
