@@ -46,47 +46,30 @@ export default function BuatAkun() {
 
       <main className={styles.container}>
         <div className={styles.cardHeader}>
-          <h2>Buat Akun Portal</h2>
-          <p>Silakan buat email dan password untuk digunakan login ke dalam Dasbor Portal Siswa.</p>
-        </div>
-
-        <div className={styles.stepIndicator}>
-          <div className={styles.step}>
-            <div className={styles.stepNum} style={{ backgroundColor: 'var(--color-success)', color: 'white', border: 'none' }}>✓</div>
-            <span>Form Data</span>
-          </div>
-          <div className={styles.stepLine} style={{ backgroundColor: 'var(--color-success)' }}></div>
-          <div className={`${styles.step} ${styles.stepActive}`}>
-            <div className={styles.stepNum}>2</div>
-            <span>Buat Akun</span>
-          </div>
+          <h2>Buat Akun</h2>
+          <p>Jadilah bagian dari SMK Ahmad Dahlan Sukadamai</p>
         </div>
 
         <div className={styles.formCard}>
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>F. Kredensial Login Portal Siswa</h2>
               <div className={styles.sectionBody}>
-                <p style={{ fontSize: '13px', color: '#718096', lineHeight: '1.5', margin: '0 0 8px 0' }}>
-                  Silakan buat email dan password untuk digunakan login ke dalam Dasbor Portal Siswa guna memantau status seleksi & berkas Anda.
-                </p>
-
                 {errors.email && <div className={styles.errorSummary}>{errors.email}</div>}
                 {errors.password && <div className={styles.errorSummary}>{errors.password}</div>}
 
-                <Input 
+                <Input
                   label="Email Akun Baru"
                   type="email"
-                  placeholder="Masukkan email aktif..."
+                  placeholder="Masukkan email aktif"
                   value={data.email}
                   onChange={(e) => setData('email', e.target.value)}
                   required
                 />
 
-                <Input 
+                <Input
                   label="Password Akun"
                   type="password"
-                  placeholder="Buat password minimal 6 karakter..."
+                  placeholder="Buat password minimal 6 karakter"
                   value={data.password}
                   onChange={(e) => setData('password', e.target.value)}
                   required
