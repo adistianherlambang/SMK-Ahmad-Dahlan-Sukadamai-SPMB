@@ -7,7 +7,8 @@
   gap: var(--spacing-mobile-gap);
   box-sizing: border-box;
   width: 100%;
-  max-width: 600px; /* Standard premium mobile-first container max-width */
+  max-width: 600px;
+  /* Standard premium mobile-first container max-width */
   margin: 0 auto;
 }
 
@@ -93,8 +94,17 @@
 }
 
 /* Global Page Title & Section Header Styling Override */
-h1, h2 {
+h1,
+h2 {
   font-size: 24px !important;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
   text-transform: none !important;
+}
+
+@media (min-width: 1024px) {
+
+  h1,
+  h2 {
+    font-size: 2rem !important;
+  }
 }

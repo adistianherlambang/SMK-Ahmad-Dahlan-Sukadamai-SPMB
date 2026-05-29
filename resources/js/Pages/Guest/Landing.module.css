@@ -37,11 +37,6 @@
   color: var(--color-accent-yellow);
 }
 
-.heroContent h2 {
-  font-size: 20px !important;
-  font-weight: 700 !important;
-}
-
 .heroContent p {
   font-size: 14px;
   opacity: 0.9;
@@ -190,7 +185,6 @@
 .ctaCard {
   background-color: var(--color-white);
   padding: 20px;
-  border-radius: 6px;
   border-left: 4px solid var(--color-accent-yellow);
   position: relative;
   color: var(--color-text-main);
@@ -234,12 +228,6 @@
   background-color: var(--color-primary-dark);
 }
 
-.aboutSection h2 {
-  font-size: 22px;
-  font-weight: 400;
-  color: var(--color-white);
-}
-
 .aboutSubtitle {
   font-size: 12px;
   opacity: 0.85;
@@ -266,13 +254,6 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
-}
-
-.videoSection h2 {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--color-primary-dark);
-  text-transform: uppercase;
 }
 
 .videoSection p {
@@ -312,12 +293,6 @@
   gap: 24px;
 }
 
-.perksSection h2 {
-  font-size: 24px;
-  font-weight: 400;
-  color: var(--color-primary-dark);
-}
-
 .accordion {
   display: flex;
   flex-direction: column;
@@ -349,6 +324,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  font-size: 1rem;
 }
 
 .accTitle p {
@@ -430,7 +406,6 @@
 
 .ekskulItem {
   background-color: #F8FAFC;
-  border-radius: 6px;
   padding: 16px;
   text-align: center;
   display: flex;
@@ -483,7 +458,6 @@
 }
 
 .achievementCard {
-  border-radius: 6px;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -495,7 +469,6 @@
   width: 48px;
   height: 48px;
   background-color: #FEFCBF;
-  border-radius: 6px;
   font-size: 24px;
   display: flex;
   align-items: center;
@@ -543,12 +516,6 @@
   gap: 24px;
 }
 
-.newsSection h2 {
-  font-size: 24px;
-  font-weight: 400;
-  color: var(--color-primary-dark);
-}
-
 .newsList {
   display: flex;
   flex-direction: column;
@@ -561,7 +528,6 @@
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
-  border-radius: 8px;
   height: 320px;
   text-decoration: none;
   width: 100%;
@@ -650,7 +616,6 @@
 
 .newsCard {
   background-color: var(--color-white);
-  border-radius: 6px;
   display: flex;
   gap: 16px;
   align-items: start;
@@ -662,7 +627,6 @@
   width: 60px;
   height: 60px;
   background-color: #EDF2F7;
-  border-radius: 4px;
   font-size: 32px;
   display: flex;
   align-items: center;
@@ -745,11 +709,6 @@
     font-weight: 800 !important;
   }
 
-  .heroContent h2 {
-    font-size: 28px !important;
-    font-weight: 700 !important;
-  }
-
   .heroContent p {
     font-size: 16px;
   }
@@ -792,18 +751,14 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: 2rem;
     /* Consistent with mobile gap */
-  }
-
-  .aboutSection h2 {
-    margin: 0;
-    flex: 0 0 30%;
   }
 
   .aboutSubtitle {
     margin: 0;
     flex: 1;
+    font-size: 14px;
   }
 
   .batik {
@@ -842,6 +797,16 @@
     gap: 12px;
     /* Matches mobile accordion gap exactly! */
     width: 100%;
+  }
+
+  .accTitle {
+    font-size: 20px;
+  }
+
+  .accTitle p {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-white);
   }
 
   .perkList {
