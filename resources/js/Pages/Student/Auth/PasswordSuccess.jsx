@@ -33,15 +33,6 @@ export default function PasswordSuccess() {
       <Head title="Kata Sandi Berhasil Diperbarui - SMK Ahmad Dahlan" />
       <Navbar links={links} />
 
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <h1>Reset Kata Sandi</h1>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Beranda</Link> / Status Sandi
-          </p>
-        </div>
-      </header>
-
       <main className={styles.container}>
         <div className={styles.cardHeader}>
           <div className={`${styles.statusCircle} ${styles.statusSuccess}`}>

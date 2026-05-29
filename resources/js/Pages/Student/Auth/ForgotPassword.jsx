@@ -45,15 +45,6 @@ export default function ForgotPassword() {
       <Head title="Lupa Kata Sandi - SPMB SMK Ahmad Dahlan" />
       <Navbar links={links} />
 
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <h1>Lupa Kata Sandi</h1>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Beranda</Link> / <Link href="/siswa/login">Login Siswa</Link> / Lupa Sandi
-          </p>
-        </div>
-      </header>
-
       <main className={styles.container}>
         <div className={styles.cardHeader}>
           <h2>Lupa Kata Sandi</h2>

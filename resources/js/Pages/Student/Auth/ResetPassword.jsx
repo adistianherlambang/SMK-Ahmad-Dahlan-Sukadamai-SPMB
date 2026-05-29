@@ -44,15 +44,6 @@ export default function ResetPassword() {
       <Head title="Buat Kata Sandi Baru - SPMB SMK Ahmad Dahlan" />
       <Navbar links={links} />
 
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <h1>Reset Kata Sandi</h1>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Beranda</Link> / Buat Sandi Baru
-          </p>
-        </div>
-      </header>
-
       <main className={styles.container}>
         <div className={styles.cardHeader}>
           <div className={styles.statusCircle}>

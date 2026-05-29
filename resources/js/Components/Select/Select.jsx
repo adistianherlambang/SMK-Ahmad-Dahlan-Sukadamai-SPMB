@@ -6,7 +6,12 @@ export default function Select({ label, placeholder, options = [], value, onChan
 
   return (
     <div className={styles.wrapper}>
-      {label && <label className={styles.label}>{label}{required && '*'}</label>}
+      {label && (
+        <label className={styles.label}>
+          {label}
+          {required && <span style={{ color: 'var(--color-danger)', marginLeft: '4px' }}>*</span>}
+        </label>
+      )}
       <select 
         name={name} 
         value={value ?? ''} 

@@ -33,15 +33,6 @@ export default function PeriodClosed() {
       <Head title="Pendaftaran Ditutup - SMK Ahmad Dahlan" />
       <Navbar links={links} />
 
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <h1>Pendaftaran Ditutup</h1>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Beranda</Link> / Pendaftaran Ditutup
-          </p>
-        </div>
-      </header>
-
       <main className={styles.container}>
         <div className={styles.cardHeader}>
           <div className={`${styles.statusCircle} ${styles.statusDanger}`}>

@@ -44,15 +44,6 @@ export default function Login() {
       <Head title="Admin Login - SMK Ahmad Dahlan" />
       <Navbar links={links} />
 
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <h1>Portal Admin</h1>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Beranda</Link> / Login Admin
-          </p>
-        </div>
-      </header>
-
       <main className={styles.container}>
         <div className={styles.cardHeader}>
           <h2>Portal Admin</h2>
