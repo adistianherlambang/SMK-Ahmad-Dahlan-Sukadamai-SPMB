@@ -84,7 +84,7 @@ export default function BeritaAll({ news = [] }) {
                       className={styles.newsImg}
                     />
                   ) : (
-                    <div className={styles.newsImgPlaceholder}>📰</div>
+                    <div className={styles.newsImgPlaceholder}></div>
                   )}
                   <div className={styles.newsContent}>
                     <h3>{item.title}</h3>
@@ -110,7 +110,7 @@ export default function BeritaAll({ news = [] }) {
                     className={styles.firstNewsImg}
                   />
                 ) : (
-                  <div className={styles.firstNewsPlaceholder}>📰</div>
+                  <div className={styles.firstNewsPlaceholder}></div>
                 )}
                 <div className={styles.firstNewsOverlay}></div>
                 <div className={styles.firstNewsContent}>
@@ -130,7 +130,7 @@ export default function BeritaAll({ news = [] }) {
                       className={styles.newsImg}
                     />
                   ) : (
-                    <div className={styles.newsImgPlaceholder}>📰</div>
+                    <div className={styles.newsImgPlaceholder}></div>
                   )}
                   <div className={styles.newsContent}>
                     <h3>{item.title}</h3>

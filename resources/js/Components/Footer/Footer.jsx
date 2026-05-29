@@ -11,8 +11,8 @@ export default function Footer() {
           <p>Maju bersama, mencetak kader kejuruan tangguh, kreatif, dan islami.</p>
         </div>
         <div className={styles.footerMeta}>
-          <p>📍 Jl. KH Ahmad Dahlan No. 1 Sukadamai, Kabupaten Lampung Selatan</p>
-          <p>📞 Hubungi Kami: 0852-XXXX-XXXX | ✉️ info@smkahmaddahlan.sch.id</p>
+          <p>Jl. KH Ahmad Dahlan No. 1 Sukadamai, Kabupaten Lampung Selatan</p>
+          <p>Hubungi Kami: 0852-XXXX-XXXX | info@smkahmaddahlan.sch.id</p>
         </div>
       </div>
       <div className={styles.footerBottom}>

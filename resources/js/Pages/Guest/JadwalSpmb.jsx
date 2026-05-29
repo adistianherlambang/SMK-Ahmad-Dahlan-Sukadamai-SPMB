@@ -6,8 +6,8 @@ import styles from './JadwalSpmb.module.css';
 export default function JadwalSpmb({ schedules = [] }) {
   const links = [
     { url: '/', label: 'Beranda' },
-    { 
-      label: 'Profil', 
+    {
+      label: 'Profil',
       dropdown: [
         { url: '/profil/sambutan', label: 'Sambutan Kepala Sekolah' },
         { url: '/profil/visi-misi', label: 'Visi & Misi' },
@@ -15,8 +15,8 @@ export default function JadwalSpmb({ schedules = [] }) {
         { url: '/profil/sejarah', label: 'Sejarah Singkat' }
       ]
     },
-    { 
-      label: 'Informasi Pendaftaran', 
+    {
+      label: 'Informasi Pendaftaran',
       dropdown: [
         { url: '/informasi/jadwal', label: 'Jadwal SPMB' },
         { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
@@ -56,7 +56,7 @@ export default function JadwalSpmb({ schedules = [] }) {
                 <div className={styles.numberBadge}>{idx + 1}</div>
                 <div className={styles.content}>
                   <div className={styles.dateRange}>
-                    <span>📅 {formatDate(stage.start_date)} s/d {formatDate(stage.end_date)}</span>
+                    <span>{formatDate(stage.start_date)} s/d {formatDate(stage.end_date)}</span>
                   </div>
                   <h3>{stage.title}</h3>
                   <p>{stage.description}</p>

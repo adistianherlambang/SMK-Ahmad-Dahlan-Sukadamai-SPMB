@@ -401,7 +401,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
                           className={styles.firstNewsImg}
                         />
                       ) : (
-                        <div className={styles.firstNewsPlaceholder}>📰</div>
+                        <div className={styles.firstNewsPlaceholder}></div>
                       )}
                       <div className={styles.firstNewsOverlay}></div>
                       <div className={styles.firstNewsContent}>
@@ -422,7 +422,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
                           className={styles.newsImg}
                         />
                       ) : (
-                        <div className={styles.newsImgPlaceholder}>📰</div>
+                        <div className={styles.newsImgPlaceholder}></div>
                       )}
                       <div className={styles.newsContent}>
                         <h3>{item.title}</h3>
