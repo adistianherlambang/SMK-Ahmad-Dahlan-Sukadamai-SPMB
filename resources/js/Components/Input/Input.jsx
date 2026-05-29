@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Input.module.css';
 
-export default function Input({ label, placeholder, type = 'text', value, onChange, name, required = false, ...props }) {
+export default function Input({ label, placeholder, type = 'text', value, onChange, name, required = false, rows = 3, ...props }) {
   return (
     <div className={styles.wrapper}>
       {label && (
@@ -10,16 +10,29 @@ export default function Input({ label, placeholder, type = 'text', value, onChan
           {required && <span style={{ color: 'var(--color-danger)', marginLeft: '4px' }}>*</span>}
         </label>
       )}
-      <input 
-        type={type} 
-        name={name}
-        placeholder={placeholder} 
-        value={value ?? ''} 
-        onChange={onChange} 
-        className={styles.inputField}
-        required={required}
-        {...props}
-      />
+      {type === 'textarea' ? (
+        <textarea
+          name={name}
+          placeholder={placeholder}
+          value={value ?? ''}
+          onChange={onChange}
+          className={styles.textareaField}
+          required={required}
+          rows={rows}
+          {...props}
+        />
+      ) : (
+        <input 
+          type={type} 
+          name={name}
+          placeholder={placeholder} 
+          value={value ?? ''} 
+          onChange={onChange} 
+          className={styles.inputField}
+          required={required}
+          {...props}
+        />
+      )}
     </div>
   );
 }

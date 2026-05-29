@@ -214,6 +214,7 @@ export default function Formulir({ quotas = [], tempData = null }) {
               <Input
                 label="Alamat Sekolah Asal"
                 placeholder="Kabupaten / Kota asal sekolah..."
+                type="textarea"
                 value={data.school_address}
                 onChange={(e) => setData('school_address', e.target.value)}
                 required
@@ -236,6 +237,7 @@ export default function Formulir({ quotas = [], tempData = null }) {
               <Input
                 label="Alamat Domisili Lengkap"
                 placeholder="Dusun, RT/RW, Desa, Kecamatan..."
+                type="textarea"
                 value={data.address}
                 onChange={(e) => setData('address', e.target.value)}
                 required
