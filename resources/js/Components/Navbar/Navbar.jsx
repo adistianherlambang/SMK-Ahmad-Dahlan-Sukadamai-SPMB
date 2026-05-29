@@ -133,15 +133,26 @@ export default function Navbar({ navType = 'landing', links = [] }) {
                 </div>
               ) : (
                 link.method === 'post' ? (
-                  <Link
-                    href={link.url}
-                    method="post"
-                    as="button"
-                    className={styles.mainLinkBtn}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
+                  <div className={styles.mainLinkContainer}>
+                    <Link
+                      href={link.url}
+                      method="post"
+                      as="button"
+                      className={styles.mainLinkBtn}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                    {link.label == "Daftar Sekarang" ?
+                      <Link style={{ color: "white", backgroundColor: "var(--color-primary-dark)", border: "solid white 1px" }} as="button" className={styles.mainLinkBtn} href="/admin/login">
+                        Login Admin
+                      </Link>
+                      :
+                      <Link style={{ color: "white", backgroundColor: "var(--color-primary-dark)", border: "solid white 1px" }} as="button" className={styles.mainLinkBtn} href="/">
+                        Ke Halaman Utama
+                      </Link>
+                    }
+                  </div>
                 ) : (
                   <Link
                     href={link.url}
@@ -154,7 +165,6 @@ export default function Navbar({ navType = 'landing', links = [] }) {
               )}
             </div>
           ))}
-          <div style={{ color: "white" }}>asda</div>
         </div>
       </div>
     </>

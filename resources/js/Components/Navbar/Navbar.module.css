@@ -108,15 +108,24 @@
   padding: 16px 0 16px 24px;
 }
 
+.mainLinkContainer {
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px
+}
+
 .mainLinkBtn {
-  background: none;
+  width: 100%;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: var(--color-accent-yellow);
   border: none;
-  color: var(--color-white);
-  font-size: 18px;
-  font-weight: 600;
+  color: var(--color-text-main);
+  font-size: 12px;
+  font-weight: 700;
   text-decoration: none;
-  text-align: left;
-  padding: 0;
+  text-align: center;
   cursor: pointer;
 }
 

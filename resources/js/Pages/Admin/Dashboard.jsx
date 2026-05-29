@@ -8,8 +8,8 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
     { url: '/admin/dashboard', label: 'Dasbor' },
     { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
     { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
-    { 
-      label: 'Data Master', 
+    {
+      label: 'Data Master',
       dropdown: [
         { url: '/admin/schedules', label: 'Kelola Jadwal' },
         { url: '/admin/quotas', label: 'Kelola Kuota' },
@@ -86,8 +86,8 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
           <div className={styles.filtersGrid}>
             <div className={styles.filterGroup}>
               <label>Tahun Registrasi</label>
-              <select 
-                value={filters.year ?? ''} 
+              <select
+                value={filters.year ?? ''}
                 onChange={(e) => handleFilterChange('year', e.target.value)}
                 className={styles.filterSelect}
               >
@@ -99,8 +99,8 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
 
             <div className={styles.filterGroup}>
               <label>Jalur Pendaftaran</label>
-              <select 
-                value={filters.quota_id ?? ''} 
+              <select
+                value={filters.quota_id ?? ''}
                 onChange={(e) => handleFilterChange('quota_id', e.target.value)}
                 className={styles.filterSelect}
               >
@@ -113,9 +113,9 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
 
             <div className={styles.filterGroup} style={{ flex: 2 }}>
               <label>Cari Calon Siswa</label>
-              <input 
-                type="text" 
-                placeholder="Cari Nama, No Registrasi atau NISN..." 
+              <input
+                type="text"
+                placeholder="Cari Nama, No Registrasi atau NISN..."
                 value={filters.search ?? ''}
                 onChange={(e) => handleFilterChange('search', e.target.value)}
                 className={styles.filterInput}

@@ -37,7 +37,8 @@ export default function Landing({ announcements = [], news = [], achievements = 
         { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
       ]
     },
-    { url: '/berita', label: 'Berita' }
+    { url: '/berita', label: 'Berita' },
+    { url: '/siswa/login', label: "Daftar Sekarang", method: 'post' }
   ];
 
   const fasilitas = [
