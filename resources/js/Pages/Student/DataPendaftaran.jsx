@@ -2,6 +2,7 @@ import React from 'react';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
 import FileInput from '../../Components/FileInput/FileInput';
+import Button from '../../Components/Button/Button';
 import styles from './Dashboard.module.css'; // Re-use general layouts
 import formStyles from '../Student/Auth/Formulir.module.css'; // Re-use form sections styling
 
@@ -51,12 +52,12 @@ export default function DataPendaftaran({ registration = {} }) {
         {/* Flash Notifications */}
         {flash?.success && (
           <div className={`${styles.alertBox} ${styles.alertSuccess}`} style={{ marginBottom: '16px' }}>
-            ✓ {flash.success}
+            {flash.success}
           </div>
         )}
         {flash?.error && (
           <div className={`${styles.alertBox} ${styles.alertDanger}`} style={{ marginBottom: '16px' }}>
-            ⚠️ {flash.error}
+            {flash.error}
           </div>
         )}
 
@@ -64,7 +65,7 @@ export default function DataPendaftaran({ registration = {} }) {
         {registration.verification_status === 'Berkas Ditolak' && (
           <section className={formStyles.formCard} style={{ border: '2px dashed var(--color-danger)', marginBottom: '24px' }}>
             <h3 style={{ fontSize: '15px', fontWeight: '800', color: 'var(--color-danger)', margin: '0 0 12px 0', textTransform: 'uppercase' }}>
-              🔧 Kirim Ulang Berkas Persyaratan
+              Kirim Ulang Berkas Persyaratan
             </h3>
             <p style={{ fontSize: '12px', color: '#718096', lineHeight: '1.5', marginBottom: '20px' }}>
               Silakan pilih dokumen baru berformat PDF (Maks 2MB) untuk menggantikan berkas yang ditolak oleh panitia. Kosongkan berkas yang tidak ingin diubah.
@@ -103,9 +104,9 @@ export default function DataPendaftaran({ registration = {} }) {
               />
               {errors.file_sktm && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.file_sktm}</div>}
 
-              <button type="submit" disabled={processing} className={formStyles.submitBtn} style={{ backgroundColor: 'var(--color-danger)' }}>
-                {processing ? 'Mengirim Berkas...' : 'Kirim Ulang Berkas Persyaratan'}
-              </button>
+              <Button type="submit" loading={processing} variant="danger" style={{ width: '100%' }}>
+                Kirim Ulang Berkas Persyaratan
+              </Button>
             </form>
           </section>
         )}

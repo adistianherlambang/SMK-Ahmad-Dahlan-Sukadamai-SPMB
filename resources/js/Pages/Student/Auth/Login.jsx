@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import Input from '../../../Components/Input/Input';
+import Button from '../../../Components/Button/Button';
 import styles from './Login.module.css';
 
 export default function Login() {
@@ -51,9 +52,9 @@ export default function Login() {
               <Link href="/siswa/lupa-password">Lupa Kata Sandi?</Link>
             </div>
 
-            <button type="submit" disabled={processing} className={styles.submitBtn}>
-              {processing ? 'Menghubungkan...' : 'Masuk Portal'}
-            </button>
+            <Button type="submit" loading={processing} style={{ width: '100%' }}>
+              Masuk Portal
+            </Button>
           </form>
 
           <div className={styles.footerLink}>

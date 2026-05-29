@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
+import Button from '../../Components/Button/Button';
 import styles from './Landing.module.css';
 
 import Batik from '../../Components/Batik/Batik';
@@ -39,7 +40,6 @@ export default function Landing({ announcements = [], news = [], achievements = 
       ]
     },
     { url: '/berita', label: 'Berita' },
-    { url: '/siswa/login', label: "Daftar Sekarang", method: 'post' }
   ];
 
   const fasilitas = [
@@ -241,8 +241,8 @@ export default function Landing({ announcements = [], news = [], achievements = 
                 <h2>SMK Ahmad Dahlan Sukadamai</h2>
                 <p>Membentuk generasi ahli kejuruan yang cerdas, kompeten, dan berkarakter islami.</p>
                 <div className={styles.ctaGroup}>
-                  <Link href="/siswa/formulir" className={styles.ctaBtnPrimary}>Daftar Sekarang</Link>
-                  <Link href="/siswa/login" className={styles.ctaBtnSecondary}>Login Siswa</Link>
+                  <Button href="/siswa/formulir" size="lg">Daftar Sekarang</Button>
+                  <Button href="/siswa/login" variant="secondary" size="lg">Login Siswa</Button>
                 </div>
               </div>
             </div>

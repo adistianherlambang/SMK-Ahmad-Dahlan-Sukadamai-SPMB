@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import Input from '../../../Components/Input/Input';
+import Button from '../../../Components/Button/Button';
 import styles from './Login.module.css'; // Re-use main container/card layout structure
 
 export default function ForgotPassword() {
@@ -59,9 +60,9 @@ export default function ForgotPassword() {
               required
             />
 
-            <button type="submit" disabled={processing} className={styles.submitBtn}>
-              {processing ? 'Memverifikasi...' : 'Verifikasi Data'}
-            </button>
+            <Button type="submit" loading={processing} style={{ width: '100%' }}>
+              Verifikasi Data
+            </Button>
           </form>
 
           <div className={styles.footerLink}>

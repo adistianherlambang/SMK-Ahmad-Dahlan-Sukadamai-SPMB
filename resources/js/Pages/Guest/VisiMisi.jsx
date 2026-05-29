@@ -41,7 +41,13 @@ export default function VisiMisi() {
 
       <main className={styles.container}>
         <section className={styles.visiSection}>
-          <div className={styles.iconBadge}>🎯</div>
+          <div className={styles.iconBadge}>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-dark)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', margin: '0 auto' }}>
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="6" />
+              <circle cx="12" cy="12" r="2" />
+            </svg>
+          </div>
           <h2>Visi Sekolah</h2>
           <p className={styles.visiText}>
             "Menjadi lembaga pendidikan vokasi kejuruan yang unggul, menghasilkan lulusan berkompeten, mandiri, berkarakter islami, dan berdaya saing tinggi di tingkat nasional maupun internasional."
@@ -49,7 +55,12 @@ export default function VisiMisi() {
         </section>
 
         <section className={styles.misiSection}>
-          <div className={styles.iconBadge}>📋</div>
+          <div className={styles.iconBadge}>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-dark)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', margin: '0 auto' }}>
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+            </svg>
+          </div>
           <h2>Misi Sekolah</h2>
           <ol className={styles.misiList}>
             <li>Menyelenggarakan proses pembelajaran kejuruan berkualitas berlandaskan kurikulum industri nasional dan standar nilai Muhammadiyah.</li>

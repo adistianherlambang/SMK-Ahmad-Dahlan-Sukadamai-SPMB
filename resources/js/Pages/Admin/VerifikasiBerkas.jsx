@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Head, router, usePage } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
 import Popup from '../../Components/Popup/Popup';
+import Button from '../../Components/Button/Button';
 import styles from './AdminDashboard.module.css'; // Re-use general tables/headers/badges
 import formStyles from '../Student/Auth/Formulir.module.css'; // Re-use forms styling inside popup
 
@@ -92,7 +93,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
         {/* Flash Notifications */}
         {flash?.success && (
           <div className={`${styles.alertBox} ${styles.alertSuccess}`} style={{ marginBottom: '16px' }}>
-            ✓ {flash.success}
+            {flash.success}
           </div>
         )}
 
@@ -184,13 +185,13 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                       </td>
                       <td>
                         <div className={styles.actionBtnGrid}>
-                          <button 
-                            className={`${styles.iconBtn} ${styles.iconBtnInfo}`}
+                          <Button 
+                            variant="outline"
+                            size="sm"
                             onClick={() => handleOpenDetail(student)}
-                            title="Tinjau Berkas & Detail"
                           >
-                            👁️ Tinjau
-                          </button>
+                            Tinjau
+                          </Button>
                         </div>
                       </td>
                     </tr>
@@ -266,28 +267,28 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {selectedStudent.document?.file_kk ? (
                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', border: '1px solid #E2E8F0', borderRadius: '4px', fontSize: '12px' }}>
-                      <span>📄 Kartu Keluarga (KK)</span>
+                      <span>Kartu Keluarga (KK)</span>
                       <a href={selectedStudent.document.file_kk} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-dark)', fontWeight: 'bold' }}>Lihat File</a>
                     </div>
-                  ) : <span style={{ fontSize: '11px', color: 'red' }}>⚠️ File KK Hilang/Tidak diunggah</span>}
+                  ) : <span style={{ fontSize: '11px', color: 'red' }}>File KK Hilang/Tidak diunggah</span>}
 
                   {selectedStudent.document?.file_akta ? (
                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', border: '1px solid #E2E8F0', borderRadius: '4px', fontSize: '12px' }}>
-                      <span>📄 Akta Kelahiran</span>
+                      <span>Akta Kelahiran</span>
                       <a href={selectedStudent.document.file_akta} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-dark)', fontWeight: 'bold' }}>Lihat File</a>
                     </div>
-                  ) : <span style={{ fontSize: '11px', color: 'red' }}>⚠️ File Akta Hilang/Tidak diunggah</span>}
+                  ) : <span style={{ fontSize: '11px', color: 'red' }}>File Akta Hilang/Tidak diunggah</span>}
 
                   {selectedStudent.document?.file_skhu_skl ? (
                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', border: '1px solid #E2E8F0', borderRadius: '4px', fontSize: '12px' }}>
-                      <span>📄 SKHU / SKL</span>
+                      <span>SKHU / SKL</span>
                       <a href={selectedStudent.document.file_skhu_skl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-dark)', fontWeight: 'bold' }}>Lihat File</a>
                     </div>
-                  ) : <span style={{ fontSize: '11px', color: 'red' }}>⚠️ File SKHU/SKL Hilang/Tidak diunggah</span>}
+                  ) : <span style={{ fontSize: '11px', color: 'red' }}>File SKHU/SKL Hilang/Tidak diunggah</span>}
 
                   {selectedStudent.document?.file_sktm ? (
                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', border: '1px solid #E2E8F0', borderRadius: '4px', fontSize: '12px' }}>
-                      <span>📄 SKTM / KIP / PKH</span>
+                      <span>SKTM / KIP / PKH</span>
                       <a href={selectedStudent.document.file_sktm} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-dark)', fontWeight: 'bold' }}>Lihat File</a>
                     </div>
                   ) : <span style={{ fontSize: '11px', color: '#718096', fontStyle: 'italic' }}>- File SKTM tidak dilampirkan</span>}
@@ -307,38 +308,42 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                 {!showRejectForm ? (
                   <>
                     {selectedStudent.verification_status !== 'Terverifikasi' && (
-                      <button 
+                      <Button 
                         onClick={() => handleAction('approve')} 
-                        style={{ width: '100%', padding: '12px', border: 'none', borderRadius: '4px', backgroundColor: 'var(--color-success)', color: 'white', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                        variant="success"
+                        style={{ width: '100%' }}
                       >
-                        ✓ Setujui & Verifikasi Berkas
-                      </button>
+                        Setujui & Verifikasi Berkas
+                      </Button>
                     )}
 
                     {selectedStudent.verification_status === 'Menunggu Verifikasi' && (
-                      <button 
+                      <Button 
                         onClick={() => setShowRejectForm(true)} 
-                        style={{ width: '100%', padding: '12px', border: 'none', borderRadius: '4px', backgroundColor: '#D69E2E', color: 'white', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                        variant="secondary"
+                        style={{ width: '100%', backgroundColor: '#D69E2E', border: 'none', color: 'white' }}
                       >
-                        ⚠️ Tolak Berkas Persyaratan
-                      </button>
+                        Tolak Berkas Persyaratan
+                      </Button>
                     )}
 
                     {selectedStudent.verification_status !== 'Menunggu Verifikasi' && (
-                      <button 
+                      <Button 
                         onClick={() => handleAction('undo')} 
-                        style={{ width: '100%', padding: '12px', border: '1px solid #CBD5E0', borderRadius: '4px', backgroundColor: 'white', color: '#4A5568', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                        variant="outline"
+                        style={{ width: '100%' }}
                       >
-                        ↩ Kembalikan Status Ke Menunggu
-                      </button>
+                        Kembalikan Status Ke Menunggu
+                      </Button>
                     )}
 
-                    <button 
+                    <Button 
                       onClick={() => handleAction('delete')} 
-                      style={{ width: '100%', padding: '12px', border: 'none', borderRadius: '4px', backgroundColor: 'var(--color-danger)', color: 'white', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                      variant="danger"
+                      style={{ width: '100%' }}
                     >
-                      🗑️ Hapus Pendaftaran Calon Siswa
-                    </button>
+                      Hapus Pendaftaran Calon Siswa
+                    </Button>
                   </>
                 ) : (
                   <form onSubmit={submitRejection} style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
@@ -351,19 +356,20 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                       required
                     ></textarea>
                     <div style={{ display: 'flex', gap: '8px' }}>
-                      <button 
-                        type="button" 
+                      <Button 
+                        variant="outline"
                         onClick={() => setShowRejectForm(false)} 
-                        style={{ flex: 1, padding: '10px', border: '1px solid #CBD5E0', borderRadius: '4px', backgroundColor: 'white', fontWeight: 'bold', cursor: 'pointer' }}
+                        style={{ flex: 1 }}
                       >
                         Batal
-                      </button>
-                      <button 
+                      </Button>
+                      <Button 
                         type="submit" 
-                        style={{ flex: 1, padding: '10px', border: 'none', borderRadius: '4px', backgroundColor: 'var(--color-danger)', color: 'white', fontWeight: 'bold', cursor: 'pointer' }}
+                        variant="danger"
+                        style={{ flex: 1 }}
                       >
                         Kirim Penolakan
-                      </button>
+                      </Button>
                     </div>
                   </form>
                 )}

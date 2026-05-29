@@ -4,6 +4,7 @@ import Navbar from '../../../Components/Navbar/Navbar';
 import Input from '../../../Components/Input/Input';
 import Select from '../../../Components/Select/Select';
 import FileInput from '../../../Components/FileInput/FileInput';
+import Button from '../../../Components/Button/Button';
 import styles from './Formulir.module.css';
 
 export default function Formulir({ quotas = [], tempData = null }) {
@@ -296,9 +297,9 @@ export default function Formulir({ quotas = [], tempData = null }) {
               </div>
             </div>
 
-            <button type="submit" disabled={processing} className={styles.submitBtn}>
-              {processing ? 'Menyimpan Formulir...' : 'Lanjut ke Halaman Buat Akun'}
-            </button>
+            <Button type="submit" loading={processing} style={{ width: '100%' }}>
+              Lanjut ke Halaman Buat Akun
+            </Button>
           </form>
         </div>
       </main>

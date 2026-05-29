@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
+import Button from '../../Components/Button/Button';
 import styles from './Dashboard.module.css';
 
 export default function Dashboard({ registration = {} }) {
@@ -58,21 +59,21 @@ export default function Dashboard({ registration = {} }) {
         <section className={styles.alertSection}>
           {registration.verification_status === 'Berkas Ditolak' && (
             <div className={`${styles.alertBox} ${styles.alertDanger}`}>
-              <h3>⚠️ Berkas Pendaftaran Ditolak</h3>
+              <h3>Berkas Pendaftaran Ditolak</h3>
               <p>Mohon maaf, berkas persyaratan yang Anda unggah ditolak oleh panitia dengan alasan:</p>
               <div className={styles.rejectionReason}>
                 "{registration.rejection_reason}"
               </div>
               <p style={{ marginTop: '12px' }}>Silakan perbaiki dokumen Anda dan lakukan kirim ulang berkas yang valid sekarang.</p>
-              <Link href="/dashboard/siswa/data-pendaftaran" className={styles.alertBtnDanger}>
+              <Button href="/dashboard/siswa/data-pendaftaran" variant="danger" style={{ marginTop: '16px' }}>
                 Ubah & Kirim Berkas
-              </Link>
+              </Button>
             </div>
           )}
 
           {registration.verification_status === 'Menunggu Verifikasi' && (
             <div className={`${styles.alertBox} ${styles.alertInfo}`}>
-              <h3>⏳ Menunggu Verifikasi Berkas</h3>
+              <h3>Menunggu Verifikasi Berkas</h3>
               <p>Berkas pendaftaran Anda telah berhasil terunggah dan saat ini sedang berada dalam antrean peninjauan oleh panitia SPMB SMK Ahmad Dahlan Sukadamai.</p>
               <p style={{ marginTop: '8px' }}>Mohon lakukan pemeriksaan berkala pada halaman dasbor ini untuk melihat perkembangan status verifikasi Anda.</p>
             </div>
@@ -80,32 +81,34 @@ export default function Dashboard({ registration = {} }) {
 
           {registration.verification_status === 'Terverifikasi' && registration.graduation_status === 'Menunggu Kelulusan' && (
             <div className={`${styles.alertBox} ${styles.alertSuccess}`}>
-              <h3>✓ Berkas Terverifikasi</h3>
+              <h3>Berkas Terverifikasi</h3>
               <p>Selamat! Berkas persyaratan fisik & digital Anda telah dinyatakan <strong>Lengkap & Terverifikasi</strong> oleh panitia.</p>
               <p style={{ marginTop: '8px' }}>Tahap selanjutnya adalah menunggu pengumuman hasil kelulusan seleksi penerimaan siswa baru sesuai tanggal agenda yang ditentukan.</p>
             </div>
           )}
 
           {registration.graduation_status === 'Diterima' && (
-            <div className={`${styles.alertBox} ${styles.alertGraduated}`}>
-              <div style={{ fontSize: '32px' }}>🎉</div>
+            <div className={`${styles.alertBox} ${styles.alertGraduated}`} style={{ textAlign: 'center' }}>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', margin: '0 auto 12px auto' }}>
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
               <h3>Selamat, Anda Lulus Seleksi!</h3>
               <p>Berdasarkan hasil rapat pleno panitia penerimaan siswa baru, Anda secara resmi dinyatakan <strong>DITERIMA</strong> sebagai siswa baru di SMK Ahmad Dahlan Sukadamai Tahun Pelajaran 2026/2027.</p>
-              <p style={{ marginTop: '12px', fontSize: '12px', opacity: 0.9 }}>Silakan cetak bukti kelulusan pendaftaran resmi Anda untuk ditunjukkan saat melakukan proses daftar ulang fisik di sekolah:</p>
-              <a 
+              <p style={{ marginTop: '12px', fontSize: '12px', opacity: 0.9, marginBottom: '16px' }}>Silakan cetak bukti kelulusan pendaftaran resmi Anda untuk ditunjukkan saat melakukan proses daftar ulang fisik di sekolah:</p>
+              <Button 
                 href="/dashboard/siswa/unduh-bukti" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className={styles.alertBtnGraduated}
+                variant="success"
               >
-                📥 Cetak Bukti Pendaftaran
-              </a>
+                Cetak Bukti Pendaftaran
+              </Button>
             </div>
           )}
 
           {registration.graduation_status === 'Tidak Lulus' && (
             <div className={`${styles.alertBox} ${styles.alertDanger}`}>
-              <h3>😞 Dinyatakan Tidak Lulus</h3>
+              <h3>Dinyatakan Tidak Lulus</h3>
               <p>Mohon maaf, berdasarkan hasil keputusan panitia seleksi penerimaan siswa baru, Anda dinyatakan <strong>Tidak Lulus</strong> seleksi masuk SMK Ahmad Dahlan Sukadamai gelombang ini.</p>
               <p style={{ marginTop: '8px' }}>Kami sangat mengapresiasi minat dan perjuangan yang telah Anda tunjukkan. Tetap semangat dan jangan berputus asa dalam menuntut ilmu di tempat lainnya.</p>
             </div>

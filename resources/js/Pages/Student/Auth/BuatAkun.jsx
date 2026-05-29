@@ -2,6 +2,7 @@ import React from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import Navbar from '../../../Components/Navbar/Navbar';
 import Input from '../../../Components/Input/Input';
+import Button from '../../../Components/Button/Button';
 import styles from './Formulir.module.css'; // Re-use Formulir card layouts and steps
 
 export default function BuatAkun() {
@@ -79,9 +80,9 @@ export default function BuatAkun() {
               </div>
             </div>
 
-            <button type="submit" disabled={processing} className={styles.submitBtn}>
-              {processing ? 'Memproses Pendaftaran...' : 'Selesaikan Pendaftaran'}
-            </button>
+            <Button type="submit" loading={processing} style={{ width: '100%' }}>
+              Selesaikan Pendaftaran
+            </Button>
           </form>
         </div>
       </main>

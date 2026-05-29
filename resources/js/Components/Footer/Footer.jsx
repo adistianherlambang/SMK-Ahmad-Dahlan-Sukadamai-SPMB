@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
+import Button from '../Button/Button';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -12,14 +13,13 @@ export default function Footer() {
             <p className={styles.logoText}>SMK Ahmad<br />Dahlan Sukadamai</p>
           </Link>
           <p className={styles.desc}>SMK dengan program keahlian Teknik dan Bisnis Sepeda Motor serta Perbankan Syariah yang berlokasi di Sukadamai, Lampung Selatan.</p>
-          <Link
+          <Button
             href="/siswa/login"
-            method="get"
-            as="button"
-            className={styles.mainLinkBtn}
+            variant="secondary"
+            className={styles.footerBtn}
           >
             Daftar Sekarang
-          </Link>
+          </Button>
         </div>
         <div className={styles.footerMeta}>
           <div className={styles.footerRow}>

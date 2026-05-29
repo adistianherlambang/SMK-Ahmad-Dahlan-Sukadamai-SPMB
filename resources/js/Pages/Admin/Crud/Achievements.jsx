@@ -3,6 +3,7 @@ import { Head, router, usePage, useForm } from '@inertiajs/react';
 import Navbar from '../../../Components/Navbar/Navbar';
 import Popup from '../../../Components/Popup/Popup';
 import Input from '../../../Components/Input/Input';
+import Button from '../../../Components/Button/Button';
 import styles from '../AdminDashboard.module.css';
 
 export default function Achievements({ achievements = [] }) {
@@ -110,15 +111,11 @@ export default function Achievements({ achievements = [] }) {
         <div className={styles.headerContent} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
           <div>
             <h1>Kelola Prestasi Sekolah</h1>
-            <p>Unggah dan pamerkan pencapaian siswa di ajang kejuaraan.</p>
+            <p>Unggah and pamerkan pencapaian siswa di ajang kejuaraan.</p>
           </div>
-          <button 
-            onClick={handleOpenAdd}
-            className={styles.submitBtn} 
-            style={{ width: 'auto', marginTop: 0, padding: '10px 20px', backgroundColor: 'var(--color-accent-yellow)', color: 'var(--color-text-main)' }}
-          >
-            ➕ Tambah Prestasi Baru
-          </button>
+          <Button onClick={handleOpenAdd} variant="secondary">
+            Tambah Prestasi Baru
+          </Button>
         </div>
       </header>
 
@@ -126,7 +123,7 @@ export default function Achievements({ achievements = [] }) {
         {/* Flash Notifications */}
         {flash?.success && (
           <div className={`${styles.alertBox} ${styles.alertSuccess}`} style={{ marginBottom: '16px' }}>
-            ✓ {flash.success}
+            {flash.success}
           </div>
         )}
 
@@ -158,21 +155,21 @@ export default function Achievements({ achievements = [] }) {
                       </td>
                       <td>{item.description}</td>
                       <td>
-                        <div className={styles.actionBtnGrid}>
-                          <button 
-                            className={`${styles.iconBtn} ${styles.iconBtnWarning}`}
+                        <div className={styles.actionBtnGrid} style={{ gap: '8px' }}>
+                          <Button 
+                            variant="secondary"
+                            size="sm"
                             onClick={() => handleOpenEdit(item)}
-                            title="Edit"
                           >
-                            ✏️ Edit
-                          </button>
-                          <button 
-                            className={`${styles.iconBtn} ${styles.iconBtnDanger}`}
+                            Edit
+                          </Button>
+                          <Button 
+                            variant="danger"
+                            size="sm"
                             onClick={() => handleDelete(item.id, item.title)}
-                            title="Hapus"
                           >
-                            🗑️ Hapus
-                          </button>
+                            Hapus
+                          </Button>
                         </div>
                       </td>
                     </tr>
@@ -265,7 +262,7 @@ export default function Achievements({ achievements = [] }) {
                     {data.image ? data.image.name : 'Pilih file gambar...'}
                   </span>
                   <span style={{ fontSize: '12px', fontWeight: 'bold', color: 'var(--color-primary-dark)' }}>
-                    📁 Telusuri
+                    Telusuri
                   </span>
                 </div>
                 {errors.image && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.image}</div>}
@@ -295,20 +292,20 @@ export default function Achievements({ achievements = [] }) {
               </div>
 
               <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid #EDF2F7', paddingTop: '16px', marginTop: '8px' }}>
-                <button 
-                  type="button" 
+                <Button 
+                  variant="outline"
                   onClick={handleClose} 
-                  style={{ flex: 1, padding: '12px', border: '1px solid #CBD5E0', borderRadius: '4px', backgroundColor: 'white', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                  style={{ flex: 1 }}
                 >
                   Batal
-                </button>
-                <button 
+                </Button>
+                <Button 
                   type="submit" 
-                  disabled={processing}
-                  style={{ flex: 1, padding: '12px', border: 'none', borderRadius: '4px', backgroundColor: 'var(--color-primary-dark)', color: 'white', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                  loading={processing}
+                  style={{ flex: 1 }}
                 >
-                  {processing ? 'Menyimpan...' : 'Simpan Prestasi'}
-                </button>
+                  Simpan Prestasi
+                </Button>
               </div>
             </form>
           </div>

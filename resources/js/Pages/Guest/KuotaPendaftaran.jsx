@@ -74,7 +74,7 @@ export default function KuotaPendaftaran({ quotas = [] }) {
         </section>
 
         <section className={styles.guideCard}>
-          <h3>💡 Tips Memilih Jalur Masuk</h3>
+          <h3>Tips Memilih Jalur Masuk</h3>
           <ul>
             <li><strong>Jalur Domisili:</strong> Prioritas utama untuk calon siswa yang berjarak dekat dengan lokasi sekolah.</li>
             <li><strong>Jalur Prestasi:</strong> Unggul bagi calon siswa dengan raihan juara perlombaan atau nilai raport tinggi.</li>

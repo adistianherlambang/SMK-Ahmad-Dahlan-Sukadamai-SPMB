@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Head, router, usePage } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
 import Popup from '../../Components/Popup/Popup';
+import Button from '../../Components/Button/Button';
 import styles from './AdminDashboard.module.css'; // Re-use styles
 import formStyles from '../Student/Auth/Formulir.module.css'; // Re-use sections
 
@@ -76,7 +77,7 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
         {/* Flash Notifications */}
         {flash?.success && (
           <div className={`${styles.alertBox} ${styles.alertSuccess}`} style={{ marginBottom: '16px' }}>
-            ✓ {flash.success}
+            {flash.success}
           </div>
         )}
 
@@ -168,13 +169,13 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
                       </td>
                       <td>
                         <div className={styles.actionBtnGrid}>
-                          <button 
-                            className={`${styles.iconBtn} ${styles.iconBtnInfo}`}
+                          <Button 
+                            variant="outline"
+                            size="sm"
                             onClick={() => handleOpenDetail(student)}
-                            title="Tentukan Kelulusan"
                           >
-                            🎯 Kelulusan
-                          </button>
+                            Kelulusan
+                          </Button>
                         </div>
                       </td>
                     </tr>
@@ -247,38 +248,42 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
               {/* Action Buttons */}
               <div style={{ borderTop: '1px solid #EDF2F7', paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {selectedStudent.graduation_status !== 'Diterima' && (
-                  <button 
+                  <Button 
                     onClick={() => handleAction('accept')} 
-                    style={{ width: '100%', padding: '12px', border: 'none', borderRadius: '4px', backgroundColor: 'var(--color-success)', color: 'white', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                    variant="success"
+                    style={{ width: '100%' }}
                   >
-                    ✓ Nyatakan DITERIMA (Lulus Seleksi)
-                  </button>
+                    Nyatakan DITERIMA (Lulus Seleksi)
+                  </Button>
                 )}
 
                 {selectedStudent.graduation_status !== 'Tidak Lulus' && (
-                  <button 
+                  <Button 
                     onClick={() => handleAction('reject')} 
-                    style={{ width: '100%', padding: '12px', border: 'none', borderRadius: '4px', backgroundColor: '#D69E2E', color: 'white', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                    variant="secondary"
+                    style={{ width: '100%', backgroundColor: '#D69E2E', border: 'none', color: 'white' }}
                   >
-                    ⚠️ Nyatakan TIDAK LULUS Seleksi
-                  </button>
+                    Nyatakan TIDAK LULUS Seleksi
+                  </Button>
                 )}
 
                 {selectedStudent.graduation_status !== 'Menunggu Kelulusan' && (
-                  <button 
+                  <Button 
                     onClick={() => handleAction('undo')} 
-                    style={{ width: '100%', padding: '12px', border: '1px solid #CBD5E0', borderRadius: '4px', backgroundColor: 'white', color: '#4A5568', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                    variant="outline"
+                    style={{ width: '100%' }}
                   >
-                    ↩ Kembalikan Status Ke Menunggu Kelulusan
-                  </button>
+                    Kembalikan Status Ke Menunggu Kelulusan
+                  </Button>
                 )}
 
-                <button 
+                <Button 
                   onClick={() => handleAction('delete')} 
-                  style={{ width: '100%', padding: '12px', border: 'none', borderRadius: '4px', backgroundColor: 'var(--color-danger)', color: 'white', fontWeight: 'bold', fontSize: '13px', cursor: 'pointer' }}
+                  variant="danger"
+                  style={{ width: '100%' }}
                 >
-                  🗑️ Hapus Pendaftaran Calon Siswa
-                </button>
+                  Hapus Pendaftaran Calon Siswa
+                </Button>
               </div>
             </div>
           )}

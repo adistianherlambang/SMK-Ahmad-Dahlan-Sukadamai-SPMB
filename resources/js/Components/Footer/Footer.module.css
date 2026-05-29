@@ -29,6 +29,13 @@
   color: white;
 }
 
+.logoText {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: white;
+}
+
 .imgLogo {
   width: 4rem;
   height: 4rem;
@@ -38,29 +45,20 @@
   font-size: 14px;
   opacity: 0.8;
   text-align: left;
+  line-height: 1.6;
 }
 
-.mainLinkBtn {
+.footerBtn {
   width: 100%;
-  padding: 16px;
-  border-radius: 8px;
-  background-color: var(--color-accent-yellow);
-  border: none;
-  color: var(--color-text-main);
-  font-size: 12px;
-  font-weight: 700;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
 }
 
 .footerMeta {
   margin-top: 24px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  font-size: 12px;
-  opacity: 0.7;
+  gap: 16px;
+  font-size: 13px;
+  opacity: 0.8;
   text-align: left;
 }
 
@@ -73,7 +71,12 @@
 
 .footerRow {
   display: flex;
-  gap: 8px;
+  gap: 12px;
+  align-items: center;
+}
+
+.footerRow svg {
+  flex-shrink: 0;
 }
 
 .developerCta {
@@ -97,28 +100,35 @@
 
 @media (min-width: 1024px) {
   .footer {
-    padding: 80px 20px 40px 20px;
+    padding: 64px 32px 32px 32px;
   }
 
   .footerContent {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     text-align: left;
-    flex-wrap: wrap;
-    gap: 40px;
+    gap: 64px;
   }
 
-  .brandInfo {
-    flex: 1 1 40%;
+  .brand {
+    flex: 1 1 50%;
+    max-width: 540px;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .footerBtn {
+    width: auto;
   }
 
   .footerMeta {
-    flex: 1 1 40%;
+    flex: 0 1 40%;
     margin-top: 0;
-    text-align: right;
-    align-items: flex-end;
+    align-items: flex-start;
+    gap: 16px;
   }
 
   .developerCta {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Navbar from '../../../Components/Navbar/Navbar';
+import Button from '../../../Components/Button/Button';
 import styles from './Formulir.module.css'; // Re-use main container/card wrapper styles
 
 export default function PendaftaranBerhasil({ registration = {} }) {
@@ -38,7 +39,11 @@ export default function PendaftaranBerhasil({ registration = {} }) {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', margin: '24px 0' }}>
-            <div style={{ width: '64px', height: '64px', borderRadius: '50%', backgroundColor: '#E6FFFA', color: '#319795', display: 'flex', alignItems: 'center', justifycontent: 'center', fontSize: '32px', fontWeight: 'bold' }}>🎉</div>
+            <div style={{ width: '64px', height: '64px', borderRadius: '50%', backgroundColor: '#E6FFFA', color: '#319795', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            </div>
             <h2 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--color-primary-dark)', textTransform: 'uppercase', marginTop: '12px' }}>Pendaftaran Sukses!</h2>
             <p style={{ fontSize: '13px', color: '#718096', maxWidth: '400px', margin: '0 auto', lineHeight: '1.5' }}>
               Selamat, berkas formulir pendaftaran Anda berhasil terkirim ke sistem kami. Silakan simpan detail registrasi berikut:
@@ -66,28 +71,27 @@ export default function PendaftaranBerhasil({ registration = {} }) {
           </div>
 
           <div style={{ backgroundColor: '#FFFDF0', border: '1px solid #FEFCBF', borderRadius: '4px', padding: '12px 16px', fontSize: '12px', color: '#744210', textAlign: 'left', lineHeight: '1.6', margin: '24px 0' }}>
-            <strong>💡 Informasi Penting:</strong>
+            <strong>Informasi Penting:</strong>
             <p style={{ margin: '4px 0 0 0' }}>Anda dapat langsung mengunduh bukti pendaftaran di bawah ini untuk dibawa beserta berkas fisik KK, Akta, dan SKHU/SKL saat jadwal verifikasi tatap muka berlangsung di sekolah.</p>
           </div>
 
           {/* Action CTAs */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '24px' }}>
-            <a 
+            <Button 
               href="/dashboard/siswa/unduh-bukti" 
               target="_blank" 
               rel="noopener noreferrer"
-              className={styles.submitBtn} 
-              style={{ textDecoration: 'none', display: 'block', textAlign: 'center', backgroundColor: 'var(--color-accent-yellow)', color: 'var(--color-text-main)' }}
+              variant="secondary"
+              style={{ width: '100%' }}
             >
-              📥 Unduh Bukti Pendaftaran
-            </a>
-            <Link 
+              Unduh Bukti Pendaftaran
+            </Button>
+            <Button 
               href="/dashboard/siswa" 
-              className={styles.submitBtn} 
-              style={{ textDecoration: 'none', display: 'block', textAlign: 'center' }}
+              style={{ width: '100%' }}
             >
               Masuk ke Dasbor Saya
-            </Link>
+            </Button>
           </div>
         </div>
       </main>
