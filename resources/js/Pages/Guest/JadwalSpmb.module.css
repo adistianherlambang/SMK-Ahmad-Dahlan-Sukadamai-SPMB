@@ -1,10 +1,10 @@
 .header {
   background-color: var(--color-primary-dark);
   color: var(--color-white);
-  padding: 16px;
+  padding: var(--spacing-xl) var(--spacing-md);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-xs);
 }
 
 .headerContent {
@@ -30,11 +30,11 @@
 .container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 32px 16px;
+  padding: var(--spacing-2xl) var(--spacing-md);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: var(--spacing-2xl);
 }
 
 .intro {
@@ -136,7 +136,7 @@
   }
   .container {
     max-width: 1000px;
-    padding: 48px 20px;
+    padding: var(--spacing-4xl) var(--spacing-lg);
   }
   .scheduleTimeline {
     gap: 24px;

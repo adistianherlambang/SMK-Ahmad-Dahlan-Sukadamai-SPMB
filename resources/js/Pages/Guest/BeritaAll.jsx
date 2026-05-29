@@ -72,10 +72,10 @@ export default function BeritaAll({ news = [] }) {
         </div>
 
         {/* News Grid */}
-        <section className={styles.newsList}>
-          {searchTerm ?
-            filteredNews.length > 0 ? (
-              filteredNews.map((item) => (
+        {searchTerm ? (
+          filteredNews.length > 0 ? (
+            <div className={styles.newsList}>
+              {filteredNews.map((item) => (
                 <Link key={item.id} href={`/berita/${item.id}`} className={styles.newsCard}>
                   {item.image_path ? (
                     <img
@@ -94,32 +94,33 @@ export default function BeritaAll({ news = [] }) {
                     </span>
                   </div>
                 </Link>
-              ))
-            ) : (
-              <p className={styles.emptyText}>Tidak ada berita yang cocok dengan pencarian Anda.</p>
-            ) :
+              ))}
+            </div>
+          ) : (
+            <p className={styles.emptyText}>Tidak ada berita yang cocok dengan pencarian Anda.</p>
+          )
+        ) : (
+          firstNews ? (
             <div className={styles.newsList}>
-              {firstNews &&
-                <Link key={firstNews.id} href={`/berita/${firstNews.id}`} className={styles.firstNewsCard}>
-                  {firstNews.image_path ? (
-                    <img
-                      src={getImageUrl(firstNews.image_path)}
-                      alt={firstNews.title}
-                      className={styles.firstNewsImg}
-                    />
-                  ) : (
-                    <div className={styles.firstNewsPlaceholder}>📰</div>
-                  )}
-                  <div className={styles.firstNewsOverlay}></div>
-                  <div className={styles.firstNewsContent}>
-                    <span className={styles.firstNewsDate}>
-                      {new Date(firstNews.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
-                    </span>
-                    <h3>{firstNews.title}</h3>
-                    <p>{firstNews.content.substring(0, 150)}...</p>
-                  </div>
-                </Link>
-              }
+              <Link key={firstNews.id} href={`/berita/${firstNews.id}`} className={styles.firstNewsCard}>
+                {firstNews.image_path ? (
+                  <img
+                    src={getImageUrl(firstNews.image_path)}
+                    alt={firstNews.title}
+                    className={styles.firstNewsImg}
+                  />
+                ) : (
+                  <div className={styles.firstNewsPlaceholder}>📰</div>
+                )}
+                <div className={styles.firstNewsOverlay}></div>
+                <div className={styles.firstNewsContent}>
+                  <span className={styles.firstNewsDate}>
+                    {new Date(firstNews.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </span>
+                  <h3>{firstNews.title}</h3>
+                  <p>{firstNews.content.substring(0, 150)}...</p>
+                </div>
+              </Link>
               {restNews.map((item) => (
                 <Link key={item.id} href={`/berita/${item.id}`} className={styles.newsCard}>
                   {item.image_path ? (
@@ -141,8 +142,10 @@ export default function BeritaAll({ news = [] }) {
                 </Link>
               ))}
             </div>
-          }
-        </section>
+          ) : (
+            <p className={styles.emptyText}>Tidak ada berita yang diunggah.</p>
+          )
+        )}
       </main>
 
       <Footer />

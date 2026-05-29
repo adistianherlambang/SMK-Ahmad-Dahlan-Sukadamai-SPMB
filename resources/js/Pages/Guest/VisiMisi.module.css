@@ -1,10 +1,10 @@
 .header {
   background-color: var(--color-primary-dark);
   color: var(--color-white);
-  padding: 16px;
+  padding: var(--spacing-xl) var(--spacing-md);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-xs);
 }
 
 .headerContent {
@@ -30,10 +30,10 @@
 .container {
   max-width: 600px;
   margin: 0 auto;
-  padding: 32px 16px;
+  padding: var(--spacing-2xl) var(--spacing-md);
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: var(--spacing-3xl);
   box-sizing: border-box;
 }
 
@@ -131,8 +131,8 @@
     max-width: 1000px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    padding: 48px 20px;
+    gap: var(--spacing-2xl);
+    padding: var(--spacing-4xl) var(--spacing-lg);
   }
   .visiSection, .misiSection {
     height: 100%;
