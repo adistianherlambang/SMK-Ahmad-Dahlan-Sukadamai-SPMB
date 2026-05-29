@@ -47,15 +47,15 @@ export default function ForgotPassword() {
 
       <main className={styles.container}>
         <div className={styles.cardHeader}>
-          <h2>Lupa Kata Sandi</h2>
-          <p>Silakan masukkan detail pendaftaran Anda untuk melakukan verifikasi identitas.</p>
+          <h2>Lupa Password?</h2>
+          <p>Lupa password? Atur ulang akun Anda di sini</p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           {errors.email && <div className={styles.errorAlert}>{errors.email}</div>}
           {errors.nisn && <div className={styles.errorAlert}>{errors.nisn}</div>}
-          
-          <Input 
+
+          <Input
             label="Email Terdaftar"
             type="email"
             placeholder="contoh@gmail.com"
@@ -64,7 +64,7 @@ export default function ForgotPassword() {
             required
           />
 
-          <Input 
+          <Input
             label="NISN (10 Digit)"
             type="text"
             placeholder="Masukkan 10 digit NISN..."
@@ -74,23 +74,24 @@ export default function ForgotPassword() {
             required
           />
 
-          <Input 
-            label="Nama Lengkap Calon Siswa"
+          <Input
+            label="Nama Lengkap"
             type="text"
-            placeholder="Sesuai Akta Kelahiran..."
+            placeholder="Nama yang terdaftar"
             value={data.full_name}
             onChange={(e) => setData('full_name', e.target.value)}
             required
           />
 
           <Button type="submit" loading={processing} style={{ width: '100%' }}>
-            Verifikasi Data
+            Lanjut
           </Button>
+
+          <div className={styles.footerLink}>
+            <p>Ingat kata sandi? <Link href="/siswa/login">Masuk Kembali</Link></p>
+          </div>
         </form>
 
-        <div className={styles.footerLink}>
-          <p>Ingat kata sandi? <Link href="/siswa/login">Masuk Kembali</Link></p>
-        </div>
       </main>
 
       <Footer />

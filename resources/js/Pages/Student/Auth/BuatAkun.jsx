@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import Navbar from '../../../Components/Navbar/Navbar';
+import Footer from '../../../Components/Footer/Footer';
 import Input from '../../../Components/Input/Input';
 import Button from '../../../Components/Button/Button';
 import styles from './Formulir.module.css'; // Re-use Formulir card layouts and steps
@@ -13,7 +14,24 @@ export default function BuatAkun() {
 
   const links = [
     { url: '/', label: 'Beranda' },
-    { url: '/siswa/login', label: 'Login Siswa' }
+    {
+      label: 'Profil',
+      dropdown: [
+        { url: '/profil/sambutan', label: 'Sambutan Kepala Sekolah' },
+        { url: '/profil/visi-misi', label: 'Visi & Misi' },
+        { url: '/profil/struktur', label: 'Struktur Organisasi' },
+        { url: '/profil/sejarah', label: 'Sejarah Singkat' }
+      ]
+    },
+    {
+      label: 'Informasi Pendaftaran',
+      dropdown: [
+        { url: '/informasi/jadwal', label: 'Jadwal SPMB' },
+        { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
+      ]
+    },
+    { url: '/berita', label: 'Berita' },
+    { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' }
   ];
 
   const handleSubmit = (e) => {
@@ -23,32 +41,28 @@ export default function BuatAkun() {
 
   return (
     <>
-      <Head title="Buat Akun Portal Siswa - SMK Ahmad Dahlan" />
+      <Head title="Buat Akun Portal - SMK Ahmad Dahlan" />
       <Navbar links={links} />
 
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <h1>Buat Akun Portal</h1>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Beranda</Link> / Pendaftaran / Buat Akun
-          </p>
-        </div>
-      </header>
-
       <main className={styles.container}>
-        <div className={styles.formCard}>
-          <div className={styles.stepIndicator}>
-            <div className={styles.step}>
-              <div className={styles.stepNum} style={{ backgroundColor: 'var(--color-success)', color: 'white', border: 'none' }}>✓</div>
-              <span>Form Data</span>
-            </div>
-            <div className={styles.stepLine} style={{ backgroundColor: 'var(--color-success)' }}></div>
-            <div className={`${styles.step} ${styles.stepActive}`}>
-              <div className={styles.stepNum}>2</div>
-              <span>Buat Akun</span>
-            </div>
-          </div>
+        <div className={styles.cardHeader}>
+          <h2>Buat Akun Portal</h2>
+          <p>Silakan buat email dan password untuk digunakan login ke dalam Dasbor Portal Siswa.</p>
+        </div>
 
+        <div className={styles.stepIndicator}>
+          <div className={styles.step}>
+            <div className={styles.stepNum} style={{ backgroundColor: 'var(--color-success)', color: 'white', border: 'none' }}>✓</div>
+            <span>Form Data</span>
+          </div>
+          <div className={styles.stepLine} style={{ backgroundColor: 'var(--color-success)' }}></div>
+          <div className={`${styles.step} ${styles.stepActive}`}>
+            <div className={styles.stepNum}>2</div>
+            <span>Buat Akun</span>
+          </div>
+        </div>
+
+        <div className={styles.formCard}>
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.section}>
               <h2 className={styles.sectionTitle}>F. Kredensial Login Portal Siswa</h2>
@@ -87,9 +101,7 @@ export default function BuatAkun() {
         </div>
       </main>
 
-      <footer className={styles.footer}>
-        <p>&copy; 2026 SMK Ahmad Dahlan Sukadamai. All Rights Reserved.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

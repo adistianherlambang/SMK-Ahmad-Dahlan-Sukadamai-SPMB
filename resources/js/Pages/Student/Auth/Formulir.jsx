@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link, useForm } from '@inertiajs/react';
 import Navbar from '../../../Components/Navbar/Navbar';
+import Footer from '../../../Components/Footer/Footer';
 import Input from '../../../Components/Input/Input';
 import Select from '../../../Components/Select/Select';
 import FileInput from '../../../Components/FileInput/FileInput';
@@ -50,30 +51,25 @@ export default function Formulir({ quotas = [], tempData = null }) {
       <Head title="Formulir Pendaftaran SPMB - SMK Ahmad Dahlan" />
       <Navbar links={links} />
 
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <h1>Formulir Pendaftaran</h1>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Beranda</Link> / Pendaftaran / Formulir
-          </p>
-        </div>
-      </header>
-
       <main className={styles.container}>
-        <div className={styles.formCard}>
-          <div className={styles.stepIndicator}>
-            <div className={`${styles.step} ${styles.stepActive}`}>
-              <div className={styles.stepNum}>1</div>
-              <span>Form Data</span>
-            </div>
-            <div className={styles.stepLine}></div>
-            <div className={styles.step}>
-              <div className={styles.stepNum}>2</div>
-              <span>Buat Akun</span>
-            </div>
-          </div>
+        <div className={styles.cardHeader}>
+          <h2>Formulir Pendaftaran</h2>
+          <p>Silakan isi lengkap data pendaftaran Anda secara valid.</p>
+        </div>
 
-          <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.stepIndicator}>
+          <div className={`${styles.step} ${styles.stepActive}`}>
+            <div className={styles.stepNum}>1</div>
+            <span>Form Data</span>
+          </div>
+          <div className={styles.stepLine}></div>
+          <div className={styles.step}>
+            <div className={styles.stepNum}>2</div>
+            <span>Buat Akun</span>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className={styles.form}>
             {Object.keys(errors).length > 0 && (
               <div className={styles.errorSummary}>
                 <strong>Mohon periksa kembali isian Anda:</strong>
@@ -301,12 +297,9 @@ export default function Formulir({ quotas = [], tempData = null }) {
               Lanjut ke Halaman Buat Akun
             </Button>
           </form>
-        </div>
       </main>
 
-      <footer className={styles.footer}>
-        <p>&copy; 2026 SMK Ahmad Dahlan Sukadamai. All Rights Reserved.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

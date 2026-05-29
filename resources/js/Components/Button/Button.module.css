@@ -20,18 +20,21 @@
 
 /* Sizing Scales */
 .sm {
-  padding: 6px 12px;
+  height: 32px;
+  padding: 0 12px;
   font-size: 11px;
   border-radius: 4px;
 }
 
 .md {
-  padding: 10px 20px;
-  font-size: 13px;
+  height: 46px;
+  padding: 0 20px;
+  font-size: 14px;
 }
 
 .lg {
-  padding: 14px 28px;
+  height: 54px;
+  padding: 0 28px;
   font-size: 15px;
 }
 

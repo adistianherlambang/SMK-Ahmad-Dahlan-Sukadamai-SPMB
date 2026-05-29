@@ -1,43 +1,39 @@
-.header {
-  background-color: var(--color-primary-dark);
-  color: var(--color-white);
-  padding: 16px;
+/* Page Main Container - Directly containing and constraining the form */
+.container {
+  width: 100%;
+  max-width: 600px; /* Constrain the width of the form layout beautifully */
+  margin: 0 auto;
+  padding: 64px 20px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-.headerContent {
-  max-width: 600px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.header h1 {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.breadcrumb {
-  font-size: 12px;
-  opacity: 0.8;
-}
-
-.breadcrumb a {
-  text-decoration: underline;
-}
-
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 24px 16px;
   box-sizing: border-box;
+  background-color: var(--color-white);
+  min-height: calc(100vh - 300px); /* Fill screen space nicely */
+  gap: 2rem;
+}
+
+.cardHeader {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHeader h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.cardHeader p {
+  font-size: 13px;
+  color: #718096;
+  line-height: 1.5;
 }
 
 .formCard {
-  background-color: var(--color-white);
-  border-radius: 8px;
-  padding: 24px 16px;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -47,7 +43,7 @@
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
 }
 
 .step {
@@ -89,13 +85,14 @@
 }
 
 .errorSummary {
-  background-color: #FFF5F5;
+  background-color: #FEF2F2;
   color: var(--color-danger);
-  border: 1px solid #FED7D7;
+  border: 1px solid #FEE2E2;
   padding: 16px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 13px;
   text-align: left;
+  line-height: 1.5;
 }
 
 .errorSummary ul {
@@ -136,35 +133,25 @@
   gap: 12px;
 }
 
-.formRow>div {
+.formRow > div {
   flex: 1;
 }
 
-.submitBtn {
-  width: 100%;
-  padding: 14px;
-  background-color: var(--color-primary-dark);
-  color: var(--color-white);
-  border: none;
-  border-radius: 4px;
+.footerLink {
   font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-  margin-top: 16px;
-}
-
-.submitBtn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.footer {
-  background-color: #001228;
-  color: var(--color-white);
-  padding: 24px 16px;
+  color: #718096;
+  padding-top: 20px;
   text-align: center;
-  font-size: 12px;
-  opacity: 0.8;
-  margin-top: 48px;
+}
+
+.footerLink a {
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footerLink a:hover {
+  color: var(--color-accent-yellow);
+  text-decoration: underline;
 }
