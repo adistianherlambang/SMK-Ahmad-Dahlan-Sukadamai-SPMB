@@ -29,6 +29,7 @@ Route::get('/profil/visi-misi', [LandingPageController::class, 'visiMisi']);
 Route::get('/profil/struktur', [LandingPageController::class, 'struktur']);
 Route::get('/profil/sejarah', [LandingPageController::class, 'sejarah']);
 Route::get('/berita', [LandingPageController::class, 'beritaAll']);
+Route::get('/berita/{id}', [LandingPageController::class, 'beritaShow']);
 Route::get('/informasi/jadwal', [LandingPageController::class, 'jadwalSpmb']);
 Route::get('/informasi/kuota', [LandingPageController::class, 'kuotaPendaftaran']);
 

@@ -66,6 +66,15 @@ class LandingPageController extends Controller
         ]);
     }
 
+    public function beritaShow($id)
+    {
+        $post = Post::findOrFail($id);
+
+        return Inertia::render('Guest/BeritaShow', [
+            'post' => $post,
+        ]);
+    }
+
     public function jadwalSpmb()
     {
         // Chronological ascending sort

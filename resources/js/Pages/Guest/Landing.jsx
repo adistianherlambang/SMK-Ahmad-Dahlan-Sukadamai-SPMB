@@ -399,7 +399,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
             <div className={styles.newsList}>
               {news.length > 0 ? (
                 news.map((item) => (
-                  <div key={item.id} className={styles.newsCard}>
+                  <Link key={item.id} href={`/berita/${item.id}`} className={styles.newsCard}>
                     {item.image_path ? (
                       <img
                         src={getImageUrl(item.image_path)}
@@ -416,7 +416,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
                         {new Date(item.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
                       </span>
                     </div>
-                  </div>
+                  </Link>
                 ))
               ) : (
                 <p className={styles.emptyText}>Belum ada berita yang diunggah.</p>

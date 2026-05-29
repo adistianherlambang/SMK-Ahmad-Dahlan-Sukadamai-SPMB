@@ -70,27 +70,24 @@ export default function BeritaAll({ news = [] }) {
         <section className={styles.newsList}>
           {filteredNews.length > 0 ? (
             filteredNews.map((item) => (
-              <article key={item.id} className={styles.newsCard}>
+              <Link key={item.id} href={`/berita/${item.id}`} className={styles.newsCard}>
                 {item.image_path ? (
                   <img 
                     src={getImageUrl(item.image_path)} 
                     alt={item.title} 
                     className={styles.newsImg} 
-                    style={{ width: '54px', height: '54px', objectFit: 'cover', borderRadius: '6px', flexShrink: 0 }}
                   />
                 ) : (
-                  <div className={styles.newsImg}>📰</div>
+                  <div className={styles.newsImgPlaceholder}>📰</div>
                 )}
-                <div className={styles.newsBody}>
-                  <h2>{item.title}</h2>
-                  <p>{item.content}</p>
-                  <div className={styles.newsFooter}>
-                    <span className={styles.newsDate}>
-                      {new Date(item.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
-                    </span>
-                  </div>
+                <div className={styles.newsContent}>
+                  <h3>{item.title}</h3>
+                  <p>{item.content.substring(0, 80)}...</p>
+                  <span className={styles.newsDate}>
+                    {new Date(item.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </span>
                 </div>
-              </article>
+              </Link>
             ))
           ) : (
             <p className={styles.emptyText}>Tidak ada berita yang cocok dengan pencarian Anda.</p>
