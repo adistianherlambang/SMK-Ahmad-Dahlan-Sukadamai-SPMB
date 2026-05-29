@@ -244,6 +244,7 @@
   font-size: 12px;
   opacity: 0.85;
   line-height: 1.6;
+  text-align: justify;
 }
 
 .batik {
@@ -683,50 +684,20 @@
     padding: 24px;
   }
 
-  /* Tentang Kami / Kompetensi Keahlian */
-  .aboutSection {
-    padding: 80px 20px;
-  }
-
-  .aboutContainer {
-    max-width: 1200px;
-  }
-
-  .aboutSection h2 {
-    font-size: 32px;
-    margin-bottom: 16px;
-  }
-
-  .aboutSubtitle {
-    font-size: 16px;
-    margin-bottom: 48px;
-  }
-
-  .batik {
-    display: flex;
-    flex-direction: row;
-  }
-
-  /* Video Section */
-  .videoSection {
-    padding: 80px 20px;
-  }
-
-  .videoContainer {
-    max-width: 800px;
-    /* larger player on desktop */
-  }
-
   /* Tentang Kami / Kompetensi Keahlian Layout */
+  .aboutSection {
+    padding: var(--spacing-6xl) var(--spacing-lg);
+  }
+
   .aboutContainer {
-    max-width: 1200px;
     width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 12px; /* Matches mobile gap exactly! */
+    gap: var(--spacing-sm); /* Consistent with mobile gap */
   }
 
   .aboutSection h2 {
@@ -745,7 +716,17 @@
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    gap: 12px; /* Consistent layout gap! */
+    gap: var(--spacing-sm);
+  }
+
+  /* Video Section */
+  .videoSection {
+    padding: var(--spacing-6xl) var(--spacing-lg);
+  }
+
+  .videoContainer {
+    max-width: 800px;
+    /* larger player on desktop */
   }
 
   /* Perks Section Layout */
@@ -758,14 +739,16 @@
   .mobileAccordion {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Matches mobile accordion gap exactly! */
+    gap: 12px;
+    /* Matches mobile accordion gap exactly! */
     width: 100%;
   }
 
   .perkList {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px; /* Matches mobile accordion item spacing gap! */
+    gap: 12px;
+    /* Matches mobile accordion item spacing gap! */
   }
 
   .yearFilters {
@@ -777,7 +760,8 @@
   .achievementsSlider {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px; /* Matches mobile achievements gap exactly! */
+    gap: 12px;
+    /* Matches mobile achievements gap exactly! */
     margin-top: 16px;
   }
 
@@ -789,12 +773,14 @@
   .newsList {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px; /* Matches mobile news list gap exactly! */
+    gap: 16px;
+    /* Matches mobile news list gap exactly! */
   }
 
   .newsCard {
     flex-direction: column;
-    padding: 16px; /* Elegant consistent padding! */
+    padding: 16px;
+    /* Elegant consistent padding! */
     align-items: flex-start;
     height: 100%;
     box-sizing: border-box;
@@ -812,7 +798,8 @@
   .allNewsBtn {
     width: auto;
     display: inline-block;
-    padding: 14px 28px; /* Matches mobile button padding exactly! */
+    padding: 14px 28px;
+    /* Matches mobile button padding exactly! */
   }
 
 }

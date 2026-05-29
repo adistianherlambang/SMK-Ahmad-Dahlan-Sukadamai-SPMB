@@ -268,7 +268,9 @@ export default function Landing({ announcements = [], news = [], achievements = 
         <section className={styles.aboutSection}>
           <div className={styles.aboutContainer}>
             <h2>Tentang Kami</h2>
-            <p className={styles.aboutSubtitle}>SMK Ahmad Dahlan Sukadamai berfokus pada dua pilar kompetensi utama yang dikembangkan secara intensif:</p>
+            <p className={styles.aboutSubtitle}>
+              <b>SMK Ahmad Dahlan Sukadamai</b> merupakan sekolah menengah kejuruan yang berdiri pada tanggal <i>18 April 2018</i> di Jalan KH. Ahmad Dahlan No. 01 Sukadamai, Kecamatan Natar, Kabupaten Lampung Selatan. Sekolah ini didirikan untuk menyediakan pendidikan kejuruan yang berkualitas dengan mengintegrasikan pembelajaran teori dan praktik secara seimbang guna mempersiapkan peserta didik yang kompeten, profesional, dan siap menghadapi dunia kerja. SMK Ahmad Dahlan Sukadamai memiliki dua bidang keahlian utama, yaitu <b>Teknik</b> dan <b>Ekonomi</b>, serta didukung oleh tenaga pendidik yang berkomitmen dalam membentuk lulusan yang unggul dalam prestasi, teknologi, dan berakhlak mulia sesuai dengan visi sekolah. Selain fokus pada pengembangan akademik dan keterampilan, sekolah juga terus meningkatkan mutu pelayanan pendidikan melalui pemanfaatan teknologi informasi dalam penyebaran informasi dan pengelolaan data sekolah secara terintegrasi.
+            </p>
           </div>
           <div className={styles.batik}>
             <Batik section="atas" color="var(--color-primary-dark)" />
