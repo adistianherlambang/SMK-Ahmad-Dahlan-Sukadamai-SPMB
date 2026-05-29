@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 import styles from './Landing.module.css';
 
 import Batik from '../../Components/Batik/Batik';
@@ -440,22 +441,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
         </section>
       </main>
 
-      <footer className={styles.footer}>
-        <div className={styles.footerContent}>
-          <h3>SMK Ahmad Dahlan Sukadamai</h3>
-          <p>Maju bersama, mencetak kader kejuruan tangguh, kreatif, dan islami.</p>
-          <div className={styles.footerMeta}>
-            <p>📍 Jl. KH Ahmad Dahlan No. 1 Sukadamai, Kabupaten Lampung Selatan</p>
-            <p>📞 Hubungi Kami: 0852-XXXX-XXXX | ✉️ info@smkahmaddahlan.sch.id</p>
-          </div>
-          <div className={styles.developerCta}>
-            <Link href="/admin/login" className={styles.adminLoginLink}>Portal Admin</Link>
-          </div>
-        </div>
-        <div className={styles.footerBottom}>
-          <p>&copy; 2026 SMK Ahmad Dahlan Sukadamai. All Rights Reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
