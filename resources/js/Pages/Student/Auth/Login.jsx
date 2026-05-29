@@ -44,18 +44,10 @@ export default function Login() {
       <Head title="Login Portal Siswa - SMK Ahmad Dahlan" />
       <Navbar links={links} />
 
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <h1>Portal Siswa</h1>
-          <p className={styles.breadcrumb}>
-            <Link href="/">Beranda</Link> / Login Siswa
-          </p>
-        </div>
-      </header>
-
       <main className={styles.container}>
         <div className={styles.cardHeader}>
-          <h2>Portal Siswa</h2>
+          <img style={{ width: "100%" }} src="/login/siswa/login.png" alt="" />
+          <h2>Selamat Datang Kembali!</h2>
           <p>Silakan masuk menggunakan akun terdaftar Anda.</p>
         </div>
 
