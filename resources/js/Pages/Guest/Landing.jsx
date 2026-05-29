@@ -113,31 +113,35 @@ export default function Landing({ announcements = [], news = [], achievements = 
   // Contents Renderers to avoid code duplication
   const renderFasilitas = () => (
     <div className={styles.accBody}>
-      {fasilitas.map((item, index) => (
-        <div className={styles.perkItem} key={index}>
-          <div className={styles.perkImg}>
-            <img src={item.img} alt={item.title} />
+      <div className={styles.perkList}>
+        {fasilitas.map((item, index) => (
+          <div className={styles.perkItem} key={index}>
+            <div className={styles.perkImg}>
+              <img src={item.img} alt={item.title} />
+            </div>
+            <div>
+              <h4>{item.title}</h4>
+              <p>{item.desc}</p>
+            </div>
           </div>
-          <div>
-            <h4>{item.title}</h4>
-            <p>{item.desc}</p>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
   const renderEkskul = () => (
     <div className={styles.accBody}>
-      {ekstra.map((item, index) => (
-        <div className={styles.perkItem} key={index}>
-          <div className={styles.perkImg}>
-            <img src={item.img} alt={item.title} />
+      <div className={styles.perkList}>
+        {ekstra.map((item, index) => (
+          <div className={styles.perkItem} key={index}>
+            <div className={styles.perkImg}>
+              <img src={item.img} alt={item.title} />
+            </div>
+            <div>
+              <h4>{item.title}</h4>
+            </div>
           </div>
-          <div>
-            <h4>{item.title}</h4>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 
@@ -290,35 +294,6 @@ export default function Landing({ announcements = [], news = [], achievements = 
         <section className={styles.perksSection}>
           <div className={styles.perksContainer}>
             <h2>Keunggulan Sekolah</h2>
-
-            {/* Desktop Tabs Layout */}
-            <div className={styles.desktopTabs}>
-              <div className={styles.tabSidebar}>
-                <button
-                  className={`${styles.tabBtn} ${openSection === 'fasilitas' ? styles.tabBtnActive : ''}`}
-                  onClick={() => setOpenSection('fasilitas')}
-                >
-                  ⚙️ Fasilitas & Layanan
-                </button>
-                <button
-                  className={`${styles.tabBtn} ${openSection === 'ekskul' ? styles.tabBtnActive : ''}`}
-                  onClick={() => setOpenSection('ekskul')}
-                >
-                  ⚽ Ekstrakurikuler
-                </button>
-                <button
-                  className={`${styles.tabBtn} ${openSection === 'prestasi' ? styles.tabBtnActive : ''}`}
-                  onClick={() => setOpenSection('prestasi')}
-                >
-                  🏆 Prestasi Siswa
-                </button>
-              </div>
-              <div className={styles.tabContent}>
-                {openSection === 'fasilitas' && renderFasilitas()}
-                {openSection === 'ekskul' && renderEkskul()}
-                {openSection === 'prestasi' && renderPrestasi()}
-              </div>
-            </div>
 
             {/* Mobile Accordion Layout */}
             <div className={styles.mobileAccordion}>

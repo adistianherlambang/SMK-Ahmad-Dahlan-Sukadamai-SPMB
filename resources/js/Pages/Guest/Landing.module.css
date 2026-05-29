@@ -381,6 +381,7 @@
   background-color: white;
   border-top: 1px solid #F1F5F9;
   text-align: left;
+  padding: 16px;
 }
 
 /* Perk items inside accordion (Fasilitas) */
@@ -393,7 +394,7 @@
 
 .perkImg {
   width: 100%;
-  background-color: red;
+  background-color: #F1F5F9;
   aspect-ratio: 1/1;
   overflow: hidden;
   display: flex;
@@ -625,9 +626,7 @@
   font-style: italic;
 }
 
-.desktopTabs {
-  display: none;
-}
+
 
 .mobileAccordion {
   display: flex;
@@ -727,73 +726,45 @@
   }
 
   .perksContainer {
-    max-width: 1200px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .perksSection h2 {
     font-size: 32px;
     margin-bottom: 40px;
+    text-align: center;
   }
 
   .mobileAccordion {
-    display: none;
-  }
-
-  .desktopTabs {
     display: flex;
-    gap: 32px;
-    text-align: left;
+    flex-direction: column;
+    gap: 16px;
     width: 100%;
   }
 
-  .tabSidebar {
-    flex: 0 0 28%;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  .accBody {
+    padding: 24px 32px;
   }
 
-  .tabBtn {
-    background-color: var(--color-white);
-    border: none;
-    padding: 16px 20px;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--color-text-main);
-    text-align: left;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  .perkList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
 
-  .tabBtn:hover {
-    background-color: #EDF2F7;
+  .yearFilters {
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 24px;
   }
 
-  .tabBtnActive {
-    background-color: var(--color-primary-dark);
-    color: var(--color-white);
-    border-left: 4px solid var(--color-accent-yellow);
-  }
-
-  .tabBtnActive:hover {
-    background-color: var(--color-primary-dark);
-  }
-
-  .tabContent {
-    flex: 1;
-    background-color: var(--color-white);
-    padding: 32px;
-    border-radius: 8px;
-  }
-
-  /* Expand ekskul grid on desktop tab content */
-  .ekskulGrid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+  .achievementsSlider {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 0;
   }
 
   /* News Section */

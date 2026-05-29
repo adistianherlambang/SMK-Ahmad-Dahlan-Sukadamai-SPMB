@@ -14,9 +14,6 @@ export default function Footer() {
           <p>📍 Jl. KH Ahmad Dahlan No. 1 Sukadamai, Kabupaten Lampung Selatan</p>
           <p>📞 Hubungi Kami: 0852-XXXX-XXXX | ✉️ info@smkahmaddahlan.sch.id</p>
         </div>
-        <div className={styles.developerCta}>
-          <Link href="/admin/login" className={styles.adminLoginLink}>Portal Admin</Link>
-        </div>
       </div>
       <div className={styles.footerBottom}>
         <p>&copy; 2026 SMK Ahmad Dahlan Sukadamai. All Rights Reserved.</p>
