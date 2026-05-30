@@ -25,6 +25,7 @@
   box-sizing: border-box;
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
+  border-top: solid 12px #FDCD2D;
 }
 
 .popupContent::-webkit-scrollbar {

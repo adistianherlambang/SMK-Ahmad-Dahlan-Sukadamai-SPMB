@@ -155,7 +155,7 @@ class AdminDashboardController extends Controller
         $registration = Registration::findOrFail($id);
         $action = $request->input('action');
 
-        if ($action === 'approve') {
+        if ($action === 'approve' || $action === 'verify') {
             $registration->verification_status = 'Terverifikasi';
             $registration->rejection_reason = null;
             $registration->save();
@@ -267,6 +267,12 @@ class AdminDashboardController extends Controller
             $registration->graduation_status = 'Tidak Lulus';
             $registration->save();
             return back()->with('success', "{$registration->full_name} dinyatakan Tidak Lulus.");
+        }
+
+        if ($action === 'undo') {
+            $registration->graduation_status = 'Menunggu Kelulusan';
+            $registration->save();
+            return back()->with('success', "Batal status kelulusan {$registration->full_name} berhasil.");
         }
 
         if ($action === 'undo_verif') {

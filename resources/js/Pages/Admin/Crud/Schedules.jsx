@@ -170,9 +170,9 @@ export default function Schedules({ schedules = [] }) {
         {/* Add/Edit Popup Modal */}
         <Popup isOpen={isOpen} onClose={handleClose}>
           <div style={{ textAlign: 'left' }}>
-            <h3 style={{ fontSize: '15px', fontWeight: '800', color: 'var(--color-primary-dark)', borderBottom: '1px solid #EDF2F7', paddingBottom: '12px', marginBottom: '16px', textTransform: 'uppercase' }}>
+            <h2 style={{ fontSize: '16px', fontWeight: '400', color: 'var(--color-primary-dark)', borderBottom: '1px solid #EDF2F7', paddingBottom: '12px', marginBottom: '16px' }}>
               {editId ? 'Ubah Agenda Jadwal' : 'Tambah Agenda Baru'}
-            </h3>
+            </h2>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <Input 

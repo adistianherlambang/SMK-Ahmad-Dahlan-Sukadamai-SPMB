@@ -11,6 +11,13 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  // Premium action confirmation states
+  const [confirmPopup, setConfirmPopup] = useState({
+    isOpen: false,
+    student: null,
+    type: '' // 'delete', 'accept', 'reject', 'undo', 'undo_verif'
+  });
+
   const links = [
     { url: '/admin/dashboard', label: 'Dasbor' },
     { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
@@ -43,10 +50,13 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
   };
 
   const handleDirectAction = (student, actionType) => {
-    if (actionType === 'delete') {
-      if (!window.confirm(`Apakah Anda yakin ingin menghapus data pendaftaran ${student.full_name} secara permanen? Akun portal siswa juga akan ikut terhapus.`)) {
-        return;
-      }
+    if (actionType === 'delete' || actionType === 'accept' || actionType === 'reject' || actionType === 'undo' || actionType === 'undo_verif') {
+      setConfirmPopup({
+        isOpen: true,
+        student,
+        type: actionType
+      });
+      return;
     }
 
     router.post(`/admin/penentuan-kelulusan/${student.id}/aksi`, {
@@ -56,9 +66,13 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
 
   const handleAction = (actionType) => {
     if (actionType === 'delete') {
-      if (!window.confirm(`Apakah Anda yakin ingin menghapus data pendaftaran ${selectedStudent.full_name} secara permanen? Akun portal siswa juga akan ikut terhapus.`)) {
-        return;
-      }
+      setIsPopupOpen(false); // Close detail drawer first
+      setConfirmPopup({
+        isOpen: true,
+        student: selectedStudent,
+        type: 'delete'
+      });
+      return;
     }
 
     router.post(`/admin/penentuan-kelulusan/${selectedStudent.id}/aksi`, {
@@ -239,65 +253,65 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
         {/* Graduation Action Popup */}
         <Popup isOpen={isPopupOpen} onClose={handleClosePopup}>
           {selectedStudent && (
-            <div style={{ maxHeight: '75vh', overflowY: 'auto', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div style={{ maxHeight: '75vh', overflowY: 'auto', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '20px', fontWeight: '400' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #EDF2F7', paddingBottom: '12px' }}>
-                <h3 style={{ fontSize: '15px', fontWeight: '800', color: 'var(--color-primary-dark)', margin: 0, textTransform: 'uppercase' }}>
+                <h2 style={{ fontSize: '16px', fontWeight: '400', color: 'var(--color-primary-dark)', margin: 0 }}>
                   Aksi Penentuan Kelulusan
-                </h3>
-                <button onClick={handleClosePopup} style={{ border: 'none', background: 'none', fontSize: '20px', cursor: 'pointer', fontWeight: 'bold' }}>×</button>
+                </h2>
+                <button onClick={handleClosePopup} style={{ border: 'none', background: 'none', fontSize: '20px', cursor: 'pointer', fontWeight: '400' }}>×</button>
               </div>
 
               {/* Status Header */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#F8FAFC', padding: '12px', borderRadius: '4px' }}>
-                <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#718096' }}>STATUS SELEKSI AKHIR:</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#F8FAFC', padding: '12px', borderRadius: '4px', fontWeight: '400' }}>
+                <span style={{ fontSize: '12px', fontWeight: '400', color: '#718096' }}>STATUS SELEKSI AKHIR:</span>
                 <span className={`${styles.badge} ${
                   selectedStudent.graduation_status === 'Diterima' ? styles.badgeSuccess :
                   selectedStudent.graduation_status === 'Tidak Lulus' ? styles.badgeDanger :
                   styles.badgeSecondary
-                }`}>{selectedStudent.graduation_status}</span>
+                }`} style={{ fontWeight: '400' }}>{selectedStudent.graduation_status}</span>
               </div>
 
               {/* Details table */}
-              <div className={formStyles.section}>
-                <h4 className={formStyles.sectionTitle} style={{ fontSize: '12px' }}>Rangkuman Profil Calon Siswa</h4>
-                <table className={styles.detailsTable} style={{ fontSize: '12px' }}>
+              <div className={formStyles.section} style={{ fontWeight: '400' }}>
+                <h4 className={formStyles.sectionTitle} style={{ fontSize: '12px', fontWeight: '400' }}>Rangkuman Profil Calon Siswa</h4>
+                <table className={styles.detailsTable} style={{ fontSize: '12px', fontWeight: '400' }}>
                   <tbody>
                     <tr>
-                      <td style={{ width: '110px' }}>No Registrasi</td>
+                      <td style={{ width: '110px', fontWeight: '400' }}>No Registrasi</td>
                       <td style={{ width: '10px' }}>:</td>
-                      <td><strong>{selectedStudent.registration_number}</strong></td>
+                      <td style={{ fontWeight: '400' }}>{selectedStudent.registration_number}</td>
                     </tr>
                     <tr>
-                      <td>Nama Lengkap</td>
+                      <td style={{ fontWeight: '400' }}>Nama Lengkap</td>
                       <td>:</td>
-                      <td>{selectedStudent.full_name}</td>
+                      <td style={{ fontWeight: '400' }}>{selectedStudent.full_name}</td>
                     </tr>
                     <tr>
-                      <td>NISN</td>
+                      <td style={{ fontWeight: '400' }}>NISN</td>
                       <td>:</td>
-                      <td>{selectedStudent.nisn}</td>
+                      <td style={{ fontWeight: '400' }}>{selectedStudent.nisn}</td>
                     </tr>
                     <tr>
-                      <td>Sekolah Asal</td>
+                      <td style={{ fontWeight: '400' }}>Sekolah Asal</td>
                       <td>:</td>
-                      <td>{selectedStudent.school_origin}</td>
+                      <td style={{ fontWeight: '400' }}>{selectedStudent.school_origin}</td>
                     </tr>
                     <tr>
-                      <td>Jalur Pendaftaran</td>
+                      <td style={{ fontWeight: '400' }}>Jalur Pendaftaran</td>
                       <td>:</td>
-                      <td>{selectedStudent.quota?.name}</td>
+                      <td style={{ fontWeight: '400' }}>{selectedStudent.quota?.name}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
               {/* Action Buttons */}
-              <div style={{ borderTop: '1px solid #EDF2F7', paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div style={{ borderTop: '1px solid #EDF2F7', paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px', fontWeight: '400' }}>
                 {selectedStudent.graduation_status !== 'Diterima' && (
                   <Button 
                     onClick={() => handleAction('accept')} 
                     variant="success"
-                    style={{ width: '100%' }}
+                    style={{ width: '100%', fontWeight: '400' }}
                   >
                     Nyatakan DITERIMA (Lulus Seleksi)
                   </Button>
@@ -307,7 +321,7 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
                   <Button 
                     onClick={() => handleAction('reject')} 
                     variant="secondary"
-                    style={{ width: '100%', backgroundColor: '#D69E2E', border: 'none', color: 'white' }}
+                    style={{ width: '100%', backgroundColor: '#D69E2E', border: 'none', color: 'white', fontWeight: '400' }}
                   >
                     Nyatakan TIDAK LULUS Seleksi
                   </Button>
@@ -317,7 +331,7 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
                   <Button 
                     onClick={() => handleAction('undo')} 
                     variant="outline"
-                    style={{ width: '100%' }}
+                    style={{ width: '100%', fontWeight: '400' }}
                   >
                     Kembalikan Status Ke Menunggu Kelulusan
                   </Button>
@@ -326,11 +340,104 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
                 <Button 
                   onClick={() => handleAction('delete')} 
                   variant="danger"
-                  style={{ width: '100%' }}
+                  style={{ width: '100%', fontWeight: '400' }}
                 >
                   Hapus Pendaftaran Calon Siswa
                 </Button>
               </div>
+            </div>
+          )}
+        </Popup>
+
+        {/* Action Confirmation Popup */}
+        <Popup isOpen={confirmPopup.isOpen} onClose={() => setConfirmPopup({ ...confirmPopup, isOpen: false })}>
+          {confirmPopup.student && (
+            <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '15px', fontWeight: '400' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #EDF2F7', paddingBottom: '12px' }}>
+                <h2 style={{ fontSize: '16px', fontWeight: '400', color: 'var(--color-primary-dark)', margin: 0 }}>
+                  {confirmPopup.type === 'delete' && 'Konfirmasi Hapus Pendaftaran'}
+                  {confirmPopup.type === 'accept' && 'Konfirmasi Kelulusan'}
+                  {confirmPopup.type === 'reject' && 'Konfirmasi Tidak Lulus'}
+                  {confirmPopup.type === 'undo' && 'Batal Status Kelulusan'}
+                  {confirmPopup.type === 'undo_verif' && 'Kembalikan ke Verifikasi'}
+                </h2>
+                <button onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} style={{ border: 'none', background: 'none', fontSize: '20px', cursor: 'pointer', fontWeight: '400' }}>×</button>
+              </div>
+
+              {confirmPopup.type === 'delete' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', fontWeight: '400' }}>
+                  <p style={{ fontSize: '13px', color: '#4A5568', margin: 0, lineHeight: '1.5', fontWeight: '400' }}>
+                    Apakah Anda yakin ingin menghapus data pendaftaran <span style={{ color: 'var(--color-primary-dark)' }}>{confirmPopup.student.full_name}</span> secara permanen? Akun portal siswa juga akan ikut terhapus.
+                  </p>
+                  <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                    <Button onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} variant="outline" style={{ flex: 1, fontWeight: '400' }}>Batal</Button>
+                    <Button onClick={() => {
+                      router.post(`/admin/penentuan-kelulusan/${confirmPopup.student.id}/aksi`, { action: 'delete' });
+                      setConfirmPopup({ ...confirmPopup, isOpen: false });
+                    }} variant="danger" style={{ flex: 1, fontWeight: '400' }}>Hapus Permanen</Button>
+                  </div>
+                </div>
+              )}
+
+              {confirmPopup.type === 'accept' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', fontWeight: '400' }}>
+                  <p style={{ fontSize: '13px', color: '#4A5568', margin: 0, lineHeight: '1.5', fontWeight: '400' }}>
+                    Apakah Anda yakin ingin menyatakan <span style={{ color: 'var(--color-primary-dark)' }}>{confirmPopup.student.full_name}</span> secara resmi <strong>DITERIMA</strong> sebagai siswa baru?
+                  </p>
+                  <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                    <Button onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} variant="outline" style={{ flex: 1, fontWeight: '400' }}>Batal</Button>
+                    <Button onClick={() => {
+                      router.post(`/admin/penentuan-kelulusan/${confirmPopup.student.id}/aksi`, { action: 'accept' });
+                      setConfirmPopup({ ...confirmPopup, isOpen: false });
+                    }} variant="success" style={{ flex: 1, fontWeight: '400' }}>Nyatakan Diterima</Button>
+                  </div>
+                </div>
+              )}
+
+              {confirmPopup.type === 'reject' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', fontWeight: '400' }}>
+                  <p style={{ fontSize: '13px', color: '#4A5568', margin: 0, lineHeight: '1.5', fontWeight: '400' }}>
+                    Apakah Anda yakin ingin menyatakan <span style={{ color: 'var(--color-primary-dark)' }}>{confirmPopup.student.full_name}</span> secara resmi <strong>TIDAK LULUS</strong> seleksi?
+                  </p>
+                  <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                    <Button onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} variant="outline" style={{ flex: 1, fontWeight: '400' }}>Batal</Button>
+                    <Button onClick={() => {
+                      router.post(`/admin/penentuan-kelulusan/${confirmPopup.student.id}/aksi`, { action: 'reject' });
+                      setConfirmPopup({ ...confirmPopup, isOpen: false });
+                    }} variant="secondary" style={{ flex: 1, backgroundColor: '#D69E2E', border: 'none', color: 'white', fontWeight: '400' }}>Nyatakan Tidak Lulus</Button>
+                  </div>
+                </div>
+              )}
+
+              {confirmPopup.type === 'undo' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', fontWeight: '400' }}>
+                  <p style={{ fontSize: '13px', color: '#4A5568', margin: 0, lineHeight: '1.5', fontWeight: '400' }}>
+                    Apakah Anda yakin ingin membatalkan status kelulusan <span style={{ color: 'var(--color-primary-dark)' }}>{confirmPopup.student.full_name}</span> dan mengembalikannya ke status <strong>Menunggu Kelulusan</strong>?
+                  </p>
+                  <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                    <Button onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} variant="outline" style={{ flex: 1, fontWeight: '400' }}>Batal</Button>
+                    <Button onClick={() => {
+                      router.post(`/admin/penentuan-kelulusan/${confirmPopup.student.id}/aksi`, { action: 'undo' });
+                      setConfirmPopup({ ...confirmPopup, isOpen: false });
+                    }} variant="primary" style={{ flex: 1, fontWeight: '400' }}>Batalkan Status</Button>
+                  </div>
+                </div>
+              )}
+
+              {confirmPopup.type === 'undo_verif' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', fontWeight: '400' }}>
+                  <p style={{ fontSize: '13px', color: '#4A5568', margin: 0, lineHeight: '1.5', fontWeight: '400' }}>
+                    Apakah Anda yakin ingin mengembalikan data pendaftaran <span style={{ color: 'var(--color-primary-dark)' }}>{confirmPopup.student.full_name}</span> kembali ke antrean <strong>Verifikasi Berkas</strong>?
+                  </p>
+                  <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                    <Button onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} variant="outline" style={{ flex: 1, fontWeight: '400' }}>Batal</Button>
+                    <Button onClick={() => {
+                      router.post(`/admin/penentuan-kelulusan/${confirmPopup.student.id}/aksi`, { action: 'undo_verif' });
+                      setConfirmPopup({ ...confirmPopup, isOpen: false });
+                    }} variant="primary" style={{ flex: 1, fontWeight: '400' }}>Kembalikan ke Verifikasi</Button>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </Popup>
