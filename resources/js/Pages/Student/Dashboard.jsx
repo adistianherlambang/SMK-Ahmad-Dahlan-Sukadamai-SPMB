@@ -44,20 +44,6 @@ export default function Dashboard({ registration = {} }) {
         {/* Status Card Grid */}
         <section className={styles.statusSection}>
           <h2>Status Kelulusan</h2>
-          {/* <div className={styles.statusGrid}>
-            <div className={styles.statusCard}>
-              <span className={styles.cardTitle}>Verifikasi Berkas</span>
-              <div className={`${styles.badge} ${getVerificationClass(registration.verification_status)}`}>
-                {registration.verification_status}
-              </div>
-            </div>
-            <div className={styles.statusCard}>
-              <span className={styles.cardTitle}>Hasil Seleksi</span>
-              <div className={`${styles.badge} ${getGraduationClass(registration.graduation_status)}`}>
-                {registration.graduation_status}
-              </div>
-            </div>
-          </div> */}
         </section>
 
         {/* Dynamic Alerts based on States */}
@@ -182,7 +168,7 @@ export default function Dashboard({ registration = {} }) {
 
         {/* Quick Details Card */}
         <section className={styles.detailsSection}>
-          <h3>Rincian Singkat Akun</h3>
+          <h2>Rincian Singkat Akun</h2>
           <table className={styles.detailsTable}>
             <tbody>
               <tr>

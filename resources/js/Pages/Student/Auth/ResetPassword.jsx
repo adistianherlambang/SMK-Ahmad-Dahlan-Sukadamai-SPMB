@@ -46,20 +46,14 @@ export default function ResetPassword() {
 
       <main className={styles.container}>
         <div className={styles.cardHeader}>
-          <div className={styles.statusCircle}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-dark)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-            </svg>
-          </div>
           <h2>Kata Sandi Baru</h2>
           <p>Silakan buat kata sandi baru yang kuat untuk akun portal siswa Anda.</p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           {errors.password && <div className={styles.errorAlert}>{errors.password}</div>}
-          
-          <Input 
+
+          <Input
             label="Kata Sandi Baru"
             type="password"
             placeholder="Masukkan kata sandi baru..."
@@ -68,7 +62,7 @@ export default function ResetPassword() {
             required
           />
 
-          <Input 
+          <Input
             label="Ulangi Kata Sandi"
             type="password"
             placeholder="Ulangi kata sandi baru..."

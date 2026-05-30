@@ -34,21 +34,15 @@ export default function PasswordSuccess() {
       <Navbar links={links} />
 
       <main className={styles.container}>
-        <div className={styles.cardHeader}>
-          <div className={`${styles.statusCircle} ${styles.statusSuccess}`}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-          </div>
-          <h1 style={{ color: 'var(--color-success)', marginTop: '8px' }}>Sandi Diperbarui!</h1>
+        <div style={{ textAlign: "center", justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column", gap: "12px" }} className={styles.cardHeader}>
+          <img style={{ width: '15rem' }} src="/login/siswa/buatAkun.png" alt="" />
+          <h2>Sandi Diperbarui!</h2>
           <p>Kata sandi baru Anda berhasil disimpan. Silakan login kembali ke dalam portal siswa.</p>
         </div>
 
-        <div style={{ marginTop: '24px', display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
-          <Button href="/siswa/login" style={{ width: '100%' }}>
-            Masuk Portal
-          </Button>
-        </div>
+        <Button href="/siswa/login" style={{ width: '100%' }}>
+          Ke Halaman Login
+        </Button>
       </main>
 
       <Footer />

@@ -34,24 +34,11 @@ export default function PeriodClosed() {
       <Navbar links={links} />
 
       <main className={styles.container}>
-        <div className={styles.cardHeader}>
-          <div className={`${styles.statusCircle} ${styles.statusDanger}`}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-              <line x1="12" y1="9" x2="12" y2="13" />
-              <line x1="12" y1="17" x2="12.01" y2="17" />
-            </svg>
+        <div style={{ textAlign: "center", justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column", gap: "32px" }} className={styles.cardHeader}>
+          <img src="/login/siswa/closed.png" style={{ width: "15rem" }} alt="" />
+          <div>
+            <h2>Maaf, periode pendaftaran belum dibuka / sudah ditutup</h2>
           </div>
-          <h1 style={{ color: 'var(--color-danger)' }}>Pendaftaran Ditutup</h1>
-          <p>Mohon maaf, saat ini sedang tidak ada gelombang pendaftaran online yang aktif.</p>
-        </div>
-
-        <div style={{ textAlign: 'left', fontSize: '13px', color: '#4A5568', lineHeight: '1.6', margin: '20px 0', border: '1px solid #E2E8F0', padding: '16px', borderRadius: '8px', backgroundColor: '#F8FAFC', width: '100%', boxSizing: 'border-box' }}>
-          <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>Silakan lakukan hal berikut:</p>
-          <ul style={{ margin: '8px 0 0 0', paddingLeft: '20px' }}>
-            <li>Pantau kembali agenda pendaftaran resmi pada halaman <Link href="/informasi/jadwal" style={{ fontWeight: 'bold', color: 'var(--color-primary-dark)', textDecoration: 'underline' }}>Jadwal SPMB</Link>.</li>
-            <li>Hubungi panitia pendaftaran sekolah jika Anda merasa ini adalah sebuah kekeliruan.</li>
-          </ul>
         </div>
 
         <Button href="/" style={{ width: '100%' }}>
