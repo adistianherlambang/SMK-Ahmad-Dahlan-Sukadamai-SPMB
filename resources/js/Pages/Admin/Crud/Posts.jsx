@@ -130,12 +130,12 @@ export default function Posts({ posts = [] }) {
       <Navbar links={links} />
 
       <header className={styles.header}>
-        <div className={styles.headerContent} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+        <div className={styles.headerContent} style={{ display: 'flex', gap: '12px' }}>
           <div>
             <h1>Kelola Berita & Pengumuman</h1>
             <p>Rilis warta sekolah dan instruksi resmi penerimaan siswa baru.</p>
           </div>
-          <Button style={{ width: "100%" }} onClick={handleOpenAdd} variant="primary">
+          <Button className={styles.dataBtn} style={{ width: "100%" }} onClick={handleOpenAdd} variant="primary">
             Tambah Postingan Baru
           </Button>
         </div>
@@ -168,11 +168,7 @@ export default function Posts({ posts = [] }) {
                     <tr key={item.id}>
                       <td>{idx + 1}</td>
                       <td className={styles.boldCell}>{item.title}</td>
-                      <td>
-                        <span className={`${styles.badge} ${item.type === 'pengumuman' ? styles.badgeWarning : styles.badgeSecondary}`}>
-                          {item.type.toUpperCase()}
-                        </span>
-                      </td>
+                      <td>{item.type}</td>
                       <td>{formatDate(item.created_at)}</td>
                       <td>
                         <div className={styles.actionBtnGrid}>

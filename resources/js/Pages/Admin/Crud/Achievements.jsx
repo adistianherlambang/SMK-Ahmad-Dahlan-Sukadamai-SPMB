@@ -26,8 +26,8 @@ export default function Achievements({ achievements = [] }) {
     { url: '/admin/dashboard', label: 'Dasbor' },
     { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
     { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
-    { 
-      label: 'Data Master', 
+    {
+      label: 'Data Master',
       dropdown: [
         { url: '/admin/schedules', label: 'Kelola Jadwal' },
         { url: '/admin/quotas', label: 'Kelola Kuota' },
@@ -109,12 +109,12 @@ export default function Achievements({ achievements = [] }) {
       <Navbar links={links} />
 
       <header className={styles.header}>
-        <div className={styles.headerContent} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+        <div className={styles.headerContent} style={{ display: 'flex', gap: '12px' }}>
           <div>
             <h1>Kelola Prestasi Sekolah</h1>
             <p>Unggah and pamerkan pencapaian siswa di ajang kejuaraan.</p>
           </div>
-          <Button onClick={handleOpenAdd} variant="secondary">
+          <Button className={styles.dataBtn} onClick={handleOpenAdd} variant="primary">
             Tambah Prestasi Baru
           </Button>
         </div>
@@ -149,12 +149,8 @@ export default function Achievements({ achievements = [] }) {
                       <td>{idx + 1}</td>
                       <td className={styles.boldCell}>{item.title}</td>
                       <td>{item.student_name}</td>
-                      <td>
-                        <span className={styles.badge} style={{ backgroundColor: '#EDF2F7', color: '#4A5568' }}>
-                          Tahun {item.year}
-                        </span>
-                      </td>
-                      <td>{item.description}</td>
+                      <td>{item.year}</td>
+                      <td>{item.description ? item.description : "-"}</td>
                       <td>
                         <div className={styles.actionBtnGrid}>
                           <button
@@ -203,7 +199,7 @@ export default function Achievements({ achievements = [] }) {
             </h2>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <Input 
+              <Input
                 label="Nama Kejuaraan / Prestasi"
                 placeholder="Contoh: Juara 1 LKS Otomotif Tingkat Provinsi..."
                 value={data.title}
@@ -212,7 +208,7 @@ export default function Achievements({ achievements = [] }) {
               />
               {errors.title && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.title}</div>}
 
-               <Input 
+              <Input
                 label="Nama Siswa Peraih Juara"
                 placeholder="Contoh: Ahmad Fauzi & Tim..."
                 value={data.student_name}
@@ -221,7 +217,7 @@ export default function Achievements({ achievements = [] }) {
               />
               {errors.student_name && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.student_name}</div>}
 
-              <Input 
+              <Input
                 label="Tahun Kejuaraan"
                 type="number"
                 min={2000}
@@ -233,9 +229,9 @@ export default function Achievements({ achievements = [] }) {
               />
               {errors.year && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.year}</div>}
 
-               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#4A5568' }}>Keterangan Prestasi</label>
-                <textarea 
+                <textarea
                   value={data.description}
                   onChange={(e) => setData('description', e.target.value)}
                   placeholder="Detail perlombaan atau piagam penghargaan..."
@@ -245,23 +241,23 @@ export default function Achievements({ achievements = [] }) {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#4A5568' }}>Foto / Piagam Prestasi</label>
-                <input 
-                  type="file" 
-                  ref={imageInputRef} 
-                  onChange={handleImageChange} 
-                  accept="image/*" 
-                  style={{ display: 'none' }} 
+                <input
+                  type="file"
+                  ref={imageInputRef}
+                  onChange={handleImageChange}
+                  accept="image/*"
+                  style={{ display: 'none' }}
                   required={!editId} // image is required only when adding new achievement, optional when updating
                 />
-                <div 
+                <div
                   onClick={handleChooseImage}
-                  style={{ 
-                    width: '100%', 
-                    padding: '12px 16px', 
-                    border: '1px solid #CBD5E0', 
-                    borderRadius: '4px', 
-                    fontSize: '13px', 
-                    backgroundColor: 'white', 
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    border: '1px solid #CBD5E0',
+                    borderRadius: '4px',
+                    fontSize: '13px',
+                    backgroundColor: 'white',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
@@ -277,25 +273,25 @@ export default function Achievements({ achievements = [] }) {
                   </span>
                 </div>
                 {errors.image && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.image}</div>}
-                
+
                 {previewUrl && (
                   <div style={{ marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                     <label style={{ fontSize: '11px', color: '#718096' }}>Pratinjau Gambar (1:1):</label>
-                    <div style={{ 
-                      width: '100%', 
-                      aspectRatio: '1/1', 
-                      borderRadius: '6px', 
-                      overflow: 'hidden', 
+                    <div style={{
+                      width: '100%',
+                      aspectRatio: '1/1',
+                      borderRadius: '6px',
+                      overflow: 'hidden',
                       border: '1px solid #E2E8F0',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       backgroundColor: '#F8FAFC'
                     }}>
-                      <img 
-                        src={previewUrl} 
-                        alt="Pratinjau" 
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                      <img
+                        src={previewUrl}
+                        alt="Pratinjau"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       />
                     </div>
                   </div>
@@ -303,15 +299,15 @@ export default function Achievements({ achievements = [] }) {
               </div>
 
               <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid #EDF2F7', paddingTop: '16px', marginTop: '8px' }}>
-                <Button 
+                <Button
                   variant="outline"
-                  onClick={handleClose} 
+                  onClick={handleClose}
                   style={{ flex: 1 }}
                 >
                   Batal
                 </Button>
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   loading={processing}
                   style={{ flex: 1 }}
                 >

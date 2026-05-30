@@ -80,12 +80,12 @@ export default function Quotas({ quotas = [] }) {
       <Navbar links={links} />
 
       <header className={styles.header}>
-        <div className={styles.headerContent} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+        <div className={styles.headerContent} style={{ display: 'flex', gap: '12px' }}>
           <div>
             <h1>Kelola Jalur Pendaftaran</h1>
             <p>Atur kuota tampung dan deskripsi jalur seleksi penerimaan siswa baru.</p>
           </div>
-          <Button style={{ width: "100%" }} onClick={handleOpenAdd} variant="primary">
+          <Button className={styles.dataBtn} style={{ width: "100%" }} onClick={handleOpenAdd} variant="primary">
             Tambah Jalur Baru
           </Button>
         </div>
