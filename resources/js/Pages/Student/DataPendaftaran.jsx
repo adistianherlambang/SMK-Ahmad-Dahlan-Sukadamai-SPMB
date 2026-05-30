@@ -126,7 +126,7 @@ export default function DataPendaftaran({ registration = {} }) {
         <div className={formStyles.formCard}>
           {/* Section A: Identitas */}
           <div className={`${formStyles.section} ${styles.sectionSpacer}`}>
-            <h2 className={formStyles.sectionTitle}>A. Data Calon Siswa</h2>
+            <h2 className={formStyles.sectionTitle}>Informasi Calon Peserta Didik</h2>
             <table className={styles.detailsTable}>
               <tbody>
                 <tr>
@@ -180,7 +180,7 @@ export default function DataPendaftaran({ registration = {} }) {
 
           {/* Section B: Orang Tua */}
           <div className={`${formStyles.section} ${styles.sectionSpacer}`}>
-            <h2 className={formStyles.sectionTitle}>B. Keterangan Orang Tua / Wali</h2>
+            <h2 className={formStyles.sectionTitle}>Keterangan Orang Tua / Wali</h2>
             <table className={styles.detailsTable}>
               <tbody>
                 <tr>
@@ -204,7 +204,7 @@ export default function DataPendaftaran({ registration = {} }) {
 
           {/* Section C: Asal Sekolah */}
           <div className={`${formStyles.section} ${styles.sectionSpacer}`}>
-            <h2 className={formStyles.sectionTitle}>C. Keterangan Asal Sekolah</h2>
+            <h2 className={formStyles.sectionTitle}>Keterangan Sekolah Asal</h2>
             <table className={styles.detailsTable}>
               <tbody>
                 <tr>
@@ -223,7 +223,7 @@ export default function DataPendaftaran({ registration = {} }) {
 
           {/* Section D: Kontak & Alamat */}
           <div className={`${formStyles.section} ${styles.sectionSpacer}`}>
-            <h2 className={formStyles.sectionTitle}>D. Kontak & Alamat</h2>
+            <h2 className={formStyles.sectionTitle}>Keterangan Alamat</h2>
             <table className={styles.detailsTable}>
               <tbody>
                 <tr>
@@ -242,32 +242,56 @@ export default function DataPendaftaran({ registration = {} }) {
 
           {/* Section E: Berkas Terunggah */}
           <div className={formStyles.section}>
-            <h2 className={formStyles.sectionTitle}>E. Berkas Terunggah (Digital)</h2>
+            <h2 className={formStyles.sectionTitle}>Berkas Ter-Upload</h2>
             <div className={styles.fileList}>
-              {registration.document?.file_kk && (
-                <div className={styles.fileRow}>
-                  <span className={styles.fileRowLabel}>Kartu Keluarga (KK)</span>
-                  <a href={registration.document.file_kk} target="_blank" rel="noopener noreferrer" className={styles.fileRowLink}>Lihat PDF</a>
-                </div>
-              )}
-              {registration.document?.file_akta && (
-                <div className={styles.fileRow}>
-                  <span className={styles.fileRowLabel}>Akta Kelahiran</span>
-                  <a href={registration.document.file_akta} target="_blank" rel="noopener noreferrer" className={styles.fileRowLink}>Lihat PDF</a>
-                </div>
-              )}
-              {registration.document?.file_skhu_skl && (
-                <div className={styles.fileRow}>
-                  <span className={styles.fileRowLabel}>SKHU / SKL</span>
-                  <a href={registration.document.file_skhu_skl} target="_blank" rel="noopener noreferrer" className={styles.fileRowLink}>Lihat PDF</a>
-                </div>
-              )}
-              {registration.document?.file_sktm && (
-                <div className={styles.fileRow}>
-                  <span className={styles.fileRowLabel}>SKTM / KIP / PKH</span>
-                  <a href={registration.document.file_sktm} target="_blank" rel="noopener noreferrer" className={styles.fileRowLink}>Lihat PDF</a>
-                </div>
-              )}
+              <div style={{ width: "100%", display: "flex", gap: "8px" }}>
+                {registration.document?.file_kk && (
+                  <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <p>Kartu Keluarga</p>
+                    <a href={registration.document.file_kk} target="_blank" rel="noopener noreferrer" className={styles.fileRow}>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 5.7C7.50632 5.7 7.99191 5.88964 8.34993 6.22721C8.70796 6.56477 8.90909 7.02261 8.90909 7.5C8.90909 7.97739 8.70796 8.43523 8.34993 8.77279C7.99191 9.11036 7.50632 9.3 7 9.3C6.49368 9.3 6.00809 9.11036 5.65007 8.77279C5.29204 8.43523 5.09091 7.97739 5.09091 7.5C5.09091 7.02261 5.29204 6.56477 5.65007 6.22721C6.00809 5.88964 6.49368 5.7 7 5.7ZM7 3C10.1818 3 12.8991 4.866 14 7.5C12.8991 10.134 10.1818 12 7 12C3.81818 12 1.10091 10.134 0 7.5C1.10091 4.866 3.81818 3 7 3ZM1.38727 7.5C1.90162 8.49018 2.70029 9.32445 3.69249 9.90795C4.68469 10.4915 5.83062 10.8008 7 10.8008C8.16938 10.8008 9.31531 10.4915 10.3075 9.90795C11.2997 9.32445 12.0984 8.49018 12.6127 7.5C12.0984 6.50982 11.2997 5.67555 10.3075 5.09205C9.31531 4.50854 8.16938 4.19921 7 4.19921C5.83062 4.19921 4.68469 4.50854 3.69249 5.09205C2.70029 5.67555 1.90162 6.50982 1.38727 7.5Z" fill="#1F1B18" />
+                      </svg>
+                      <p className={styles.fileRowLink}>Lihat PDF</p>
+                    </a>
+                  </div>
+                )}
+                {registration.document?.file_akta && (
+                  <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <p>Akta Kelahiran</p>
+                    <a href={registration.document.file_akta} target="_blank" rel="noopener noreferrer" className={styles.fileRow}>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 5.7C7.50632 5.7 7.99191 5.88964 8.34993 6.22721C8.70796 6.56477 8.90909 7.02261 8.90909 7.5C8.90909 7.97739 8.70796 8.43523 8.34993 8.77279C7.99191 9.11036 7.50632 9.3 7 9.3C6.49368 9.3 6.00809 9.11036 5.65007 8.77279C5.29204 8.43523 5.09091 7.97739 5.09091 7.5C5.09091 7.02261 5.29204 6.56477 5.65007 6.22721C6.00809 5.88964 6.49368 5.7 7 5.7ZM7 3C10.1818 3 12.8991 4.866 14 7.5C12.8991 10.134 10.1818 12 7 12C3.81818 12 1.10091 10.134 0 7.5C1.10091 4.866 3.81818 3 7 3ZM1.38727 7.5C1.90162 8.49018 2.70029 9.32445 3.69249 9.90795C4.68469 10.4915 5.83062 10.8008 7 10.8008C8.16938 10.8008 9.31531 10.4915 10.3075 9.90795C11.2997 9.32445 12.0984 8.49018 12.6127 7.5C12.0984 6.50982 11.2997 5.67555 10.3075 5.09205C9.31531 4.50854 8.16938 4.19921 7 4.19921C5.83062 4.19921 4.68469 4.50854 3.69249 5.09205C2.70029 5.67555 1.90162 6.50982 1.38727 7.5Z" fill="#1F1B18" />
+                      </svg>
+                      <p className={styles.fileRowLink}>Lihat PDF</p>
+                    </a>
+                  </div>
+                )}
+              </div>
+              <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "8px" }}>
+                {registration.document?.file_skhu_skl && (
+                  <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <p>SKHU / SKL</p>
+                    <a href={registration.document.file_skhu_skl} target="_blank" rel="noopener noreferrer" className={styles.fileRow}>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 5.7C7.50632 5.7 7.99191 5.88964 8.34993 6.22721C8.70796 6.56477 8.90909 7.02261 8.90909 7.5C8.90909 7.97739 8.70796 8.43523 8.34993 8.77279C7.99191 9.11036 7.50632 9.3 7 9.3C6.49368 9.3 6.00809 9.11036 5.65007 8.77279C5.29204 8.43523 5.09091 7.97739 5.09091 7.5C5.09091 7.02261 5.29204 6.56477 5.65007 6.22721C6.00809 5.88964 6.49368 5.7 7 5.7ZM7 3C10.1818 3 12.8991 4.866 14 7.5C12.8991 10.134 10.1818 12 7 12C3.81818 12 1.10091 10.134 0 7.5C1.10091 4.866 3.81818 3 7 3ZM1.38727 7.5C1.90162 8.49018 2.70029 9.32445 3.69249 9.90795C4.68469 10.4915 5.83062 10.8008 7 10.8008C8.16938 10.8008 9.31531 10.4915 10.3075 9.90795C11.2997 9.32445 12.0984 8.49018 12.6127 7.5C12.0984 6.50982 11.2997 5.67555 10.3075 5.09205C9.31531 4.50854 8.16938 4.19921 7 4.19921C5.83062 4.19921 4.68469 4.50854 3.69249 5.09205C2.70029 5.67555 1.90162 6.50982 1.38727 7.5Z" fill="#1F1B18" />
+                      </svg>
+                      <p className={styles.fileRowLink}>Lihat PDF</p>
+                    </a>
+                  </div>
+                )}
+                {registration.document?.file_sktm && (
+                  <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <p>SKTM / KIP / PKH</p>
+                    <a href={registration.document.file_sktm} target="_blank" rel="noopener noreferrer" className={styles.fileRow}>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 5.7C7.50632 5.7 7.99191 5.88964 8.34993 6.22721C8.70796 6.56477 8.90909 7.02261 8.90909 7.5C8.90909 7.97739 8.70796 8.43523 8.34993 8.77279C7.99191 9.11036 7.50632 9.3 7 9.3C6.49368 9.3 6.00809 9.11036 5.65007 8.77279C5.29204 8.43523 5.09091 7.97739 5.09091 7.5C5.09091 7.02261 5.29204 6.56477 5.65007 6.22721C6.00809 5.88964 6.49368 5.7 7 5.7ZM7 3C10.1818 3 12.8991 4.866 14 7.5C12.8991 10.134 10.1818 12 7 12C3.81818 12 1.10091 10.134 0 7.5C1.10091 4.866 3.81818 3 7 3ZM1.38727 7.5C1.90162 8.49018 2.70029 9.32445 3.69249 9.90795C4.68469 10.4915 5.83062 10.8008 7 10.8008C8.16938 10.8008 9.31531 10.4915 10.3075 9.90795C11.2997 9.32445 12.0984 8.49018 12.6127 7.5C12.0984 6.50982 11.2997 5.67555 10.3075 5.09205C9.31531 4.50854 8.16938 4.19921 7 4.19921C5.83062 4.19921 4.68469 4.50854 3.69249 5.09205C2.70029 5.67555 1.90162 6.50982 1.38727 7.5Z" fill="#1F1B18" />
+                      </svg>
+                      <p className={styles.fileRowLink}>Lihat PDF</p>
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

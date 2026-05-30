@@ -65,6 +65,7 @@ export default function Dashboard({ registration = {} }) {
               </div>
               <div className={styles.batik}>
                 <Batik section="atas" color="#FF0200" />
+                <Batik section="bawah" color="#FF0200" />
               </div>
               <div className={styles.dashboardActionContainer}>
                 <Button href="/dashboard/siswa/data-pendaftaran" variant="danger" className={styles.btnFullWidth}>
@@ -85,6 +86,7 @@ export default function Dashboard({ registration = {} }) {
               </div>
               <div className={styles.batik}>
                 <Batik section="atas" color="#FDCD2D" />
+                <Batik section="bawah" color="#FDCD2D" />
               </div>
               <div className={styles.dashboardActionContainer}>
                 <Button
@@ -113,6 +115,7 @@ export default function Dashboard({ registration = {} }) {
               </div>
               <div className={styles.batik}>
                 <Batik section="atas" color="#FDCD2D" />
+                <Batik section="bawah" color="#FDCD2D" />
               </div>
             </div>
           )}
@@ -130,6 +133,7 @@ export default function Dashboard({ registration = {} }) {
               </div>
               <div className={styles.batik}>
                 <Batik section="atas" color="#18C927" />
+                <Batik section="bawah" color="#18C927" />
               </div>
               <div className={styles.dashboardActionContainer}>
                 <Button
@@ -161,6 +165,7 @@ export default function Dashboard({ registration = {} }) {
               </div>
               <div className={styles.batik}>
                 <Batik section="atas" color="#FF0200" />
+                <Batik section="bawah" color="#FF0200" />
               </div>
             </div>
           )}
