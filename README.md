@@ -1,59 +1,331 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistem Informasi Penerimaan Peserta Didik Baru (PPDB / SPMB)
+## SMK Ahmad Dahlan Sukadamai
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem Pendaftaran Mahasiswa Baru (SPMB / PPDB) Mandiri SMK Ahmad Dahlan Sukadamai adalah aplikasi web modern berbasis **Laravel 11**, **React 19**, **Inertia.js**, dan **Vite** yang dirancang khusus untuk memfasilitasi proses pendaftaran, seleksi, verifikasi berkas, dan pengumuman kelulusan calon siswa baru secara online, cepat, dan transparan.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Fitur Utama & Keunggulan Sistem
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. **Dashboard Statistik Admin Premium:** Menampilkan 6 indikator metrik utama (Total Pendaftar, Belum Diverifikasi, Terverifikasi, Berkas Ditolak, Dinyatakan Lulus, dan Tidak Lulus) dengan desain kartu premium berwarna *navy-gold* interaktif.
+2. **Sistem Verifikasi Berkas Terintegrasi & Anti-Double-Scrollbar:** Panel peninjau dokumen (KK, Akta Kelahiran, SKHU/SKL, SKTM) dalam bentuk popup modern ber-padding rata (`24px`), bebas dari masalah penumpukan scrollbar ganda, lengkap dengan *feedback loop* penolakan berkas secara real-time.
+3. **Validasi Karakter Ketat pada Pengumuman:** Membatasi input judul berita khusus bertipe `pengumuman` maksimal 60 karakter dan deskripsi/konten maksimal 100 karakter (termasuk spasi) secara sinkron pada sisi React Frontend (dengan counter dinamis) dan Laravel Backend (menggunakan validator `mb_strlen`).
+4. **Desain Kartu Kuota & Jalur Masuk Premium:** Halaman kuota tamu (`KuotaPendaftaran.jsx`) menggunakan visualisasi kartu premium yang identik dengan widget dasbor admin, lengkap dengan sisa kuota yang di-highlight warna kuning emas (`#FDCD2D`) mewah.
+5. **Footer & Navigasi Terpadu:** Komponen `<Footer />` dan `<Navbar />` terpasang rapi di seluruh halaman publik tamu maupun halaman manajemen admin.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 📂 Struktur Direktori Blueprint (Filetree)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Berikut adalah tata letak berkas utama di dalam repositori proyek:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+```text
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/
+│   │   │   │   ├── AchievementCrudController.php   # Kelola CRUD Data Prestasi Siswa
+│   │   │   │   ├── PostCrudController.php          # Kelola CRUD Berita & Pengumuman (Validasi 60/100 Karakter)
+│   │   │   │   ├── QuotaCrudController.php         # Kelola CRUD Jalur & Kuota Pendaftaran
+│   │   │   │   └── ScheduleCrudController.php      # Kelola CRUD Jadwal Alur SPMB
+│   │   │   ├── AdminDashboardController.php        # Otak utama dasbor admin, verifikasi berkas, kelulusan
+│   │   │   ├── LandingPageController.php           # Pengendali rute publik tamu (sambutan, visi misi, kuota, dll.)
+│   │   │   ├── StudentAuthController.php           # Alur registrasi calon siswa, login, reset password
+│   │   │   └── StudentDashboardController.php      # Dasbor portal calon siswa (unggah dokumen perbaikan, unduh PDF)
+│   │   └── Middleware/
+│   │       └── ...
+│   └── Models/
+│       ├── Achievement.php                         # Model Prestasi
+│       ├── Document.php                            # Model Berkas Upload Calon Siswa
+│       ├── Post.php                                # Model Berita & Pengumuman
+│       ├── Quota.php                               # Model Kapasitas & Jalur Pendaftaran
+│       ├── Registration.php                        # Model Form Informasi Calon Siswa
+│       ├── Schedule.php                            # Model Agenda SPMB
+│       └── User.php                                # Model Akun Autentikasi
+├── config/
+│   └── ...
+├── database/
+│   ├── migrations/
+│   │   ├── 0001_01_01_000000_create_users_table.php # Akun pengguna & sesi
+│   │   └── 2026_05_28_000002_create_spmb_tables.php # Skema relasional tabel SPMB
+│   └── seeders/
+│       └── DatabaseSeeder.php                       # Seeder bawaan: Admin & data simulasi kuota/jadwal
+├── resources/
+│   ├── css/
+│   │   ├── app.css                                  # Custom override global tag, tombol utilitas
+│   │   ├── variables.css                            # CSS Design Tokens (Navy `#002147`, Gold `#FDCD2D`, Spacings)
+│   │   └── ...
+│   └── js/
+│       ├── Components/                              # Reusable UI Elements
+│       │   ├── Batik/                               # Aksen latar belakang Batik tradisional premium
+│       │   ├── Button/                              # Tombol kustom reusable
+│       │   ├── FileInput/                           # Input khusus upload berkas kelengkapan
+│       │   ├── Footer/                              # Footer resmi sekolah
+│       │   ├── Input/                               # Field teks input berlabel
+│       │   ├── Navbar/                              # Header menu navigasi responsif
+│       │   ├── Popup/                               # Modal popup bebas scrollbar ganda
+│       │   └── Select/                              # Dropdown select kustom
+│       ├── Pages/
+│       │   ├── Admin/                               # Panel Kontrol Admin
+│       │   │   ├── Crud/
+│       │   │   │   ├── Achievements.jsx             # CRUD Prestasi
+│       │   │   │   ├── Posts.jsx                # CRUD Berita (Realtime Counter Validasi 60/100)
+│       │   │   │   ├── Quotas.jsx               # CRUD Kuota
+│       │   │   │   └── Schedules.jsx            # CRUD Jadwal
+│       │   │   ├── Dashboard.jsx                # Statistik Pendaftar
+│       │   │   ├── Login.jsx                    # Login Admin
+│       │   │   ├── PenentuanKelulusan.jsx       # Seleksi Penerimaan Siswa
+│       │   │   └── VerifikasiBerkas.jsx         # Penilaian Berkas & Catatan Perbaikan
+│       │   ├── Guest/                               # Halaman Tamu / Publik
+│       │   │   ├── BeritaAll.jsx                # List Berita & Pengumuman
+│       │   │   ├── BeritaShow.jsx               # Detail Berita
+│       │   │   ├── JadwalSpmb.jsx               # Agenda Kalender SPMB
+│       │   │   ├── KuotaPendaftaran.jsx         # Status Daya Tampung Real-time & Detail Jalur
+│       │   │   ├── Landing.jsx                  # Beranda Utama Website
+│       │   │   ├── Sambutan.jsx                 # Sambutan Kepala Sekolah
+│       │   │   ├── Sejarah.jsx                  # Timeline Sejarah SMK
+│       │   │   ├── Struktur.jsx                 # Bagan Organisasi Sekolah
+│       │   │   └── VisiMisi.jsx                 # Visi, Misi & Tujuan Institusi
+│       │   └── Student/                             # Panel Calon Siswa (Siswa Baru)
+│       │       ├── Auth/
+│       │       │   ├── BuatAkun.jsx             # Buat Email & Sandi Akun Siswa
+│       │       │   ├── ForgotPassword.jsx       # Request Reset Sandi
+│       │       │   ├── Formulir.jsx             # Formulir Identitas & Akademik
+│       │       │   ├── Login.jsx                # Portal Masuk Siswa
+│       │       │   ├── PasswordSuccess.jsx      # Sandi Berhasil Dibuat
+│       │       │   ├── PendaftaranBerhasil.jsx  # Halaman Ringkasan Akun & Unduh PDF
+│       │       │   ├── PeriodClosed.jsx         # Pengunci Pendaftaran diluar Gelombang
+│       │       │   └── ResetPassword.jsx        # Formulir Ganti Sandi Baru
+│       │       ├── Dashboard.jsx                # Status Kelulusan & Form Unggah Ulang Berkas
+│       │       └── DataPendaftaran.jsx          # Review Isian Biodata Pendaftar
+│       └── app.jsx                                  # Bootstrapper Inertia & React 19
+├── routes/
+│   └── web.php                                      # Rute Aplikasi (Autentikasi, CRUD, Guarded Middleware)
+├── vite.config.js                                   # Konfigurasi Build & Compile Vite
+└── package.json                                     # Dependensi Node & Script Vite Builder
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 🗄️ Arsitektur Database (Skema Relasi)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Sistem menggunakan database relasional dengan skema terstruktur sebagai berikut:
 
-## Code of Conduct
+```mermaid
+erDiagram
+    users ||--o| registrations : "has one"
+    quotas ||--o{ registrations : "applies to"
+    registrations ||--o| documents : "contains files"
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    users {
+        id bigint PK
+        email string UNIQUE
+        password string
+        role enum "admin_siswa"
+    }
+    quotas {
+        id bigint PK
+        name string
+        quota_limit int
+        description text
+    }
+    registrations {
+        id bigint PK
+        user_id bigint FK
+        quota_id bigint FK
+        registration_number string UNIQUE
+        nisn string UNIQUE
+        full_name string
+        gender enum
+        birth_place string
+        birth_date date
+        religion string
+        child_order int
+        family_status string
+        parent_name string
+        parent_occupation string
+        parent_status enum
+        school_origin string
+        school_address text
+        phone_number string
+        address text
+        verification_status enum "Menunggu_Ditolak_Terverifikasi"
+        graduation_status enum "Menunggu_Diterima_TidakLulus"
+        rejection_reason text
+    }
+    documents {
+        id bigint PK
+        registration_id bigint FK
+        file_kk string
+        file_akta string
+        file_skhu_skl string
+        file_sktm string
+    }
+```
 
-## Security Vulnerabilities
+### Penjelasan Detail Tabel:
+* **`users`**: Menyimpan kredensial login. `role` bernilai `admin` untuk panitia sekolah dan `siswa` untuk calon peserta didik.
+* **`quotas`**: Menyimpan jenis jalur masuk (misal: Jalur Domisili, Jalur Prestasi, Jalur Afirmasi) beserta total batas kuotanya.
+* **`registrations`**: Menyimpan seluruh biodata diri, data orang tua/wali, sekolah asal, rincian jalur yang dipilih, serta status kelulusan siswa.
+* **`documents`**: Menyimpan path berkas syarat pendaftaran berformat PDF/Gambar yang diupload siswa ke direktori penyimpanan lokal/cloud.
+* **`schedules`**: Agenda timeline pelaksanaan SPMB yang ditampilkan pada halaman tamu.
+* **`posts`**: Pengumuman resmi dan artikel berita sekolah.
+* **`achievements`**: Galeri riwayat prestasi siswa sekolah untuk menarik minat pendaftar baru.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🔄 Alur Kerja Utama Sistem (System Flows)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# SMK-Ahmad-Dahlan-Sukadamai-SPMB
+### 1. Alur Registrasi Calon Siswa Baru (Student Signup)
+```text
+[Halaman Tamu/Kuota] ➔ [Isi Formulir Biodata & Jalur] ➔ [Buat Email & Sandi Akun] ➔ [Simpan User & Registrasi] ➔ [Unggah Berkas KK/Akta/SKL]
+```
+* Calon pendaftar meninjau daya tampung jalur masuk di halaman `/informasi/kuota`.
+* Pendaftar mengisi lengkap formulir data diri di `/siswa/formulir` dan memilih salah satu jalur masuk.
+* Setelah lolos validasi isian, pendaftar diarahkan membuat email & sandi di `/siswa/buat-akun` untuk login ke portal siswa di masa mendatang.
+* Setelah akun tersimpan, pendaftar dialihkan ke dasbor portal siswa `/dashboard/siswa` dan diwajibkan mengunggah berkas wajib (KK, Akta Kelahiran, SKHU/SKL). Status awal pendaftaran diset menjadi **"Menunggu Verifikasi"**.
+
+### 2. Siklus Penilaian Berkas & Catatan Perbaikan (Verification & Feedback Loop)
+```text
+[Dasbor Admin] ➔ [Buka Verifikasi Berkas] ➔ [Popup Penilai Dokumen] ➔ [Terima] ATAU [Tolak dengan Catatan Perbaikan]
+```
+* Dokumen pendaftar masuk ke antrean verifikasi berkas di panel admin (`/admin/verifikasi-berkas`).
+* Panitia admin membuka popup peninjau dokumen. Popup memuat visualisasi berkas asli yang diupload.
+* **Jika Berkas Valid:** Admin menekan **"Terima Berkas"** -> status berubah menjadi **"Terverifikasi"**.
+* **Jika Berkas Kurang/Salah:** Admin mengisikan alasan penolakan pada input textarea (contoh: *"Berkas KK buram tidak terbaca, mohon unggah ulang foto yang jelas"*) dan menekan **"Tolak Berkas"** -> status menjadi **"Berkas Ditolak"**.
+* **Real-time Feedback:** Pada dasbor portal calon siswa, muncul peringatan merah berisi alasan penolakan dan tombol upload ulang otomatis aktif kembali sehingga pendaftar dapat langsung memperbaiki berkasnya tanpa perlu mendaftar ulang dari awal.
+
+### 3. Alur Seleksi Kelulusan Siswa (Graduation Flow)
+```text
+[Siswa Terverifikasi] ➔ [Seleksi Akademik/Wawancara Admin] ➔ [Set Diterima / Tidak Lulus] ➔ [Kapasitas Sisa Kuota Berkurang Dinamis]
+```
+* Calon siswa dengan status dokumen **"Terverifikasi"** akan muncul pada tabel penentuan kelulusan admin (`/admin/penentuan-kelulusan`).
+* Panitia mengevaluasi siswa berdasarkan hasil wawancara, nilai sekolah, dan ketersediaan kuota.
+* Admin menetapkan status akhir menjadi **"Diterima"** atau **"Tidak Lulus"**.
+* Jika diset **"Diterima"**, sistem secara otomatis memotong jumlah sisa kuota (`sisa`) pada tabel jalur pendaftaran terkait.
+* Calon siswa dapat langsung memantau status akhir kelulusan di dasbor mereka, dan mengunduh berkas PDF bukti registrasi/kelulusan resmi.
+
+---
+
+## 📝 Validasi & Logika Teknis Khusus
+
+### 1. Validasi Batas Kata & Karakter Pengumuman
+Sistem membedakan postingan bertipe `berita` dan `pengumuman`. Khusus postingan bertipe `pengumuman`:
+* **Frontend (`Posts.jsx`):** State React memantau panjang input judul (maksimal 60 karakter) dan konten (maksimal 100 karakter). Apabila melebihi batas, inputan akan dikunci, tombol submit dinonaktifkan, dan teks indikator berubah menjadi warna merah peringatan.
+* **Backend (`PostCrudController.php`):** Validasi berlapis menggunakan penutupan (closure) PHP:
+  ```php
+  $request->validate([
+      'title' => [
+          'required',
+          function ($attribute, $value, $fail) use ($request) {
+              if ($request->type === 'pengumuman' && mb_strlen($value) > 60) {
+                  $fail('Judul pengumuman tidak boleh lebih dari 60 karakter.');
+              }
+          }
+      ],
+      'content' => [
+          'required',
+          function ($attribute, $value, $fail) use ($request) {
+              if ($request->type === 'pengumuman' && mb_strlen($value) > 100) {
+                  $fail('Deskripsi pengumuman tidak boleh lebih dari 100 karakter.');
+              }
+          }
+      ],
+  ]);
+  ```
+
+### 2. Keselarasan Tema Kartu (Premium Dark Cards)
+* Halaman daya tampung `/informasi/kuota` mengadopsi styling gelap premium yang bersumber dari CSS Tokens di `variables.css`.
+* Latar belakang kartu menggunakan navy gelap (`var(--color-primary-dark)`), teks berwarna putih kontras, sisa kursi kosong diwarnai kuning emas (`var(--color-accent-yellow)`), serta status ketersediaan jalur dipetakan dalam pil hijau/merah terpadu.
+
+---
+
+## ⚙️ Panduan Instalasi & Menjalankan Proyek (Setup & Run)
+
+Ikuti langkah-langkah terperinci di bawah ini untuk memasang dan menjalankan proyek di lingkungan pengembangan lokal Anda:
+
+### 1. Prasyarat Sistem
+Pastikan komputer Anda sudah terpasang perkakas berikut:
+* **PHP** (Minimal versi 8.2)
+* **Composer** (Manajer dependensi PHP)
+* **Node.js** (Versi LTS terbaru) & **NPM**
+* **Database Server** (MySQL, MariaDB, atau PostgreSQL)
+
+### 2. Kloning Repositori
+Buka terminal/command prompt, kemudian jalankan:
+```bash
+git clone https://github.com/adistianherlambang/SMK-Ahmad-Dahlan-Sukadamai-SPMB.git
+cd SMK-Ahmad-Dahlan-Sukadamai-SPMB
+```
+
+### 3. Pasang Dependensi Backend (PHP)
+Unduh seluruh library backend Laravel melalui Composer:
+```bash
+composer install
+```
+
+### 4. Pasang Dependensi Frontend (NodeJS)
+Unduh seluruh modul JavaScript melalui NPM:
+```bash
+npm install
+```
+
+### 5. Konfigurasi Environment (`.env`)
+Salin berkas template konfigurasi bawaan:
+```bash
+cp .env.example .env
+```
+Buka berkas `.env` baru tersebut menggunakan text editor pilihan Anda (VS Code, Notepad, dll.), lalu sesuaikan konfigurasi koneksi database Anda pada baris berikut:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database_anda
+DB_USERNAME=username_database_anda
+DB_PASSWORD=password_database_anda
+```
+
+### 6. Generate Application Key
+Buat kunci enkripsi aplikasi Laravel yang unik:
+```bash
+php artisan key:generate
+```
+
+### 7. Jalankan Migrasi & Pengisian Data (Seeder)
+Buat struktur tabel pendaftaran dan isi data awal simulasi (termasuk akun admin) dengan satu perintah:
+```bash
+php artisan migrate --seed
+```
+
+### 8. Hubungkan Direktori Storage
+Buat symlink folder storage agar berkas dokumen bukti pendaftaran yang diunggah siswa dapat diakses oleh publik:
+```bash
+php artisan storage:link
+```
+
+### 9. Jalankan Server Pengembangan (Dev Server)
+Untuk menjalankan aplikasi secara utuh di localhost, Anda wajib menjalankan **dua perintah di bawah ini secara bersamaan** (pada dua tab terminal terpisah):
+
+#### Terminal 1: Menjalankan Backend Laravel
+```bash
+php artisan serve
+```
+Aplikasi Laravel akan aktif di alamat default: `http://127.0.0.1:8000`
+
+#### Terminal 2: Menjalankan Compiler Vite (Hot Reload Frontend)
+```bash
+npm run dev
+```
+Compiler Vite akan aktif memantau perubahan komponen React dan CSS Modules secara real-time.
+
+---
+
+## 🔑 Kredensial Akun Bawaan (Default Credentials)
+
+Setelah Anda menjalankan perintah `php artisan db:seed`, Anda dapat masuk ke panel admin untuk menguji sistem dengan akun simulasi bawaan:
+
+* **Tautan Halaman Login Admin:** `http://127.0.0.1:8000/admin/login`
+* **Email Panitia Admin:** `admin@gmail.com`
+* **Kata Sandi (Password):** `password`
+
+*Selamat melakukan pengujian dan pengembangan sistem PPDB SMK Ahmad Dahlan Sukadamai!*
