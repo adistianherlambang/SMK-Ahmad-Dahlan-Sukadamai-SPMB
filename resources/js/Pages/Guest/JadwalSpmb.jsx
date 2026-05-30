@@ -1,6 +1,7 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 import styles from './JadwalSpmb.module.css';
 
 export default function JadwalSpmb({ schedules = [] }) {
@@ -70,9 +71,7 @@ export default function JadwalSpmb({ schedules = [] }) {
         </section>
       </main>
 
-      <footer className={styles.footer}>
-        <p>&copy; 2026 SMK Ahmad Dahlan Sukadamai. All Rights Reserved.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

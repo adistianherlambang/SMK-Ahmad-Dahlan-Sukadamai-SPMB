@@ -1,13 +1,14 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 import styles from './VisiMisi.module.css';
 
 export default function VisiMisi() {
   const links = [
     { url: '/', label: 'Beranda' },
-    { 
-      label: 'Profil', 
+    {
+      label: 'Profil',
       dropdown: [
         { url: '/profil/sambutan', label: 'Sambutan Kepala Sekolah' },
         { url: '/profil/visi-misi', label: 'Visi & Misi' },
@@ -15,8 +16,8 @@ export default function VisiMisi() {
         { url: '/profil/sejarah', label: 'Sejarah Singkat' }
       ]
     },
-    { 
-      label: 'Informasi Pendaftaran', 
+    {
+      label: 'Informasi Pendaftaran',
       dropdown: [
         { url: '/informasi/jadwal', label: 'Jadwal SPMB' },
         { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
@@ -71,29 +72,8 @@ export default function VisiMisi() {
             <li>Membangun kemitraan dan jejaring kerja sama yang luas dengan dunia usaha, dunia industri (DUDI), dan instansi pemerintah guna penyaluran lulusan.</li>
           </ol>
         </section>
-
-        <section className={styles.valuesSection}>
-          <h2>Nilai Karakter Utama</h2>
-          <div className={styles.valuesGrid}>
-            <div className={styles.valueCard}>
-              <h4>Kompeten</h4>
-              <p>Menguasai keterampilan vokasi secara mendalam sesuai bidang keahlian.</p>
-            </div>
-            <div className={styles.valueCard}>
-              <h4>Religius</h4>
-              <p>Menerapkan ajaran islam, berakhlak mulia, dan beradab islami dalam keseharian.</p>
-            </div>
-            <div className={styles.valueCard}>
-              <h4>Mandiri</h4>
-              <p>Tangguh menghadapi rintangan, percaya diri, dan berjiwa kewirausahaan.</p>
-            </div>
-          </div>
-        </section>
       </main>
-
-      <footer className={styles.footer}>
-        <p>&copy; 2026 SMK Ahmad Dahlan Sukadamai. All Rights Reserved.</p>
-      </footer>
+      <Footer />
     </>
   );
 }
