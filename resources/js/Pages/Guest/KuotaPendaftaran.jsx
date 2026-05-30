@@ -77,11 +77,17 @@ export default function KuotaPendaftaran({ quotas = [] }) {
 
         <section className={styles.guideCard}>
           <h3>Tips Memilih Jalur Masuk</h3>
-          <ul>
-            <li><strong>Jalur Domisili:</strong> Prioritas utama untuk calon siswa yang berjarak dekat dengan lokasi sekolah.</li>
-            <li><strong>Jalur Prestasi:</strong> Unggul bagi calon siswa dengan raihan juara perlombaan atau nilai raport tinggi.</li>
-            <li><strong>Jalur Afirmasi:</strong> Diperuntukkan khusus bagi pemegang KIP/PKH dan menyertakan Surat Keterangan Tidak Mampu (SKTM).</li>
-          </ul>
+          {quotas.length > 0 ? (
+            <ul>
+              {quotas.map((item) => (
+                <li key={item.id}>
+                  <strong>{item.name}:</strong> {item.description || 'Tidak ada deskripsi rincian untuk jalur pendaftaran ini.'}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className={styles.emptyText} style={{ padding: '8px 0', fontSize: '12px' }}>Belum ada informasi jalur masuk yang tersedia.</p>
+          )}
         </section>
       </main>
 

@@ -62,15 +62,17 @@
 }
 
 .quotaCard {
-  background-color: var(--color-white);
+  background-color: var(--color-primary-dark);
+  color: var(--color-white);
+  padding: 20px;
   border-radius: 6px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
 }
 
 .quotaCardHeader {
-  padding: 16px 20px;
-  background-color: #F8FAFC;
-  border-bottom: 1px solid #E2E8F0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -81,7 +83,8 @@
 .quotaCardHeader h3 {
   font-size: 16px;
   font-weight: 800;
-  color: var(--color-primary-dark);
+  color: var(--color-white);
+  margin: 0;
 }
 
 .seatsBadge {
@@ -91,32 +94,31 @@
 }
 
 .seatsLeft {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 800;
-  color: var(--color-success);
+  color: var(--color-accent-yellow);
 }
 
 .seatsTotal {
-  font-size: 11px;
-  color: #718096;
+  font-size: 12px;
+  color: var(--color-white);
+  opacity: 0.8;
   font-weight: 600;
 }
 
 .quotaCardBody {
-  padding: 20px;
   text-align: left;
 }
 
 .quotaCardBody p {
   font-size: 13px;
-  color: #4A5568;
+  color: var(--color-white);
+  opacity: 0.9;
   line-height: 1.6;
   margin: 0;
 }
 
 .quotaCardFooter {
-  padding: 12px 20px;
-  border-top: 1px dashed #E2E8F0;
   text-align: right;
 }
 
@@ -124,19 +126,18 @@
   font-size: 11px;
   font-weight: 700;
   padding: 4px 10px;
-  border-radius: 20px;
+  border-radius: 4px;
 }
 
 .statusOpen {
-  background-color: #E6FFFA;
-  color: #319795;
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-main);
 }
 
 .statusClosed {
-  background-color: #FFF5F5;
-  color: var(--color-danger);
+  background-color: var(--color-danger);
+  color: var(--color-white);
 }
-
 .guideCard {
   background-color: #F7FAFC;
   border: 1px solid #EDF2F7;
