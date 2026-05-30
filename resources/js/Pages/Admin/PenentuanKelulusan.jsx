@@ -15,8 +15,8 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
     { url: '/admin/dashboard', label: 'Dasbor' },
     { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
     { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
-    { 
-      label: 'Data Master', 
+    {
+      label: 'Data Master',
       dropdown: [
         { url: '/admin/schedules', label: 'Kelola Jadwal' },
         { url: '/admin/quotas', label: 'Kelola Kuota' },
@@ -98,8 +98,8 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
           <div className={styles.filtersGrid}>
             <div className={styles.filterGroup}>
               <label>Tahun Registrasi</label>
-              <select 
-                value={filters.year ?? ''} 
+              <select
+                value={filters.year ?? ''}
                 onChange={(e) => handleFilterChange('year', e.target.value)}
                 className={styles.filterSelect}
               >
@@ -111,8 +111,8 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
 
             <div className={styles.filterGroup}>
               <label>Jalur Pendaftaran</label>
-              <select 
-                value={filters.quota_id ?? ''} 
+              <select
+                value={filters.quota_id ?? ''}
                 onChange={(e) => handleFilterChange('quota_id', e.target.value)}
                 className={styles.filterSelect}
               >
@@ -125,8 +125,8 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
 
             <div className={styles.filterGroup}>
               <label>Status Seleksi</label>
-              <select 
-                value={filters.status ?? ''} 
+              <select
+                value={filters.status ?? ''}
                 onChange={(e) => handleFilterChange('status', e.target.value)}
                 className={styles.filterSelect}
               >
@@ -139,9 +139,9 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
 
             <div className={styles.filterGroup}>
               <label>Cari Calon Siswa</label>
-              <input 
-                type="text" 
-                placeholder="Cari Nama..." 
+              <input
+                type="text"
+                placeholder="Cari Nama..."
                 value={filters.search ?? ''}
                 onChange={(e) => handleFilterChange('search', e.target.value)}
                 className={styles.filterInput}
@@ -171,11 +171,10 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
                       <td>{student.full_name}</td>
                       <td>{student.quota?.name}</td>
                       <td>
-                        <span className={`${styles.badge} ${
-                          student.graduation_status === 'Diterima' ? styles.badgeSuccess :
-                          student.graduation_status === 'Tidak Lulus' ? styles.badgeDanger :
-                          styles.badgeSecondary
-                        }`}>
+                        <span className={`${styles.badge} ${student.graduation_status === 'Diterima' ? styles.badgeSuccess :
+                            student.graduation_status === 'Tidak Lulus' ? styles.badgeDanger :
+                              styles.badgeSecondary
+                          }`}>
                           {student.graduation_status}
                         </span>
                       </td>
@@ -243,11 +242,10 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
               {/* Status Header */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#F8FAFC', padding: '12px', borderRadius: '4px' }}>
                 <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#718096' }}>STATUS SELEKSI AKHIR:</span>
-                <span className={`${styles.badge} ${
-                  selectedStudent.graduation_status === 'Diterima' ? styles.badgeSuccess :
-                  selectedStudent.graduation_status === 'Tidak Lulus' ? styles.badgeDanger :
-                  styles.badgeSecondary
-                }`}>{selectedStudent.graduation_status}</span>
+                <span className={`${styles.badge} ${selectedStudent.graduation_status === 'Diterima' ? styles.badgeSuccess :
+                    selectedStudent.graduation_status === 'Tidak Lulus' ? styles.badgeDanger :
+                      styles.badgeSecondary
+                  }`}>{selectedStudent.graduation_status}</span>
               </div>
 
               {/* Details table */}
@@ -287,8 +285,8 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
               {/* Action Buttons */}
               <div style={{ borderTop: '1px solid #EDF2F7', paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {selectedStudent.graduation_status !== 'Diterima' && (
-                  <Button 
-                    onClick={() => handleAction('accept')} 
+                  <Button
+                    onClick={() => handleAction('accept')}
                     variant="success"
                     style={{ width: '100%' }}
                   >
@@ -297,8 +295,8 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
                 )}
 
                 {selectedStudent.graduation_status !== 'Tidak Lulus' && (
-                  <Button 
-                    onClick={() => handleAction('reject')} 
+                  <Button
+                    onClick={() => handleAction('reject')}
                     variant="secondary"
                     style={{ width: '100%', backgroundColor: '#D69E2E', border: 'none', color: 'white' }}
                   >
@@ -307,8 +305,8 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
                 )}
 
                 {selectedStudent.graduation_status !== 'Menunggu Kelulusan' && (
-                  <Button 
-                    onClick={() => handleAction('undo')} 
+                  <Button
+                    onClick={() => handleAction('undo')}
                     variant="outline"
                     style={{ width: '100%' }}
                   >
@@ -316,8 +314,8 @@ export default function PenentuanKelulusan({ applicants = [], quotas = [], years
                   </Button>
                 )}
 
-                <Button 
-                  onClick={() => handleAction('delete')} 
+                <Button
+                  onClick={() => handleAction('delete')}
                   variant="danger"
                   style={{ width: '100%' }}
                 >
