@@ -79,29 +79,29 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
       <main className={styles.container}>
         {/* Statistics Grid */}
         <section className={styles.statsSection}>
-          <h2>Statistik Pendaftaran ({filters.year || new Date().getFullYear()})</h2>
+
           <div className={styles.statsGrid}>
-            <div className={styles.statsCard} style={{ borderLeft: '4px solid var(--color-primary-dark)' }}>
+            <div className={styles.statsCard}>
               <span className={styles.statLabel}>Total Pendaftar</span>
               <span className={styles.statValue}>{stats.total}</span>
             </div>
-            <div className={styles.statsCard} style={{ borderLeft: '4px solid var(--color-accent-yellow)' }}>
+            <div className={styles.statsCard}>
               <span className={styles.statLabel}>Belum Diverifikasi</span>
               <span className={styles.statValue}>{stats.menunggu}</span>
             </div>
-            <div className={styles.statsCard} style={{ borderLeft: '4px solid var(--color-success)' }}>
+            <div className={styles.statsCard}>
               <span className={styles.statLabel}>Terverifikasi</span>
               <span className={styles.statValue}>{stats.terverifikasi}</span>
             </div>
-            <div className={styles.statsCard} style={{ borderLeft: '4px solid var(--color-danger)' }}>
+            <div className={styles.statsCard}>
               <span className={styles.statLabel}>Berkas Ditolak</span>
               <span className={styles.statValue}>{stats.ditolak}</span>
             </div>
-            <div className={styles.statsCard} style={{ borderLeft: '4px solid #319795' }}>
+            <div className={styles.statsCard}>
               <span className={styles.statLabel}>Dinyatakan Lulus</span>
               <span className={styles.statValue}>{stats.lulus}</span>
             </div>
-            <div className={styles.statsCard} style={{ borderLeft: '4px solid #4A5568' }}>
+            <div className={styles.statsCard}>
               <span className={styles.statLabel}>Tidak Lulus</span>
               <span className={styles.statValue}>{stats.tidak_lulus}</span>
             </div>
@@ -111,31 +111,33 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
         {/* Filters and Search */}
         <section className={styles.filterSection}>
           <div className={styles.filtersGrid}>
-            <div className={styles.filterGroup}>
-              <label>Tahun Registrasi</label>
-              <select
-                value={filters.year ?? ''}
-                onChange={(e) => handleFilterChange('year', e.target.value)}
-                className={styles.filterSelect}
-              >
-                {years.map((y) => (
-                  <option key={y} value={y}>{y}</option>
-                ))}
-              </select>
-            </div>
+            <div style={{ display: "flex", gap: "1rem" }}>
+              <div className={styles.filterGroup}>
+                <label>Tahun Registrasi</label>
+                <select
+                  value={filters.year ?? ''}
+                  onChange={(e) => handleFilterChange('year', e.target.value)}
+                  className={styles.filterSelect}
+                >
+                  {years.map((y) => (
+                    <option key={y} value={y}>{y}</option>
+                  ))}
+                </select>
+              </div>
 
-            <div className={styles.filterGroup}>
-              <label>Jalur Pendaftaran</label>
-              <select
-                value={filters.quota_id ?? ''}
-                onChange={(e) => handleFilterChange('quota_id', e.target.value)}
-                className={styles.filterSelect}
-              >
-                <option value="">Semua Jalur</option>
-                {quotas.map((q) => (
-                  <option key={q.id} value={q.id}>{q.name}</option>
-                ))}
-              </select>
+              <div className={styles.filterGroup}>
+                <label>Jalur Pendaftaran</label>
+                <select
+                  value={filters.quota_id ?? ''}
+                  onChange={(e) => handleFilterChange('quota_id', e.target.value)}
+                  className={styles.filterSelect}
+                >
+                  <option value="">Semua Jalur</option>
+                  {quotas.map((q) => (
+                    <option key={q.id} value={q.id}>{q.name}</option>
+                  ))}
+                </select>
+              </div>
             </div>
 
             <div className={styles.filterGroup} style={{ flex: 2 }}>
@@ -173,9 +175,7 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
                       <td>{student.nisn}</td>
                       <td>{student.quota?.name}</td>
                       <td>
-                        <span className={`${styles.badge} ${getUnifiedStatusClass(student)}`}>
-                          {getUnifiedStatus(student)}
-                        </span>
+                        {getUnifiedStatus(student)}
                       </td>
                     </tr>
                   ))
