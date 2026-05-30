@@ -25,8 +25,8 @@ export default function Posts({ posts = [] }) {
     { url: '/admin/dashboard', label: 'Dasbor' },
     { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
     { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
-    { 
-      label: 'Data Master', 
+    {
+      label: 'Data Master',
       dropdown: [
         { url: '/admin/schedules', label: 'Kelola Jadwal' },
         { url: '/admin/quotas', label: 'Kelola Kuota' },
@@ -134,7 +134,7 @@ export default function Posts({ posts = [] }) {
             <h1>Kelola Berita & Pengumuman</h1>
             <p>Rilis warta sekolah dan instruksi resmi penerimaan siswa baru.</p>
           </div>
-          <Button onClick={handleOpenAdd} variant="secondary">
+          <Button style={{ width: "100%" }} onClick={handleOpenAdd} variant="primary">
             Tambah Postingan Baru
           </Button>
         </div>
@@ -221,7 +221,7 @@ export default function Posts({ posts = [] }) {
             </h2>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <Input 
+              <Input
                 label="Judul Postingan"
                 placeholder="Contoh: Pembukaan Gelombang I Pendaftaran..."
                 value={data.title}
@@ -235,7 +235,7 @@ export default function Posts({ posts = [] }) {
               )}
               {errors.title && <div style={{ fontSize: '11px', color: 'var(--color-danger)', marginTop: '-8px', marginBottom: '8px' }}>{errors.title}</div>}
 
-              <Select 
+              <Select
                 label="Kategori Kategori"
                 placeholder="Pilih kategori..."
                 options={[
@@ -250,7 +250,7 @@ export default function Posts({ posts = [] }) {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#4A5568' }}>Konten / Isi Postingan</label>
-                <textarea 
+                <textarea
                   value={data.content}
                   onChange={(e) => setData('content', e.target.value)}
                   placeholder="Isi berita secara mendalam..."
@@ -267,22 +267,22 @@ export default function Posts({ posts = [] }) {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#4A5568' }}>Foto / Gambar Pendukung</label>
-                <input 
-                  type="file" 
-                  ref={imageInputRef} 
-                  onChange={handleImageChange} 
-                  accept="image/*" 
-                  style={{ display: 'none' }} 
+                <input
+                  type="file"
+                  ref={imageInputRef}
+                  onChange={handleImageChange}
+                  accept="image/*"
+                  style={{ display: 'none' }}
                 />
-                <div 
+                <div
                   onClick={handleChooseImage}
-                  style={{ 
-                    width: '100%', 
-                    padding: '12px 16px', 
-                    border: '1px solid #CBD5E0', 
-                    borderRadius: '4px', 
-                    fontSize: '13px', 
-                    backgroundColor: 'white', 
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    border: '1px solid #CBD5E0',
+                    borderRadius: '4px',
+                    fontSize: '13px',
+                    backgroundColor: 'white',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
@@ -298,25 +298,25 @@ export default function Posts({ posts = [] }) {
                   </span>
                 </div>
                 {errors.image && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.image}</div>}
-                
+
                 {previewUrl && (
                   <div style={{ marginTop: '10px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                     <label style={{ fontSize: '11px', color: '#718096' }}>Pratinjau Gambar (1:1):</label>
-                    <div style={{ 
-                      width: '100%', 
-                      aspectRatio: '1/1', 
-                      borderRadius: '6px', 
-                      overflow: 'hidden', 
+                    <div style={{
+                      width: '100%',
+                      aspectRatio: '1/1',
+                      borderRadius: '6px',
+                      overflow: 'hidden',
                       border: '1px solid #E2E8F0',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       backgroundColor: '#F8FAFC'
                     }}>
-                      <img 
-                        src={previewUrl} 
-                        alt="Pratinjau" 
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                      <img
+                        src={previewUrl}
+                        alt="Pratinjau"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       />
                     </div>
                   </div>
@@ -324,15 +324,15 @@ export default function Posts({ posts = [] }) {
               </div>
 
               <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid #EDF2F7', paddingTop: '16px', marginTop: '8px' }}>
-                <Button 
+                <Button
                   variant="outline"
-                  onClick={handleClose} 
+                  onClick={handleClose}
                   style={{ flex: 1 }}
                 >
                   Batal
                 </Button>
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   loading={processing}
                   style={{ flex: 1 }}
                 >

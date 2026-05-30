@@ -1,6 +1,6 @@
 .header {
   color: var(--color-primary-dark);
-  padding: 24px 16px;
+  padding: 24px 16px 0 16px;
   text-align: left;
 }
 
