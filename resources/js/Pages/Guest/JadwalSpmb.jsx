@@ -31,6 +31,9 @@ export default function JadwalSpmb({ schedules = [] }) {
     return new Date(dateStr).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
   };
 
+  const now = new Date()
+  const year = now.getFullYear()
+
   return (
     <>
       <Head title="Jadwal Pendaftaran SPMB - SMK Ahmad Dahlan" />
@@ -48,28 +51,38 @@ export default function JadwalSpmb({ schedules = [] }) {
       <main className={styles.container}>
         <section className={styles.intro}>
           <h2>Timeline Alur & Tahapan Seleksi</h2>
-          <p>Berikut adalah agenda penting pelaksanaan Penerimaan Peserta Didik Baru (PPDB/SPMB) SMK Ahmad Dahlan Sukadamai Tahun Ajaran 2026/2027.</p>
+          <p>Berikut adalah agenda penting pelaksanaan Penerimaan Peserta Didik Baru (PPDB/SPMB) SMK Ahmad Dahlan Sukadamai Tahun Ajaran {year}/{year + 1}</p>
         </section>
 
         <section className={styles.scheduleTimeline}>
           {schedules.length > 0 ? (
             schedules.map((stage, idx) => (
-              <div key={stage.id} className={styles.timelineCard}>
-                <div className={styles.numberBadge}>{idx + 1}</div>
-                <div className={styles.content}>
-                  <div className={styles.dateRange}>
-                    <span>{formatDate(stage.start_date)} s/d {formatDate(stage.end_date)}</span>
-                  </div>
-                  <h3>{stage.title}</h3>
+              <div className={styles.timelineCard}>
+                <div className={styles.badge}>
+                  <p>Tahap {idx + 1}</p>
+                </div>
+                <div>
+                  <h2>{stage.title}</h2>
                   <p>{stage.description}</p>
                 </div>
+                <i>{formatDate(stage.start_date)} - {formatDate(stage.end_date)}</i>
               </div>
+              // <div key={stage.id} className={styles.timelineCard}>
+              //   <div className={styles.numberBadge}>{idx + 1}</div>
+              //   <div className={styles.content}>
+              //     <div className={styles.dateRange}>
+              //       <span>{formatDate(stage.start_date)} s/d {formatDate(stage.end_date)}</span>
+              //     </div>
+              //     <h3>{stage.title}</h3>
+              //     <p>{stage.description}</p>
+              //   </div>
+              // </div>
             ))
           ) : (
             <p className={styles.emptyText}>Belum ada jadwal pendaftaran yang dirilis.</p>
           )}
         </section>
-      </main>
+      </main >
 
       <Footer />
     </>
