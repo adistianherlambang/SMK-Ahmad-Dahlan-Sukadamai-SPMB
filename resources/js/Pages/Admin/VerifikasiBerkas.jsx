@@ -247,11 +247,10 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
         <Popup isOpen={isPopupOpen} onClose={handleClosePopup}>
           {selectedStudent && (
             <div style={{ maxHeight: '75vh', overflowY: 'auto', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '20px', fontWeight: '400' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #EDF2F7', paddingBottom: '12px' }}>
+              <div style={{ borderBottom: '1px solid #EDF2F7', paddingBottom: '12px' }}>
                 <h2 style={{ fontSize: '16px', fontWeight: '400', color: 'var(--color-primary-dark)', margin: 0 }}>
                   Detail Berkas Pendaftaran
                 </h2>
-                <button onClick={handleClosePopup} style={{ border: 'none', background: 'none', fontSize: '20px', cursor: 'pointer', fontWeight: '400' }}>×</button>
               </div>
 
               {/* Status Indicator */}
@@ -419,13 +418,12 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
         <Popup isOpen={confirmPopup.isOpen} onClose={() => setConfirmPopup({ ...confirmPopup, isOpen: false })}>
           {confirmPopup.student && (
             <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '15px', fontWeight: '400' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #EDF2F7', paddingBottom: '12px' }}>
+              <div style={{ borderBottom: '1px solid #EDF2F7', paddingBottom: '12px' }}>
                 <h2 style={{ fontSize: '16px', fontWeight: '400', color: 'var(--color-primary-dark)', margin: 0 }}>
                   {confirmPopup.type === 'delete' && 'Konfirmasi Hapus Pendaftaran'}
                   {confirmPopup.type === 'reject' && 'Tolak Berkas Persyaratan'}
                   {confirmPopup.type === 'approve' && 'Setujui Berkas Pendaftaran'}
                 </h2>
-                <button onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} style={{ border: 'none', background: 'none', fontSize: '20px', cursor: 'pointer', fontWeight: '400' }}>×</button>
               </div>
 
               {confirmPopup.type === 'delete' && (

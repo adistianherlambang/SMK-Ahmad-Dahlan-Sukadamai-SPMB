@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button/Button';
 import styles from './Popup.module.css';
 
 export default function Popup({ isOpen, onClose, children }) {
@@ -7,6 +8,9 @@ export default function Popup({ isOpen, onClose, children }) {
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.popupContent} onClick={(e) => e.stopPropagation()}>
         {children}
+        <Button onClick={onClose} variant="primary">
+          Tutup
+        </Button>
       </div>
     </div>
   );
