@@ -64,7 +64,7 @@ export default function DataPendaftaran({ registration = {} }) {
 
         {/* Reupload Section: active ONLY when rejected */}
         {registration.verification_status === 'Berkas Ditolak' && (
-          <section className={`${formStyles.formCard} ${styles.reuploadCard}`}>
+          <section className={`${formStyles.formCard}`}>
             <h3 className={styles.reuploadTitle}>
               Upload berkas persyaratan
             </h3>
@@ -73,37 +73,47 @@ export default function DataPendaftaran({ registration = {} }) {
             </p>
 
             <form onSubmit={handleReuploadSubmit} className={formStyles.form}>
-              <FileInput
-                label="Unggah Ulang Kartu Keluarga (KK)"
-                isUploaded={!!data.file_kk}
-                onFileView={() => window.open(URL.createObjectURL(data.file_kk))}
-                onChange={(e) => handleFileChange('file_kk', e.target.files[0])}
-              />
-              {errors.file_kk && <div className={styles.fieldError}>{errors.file_kk}</div>}
+              <div className={styles.inputRow}>
+                <div className={styles.inputWrapper}>
+                  <FileInput
+                    label="Kartu Keluarga (KK)"
+                    isUploaded={!!data.file_kk}
+                    onFileView={() => window.open(URL.createObjectURL(data.file_kk))}
+                    onChange={(e) => handleFileChange('file_kk', e.target.files[0])}
+                  />
+                  {errors.file_kk && <div className={styles.fieldError}>{errors.file_kk}</div>}
+                </div>
+                <div className={styles.inputWrapper}>
+                  <FileInput
+                    label="Kelahiran"
+                    isUploaded={!!data.file_akta}
+                    onFileView={() => window.open(URL.createObjectURL(data.file_akta))}
+                    onChange={(e) => handleFileChange('file_akta', e.target.files[0])}
+                  />
+                  {errors.file_akta && <div className={styles.fieldError}>{errors.file_akta}</div>}
+                </div>
+              </div>
 
-              <FileInput
-                label="Unggah Ulang Akta Kelahiran"
-                isUploaded={!!data.file_akta}
-                onFileView={() => window.open(URL.createObjectURL(data.file_akta))}
-                onChange={(e) => handleFileChange('file_akta', e.target.files[0])}
-              />
-              {errors.file_akta && <div className={styles.fieldError}>{errors.file_akta}</div>}
-
-              <FileInput
-                label="Unggah Ulang SKHU / SKL"
-                isUploaded={!!data.file_skhu_skl}
-                onFileView={() => window.open(URL.createObjectURL(data.file_skhu_skl))}
-                onChange={(e) => handleFileChange('file_skhu_skl', e.target.files[0])}
-              />
-              {errors.file_skhu_skl && <div className={styles.fieldError}>{errors.file_skhu_skl}</div>}
-
-              <FileInput
-                label="Unggah Ulang SKTM / KIP / PKH (Opsional)"
-                isUploaded={!!data.file_sktm}
-                onFileView={() => window.open(URL.createObjectURL(data.file_sktm))}
-                onChange={(e) => handleFileChange('file_sktm', e.target.files[0])}
-              />
-              {errors.file_sktm && <div className={styles.fieldError}>{errors.file_sktm}</div>}
+              <div className={styles.inputRow}>
+                <div className={styles.inputWrapper}>
+                  <FileInput
+                    label="SKHU / SKL"
+                    isUploaded={!!data.file_skhu_skl}
+                    onFileView={() => window.open(URL.createObjectURL(data.file_skhu_skl))}
+                    onChange={(e) => handleFileChange('file_skhu_skl', e.target.files[0])}
+                  />
+                  {errors.file_skhu_skl && <div className={styles.fieldError}>{errors.file_skhu_skl}</div>}
+                </div>
+                <div className={styles.inputWrapper}>
+                  <FileInput
+                    label="SKTM / KIP / PKH (Opsional)"
+                    isUploaded={!!data.file_sktm}
+                    onFileView={() => window.open(URL.createObjectURL(data.file_sktm))}
+                    onChange={(e) => handleFileChange('file_sktm', e.target.files[0])}
+                  />
+                  {errors.file_sktm && <div className={styles.fieldError}>{errors.file_sktm}</div>}
+                </div>
+              </div>
 
               <Button type="submit" loading={processing} variant="danger" className={styles.btnFullWidth}>
                 Kirim Ulang Berkas Persyaratan

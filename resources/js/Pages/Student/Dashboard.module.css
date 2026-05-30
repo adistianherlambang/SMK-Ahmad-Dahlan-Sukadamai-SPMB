@@ -86,22 +86,25 @@ p strong {
 
 /* Alert Info/Danger boxes */
 .alertBox {
-  border-radius: 6px;
   padding: 20px;
   text-align: left;
-  line-height: 1.6;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
 }
 
 .alertInfo {
-  background-color: #EBF8FF;
-  border: 1px solid #BEE3F8;
-  color: #2B6CB0;
+  text-align: left;
 }
 
 .alertInfo h3 {
-  font-size: 15px;
-  font-weight: 800;
-  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.alertInfo h2 {
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .alertInfo p {
@@ -117,7 +120,6 @@ p strong {
 .alertSuccess h3 {
   font-size: 15px;
   font-weight: 800;
-  margin-bottom: 8px;
 }
 
 .alertSuccess p {
@@ -136,9 +138,8 @@ p strong {
 }
 
 .alertDanger h2 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
-  margin-bottom: 8px;
 }
 
 .alertDanger p,
@@ -176,10 +177,8 @@ i {
 
 /* Lulus / Graduated alert box */
 .alertGraduated {
-  background-color: #F0FFF4;
-  border: 2px solid #38A169;
-  color: #276749;
-  text-align: center;
+  background-color: #18C927;
+  color: white;
 }
 
 .alertGraduated h3 {
@@ -261,17 +260,25 @@ i {
   margin-bottom: 16px;
 }
 
-.reuploadCard {
-  border: 2px dashed var(--color-danger);
-  margin-bottom: 24px;
+.inputRow {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
+.inputWrapper {
+  flex: 1;
+}
+
+.reuploadCard {
+  border: 2px dashed var(--color-danger);
+}
+
+
 .reuploadTitle {
-  font-size: 15px;
-  font-weight: 800;
-  color: var(--color-danger);
-  margin: 0 0 12px 0;
-  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-text-main);
 }
 
 .reuploadDesc {
@@ -320,6 +327,16 @@ i {
   color: var(--color-primary-dark);
   font-weight: bold;
   text-decoration: underline;
+}
+
+.dashboardActionContainer {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.alertInfoYellow {
+  background-color: #FDCD2D !important;
+  color: var(--color-text-main) !important;
 }
 
 .footer {
