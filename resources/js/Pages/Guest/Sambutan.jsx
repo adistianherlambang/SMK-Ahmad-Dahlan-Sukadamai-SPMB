@@ -49,7 +49,7 @@ export default function Sambutan() {
             </div>
           </div>
           <div className={styles.nameCard}>
-            <h2>H. Muhammad Sobri, M.Pd.</h2>
+            <h2>Pujiono, S.E.I.</h2>
             <p>Kepala SMK Ahmad Dahlan Sukadamai</p>
           </div>
         </div>

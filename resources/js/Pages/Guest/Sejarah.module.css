@@ -48,13 +48,9 @@
 }
 
 .historyArticle h2 {
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 400;
   color: var(--color-primary-dark);
-  margin-top: 12px;
-  margin-bottom: 4px;
-  border-bottom: 2px solid var(--color-accent-yellow);
-  padding-bottom: 4px;
   display: inline-block;
   align-self: flex-start;
 }
@@ -135,6 +131,7 @@
   .headerContent {
     max-width: 1000px;
   }
+
   .container {
     max-width: 1000px;
     padding: var(--spacing-4xl) var(--spacing-lg);
