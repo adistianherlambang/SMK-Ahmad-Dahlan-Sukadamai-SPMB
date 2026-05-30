@@ -121,7 +121,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
       <main className={styles.container}>
         {/* Flash Notifications */}
         {flash?.success && (
-          <div className={`${styles.alertBox} ${styles.alertSuccess}`} style={{ marginBottom: '16px' }}>
+          <div className={`${styles.alertBox} ${styles.alertSuccess}`}>
             {flash.success}
           </div>
         )}
@@ -246,108 +246,108 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
         {/* Detail Popup Drawer */}
         <Popup isOpen={isPopupOpen} onClose={handleClosePopup}>
           {selectedStudent && (
-            <div style={{ maxHeight: '75vh', overflowY: 'auto', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '20px', fontWeight: '400' }}>
-              <div style={{ borderBottom: '1px solid #EDF2F7', paddingBottom: '12px' }}>
-                <h2 style={{ fontSize: '16px', fontWeight: '400', color: 'var(--color-primary-dark)', margin: 0 }}>
+            <div className={styles.popupDetailContainer}>
+              <div className={styles.modalHeader}>
+                <h2 className={styles.modalTitle}>
                   Detail Berkas Pendaftaran
                 </h2>
               </div>
 
               {/* Status Indicator */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#F8FAFC', padding: '12px', borderRadius: '4px', fontWeight: '400' }}>
-                <span style={{ fontSize: '12px', fontWeight: '400', color: '#718096' }}>STATUS BERKAS:</span>
+              <div className={styles.statusRow}>
+                <span className={styles.statusLabel}>STATUS BERKAS:</span>
                 <span className={`${styles.badge} ${
                   selectedStudent.verification_status === 'Terverifikasi' ? styles.badgeSuccess :
                   selectedStudent.verification_status === 'Berkas Ditolak' ? styles.badgeDanger :
                   styles.badgeWarning
-                }`} style={{ fontWeight: '400' }}>{selectedStudent.verification_status}</span>
+                }`}>{selectedStudent.verification_status}</span>
               </div>
 
               {/* Student details summary */}
-              <div className={formStyles.section} style={{ fontWeight: '400' }}>
-                <h4 className={formStyles.sectionTitle} style={{ fontSize: '12px', fontWeight: '400' }}>Data Identitas Calon Siswa</h4>
-                <table className={styles.detailsTable} style={{ fontSize: '12px', fontWeight: '400' }}>
+              <div className={`${formStyles.section} ${styles.sectionWrapper}`}>
+                <h4 className={`${formStyles.sectionTitle} ${styles.modalSectionTitle}`}>Data Identitas Calon Siswa</h4>
+                <table className={styles.detailsTable}>
                   <tbody>
                     <tr>
-                      <td style={{ width: '110px', fontWeight: '400' }}>Nama Lengkap</td>
-                      <td style={{ width: '10px' }}>:</td>
-                      <td style={{ fontWeight: '400' }}>{selectedStudent.full_name}</td>
+                      <td className={styles.detailsLabel}>Nama Lengkap</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.full_name}</td>
                     </tr>
                     <tr>
-                      <td style={{ fontWeight: '400' }}>NISN</td>
-                      <td>:</td>
-                      <td style={{ fontWeight: '400' }}>{selectedStudent.nisn}</td>
+                      <td className={styles.detailsLabel}>NISN</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.nisn}</td>
                     </tr>
                     <tr>
-                      <td style={{ fontWeight: '400' }}>Tempat/Tgl Lahir</td>
-                      <td>:</td>
-                      <td style={{ fontWeight: '400' }}>{selectedStudent.birth_place} / {formatDate(selectedStudent.birth_date)}</td>
+                      <td className={styles.detailsLabel}>Tempat/Tgl Lahir</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.birth_place} / {formatDate(selectedStudent.birth_date)}</td>
                     </tr>
                     <tr>
-                      <td style={{ fontWeight: '400' }}>Sekolah Asal</td>
-                      <td>:</td>
-                      <td style={{ fontWeight: '400' }}>{selectedStudent.school_origin}</td>
+                      <td className={styles.detailsLabel}>Sekolah Asal</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.school_origin}</td>
                     </tr>
                     <tr>
-                      <td style={{ fontWeight: '400' }}>No HP / WA</td>
-                      <td>:</td>
-                      <td style={{ fontWeight: '400' }}>{selectedStudent.phone_number}</td>
+                      <td className={styles.detailsLabel}>No HP / WA</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.phone_number}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
               {/* File list checklist */}
-              <div className={formStyles.section} style={{ fontWeight: '400' }}>
-                <h4 className={formStyles.sectionTitle} style={{ fontSize: '12px', fontWeight: '400' }}>Dokumen Berkas Unggahan (PDF)</h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <div className={`${formStyles.section} ${styles.sectionWrapper}`}>
+                <h4 className={`${formStyles.sectionTitle} ${styles.modalSectionTitle}`}>Dokumen Berkas Unggahan (PDF)</h4>
+                <div className={styles.documentList}>
                   {selectedStudent.document?.file_kk ? (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', border: '1px solid #E2E8F0', borderRadius: '4px', fontSize: '12px', fontWeight: '400' }}>
+                    <div className={styles.documentRow}>
                       <span>Kartu Keluarga (KK)</span>
-                      <a href={selectedStudent.document.file_kk} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-dark)', fontWeight: '400' }}>Lihat File</a>
+                      <a href={selectedStudent.document.file_kk} target="_blank" rel="noopener noreferrer" className={styles.modalLink}>Lihat File</a>
                     </div>
-                  ) : <span style={{ fontSize: '11px', color: 'red', fontWeight: '400' }}>File KK Hilang/Tidak diunggah</span>}
+                  ) : <span className={styles.errorTextSmall}>File KK Hilang/Tidak diunggah</span>}
 
                   {selectedStudent.document?.file_akta ? (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', border: '1px solid #E2E8F0', borderRadius: '4px', fontSize: '12px', fontWeight: '400' }}>
+                    <div className={styles.documentRow}>
                       <span>Akta Kelahiran</span>
-                      <a href={selectedStudent.document.file_akta} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-dark)', fontWeight: '400' }}>Lihat File</a>
+                      <a href={selectedStudent.document.file_akta} target="_blank" rel="noopener noreferrer" className={styles.modalLink}>Lihat File</a>
                     </div>
-                  ) : <span style={{ fontSize: '11px', color: 'red', fontWeight: '400' }}>File Akta Hilang/Tidak diunggah</span>}
+                  ) : <span className={styles.errorTextSmall}>File Akta Hilang/Tidak diunggah</span>}
 
                   {selectedStudent.document?.file_skhu_skl ? (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', border: '1px solid #E2E8F0', borderRadius: '4px', fontSize: '12px', fontWeight: '400' }}>
+                    <div className={styles.documentRow}>
                       <span>SKHU / SKL</span>
-                      <a href={selectedStudent.document.file_skhu_skl} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-dark)', fontWeight: '400' }}>Lihat File</a>
+                      <a href={selectedStudent.document.file_skhu_skl} target="_blank" rel="noopener noreferrer" className={styles.modalLink}>Lihat File</a>
                     </div>
-                  ) : <span style={{ fontSize: '11px', color: 'red', fontWeight: '400' }}>File SKHU/SKL Hilang/Tidak diunggah</span>}
+                  ) : <span className={styles.errorTextSmall}>File SKHU/SKL Hilang/Tidak diunggah</span>}
 
                   {selectedStudent.document?.file_sktm ? (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '8px', border: '1px solid #E2E8F0', borderRadius: '4px', fontSize: '12px', fontWeight: '400' }}>
+                    <div className={styles.documentRow}>
                       <span>SKTM / KIP / PKH</span>
-                      <a href={selectedStudent.document.file_sktm} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary-dark)', fontWeight: '400' }}>Lihat File</a>
+                      <a href={selectedStudent.document.file_sktm} target="_blank" rel="noopener noreferrer" className={styles.modalLink}>Lihat File</a>
                     </div>
-                  ) : <span style={{ fontSize: '11px', color: '#718096', fontStyle: 'italic', fontWeight: '400' }}>- File SKTM tidak dilampirkan</span>}
+                  ) : <span className={styles.infoTextSmall}>- File SKTM tidak dilampirkan</span>}
                 </div>
               </div>
 
               {/* Rejection notice box */}
               {selectedStudent.verification_status === 'Berkas Ditolak' && (
-                <div style={{ backgroundColor: '#FFF5F5', border: '1px solid #FED7D7', borderRadius: '4px', padding: '12px', fontSize: '12px', color: '#742A2A', fontWeight: '400' }}>
-                  <span style={{ display: 'block', marginBottom: '4px' }}>Alasan Penolakan Berkas Panitia:</span>
-                  <p style={{ margin: 0, fontStyle: 'italic' }}>"{selectedStudent.rejection_reason}"</p>
+                <div className={styles.rejectionBox}>
+                  <span className={styles.rejectionTitle}>Alasan Penolakan Berkas Panitia:</span>
+                  <p>"{selectedStudent.rejection_reason}"</p>
                 </div>
               )}
 
               {/* Action Buttons Area */}
-              <div style={{ borderTop: '1px solid #EDF2F7', paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px', fontWeight: '400' }}>
+              <div className={styles.actionArea}>
                 {!showRejectForm ? (
                   <>
                     {selectedStudent.verification_status !== 'Terverifikasi' && (
                       <Button 
                         onClick={() => handleAction('approve')} 
                         variant="success"
-                        style={{ width: '100%', fontWeight: '400' }}
+                        className={styles.fullWidthBtn}
                       >
                         Setujui & Verifikasi Berkas
                       </Button>
@@ -357,7 +357,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                       <Button 
                         onClick={() => setShowRejectForm(true)} 
                         variant="secondary"
-                        style={{ width: '100%', backgroundColor: '#D69E2E', border: 'none', color: 'white', fontWeight: '400' }}
+                        className={styles.warningBtn}
                       >
                         Tolak Berkas Persyaratan
                       </Button>
@@ -367,7 +367,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                       <Button 
                         onClick={() => handleAction('undo')} 
                         variant="outline"
-                        style={{ width: '100%', fontWeight: '400' }}
+                        className={styles.fullWidthBtn}
                       >
                         Kembalikan Status Ke Menunggu
                       </Button>
@@ -376,33 +376,33 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                     <Button 
                       onClick={() => handleAction('delete')} 
                       variant="danger"
-                      style={{ width: '100%', fontWeight: '400' }}
+                      className={styles.fullWidthBtn}
                     >
                       Hapus Pendaftaran Calon Siswa
                     </Button>
                   </>
                 ) : (
-                  <form onSubmit={submitRejection} style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', fontWeight: '400' }}>
-                    <label style={{ fontSize: '12px', color: '#4A5568', fontWeight: '400' }}>Alasan Penolakan Berkas:</label>
+                  <form onSubmit={submitRejection} className={styles.confirmModalForm}>
+                    <label className={styles.modalLabel}>Alasan Penolakan Berkas:</label>
                     <textarea 
                       value={rejectReason}
                       onChange={(e) => setRejectReason(e.target.value)}
                       placeholder="Contoh: Berkas Kartu Keluarga buram dan tidak terbaca..."
-                      style={{ width: '100%', minHeight: '80px', padding: '10px', border: '1px solid #CBD5E0', borderRadius: '4px', fontSize: '13px', boxSizing: 'border-box', fontWeight: '400' }}
+                      className={styles.modalTextarea}
                       required
                     ></textarea>
-                    <div style={{ display: 'flex', gap: '8px' }}>
+                    <div className={styles.btnRow}>
                       <Button 
                         variant="outline"
                         onClick={() => setShowRejectForm(false)} 
-                        style={{ flex: 1, fontWeight: '400' }}
+                        className={styles.flex1Btn}
                       >
                         Batal
                       </Button>
                       <Button 
                         type="submit" 
                         variant="danger"
-                        style={{ flex: 1, fontWeight: '400' }}
+                        className={styles.flex1Btn}
                       >
                         Kirim Penolakan
                       </Button>
@@ -417,9 +417,9 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
         {/* Action Confirmation Popup */}
         <Popup isOpen={confirmPopup.isOpen} onClose={() => setConfirmPopup({ ...confirmPopup, isOpen: false })}>
           {confirmPopup.student && (
-            <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '15px', fontWeight: '400' }}>
-              <div style={{ borderBottom: '1px solid #EDF2F7', paddingBottom: '12px' }}>
-                <h2 style={{ fontSize: '16px', fontWeight: '400', color: 'var(--color-primary-dark)', margin: 0 }}>
+            <div className={styles.confirmModalContainer}>
+              <div className={styles.modalHeader}>
+                <h2 className={styles.modalTitle}>
                   {confirmPopup.type === 'delete' && 'Konfirmasi Hapus Pendaftaran'}
                   {confirmPopup.type === 'reject' && 'Tolak Berkas Persyaratan'}
                   {confirmPopup.type === 'approve' && 'Setujui Berkas Pendaftaran'}
@@ -427,16 +427,16 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
               </div>
 
               {confirmPopup.type === 'delete' && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', fontWeight: '400' }}>
-                  <p style={{ fontSize: '13px', color: '#4A5568', margin: 0, lineHeight: '1.5', fontWeight: '400' }}>
-                    Apakah Anda yakin ingin menghapus data pendaftaran <span style={{ color: 'var(--color-primary-dark)' }}>{confirmPopup.student.full_name}</span> secara permanen? Akun portal siswa juga akan ikut terhapus.
+                <div className={styles.confirmModalContent}>
+                  <p className={styles.confirmModalText}>
+                    Apakah Anda yakin ingin menghapus data pendaftaran <span className={styles.highlightText}>{confirmPopup.student.full_name}</span> secara permanen? Akun portal siswa juga akan ikut terhapus.
                   </p>
-                  <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-                    <Button onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} variant="outline" style={{ flex: 1, fontWeight: '400' }}>Batal</Button>
+                  <div className={styles.btnRow}>
+                    <Button onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} variant="outline" className={styles.flex1Btn}>Batal</Button>
                     <Button onClick={() => {
                       router.post(`/admin/verifikasi-berkas/${confirmPopup.student.id}/aksi`, { action: 'delete' });
                       setConfirmPopup({ ...confirmPopup, isOpen: false });
-                    }} variant="danger" style={{ flex: 1, fontWeight: '400' }}>Hapus Permanen</Button>
+                    }} variant="danger" className={styles.flex1Btn}>Hapus Permanen</Button>
                   </div>
                 </div>
               )}
@@ -450,37 +450,36 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                   }
                   router.post(`/admin/verifikasi-berkas/${confirmPopup.student.id}/aksi`, { action: 'reject', reason: confirmPopup.reason });
                   setConfirmPopup({ ...confirmPopup, isOpen: false });
-                }} style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontWeight: '400' }}>
-                  <p style={{ fontSize: '13px', color: '#4A5568', margin: 0, lineHeight: '1.5', fontWeight: '400' }}>
-                    Masukkan alasan penolakan berkas untuk <span style={{ color: 'var(--color-primary-dark)' }}>{confirmPopup.student.full_name}</span>:
+                }} className={styles.confirmModalForm}>
+                  <p className={styles.confirmModalText}>
+                    Masukkan alasan penolakan berkas untuk <span className={styles.highlightText}>{confirmPopup.student.full_name}</span>:
                   </p>
                   <textarea
                     rows="3"
-                    className={formStyles.textareaField}
+                    className={styles.modalTextarea}
                     placeholder="Contoh: Kartu Keluarga tidak terbaca jelas atau file rusak."
                     value={confirmPopup.reason}
                     onChange={(e) => setConfirmPopup({ ...confirmPopup, reason: e.target.value })}
-                    style={{ width: '100%', minHeight: '80px', padding: '10px', border: '1px solid #CBD5E0', borderRadius: '4px', fontSize: '13px', boxSizing: 'border-box', fontWeight: '400' }}
                     required
                   />
-                  <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-                    <Button type="button" onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} variant="outline" style={{ flex: 1, fontWeight: '400' }}>Batal</Button>
-                    <Button type="submit" variant="danger" style={{ flex: 1, fontWeight: '400' }}>Kirim Penolakan</Button>
+                  <div className={styles.btnRow}>
+                    <Button type="button" onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} variant="outline" className={styles.flex1Btn}>Batal</Button>
+                    <Button type="submit" variant="danger" className={styles.flex1Btn}>Kirim Penolakan</Button>
                   </div>
                 </form>
               )}
 
               {confirmPopup.type === 'approve' && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', fontWeight: '400' }}>
-                  <p style={{ fontSize: '13px', color: '#4A5568', margin: 0, lineHeight: '1.5', fontWeight: '400' }}>
-                    Apakah Anda yakin ingin menyetujui berkas pendaftaran atas nama <span style={{ color: 'var(--color-primary-dark)' }}>{confirmPopup.student.full_name}</span> dan memindahkannya ke antrean kelulusan?
+                <div className={styles.confirmModalContent}>
+                  <p className={styles.confirmModalText}>
+                    Apakah Anda yakin ingin menyetujui berkas pendaftaran atas nama <span className={styles.highlightText}>{confirmPopup.student.full_name}</span> dan memindahkannya ke antrean kelulusan?
                   </p>
-                  <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-                    <Button onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} variant="outline" style={{ flex: 1, fontWeight: '400' }}>Batal</Button>
+                  <div className={styles.btnRow}>
+                    <Button onClick={() => setConfirmPopup({ ...confirmPopup, isOpen: false })} variant="outline" className={styles.flex1Btn}>Batal</Button>
                     <Button onClick={() => {
                       router.post(`/admin/verifikasi-berkas/${confirmPopup.student.id}/aksi`, { action: 'approve' });
                       setConfirmPopup({ ...confirmPopup, isOpen: false });
-                    }} variant="success" style={{ flex: 1, fontWeight: '400' }}>Setujui & Verifikasi</Button>
+                    }} variant="success" className={styles.flex1Btn}>Setujui & Verifikasi</Button>
                   </div>
                 </div>
               )}
