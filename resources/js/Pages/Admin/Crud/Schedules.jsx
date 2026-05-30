@@ -86,12 +86,12 @@ export default function Schedules({ schedules = [] }) {
       <Navbar links={links} />
 
       <header className={styles.header}>
-        <div className={styles.headerContent} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+        <div className={styles.headerContent} style={{ display: 'flex', justifyContent: 'space-between', gap: '12px' }}>
           <div>
             <h1>Kelola Jadwal SPMB</h1>
             <p>Atur lini masa gelombang dan tahapan pendaftaran siswa baru.</p>
           </div>
-          <Button style={{ width: "100%" }} onClick={handleOpenAdd} variant="primary">
+          <Button className={styles.dataBtn} onClick={handleOpenAdd} variant="primary">
             Tambah Jadwal Baru
           </Button>
         </div>
