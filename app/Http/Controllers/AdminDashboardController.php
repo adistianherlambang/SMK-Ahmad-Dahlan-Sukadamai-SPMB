@@ -28,7 +28,7 @@ class AdminDashboardController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, true)) {
             $user = Auth::user();
             if ($user->role === 'admin') {
                 $request->session()->regenerate();

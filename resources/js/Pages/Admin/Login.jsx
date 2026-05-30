@@ -12,8 +12,31 @@ export default function Login() {
     password: '',
   });
 
+  React.useEffect(() => {
+    try {
+      const saved = localStorage.getItem('spmb_admin_session');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setData({
+          email: parsed.email || '',
+          password: parsed.password || '',
+        });
+      }
+    } catch (err) {
+      // ignore
+    }
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      localStorage.setItem('spmb_admin_session', JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }));
+    } catch (err) {
+      // ignore
+    }
     post('/admin/login');
   };
 
