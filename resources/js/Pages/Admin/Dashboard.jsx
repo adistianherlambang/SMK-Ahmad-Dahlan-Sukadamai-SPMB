@@ -26,16 +26,42 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
     router.get('/admin/dashboard', updatedFilters, { preserveState: true });
   };
 
-  const getVerificationClass = (status) => {
-    if (status === 'Terverifikasi') return styles.badgeSuccess;
-    if (status === 'Berkas Ditolak') return styles.badgeDanger;
-    return styles.badgeWarning;
+  const getUnifiedStatus = (student) => {
+    if (student.verification_status === 'Menunggu Verifikasi') {
+      return 'Menunggu Verifikasi';
+    }
+    if (student.verification_status === 'Berkas Ditolak') {
+      return 'Berkas Ditolak';
+    }
+    if (student.verification_status === 'Terverifikasi') {
+      if (student.graduation_status === 'Diterima') {
+        return 'Diterima';
+      }
+      if (student.graduation_status === 'Tidak Lulus') {
+        return 'Tidak Lulus';
+      }
+      return 'Terverifikasi';
+    }
+    return 'Menunggu Verifikasi';
   };
 
-  const getGraduationClass = (status) => {
-    if (status === 'Diterima') return styles.badgeSuccess;
-    if (status === 'Tidak Lulus') return styles.badgeDanger;
-    return styles.badgeSecondary;
+  const getUnifiedStatusClass = (student) => {
+    if (student.verification_status === 'Menunggu Verifikasi') {
+      return styles.badgeWarning;
+    }
+    if (student.verification_status === 'Berkas Ditolak') {
+      return styles.badgeDanger;
+    }
+    if (student.verification_status === 'Terverifikasi') {
+      if (student.graduation_status === 'Diterima') {
+        return styles.badgeSuccess;
+      }
+      if (student.graduation_status === 'Tidak Lulus') {
+        return styles.badgeDanger;
+      }
+      return styles.badgeSecondary;
+    }
+    return styles.badgeWarning;
   };
 
   return (
@@ -135,8 +161,7 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
                   <th>Nama Lengkap</th>
                   <th>NISN</th>
                   <th>Jalur</th>
-                  <th>Berkas</th>
-                  <th>Kelulusan</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -148,20 +173,15 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
                       <td>{student.nisn}</td>
                       <td>{student.quota?.name}</td>
                       <td>
-                        <span className={`${styles.badge} ${getVerificationClass(student.verification_status)}`}>
-                          {student.verification_status}
-                        </span>
-                      </td>
-                      <td>
-                        <span className={`${styles.badge} ${getGraduationClass(student.graduation_status)}`}>
-                          {student.graduation_status}
+                        <span className={`${styles.badge} ${getUnifiedStatusClass(student)}`}>
+                          {getUnifiedStatus(student)}
                         </span>
                       </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="6" className={styles.emptyCell}>Tidak ada data calon siswa terdaftar.</td>
+                    <td colSpan="5" className={styles.emptyCell}>Tidak ada data calon siswa terdaftar.</td>
                   </tr>
                 )}
               </tbody>

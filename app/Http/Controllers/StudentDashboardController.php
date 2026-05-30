@@ -97,7 +97,11 @@ class StudentDashboardController extends Controller
     {
         $registration = $this->getStudentRegistration();
 
-        // Returns print view (which automatically prompts window.print())
-        return view('print_bukti', ['registration' => $registration]);
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('print_bukti', ['registration' => $registration])
+            ->setPaper('a4', 'portrait');
+
+        $filename = ($registration->graduation_status === 'Diterima' ? 'bukti-penerimaan-' : 'bukti-pendaftaran-') . $registration->registration_number . '.pdf';
+
+        return $pdf->stream($filename);
     }
 }

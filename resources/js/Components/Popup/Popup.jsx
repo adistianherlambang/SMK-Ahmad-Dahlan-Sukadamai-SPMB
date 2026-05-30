@@ -6,6 +6,7 @@ export default function Popup({ isOpen, onClose, children }) {
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.popupContent} onClick={(e) => e.stopPropagation()}>
+        <div>adsa</div>
         {children}
       </div>
     </div>

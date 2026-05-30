@@ -78,7 +78,7 @@ class AdminDashboardController extends Controller
         $stats = [
             'total' => (clone $statsQuery)->count(),
             'menunggu' => (clone $statsQuery)->where('verification_status', 'Menunggu Verifikasi')->count(),
-            'terverifikasi' => (clone $statsQuery)->where('verification_status', 'Terverifikasi')->count(),
+            'terverifikasi' => (clone $statsQuery)->where('verification_status', 'Terverifikasi')->where('graduation_status', 'Menunggu Kelulusan')->count(),
             'ditolak' => (clone $statsQuery)->where('verification_status', 'Berkas Ditolak')->count(),
             'lulus' => (clone $statsQuery)->where('graduation_status', 'Diterima')->count(),
             'tidak_lulus' => (clone $statsQuery)->where('graduation_status', 'Tidak Lulus')->count(),
@@ -115,19 +115,15 @@ class AdminDashboardController extends Controller
     {
         $yearFilter = $request->input('year', date('Y'));
         $quotaFilter = $request->input('quota_id', '');
-        $statusFilter = $request->input('status', '');
         $search = $request->input('search', '');
 
-        $query = Registration::with(['quota', 'document']);
+        $query = Registration::with(['quota', 'document'])->where('verification_status', 'Menunggu Verifikasi');
 
         if ($yearFilter) {
             $query->whereYear('created_at', $yearFilter);
         }
         if ($quotaFilter) {
             $query->where('quota_id', $quotaFilter);
-        }
-        if ($statusFilter) {
-            $query->where('verification_status', $statusFilter);
         }
         if ($search) {
             $query->where('full_name', 'like', "%{$search}%");
@@ -149,7 +145,6 @@ class AdminDashboardController extends Controller
             'filters' => [
                 'year' => $yearFilter,
                 'quota_id' => $quotaFilter,
-                'status' => $statusFilter,
                 'search' => $search
             ]
         ]);
@@ -171,12 +166,14 @@ class AdminDashboardController extends Controller
             $request->validate(['reason' => 'required|string']);
             $registration->verification_status = 'Berkas Ditolak';
             $registration->rejection_reason = $request->input('reason');
+            $registration->graduation_status = 'Menunggu Kelulusan';
             $registration->save();
             return back()->with('success', "Berkas dari {$registration->full_name} ditolak.");
         } 
         
         if ($action === 'undo') {
             $registration->verification_status = 'Menunggu Verifikasi';
+            $registration->graduation_status = 'Menunggu Kelulusan';
             $registration->rejection_reason = null;
             $registration->save();
             return back()->with('success', "Batal verifikasi {$registration->full_name} berhasil.");
@@ -270,6 +267,14 @@ class AdminDashboardController extends Controller
             $registration->graduation_status = 'Tidak Lulus';
             $registration->save();
             return back()->with('success', "{$registration->full_name} dinyatakan Tidak Lulus.");
+        }
+
+        if ($action === 'undo_verif') {
+            $registration->verification_status = 'Menunggu Verifikasi';
+            $registration->graduation_status = 'Menunggu Kelulusan';
+            $registration->rejection_reason = null;
+            $registration->save();
+            return back()->with('success', "Status berkas {$registration->full_name} berhasil dikembalikan ke antrean verifikasi.");
         }
 
         if ($action === 'delete') {

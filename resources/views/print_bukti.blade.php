@@ -2,292 +2,373 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Bukti Pendaftaran - {{ $registration->registration_number }}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>{{ $registration->graduation_status === 'Diterima' ? 'Bukti Penerimaan' : 'Bukti Pendaftaran' }} - {{ $registration->registration_number }}</title>
     <style>
+        @page {
+            size: a4 portrait;
+            margin: 25mm 20mm 20mm 20mm;
+        }
         body {
-            font-family: 'Inter', Arial, sans-serif;
+            font-family: 'Helvetica', Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             color: #000;
             background-color: #fff;
-            font-size: 14px;
-            line-height: 1.4;
+            font-size: 11px;
+            line-height: 1.35;
         }
         .container {
             width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            border: 1px solid #ccc;
-            padding: 30px;
-            box-sizing: border-box;
         }
-        .header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
+        .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 5px;
+        }
+        .logo-cell {
+            width: 70px;
+            vertical-align: middle;
         }
         .logo {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             background-color: #002147;
             color: #FDCD2D;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 24px;
-            margin-right: 20px;
-        }
-        .header-text {
-            flex: 1;
             text-align: center;
+            line-height: 60px;
+            font-weight: bold;
+            font-size: 16px;
         }
-        .header-text h1 {
-            font-size: 18px;
-            margin: 0 0 5px 0;
+        .header-text-cell {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .header-text-cell h1 {
+            font-size: 13px;
+            margin: 0 0 2px 0;
             text-transform: uppercase;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+            color: #333;
         }
-        .header-text h2 {
-            font-size: 20px;
-            margin: 0 0 5px 0;
+        .header-text-cell h2 {
+            font-size: 17px;
+            margin: 0 0 4px 0;
             color: #002147;
+            font-weight: bold;
         }
-        .header-text p {
-            font-size: 12px;
+        .header-text-cell p {
+            font-size: 10px;
             margin: 0;
             color: #555;
         }
         .divider {
+            border-top: 1px solid #000;
             border-bottom: 3px double #000;
-            margin: 15px 0;
+            height: 2px;
+            margin: 10px 0 15px 0;
         }
-        .meta-info {
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
-        .section-title {
-            font-weight: bold;
-            font-size: 15px;
-            margin-top: 20px;
-            margin-bottom: 8px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 4px;
-            text-transform: uppercase;
-            color: #002147;
-        }
-        table {
+        .meta-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 15px;
         }
-        td {
-            padding: 6px 4px;
-            vertical-align: top;
+        .meta-table td {
+            font-size: 10px;
+            font-weight: bold;
+            color: #333;
         }
-        td.label {
-            width: 220px;
+        .section-title {
+            font-weight: bold;
+            font-size: 11px;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            border-bottom: 2px solid #002147;
+            padding-bottom: 3px;
+            text-transform: uppercase;
+            color: #002147;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 8px;
+        }
+        .data-table td {
+            padding: 3.5px 2px;
+            vertical-align: top;
+            font-size: 10.5px;
+        }
+        .data-table td.label {
+            width: 180px;
+            color: #444;
+        }
+        .data-table td.colon {
+            width: 15px;
+            text-align: center;
+            color: #444;
+        }
+        .data-table td.value {
+            color: #000;
             font-weight: 500;
         }
-        td.colon {
-            width: 15px;
+        .footer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
         }
-        .footer-receipt {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-            gap: 20px;
+        .footer-table td {
+            vertical-align: top;
         }
         .requirements-box {
-            border: 1px solid #000;
-            padding: 12px;
-            width: 60%;
-            box-sizing: border-box;
-            background-color: #F8F9FA;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #fafafa;
+            border-radius: 4px;
+        }
+        .requirements-box-success {
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            background-color: #f4faf5;
+            border-radius: 4px;
         }
         .requirements-box h4 {
-            margin: 0 0 8px 0;
-            font-size: 13px;
+            margin: 0 0 5px 0;
+            font-size: 10.5px;
+            color: #002147;
             text-transform: uppercase;
+            font-weight: bold;
         }
-        .requirements-box ul {
+        .requirements-box-success h4 {
+            margin: 0 0 5px 0;
+            font-size: 10.5px;
+            color: #155724;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .requirements-box ul, .requirements-box-success ul {
             margin: 0;
-            padding-left: 20px;
-            font-size: 12px;
+            padding-left: 15px;
+            font-size: 9.5px;
+            color: #444;
+            line-height: 1.4;
         }
         .signature-box {
             text-align: center;
-            width: 35%;
+            font-size: 10.5px;
+            color: #333;
         }
-        .signature-space {
-            height: 70px;
-        }
-        .print-btn-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .print-btn {
-            background-color: #002147;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
+        .status-alert-success {
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
             border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
+            margin-bottom: 15px;
+            font-size: 11px;
+            line-height: 1.4;
         }
-        @media print {
-            .print-btn-container {
-                display: none;
-            }
-            .container {
-                border: none;
-                padding: 0;
-            }
-            body {
-                padding: 0;
-            }
+        .status-alert-info {
+            border: 1px solid #ffeeba;
+            padding: 10px;
+            background-color: #fff3cd;
+            color: #856404;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 11px;
+            line-height: 1.4;
         }
     </style>
 </head>
-<body onload="window.print()">
-    <div class="print-btn-container">
-        <button class="print-btn" onclick="window.print()">Cetak Halaman Ini</button>
-    </div>
-    
+<body>
     <div class="container">
-        <div class="header">
-            <div class="logo">SMK AD</div>
-            <div class="header-text">
-                <h1>Dinas Pendidikan dan Kebudayaan</h1>
-                <h2>SMK Ahmad Dahlan Sukadamai</h2>
-                <p>Jl. KH Ahmad Dahlan No. 1 Sukadamai, Lampung Selatan</p>
-            </div>
-        </div>
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td class="logo-cell">
+                    <div class="logo">SMK AD</div>
+                </td>
+                <td class="header-text-cell">
+                    <h1>Dinas Pendidikan dan Kebudayaan</h1>
+                    <h2>SMK Ahmad Dahlan Sukadamai</h2>
+                    <p>Jl. KH Ahmad Dahlan No. 1 Sukadamai, Lampung Selatan</p>
+                </td>
+                <td style="width: 70px;"></td> <!-- Spacer balance -->
+            </tr>
+        </table>
         
+        <!-- Double Divider Line -->
         <div class="divider"></div>
         
-        <div class="meta-info">
-            <span>NO REGISTRASI: {{ $registration->registration_number }}</span>
-            <span>TANGGAL CETAK: {{ date('d F Y') }}</span>
-        </div>
+        <!-- Meta Details -->
+        <table class="meta-table">
+            <tr>
+                <td style="text-align: left; font-size: 11px;">
+                    DOKUMEN: {{ $registration->graduation_status === 'Diterima' ? 'BUKTI PENERIMAAN' : 'BUKTI PENDAFTARAN' }}
+                </td>
+                <td style="text-align: right; font-size: 11px;">
+                    TANGGAL CETAK: {{ date('d F Y') }}
+                </td>
+            </tr>
+        </table>
+
+        <!-- Dynamic Status Alert Message -->
+        @if($registration->graduation_status === 'Diterima')
+            <div class="status-alert-success">
+                <strong>Selamat! Anda Dinyatakan Lulus Seleksi.</strong><br>
+                Berdasarkan hasil rapat pleno panitia penerimaan siswa baru, Anda secara resmi dinyatakan <strong>DITERIMA</strong> sebagai siswa baru di SMK Ahmad Dahlan Sukadamai Tahun Pelajaran {{ date('Y') }}/{{ date('Y') + 1 }}. Silakan lakukan daftar ulang fisik sesuai jadwal.
+            </div>
+        @else
+            <div class="status-alert-info">
+                <strong>Bukti Registrasi Pendaftaran Online.</strong><br>
+                Simpan bukti pendaftaran ini sebagai tanda bukti pengajuan berkas pendaftaran Anda secara online. Harap bawa bukti ini beserta dokumen pendukung saat verifikasi fisik di sekolah.
+            </div>
+        @endif
         
+        <!-- Section A -->
         <div class="section-title">A. Informasi Calon Peserta Didik</div>
-        <table>
+        <table class="data-table">
+            <tr>
+                <td class="label">Nomor Registrasi</td>
+                <td class="colon">:</td>
+                <td class="value" style="font-weight: bold; color: #002147;">{{ $registration->registration_number }}</td>
+            </tr>
             <tr>
                 <td class="label">Nama Lengkap</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->full_name }}</td>
+                <td class="value">{{ $registration->full_name }}</td>
             </tr>
             <tr>
                 <td class="label">NISN</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->nisn }}</td>
+                <td class="value">{{ $registration->nisn }}</td>
             </tr>
             <tr>
                 <td class="label">Jenis Kelamin</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->gender == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
+                <td class="value">{{ $registration->gender == 'L' ? 'Laki-laki' : 'Perempuan' }}</td>
             </tr>
             <tr>
                 <td class="label">Tempat / Tanggal Lahir</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->birth_place }} / {{ date('d-m-Y', strtotime($registration->birth_date)) }}</td>
+                <td class="value">{{ $registration->birth_place }} / {{ date('d-m-Y', strtotime($registration->birth_date)) }}</td>
             </tr>
             <tr>
                 <td class="label">Agama</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->religion }}</td>
+                <td class="value">{{ $registration->religion }}</td>
             </tr>
             <tr>
                 <td class="label">Anak Ke-</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->child_order }}</td>
+                <td class="value">{{ $registration->child_order }}</td>
             </tr>
             <tr>
                 <td class="label">Status dalam Keluarga</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->family_status }}</td>
+                <td class="value">{{ $registration->family_status }}</td>
             </tr>
             <tr>
                 <td class="label">Jalur Masuk</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->quota->name }}</td>
+                <td class="value" style="font-weight: bold;">{{ $registration->quota->name }}</td>
             </tr>
         </table>
         
+        <!-- Section B -->
         <div class="section-title">B. Keterangan Orang Tua / Wali</div>
-        <table>
+        <table class="data-table">
             <tr>
                 <td class="label">Nama Orang Tua / Wali</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->parent_name }}</td>
+                <td class="value">{{ $registration->parent_name }}</td>
             </tr>
             <tr>
                 <td class="label">Pekerjaan</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->parent_occupation }}</td>
+                <td class="value">{{ $registration->parent_occupation }}</td>
             </tr>
             <tr>
                 <td class="label">Status Hubungan</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->parent_status }}</td>
+                <td class="value">{{ $registration->parent_status }}</td>
             </tr>
         </table>
         
+        <!-- Section C -->
         <div class="section-title">C. Keterangan Asal Sekolah</div>
-        <table>
+        <table class="data-table">
             <tr>
                 <td class="label">Nama Sekolah Asal</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->school_origin }}</td>
+                <td class="value">{{ $registration->school_origin }}</td>
             </tr>
             <tr>
                 <td class="label">Alamat Sekolah Asal</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->school_address }}</td>
+                <td class="value">{{ $registration->school_address }}</td>
             </tr>
         </table>
         
+        <!-- Section D -->
         <div class="section-title">D. Kontak & Alamat Calon Siswa</div>
-        <table>
+        <table class="data-table">
             <tr>
                 <td class="label">Nomor Telepon / HP</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->phone_number }}</td>
+                <td class="value">{{ $registration->phone_number }}</td>
             </tr>
             <tr>
                 <td class="label">Alamat Domisili</td>
                 <td class="colon">:</td>
-                <td>{{ $registration->address }}</td>
+                <td class="value">{{ $registration->address }}</td>
             </tr>
         </table>
         
-        <div class="footer-receipt">
-            <div class="requirements-box">
-                <h4>Syarat Dokumen Fisik Bawaan:</h4>
-                <ul>
-                    <li>Fotokopi Kartu Keluarga (KK) - 2 Lembar</li>
-                    <li>Fotokopi Akta Kelahiran - 2 Lembar</li>
-                    <li>Fotokopi SKHU / SKL Terlegalisir - 2 Lembar</li>
-                    @if($registration->quota->name === 'Jalur Afirmasi')
-                    <li>Fotokopi SKTM / KIP / PKH - 2 Lembar</li>
+        <!-- Footer / Action box and signature -->
+        <table class="footer-table">
+            <tr>
+                <!-- Left requirements column -->
+                <td style="width: 55%;">
+                    @if($registration->graduation_status === 'Diterima')
+                        <div class="requirements-box-success">
+                            <h4>Syarat Daftar Ulang Fisik Bawaan:</h4>
+                            <ul>
+                                <li>Membawa Cetak Bukti Penerimaan Online ini</li>
+                                <li>Fotokopi Kartu Keluarga (KK) - 2 Lembar</li>
+                                <li>Fotokopi Akta Kelahiran - 2 Lembar</li>
+                                <li>Fotokopi Ijazah / SKL Terlegalisir - 2 Lembar</li>
+                                <li>Pas Foto hitam putih ukuran 3x4 - 2 Lembar</li>
+                                <li>Semua berkas dimasukkan ke dalam Map Kuning (Laki-laki) atau Map Merah (Perempuan)</li>
+                            </ul>
+                        </div>
+                    @else
+                        <div class="requirements-box">
+                            <h4>Syarat Verifikasi Berkas Fisik:</h4>
+                            <ul>
+                                <li>Membawa Cetak Bukti Pendaftaran ini</li>
+                                <li>Fotokopi Kartu Keluarga (KK) - 2 Lembar</li>
+                                <li>Fotokopi Akta Kelahiran - 2 Lembar</li>
+                                <li>Fotokopi SKHU / SKL Terlegalisir - 2 Lembar</li>
+                                @if($registration->quota->name === 'Jalur Afirmasi')
+                                    <li>Fotokopi SKTM / KIP / PKH - 2 Lembar</li>
+                                @endif
+                                <li>Semua dokumen dimasukkan ke dalam stopmap</li>
+                            </ul>
+                        </div>
                     @endif
-                    <li>Cetak Bukti Pendaftaran Online Ini</li>
-                </ul>
-            </div>
-            
-            <div class="signature-box">
-                <p>Mengetahui,</p>
-                <p>Orangtua/Wali Calon Siswa</p>
-                <div class="signature-space"></div>
-                <p>( .................................................... )</p>
-            </div>
-        </div>
+                </td>
+                
+                <!-- Right signature column -->
+                <td style="width: 45%; padding-left: 30px;">
+                    <div class="signature-box">
+                        <p style="margin: 0 0 2px 0;">Mengetahui,</p>
+                        <p style="margin: 0 0 45px 0;">Orangtua/Wali Calon Siswa</p>
+                        <p style="margin: 0; font-weight: bold;">( .................................................... )</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

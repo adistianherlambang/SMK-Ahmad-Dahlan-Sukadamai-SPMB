@@ -59,6 +59,7 @@ export default function PendaftaranBerhasil({ registration = {} }) {
               target="_blank"
               rel="noopener noreferrer"
               variant="secondary"
+              external
             >
               Unduh Bukti Pendaftaran
             </Button>

@@ -43,7 +43,7 @@ export default function Dashboard({ registration = {} }) {
       <main className={styles.container}>
         {/* Status Card Grid */}
         <section className={styles.statusSection}>
-          <h2>Status Kelulusan</h2>
+          <h2>Status Kelulusan {registration.graduation_status}</h2>
         </section>
 
         {/* Dynamic Alerts based on States */}
@@ -95,6 +95,7 @@ export default function Dashboard({ registration = {} }) {
                   rel="noopener noreferrer"
                   variant="primary"
                   className={styles.btnFullWidth}
+                  external
                 >
                   Cetak Bukti Pendaftaran
                 </Button>
@@ -142,6 +143,7 @@ export default function Dashboard({ registration = {} }) {
                   rel="noopener noreferrer"
                   variant="success"
                   className={styles.btnFullWidth}
+                  external
                 >
                   Cetak Bukti Penerimaan
                 </Button>

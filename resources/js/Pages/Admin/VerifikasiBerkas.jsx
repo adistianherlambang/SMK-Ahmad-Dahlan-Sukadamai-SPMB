@@ -10,7 +10,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
   const { flash } = usePage().props;
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
+  
   // Rejection input states
   const [showRejectForm, setShowRejectForm] = useState(false);
   const [rejectReason, setRejectReason] = useState('');
@@ -19,8 +19,8 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
     { url: '/admin/dashboard', label: 'Dasbor' },
     { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
     { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
-    {
-      label: 'Data Master',
+    { 
+      label: 'Data Master', 
       dropdown: [
         { url: '/admin/schedules', label: 'Kelola Jadwal' },
         { url: '/admin/quotas', label: 'Kelola Kuota' },
@@ -125,8 +125,8 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
           <div className={styles.filtersGrid}>
             <div className={styles.filterGroup}>
               <label>Tahun Registrasi</label>
-              <select
-                value={filters.year ?? ''}
+              <select 
+                value={filters.year ?? ''} 
                 onChange={(e) => handleFilterChange('year', e.target.value)}
                 className={styles.filterSelect}
               >
@@ -138,8 +138,8 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
 
             <div className={styles.filterGroup}>
               <label>Jalur Pendaftaran</label>
-              <select
-                value={filters.quota_id ?? ''}
+              <select 
+                value={filters.quota_id ?? ''} 
                 onChange={(e) => handleFilterChange('quota_id', e.target.value)}
                 className={styles.filterSelect}
               >
@@ -151,24 +151,10 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
             </div>
 
             <div className={styles.filterGroup}>
-              <label>Status Verifikasi</label>
-              <select
-                value={filters.status ?? ''}
-                onChange={(e) => handleFilterChange('status', e.target.value)}
-                className={styles.filterSelect}
-              >
-                <option value="">Semua Status</option>
-                <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
-                <option value="Terverifikasi">Terverifikasi</option>
-                <option value="Berkas Ditolak">Berkas Ditolak</option>
-              </select>
-            </div>
-
-            <div className={styles.filterGroup}>
               <label>Cari Calon Siswa</label>
-              <input
-                type="text"
-                placeholder="Cari Nama..."
+              <input 
+                type="text" 
+                placeholder="Cari Nama..." 
                 value={filters.search ?? ''}
                 onChange={(e) => handleFilterChange('search', e.target.value)}
                 className={styles.filterInput}
@@ -186,7 +172,6 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                   <th>No Registrasi</th>
                   <th>Nama Lengkap</th>
                   <th>Jalur</th>
-                  <th>Status Berkas</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -197,14 +182,6 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                       <td className={styles.boldCell}>{student.registration_number}</td>
                       <td>{student.full_name}</td>
                       <td>{student.quota?.name}</td>
-                      <td>
-                        <span className={`${styles.badge} ${student.verification_status === 'Terverifikasi' ? styles.badgeSuccess :
-                            student.verification_status === 'Berkas Ditolak' ? styles.badgeDanger :
-                              styles.badgeWarning
-                          }`}>
-                          {student.verification_status}
-                        </span>
-                      </td>
                       <td>
                         <div className={styles.actionBtnGrid}>
                           <button
@@ -219,7 +196,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                               <line x1="12" y1="8" x2="12.01" y2="8" />
                             </svg>
                           </button>
-
+                          
                           {student.verification_status !== 'Terverifikasi' && (
                             <button
                               type="button"
@@ -232,7 +209,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                               </svg>
                             </button>
                           )}
-
+                          
                           {student.verification_status !== 'Berkas Ditolak' && (
                             <button
                               type="button"
@@ -252,7 +229,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="5" className={styles.emptyCell}>Tidak ada data calon siswa terdaftar.</td>
+                    <td colSpan="4" className={styles.emptyCell}>Tidak ada data calon siswa terdaftar.</td>
                   </tr>
                 )}
               </tbody>
@@ -274,10 +251,11 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
               {/* Status Indicator */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#F8FAFC', padding: '12px', borderRadius: '4px' }}>
                 <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#718096' }}>STATUS BERKAS CURRENTLY:</span>
-                <span className={`${styles.badge} ${selectedStudent.verification_status === 'Terverifikasi' ? styles.badgeSuccess :
-                    selectedStudent.verification_status === 'Berkas Ditolak' ? styles.badgeDanger :
-                      styles.badgeWarning
-                  }`}>{selectedStudent.verification_status}</span>
+                <span className={`${styles.badge} ${
+                  selectedStudent.verification_status === 'Terverifikasi' ? styles.badgeSuccess :
+                  selectedStudent.verification_status === 'Berkas Ditolak' ? styles.badgeDanger :
+                  styles.badgeWarning
+                }`}>{selectedStudent.verification_status}</span>
               </div>
 
               {/* Student details summary */}
@@ -361,8 +339,8 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                 {!showRejectForm ? (
                   <>
                     {selectedStudent.verification_status !== 'Terverifikasi' && (
-                      <Button
-                        onClick={() => handleAction('approve')}
+                      <Button 
+                        onClick={() => handleAction('approve')} 
                         variant="success"
                         style={{ width: '100%' }}
                       >
@@ -371,8 +349,8 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                     )}
 
                     {selectedStudent.verification_status === 'Menunggu Verifikasi' && (
-                      <Button
-                        onClick={() => setShowRejectForm(true)}
+                      <Button 
+                        onClick={() => setShowRejectForm(true)} 
                         variant="secondary"
                         style={{ width: '100%', backgroundColor: '#D69E2E', border: 'none', color: 'white' }}
                       >
@@ -381,8 +359,8 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                     )}
 
                     {selectedStudent.verification_status !== 'Menunggu Verifikasi' && (
-                      <Button
-                        onClick={() => handleAction('undo')}
+                      <Button 
+                        onClick={() => handleAction('undo')} 
                         variant="outline"
                         style={{ width: '100%' }}
                       >
@@ -390,8 +368,8 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                       </Button>
                     )}
 
-                    <Button
-                      onClick={() => handleAction('delete')}
+                    <Button 
+                      onClick={() => handleAction('delete')} 
                       variant="danger"
                       style={{ width: '100%' }}
                     >
@@ -401,7 +379,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                 ) : (
                   <form onSubmit={submitRejection} style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
                     <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#4A5568' }}>Alasan Penolakan Berkas:</label>
-                    <textarea
+                    <textarea 
                       value={rejectReason}
                       onChange={(e) => setRejectReason(e.target.value)}
                       placeholder="Contoh: Berkas Kartu Keluarga buram dan tidak terbaca..."
@@ -409,15 +387,15 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                       required
                     ></textarea>
                     <div style={{ display: 'flex', gap: '8px' }}>
-                      <Button
+                      <Button 
                         variant="outline"
-                        onClick={() => setShowRejectForm(false)}
+                        onClick={() => setShowRejectForm(false)} 
                         style={{ flex: 1 }}
                       >
                         Batal
                       </Button>
-                      <Button
-                        type="submit"
+                      <Button 
+                        type="submit" 
                         variant="danger"
                         style={{ flex: 1 }}
                       >
