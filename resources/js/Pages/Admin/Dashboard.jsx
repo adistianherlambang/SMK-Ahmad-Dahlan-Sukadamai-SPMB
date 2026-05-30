@@ -111,7 +111,7 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
         {/* Filters and Search */}
         <section className={styles.filterSection}>
           <div className={styles.filtersGrid}>
-            <div style={{ display: "flex", gap: "1rem", flex: 1 }}>
+            <div className={styles.filterWrapper}>
               <div className={styles.filterGroup}>
                 <label>Tahun Registrasi</label>
                 <select

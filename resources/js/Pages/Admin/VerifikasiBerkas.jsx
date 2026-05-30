@@ -129,31 +129,33 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
         {/* Filters Grid */}
         <section className={styles.filterSection}>
           <div className={styles.filtersGrid}>
-            <div className={styles.filterGroup}>
-              <label>Tahun Registrasi</label>
-              <select
-                value={filters.year ?? ''}
-                onChange={(e) => handleFilterChange('year', e.target.value)}
-                className={styles.filterSelect}
-              >
-                {years.map((y) => (
-                  <option key={y} value={y}>{y}</option>
-                ))}
-              </select>
-            </div>
+            <div className={styles.filterWrapper}>
+              <div className={styles.filterGroup}>
+                <label>Tahun Registrasi</label>
+                <select
+                  value={filters.year ?? ''}
+                  onChange={(e) => handleFilterChange('year', e.target.value)}
+                  className={styles.filterSelect}
+                >
+                  {years.map((y) => (
+                    <option key={y} value={y}>{y}</option>
+                  ))}
+                </select>
+              </div>
 
-            <div className={styles.filterGroup}>
-              <label>Jalur Pendaftaran</label>
-              <select
-                value={filters.quota_id ?? ''}
-                onChange={(e) => handleFilterChange('quota_id', e.target.value)}
-                className={styles.filterSelect}
-              >
-                <option value="">Semua Jalur</option>
-                {quotas.map((q) => (
-                  <option key={q.id} value={q.id}>{q.name}</option>
-                ))}
-              </select>
+              <div className={styles.filterGroup}>
+                <label>Jalur Pendaftaran</label>
+                <select
+                  value={filters.quota_id ?? ''}
+                  onChange={(e) => handleFilterChange('quota_id', e.target.value)}
+                  className={styles.filterSelect}
+                >
+                  <option value="">Semua Jalur</option>
+                  {quotas.map((q) => (
+                    <option key={q.id} value={q.id}>{q.name}</option>
+                  ))}
+                </select>
+              </div>
             </div>
 
             <div className={styles.filterGroup}>
@@ -219,7 +221,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                           {student.verification_status !== 'Berkas Ditolak' && (
                             <button
                               type="button"
-                              className={`${styles.iconBtn} ${styles.iconBtnDanger}`}
+                              className={`${styles.iconBtn} ${styles.iconBtnWarning}`}
                               onClick={() => handleDirectAction(student, 'reject')}
                               title="Tolak Berkas"
                             >
