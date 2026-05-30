@@ -7,8 +7,8 @@ import styles from './KuotaPendaftaran.module.css';
 export default function KuotaPendaftaran({ quotas = [] }) {
   const links = [
     { url: '/', label: 'Beranda' },
-    { 
-      label: 'Profil', 
+    {
+      label: 'Profil',
       dropdown: [
         { url: '/profil/sambutan', label: 'Sambutan Kepala Sekolah' },
         { url: '/profil/visi-misi', label: 'Visi & Misi' },
@@ -16,8 +16,8 @@ export default function KuotaPendaftaran({ quotas = [] }) {
         { url: '/profil/sejarah', label: 'Sejarah Singkat' }
       ]
     },
-    { 
-      label: 'Informasi Pendaftaran', 
+    {
+      label: 'Informasi Pendaftaran',
       dropdown: [
         { url: '/informasi/jadwal', label: 'Jadwal SPMB' },
         { url: '/informasi/kuota', label: 'Kuota Pendaftaran' }
@@ -75,20 +75,6 @@ export default function KuotaPendaftaran({ quotas = [] }) {
           )}
         </section>
 
-        <section className={styles.guideCard}>
-          <h3>Tips Memilih Jalur Masuk</h3>
-          {quotas.length > 0 ? (
-            <ul>
-              {quotas.map((item) => (
-                <li key={item.id}>
-                  <strong>{item.name}:</strong> {item.description || 'Tidak ada deskripsi rincian untuk jalur pendaftaran ini.'}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className={styles.emptyText} style={{ padding: '8px 0', fontSize: '12px' }}>Belum ada informasi jalur masuk yang tersedia.</p>
-          )}
-        </section>
       </main>
 
       <Footer />
