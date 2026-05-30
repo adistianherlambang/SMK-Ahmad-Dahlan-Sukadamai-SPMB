@@ -173,6 +173,9 @@ export default function Dashboard({ registration = {} }) {
                   <p>Mohon maaf, berdasarkan hasil keputusan panitia seleksi penerimaan siswa baru, Anda dinyatakan <b>Tidak Lulus</b> seleksi masuk SMK Ahmad Dahlan Sukadamai gelombang ini.</p>
                 </div>
               </div>
+              <div className={styles.batik}>
+                <Batik section="atas" color="#FF0200" />
+              </div>
             </div>
           )}
         </section>
