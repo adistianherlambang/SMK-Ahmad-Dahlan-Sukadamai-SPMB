@@ -10,7 +10,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
   const { flash } = usePage().props;
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  
+
   // Rejection input states
   const [showRejectForm, setShowRejectForm] = useState(false);
   const [rejectReason, setRejectReason] = useState('');
@@ -27,8 +27,8 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
     { url: '/admin/dashboard', label: 'Dasbor' },
     { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
     { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
-    { 
-      label: 'Data Master', 
+    {
+      label: 'Data Master',
       dropdown: [
         { url: '/admin/schedules', label: 'Kelola Jadwal' },
         { url: '/admin/quotas', label: 'Kelola Kuota' },
@@ -131,8 +131,8 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
           <div className={styles.filtersGrid}>
             <div className={styles.filterGroup}>
               <label>Tahun Registrasi</label>
-              <select 
-                value={filters.year ?? ''} 
+              <select
+                value={filters.year ?? ''}
                 onChange={(e) => handleFilterChange('year', e.target.value)}
                 className={styles.filterSelect}
               >
@@ -144,8 +144,8 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
 
             <div className={styles.filterGroup}>
               <label>Jalur Pendaftaran</label>
-              <select 
-                value={filters.quota_id ?? ''} 
+              <select
+                value={filters.quota_id ?? ''}
                 onChange={(e) => handleFilterChange('quota_id', e.target.value)}
                 className={styles.filterSelect}
               >
@@ -158,9 +158,9 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
 
             <div className={styles.filterGroup}>
               <label>Cari Calon Siswa</label>
-              <input 
-                type="text" 
-                placeholder="Cari Nama..." 
+              <input
+                type="text"
+                placeholder="Cari Nama..."
                 value={filters.search ?? ''}
                 onChange={(e) => handleFilterChange('search', e.target.value)}
                 className={styles.filterInput}
@@ -202,7 +202,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                               <line x1="12" y1="8" x2="12.01" y2="8" />
                             </svg>
                           </button>
-                          
+
                           {student.verification_status !== 'Terverifikasi' && (
                             <button
                               type="button"
@@ -215,7 +215,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                               </svg>
                             </button>
                           )}
-                          
+
                           {student.verification_status !== 'Berkas Ditolak' && (
                             <button
                               type="button"
@@ -253,16 +253,6 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                 </h2>
               </div>
 
-              {/* Status Indicator */}
-              <div className={styles.statusRow}>
-                <span className={styles.statusLabel}>STATUS BERKAS:</span>
-                <span className={`${styles.badge} ${
-                  selectedStudent.verification_status === 'Terverifikasi' ? styles.badgeSuccess :
-                  selectedStudent.verification_status === 'Berkas Ditolak' ? styles.badgeDanger :
-                  styles.badgeWarning
-                }`}>{selectedStudent.verification_status}</span>
-              </div>
-
               {/* Student details summary */}
               <div className={`${formStyles.section} ${styles.sectionWrapper}`}>
                 <h4 className={`${formStyles.sectionTitle} ${styles.modalSectionTitle}`}>Data Identitas Calon Siswa</h4>
@@ -297,35 +287,115 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                 </table>
               </div>
 
+              <div className={`${formStyles.section} ${styles.sectionWrapper}`}>
+                <h4 className={`${formStyles.sectionTitle} ${styles.modalSectionTitle}`}>Keterangan Orang Tua / Wali</h4>
+                <table className={styles.detailsTable}>
+                  <tbody>
+                    <tr>
+                      <td className={styles.detailsLabel}>Nama Ortu / Wali</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.parent_name}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.detailsLabel}>Pekerjaan Ortu / Wali</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.parent_occupation}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.detailsLabel}>Status</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.parent_status}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className={`${formStyles.section} ${styles.sectionWrapper}`}>
+                <h4 className={`${formStyles.sectionTitle} ${styles.modalSectionTitle}`}>Keterangan Sekolah Asal</h4>
+                <table className={styles.detailsTable}>
+                  <tbody>
+                    <tr>
+                      <td className={styles.detailsLabel}>Nama Sekolah</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.school_origin}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.detailsLabel}>Alamat</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.school_address}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className={`${formStyles.section} ${styles.sectionWrapper}`}>
+                <h4 className={`${formStyles.sectionTitle} ${styles.modalSectionTitle}`}>Alamat</h4>
+                <table className={styles.detailsTable}>
+                  <tbody>
+                    <tr>
+                      <td className={styles.detailsLabel}>No. Telp / WA</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.phone_number}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.detailsLabel}>Alamat</td>
+                      <td className={styles.detailsSeparator}>:</td>
+                      <td>{selectedStudent.address}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
               {/* File list checklist */}
               <div className={`${formStyles.section} ${styles.sectionWrapper}`}>
-                <h4 className={`${formStyles.sectionTitle} ${styles.modalSectionTitle}`}>Dokumen Berkas Unggahan (PDF)</h4>
+                <h4 className={`${formStyles.sectionTitle} ${styles.modalSectionTitle}`}>Berkas Ter-Upload</h4>
                 <div className={styles.documentList}>
                   {selectedStudent.document?.file_kk ? (
-                    <div className={styles.documentRow}>
-                      <span>Kartu Keluarga (KK)</span>
-                      <a href={selectedStudent.document.file_kk} target="_blank" rel="noopener noreferrer" className={styles.modalLink}>Lihat File</a>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "50%" }}>
+                      <p style={{ fontSize: "12px" }}>Kartu Keluarga (KK)</p>
+                      <a href={selectedStudent.document.file_kk} target="_blank" rel="noopener noreferrer" className={styles.documentRow}>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7 5.7C7.50632 5.7 7.99191 5.88964 8.34993 6.22721C8.70796 6.56477 8.90909 7.02261 8.90909 7.5C8.90909 7.97739 8.70796 8.43523 8.34993 8.77279C7.99191 9.11036 7.50632 9.3 7 9.3C6.49368 9.3 6.00809 9.11036 5.65007 8.77279C5.29204 8.43523 5.09091 7.97739 5.09091 7.5C5.09091 7.02261 5.29204 6.56477 5.65007 6.22721C6.00809 5.88964 6.49368 5.7 7 5.7ZM7 3C10.1818 3 12.8991 4.866 14 7.5C12.8991 10.134 10.1818 12 7 12C3.81818 12 1.10091 10.134 0 7.5C1.10091 4.866 3.81818 3 7 3ZM1.38727 7.5C1.90162 8.49018 2.70029 9.32445 3.69249 9.90795C4.68469 10.4915 5.83062 10.8008 7 10.8008C8.16938 10.8008 9.31531 10.4915 10.3075 9.90795C11.2997 9.32445 12.0984 8.49018 12.6127 7.5C12.0984 6.50982 11.2997 5.67555 10.3075 5.09205C9.31531 4.50854 8.16938 4.19921 7 4.19921C5.83062 4.19921 4.68469 4.50854 3.69249 5.09205C2.70029 5.67555 1.90162 6.50982 1.38727 7.5Z" fill="#1F1B18" />
+                        </svg>
+                        <p className={styles.modalLink}>Lihat File</p>
+                      </a>
                     </div>
                   ) : <span className={styles.errorTextSmall}>File KK Hilang/Tidak diunggah</span>}
 
                   {selectedStudent.document?.file_akta ? (
-                    <div className={styles.documentRow}>
-                      <span>Akta Kelahiran</span>
-                      <a href={selectedStudent.document.file_akta} target="_blank" rel="noopener noreferrer" className={styles.modalLink}>Lihat File</a>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "50%" }}>
+                      <p style={{ fontSize: "12px" }}>Akta Kelahiran</p>
+                      <a href={selectedStudent.document.file_akta} target="_blank" rel="noopener noreferrer" className={styles.documentRow}>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7 5.7C7.50632 5.7 7.99191 5.88964 8.34993 6.22721C8.70796 6.56477 8.90909 7.02261 8.90909 7.5C8.90909 7.97739 8.70796 8.43523 8.34993 8.77279C7.99191 9.11036 7.50632 9.3 7 9.3C6.49368 9.3 6.00809 9.11036 5.65007 8.77279C5.29204 8.43523 5.09091 7.97739 5.09091 7.5C5.09091 7.02261 5.29204 6.56477 5.65007 6.22721C6.00809 5.88964 6.49368 5.7 7 5.7ZM7 3C10.1818 3 12.8991 4.866 14 7.5C12.8991 10.134 10.1818 12 7 12C3.81818 12 1.10091 10.134 0 7.5C1.10091 4.866 3.81818 3 7 3ZM1.38727 7.5C1.90162 8.49018 2.70029 9.32445 3.69249 9.90795C4.68469 10.4915 5.83062 10.8008 7 10.8008C8.16938 10.8008 9.31531 10.4915 10.3075 9.90795C11.2997 9.32445 12.0984 8.49018 12.6127 7.5C12.0984 6.50982 11.2997 5.67555 10.3075 5.09205C9.31531 4.50854 8.16938 4.19921 7 4.19921C5.83062 4.19921 4.68469 4.50854 3.69249 5.09205C2.70029 5.67555 1.90162 6.50982 1.38727 7.5Z" fill="#1F1B18" />
+                        </svg>
+                        <p className={styles.modalLink}>Lihat File</p>
+                      </a>
                     </div>
                   ) : <span className={styles.errorTextSmall}>File Akta Hilang/Tidak diunggah</span>}
-
+                </div>
+                <div className={styles.documentList}>
                   {selectedStudent.document?.file_skhu_skl ? (
-                    <div className={styles.documentRow}>
-                      <span>SKHU / SKL</span>
-                      <a href={selectedStudent.document.file_skhu_skl} target="_blank" rel="noopener noreferrer" className={styles.modalLink}>Lihat File</a>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "50%" }}>
+                      <p style={{ fontSize: "12px" }}>SKHU / SKL</p>
+                      <a href={selectedStudent.document.file_skhu_skl} target="_blank" rel="noopener noreferrer" className={styles.documentRow}>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7 5.7C7.50632 5.7 7.99191 5.88964 8.34993 6.22721C8.70796 6.56477 8.90909 7.02261 8.90909 7.5C8.90909 7.97739 8.70796 8.43523 8.34993 8.77279C7.99191 9.11036 7.50632 9.3 7 9.3C6.49368 9.3 6.00809 9.11036 5.65007 8.77279C5.29204 8.43523 5.09091 7.97739 5.09091 7.5C5.09091 7.02261 5.29204 6.56477 5.65007 6.22721C6.00809 5.88964 6.49368 5.7 7 5.7ZM7 3C10.1818 3 12.8991 4.866 14 7.5C12.8991 10.134 10.1818 12 7 12C3.81818 12 1.10091 10.134 0 7.5C1.10091 4.866 3.81818 3 7 3ZM1.38727 7.5C1.90162 8.49018 2.70029 9.32445 3.69249 9.90795C4.68469 10.4915 5.83062 10.8008 7 10.8008C8.16938 10.8008 9.31531 10.4915 10.3075 9.90795C11.2997 9.32445 12.0984 8.49018 12.6127 7.5C12.0984 6.50982 11.2997 5.67555 10.3075 5.09205C9.31531 4.50854 8.16938 4.19921 7 4.19921C5.83062 4.19921 4.68469 4.50854 3.69249 5.09205C2.70029 5.67555 1.90162 6.50982 1.38727 7.5Z" fill="#1F1B18" />
+                        </svg>
+                        <p className={styles.modalLink}>Lihat File</p>
+                      </a>
                     </div>
                   ) : <span className={styles.errorTextSmall}>File SKHU/SKL Hilang/Tidak diunggah</span>}
 
                   {selectedStudent.document?.file_sktm ? (
-                    <div className={styles.documentRow}>
-                      <span>SKTM / KIP / PKH</span>
-                      <a href={selectedStudent.document.file_sktm} target="_blank" rel="noopener noreferrer" className={styles.modalLink}>Lihat File</a>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px", width: "50%" }}>
+                      <p style={{ fontSize: "12px" }}>SKTM</p>
+                      <a href={selectedStudent.document.file_sktm} target="_blank" rel="noopener noreferrer" className={styles.documentRow}>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7 5.7C7.50632 5.7 7.99191 5.88964 8.34993 6.22721C8.70796 6.56477 8.90909 7.02261 8.90909 7.5C8.90909 7.97739 8.70796 8.43523 8.34993 8.77279C7.99191 9.11036 7.50632 9.3 7 9.3C6.49368 9.3 6.00809 9.11036 5.65007 8.77279C5.29204 8.43523 5.09091 7.97739 5.09091 7.5C5.09091 7.02261 5.29204 6.56477 5.65007 6.22721C6.00809 5.88964 6.49368 5.7 7 5.7ZM7 3C10.1818 3 12.8991 4.866 14 7.5C12.8991 10.134 10.1818 12 7 12C3.81818 12 1.10091 10.134 0 7.5C1.10091 4.866 3.81818 3 7 3ZM1.38727 7.5C1.90162 8.49018 2.70029 9.32445 3.69249 9.90795C4.68469 10.4915 5.83062 10.8008 7 10.8008C8.16938 10.8008 9.31531 10.4915 10.3075 9.90795C11.2997 9.32445 12.0984 8.49018 12.6127 7.5C12.0984 6.50982 11.2997 5.67555 10.3075 5.09205C9.31531 4.50854 8.16938 4.19921 7 4.19921C5.83062 4.19921 4.68469 4.50854 3.69249 5.09205C2.70029 5.67555 1.90162 6.50982 1.38727 7.5Z" fill="#1F1B18" />
+                        </svg>
+                        <p className={styles.modalLink}>Lihat File</p>
+                      </a>
                     </div>
                   ) : <span className={styles.infoTextSmall}>- File SKTM tidak dilampirkan</span>}
                 </div>
@@ -339,77 +409,9 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
                 </div>
               )}
 
-              {/* Action Buttons Area */}
-              <div className={styles.actionArea}>
-                {!showRejectForm ? (
-                  <>
-                    {selectedStudent.verification_status !== 'Terverifikasi' && (
-                      <Button 
-                        onClick={() => handleAction('approve')} 
-                        variant="success"
-                        className={styles.fullWidthBtn}
-                      >
-                        Setujui & Verifikasi Berkas
-                      </Button>
-                    )}
-
-                    {selectedStudent.verification_status === 'Menunggu Verifikasi' && (
-                      <Button 
-                        onClick={() => setShowRejectForm(true)} 
-                        variant="secondary"
-                        className={styles.warningBtn}
-                      >
-                        Tolak Berkas Persyaratan
-                      </Button>
-                    )}
-
-                    {selectedStudent.verification_status !== 'Menunggu Verifikasi' && (
-                      <Button 
-                        onClick={() => handleAction('undo')} 
-                        variant="outline"
-                        className={styles.fullWidthBtn}
-                      >
-                        Kembalikan Status Ke Menunggu
-                      </Button>
-                    )}
-
-                    <Button 
-                      onClick={() => handleAction('delete')} 
-                      variant="danger"
-                      className={styles.fullWidthBtn}
-                    >
-                      Hapus Pendaftaran Calon Siswa
-                    </Button>
-                  </>
-                ) : (
-                  <form onSubmit={submitRejection} className={styles.confirmModalForm}>
-                    <label className={styles.modalLabel}>Alasan Penolakan Berkas:</label>
-                    <textarea 
-                      value={rejectReason}
-                      onChange={(e) => setRejectReason(e.target.value)}
-                      placeholder="Contoh: Berkas Kartu Keluarga buram dan tidak terbaca..."
-                      className={styles.modalTextarea}
-                      required
-                    ></textarea>
-                    <div className={styles.btnRow}>
-                      <Button 
-                        variant="outline"
-                        onClick={() => setShowRejectForm(false)} 
-                        className={styles.flex1Btn}
-                      >
-                        Batal
-                      </Button>
-                      <Button 
-                        type="submit" 
-                        variant="danger"
-                        className={styles.flex1Btn}
-                      >
-                        Kirim Penolakan
-                      </Button>
-                    </div>
-                  </form>
-                )}
-              </div>
+              <Button onClick={handleClosePopup} variant="primary">
+                Tutup
+              </Button>
             </div>
           )}
         </Popup>

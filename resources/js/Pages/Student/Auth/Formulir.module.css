@@ -117,9 +117,8 @@
 
 .sectionTitle {
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 400;
   color: var(--color-primary-dark);
-  padding-bottom: 6px;
   text-align: left;
 }
 

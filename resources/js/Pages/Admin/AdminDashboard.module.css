@@ -375,6 +375,13 @@
   font-weight: 400;
 }
 
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
 .detailsTable {
   width: 100%;
   border-collapse: collapse;
@@ -383,14 +390,13 @@
 }
 
 .detailsTable td {
-  padding: 6px 0;
   font-weight: 400;
   vertical-align: top;
   color: var(--color-text-main);
 }
 
 .detailsLabel {
-  width: 110px;
+  width: 124px;
 }
 
 .detailsSeparator {
@@ -399,18 +405,20 @@
 
 .documentList {
   display: flex;
-  flex-direction: column;
   gap: 8px;
+  width: 100%;
 }
 
 .documentRow {
   display: flex;
-  justify-content: space-between;
-  padding: 8px;
-  border: 1px solid #E2E8F0;
-  border-radius: 4px;
   font-size: 12px;
   font-weight: 400;
+  gap: 8px;
+  align-items: center;
+  background-color: var(--color-accent-yellow);
+  padding: 12px;
+  border-radius: 4px;
+  flex: 1;
 }
 
 .modalLink {
