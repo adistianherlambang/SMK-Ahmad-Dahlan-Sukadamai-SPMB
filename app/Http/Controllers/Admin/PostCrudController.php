@@ -37,9 +37,32 @@ class PostCrudController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->input('type') === 'pengumuman') {
+                        $charCount = mb_strlen($value);
+                        if ($charCount > 60) {
+                            $fail("Judul pengumuman tidak boleh lebih dari 60 karakter (saat ini: {$charCount} karakter).");
+                        }
+                    }
+                }
+            ],
             'type' => 'required|in:berita,pengumuman',
-            'content' => 'required|string',
+            'content' => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->input('type') === 'pengumuman') {
+                        $charCount = mb_strlen($value);
+                        if ($charCount > 100) {
+                            $fail("Isi/Deskripsi pengumuman tidak boleh lebih dari 100 karakter (saat ini: {$charCount} karakter).");
+                        }
+                    }
+                }
+            ],
             'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
@@ -69,9 +92,32 @@ class PostCrudController extends Controller
         $post = Post::findOrFail($id);
 
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->input('type') === 'pengumuman') {
+                        $charCount = mb_strlen($value);
+                        if ($charCount > 60) {
+                            $fail("Judul pengumuman tidak boleh lebih dari 60 karakter (saat ini: {$charCount} karakter).");
+                        }
+                    }
+                }
+            ],
             'type' => 'required|in:berita,pengumuman',
-            'content' => 'required|string',
+            'content' => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->input('type') === 'pengumuman') {
+                        $charCount = mb_strlen($value);
+                        if ($charCount > 100) {
+                            $fail("Isi/Deskripsi pengumuman tidak boleh lebih dari 100 karakter (saat ini: {$charCount} karakter).");
+                        }
+                    }
+                }
+            ],
             'image' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
         ]);
 

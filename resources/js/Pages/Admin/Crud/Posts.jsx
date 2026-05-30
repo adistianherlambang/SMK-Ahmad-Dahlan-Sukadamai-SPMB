@@ -14,7 +14,7 @@ export default function Posts({ posts = [] }) {
   const [previewUrl, setPreviewUrl] = useState(null);
   const imageInputRef = useRef(null);
 
-  const { data, setData, post, put, reset, processing, errors } = useForm({
+  const { data, setData, post, put, reset, processing, errors, setError, clearErrors } = useForm({
     title: '',
     content: '',
     type: 'berita',
@@ -76,6 +76,25 @@ export default function Posts({ posts = [] }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    clearErrors();
+
+    if (data.type === 'pengumuman') {
+      const titleLength = (data.title || '').length;
+      const contentLength = (data.content || '').length;
+      let hasError = false;
+
+      if (titleLength > 60) {
+        setError('title', `Judul pengumuman tidak boleh lebih dari 60 karakter (saat ini: ${titleLength} karakter).`);
+        hasError = true;
+      }
+      if (contentLength > 100) {
+        setError('content', `Isi/Deskripsi pengumuman tidak boleh lebih dari 100 karakter (saat ini: ${contentLength} karakter).`);
+        hasError = true;
+      }
+
+      if (hasError) return;
+    }
+
     if (editId) {
       // Use POST with _method: 'PUT' for file upload compatibility in PHP PUT requests
       router.post(`/admin/posts/${editId}`, {
@@ -209,7 +228,12 @@ export default function Posts({ posts = [] }) {
                 onChange={(e) => setData('title', e.target.value)}
                 required
               />
-              {errors.title && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.title}</div>}
+              {data.type === 'pengumuman' && (
+                <div style={{ fontSize: '11px', color: (data.title || '').length > 60 ? 'var(--color-danger)' : '#718096', marginTop: '-12px', marginBottom: '8px' }}>
+                  Jumlah karakter judul: {(data.title || '').length} / 60 karakter
+                </div>
+              )}
+              {errors.title && <div style={{ fontSize: '11px', color: 'var(--color-danger)', marginTop: '-8px', marginBottom: '8px' }}>{errors.title}</div>}
 
               <Select 
                 label="Kategori Kategori"
@@ -222,7 +246,7 @@ export default function Posts({ posts = [] }) {
                 onChange={(e) => setData('type', e.target.value)}
                 required
               />
-              {errors.type && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.type}</div>}
+              {errors.type && <div style={{ fontSize: '11px', color: 'var(--color-danger)', marginBottom: '8px' }}>{errors.type}</div>}
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#4A5568' }}>Konten / Isi Postingan</label>
@@ -233,7 +257,12 @@ export default function Posts({ posts = [] }) {
                   style={{ width: '100%', minHeight: '120px', padding: '10px', border: '1px solid #CBD5E0', borderRadius: '4px', fontSize: '13px', boxSizing: 'border-box' }}
                   required
                 ></textarea>
-                {errors.content && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.content}</div>}
+                {data.type === 'pengumuman' && (
+                  <div style={{ fontSize: '11px', color: (data.content || '').length > 100 ? 'var(--color-danger)' : '#718096', marginTop: '2px' }}>
+                    Jumlah karakter isi: {(data.content || '').length} / 100 karakter
+                  </div>
+                )}
+                {errors.content && <div style={{ fontSize: '11px', color: 'var(--color-danger)', marginTop: '4px' }}>{errors.content}</div>}
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
