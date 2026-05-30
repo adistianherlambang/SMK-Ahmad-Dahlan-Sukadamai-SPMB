@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Head, router, usePage, useForm } from '@inertiajs/react';
 import Navbar from '../../../Components/Navbar/Navbar';
+import Footer from '../../../Components/Footer/Footer';
 import Popup from '../../../Components/Popup/Popup';
 import Input from '../../../Components/Input/Input';
 import Button from '../../../Components/Button/Button';
@@ -21,8 +22,8 @@ export default function Quotas({ quotas = [] }) {
     { url: '/admin/dashboard', label: 'Dasbor' },
     { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
     { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
-    { 
-      label: 'Data Master', 
+    {
+      label: 'Data Master',
       dropdown: [
         { url: '/admin/schedules', label: 'Kelola Jadwal' },
         { url: '/admin/quotas', label: 'Kelola Kuota' },
@@ -84,7 +85,7 @@ export default function Quotas({ quotas = [] }) {
             <h1>Kelola Jalur Pendaftaran</h1>
             <p>Atur kuota tampung dan deskripsi jalur seleksi penerimaan siswa baru.</p>
           </div>
-          <Button onClick={handleOpenAdd} variant="secondary">
+          <Button style={{ width: "100%" }} onClick={handleOpenAdd} variant="primary">
             Tambah Jalur Baru
           </Button>
         </div>
@@ -119,12 +120,9 @@ export default function Quotas({ quotas = [] }) {
                       <td>{idx + 1}</td>
                       <td className={styles.boldCell}>{item.name}</td>
                       <td><strong>{item.quota_limit}</strong> Kursi</td>
-                      <td>
-                        <span className={`${styles.badge} ${item.sisa > 0 ? styles.badgeSuccess : styles.badgeDanger}`}>
-                          {item.sisa} Kursi Sisa
-                        </span>
-                      </td>
+                      <td>{item.sisa} Kursi Sisa</td>
                       <td>{item.description}</td>
+                      <td>
                         <div className={styles.actionBtnGrid}>
                           <button
                             type="button"
@@ -151,6 +149,7 @@ export default function Quotas({ quotas = [] }) {
                             </svg>
                           </button>
                         </div>
+                      </td>
                     </tr>
                   ))
                 ) : (
@@ -171,7 +170,7 @@ export default function Quotas({ quotas = [] }) {
             </h2>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <Input 
+              <Input
                 label="Nama Jalur Pendaftaran"
                 placeholder="Contoh: Jalur Prestasi Akademik..."
                 value={data.name}
@@ -180,7 +179,7 @@ export default function Quotas({ quotas = [] }) {
               />
               {errors.name && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.name}</div>}
 
-              <Input 
+              <Input
                 label="Kuota / Kapasitas Maksimal (Siswa)"
                 type="number"
                 min={1}
@@ -193,7 +192,7 @@ export default function Quotas({ quotas = [] }) {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#4A5568' }}>Keterangan / Kriteria Jalur</label>
-                <textarea 
+                <textarea
                   value={data.description}
                   onChange={(e) => setData('description', e.target.value)}
                   placeholder="Kriteria persyaratan jalur masuk..."
@@ -202,15 +201,15 @@ export default function Quotas({ quotas = [] }) {
               </div>
 
               <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid #EDF2F7', paddingTop: '16px', marginTop: '8px' }}>
-                <Button 
+                <Button
                   variant="outline"
-                  onClick={handleClose} 
+                  onClick={handleClose}
                   style={{ flex: 1 }}
                 >
                   Batal
                 </Button>
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   loading={processing}
                   style={{ flex: 1 }}
                 >
@@ -221,6 +220,7 @@ export default function Quotas({ quotas = [] }) {
           </div>
         </Popup>
       </main>
+      <Footer />
     </>
   );
 }

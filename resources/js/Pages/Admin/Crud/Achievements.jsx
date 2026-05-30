@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Head, router, usePage, useForm } from '@inertiajs/react';
 import Navbar from '../../../Components/Navbar/Navbar';
+import Footer from '../../../Components/Footer/Footer';
 import Popup from '../../../Components/Popup/Popup';
 import Input from '../../../Components/Input/Input';
 import Button from '../../../Components/Button/Button';
@@ -321,6 +322,7 @@ export default function Achievements({ achievements = [] }) {
           </div>
         </Popup>
       </main>
+      <Footer />
     </>
   );
 }

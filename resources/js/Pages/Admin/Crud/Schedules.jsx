@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Head, router, usePage, useForm } from '@inertiajs/react';
 import Navbar from '../../../Components/Navbar/Navbar';
+import Footer from '../../../Components/Footer/Footer';
 import Popup from '../../../Components/Popup/Popup';
 import Input from '../../../Components/Input/Input';
 import Button from '../../../Components/Button/Button';
@@ -22,8 +23,8 @@ export default function Schedules({ schedules = [] }) {
     { url: '/admin/dashboard', label: 'Dasbor' },
     { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
     { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
-    { 
-      label: 'Data Master', 
+    {
+      label: 'Data Master',
       dropdown: [
         { url: '/admin/schedules', label: 'Kelola Jadwal' },
         { url: '/admin/quotas', label: 'Kelola Kuota' },
@@ -90,7 +91,7 @@ export default function Schedules({ schedules = [] }) {
             <h1>Kelola Jadwal SPMB</h1>
             <p>Atur lini masa gelombang dan tahapan pendaftaran siswa baru.</p>
           </div>
-          <Button onClick={handleOpenAdd} variant="secondary">
+          <Button style={{ width: "100%" }} onClick={handleOpenAdd} variant="primary">
             Tambah Jadwal Baru
           </Button>
         </div>
@@ -175,7 +176,7 @@ export default function Schedules({ schedules = [] }) {
             </h2>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <Input 
+              <Input
                 label="Nama Agenda / Gelombang"
                 placeholder="Contoh: Gelombang I Pendaftaran..."
                 value={data.title}
@@ -186,7 +187,7 @@ export default function Schedules({ schedules = [] }) {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 <label style={{ fontSize: '12px', fontWeight: 'bold', color: '#4A5568' }}>Keterangan Deskripsi</label>
-                <textarea 
+                <textarea
                   value={data.description}
                   onChange={(e) => setData('description', e.target.value)}
                   placeholder="Rincian informasi agenda..."
@@ -196,7 +197,7 @@ export default function Schedules({ schedules = [] }) {
 
               <div style={{ display: 'flex', gap: '12px' }}>
                 <div style={{ flex: 1 }}>
-                  <Input 
+                  <Input
                     label="Tanggal Mulai"
                     type="date"
                     value={data.start_date}
@@ -206,7 +207,7 @@ export default function Schedules({ schedules = [] }) {
                   {errors.start_date && <div style={{ fontSize: '11px', color: 'var(--color-danger)' }}>{errors.start_date}</div>}
                 </div>
                 <div style={{ flex: 1 }}>
-                  <Input 
+                  <Input
                     label="Tanggal Selesai"
                     type="date"
                     value={data.end_date}
@@ -218,15 +219,15 @@ export default function Schedules({ schedules = [] }) {
               </div>
 
               <div style={{ display: 'flex', gap: '8px', borderTop: '1px solid #EDF2F7', paddingTop: '16px', marginTop: '8px' }}>
-                <Button 
+                <Button
                   variant="outline"
-                  onClick={handleClose} 
+                  onClick={handleClose}
                   style={{ flex: 1 }}
                 >
                   Batal
                 </Button>
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   loading={processing}
                   style={{ flex: 1 }}
                 >
@@ -237,6 +238,7 @@ export default function Schedules({ schedules = [] }) {
           </div>
         </Popup>
       </main>
+      <Footer />
     </>
   );
 }

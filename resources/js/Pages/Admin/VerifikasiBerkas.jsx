@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Head, router, usePage } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 import Popup from '../../Components/Popup/Popup';
 import Button from '../../Components/Button/Button';
 import styles from './AdminDashboard.module.css'; // Re-use general tables/headers/badges
@@ -491,6 +492,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
           )}
         </Popup>
       </main>
+      <Footer />
     </>
   );
 }
