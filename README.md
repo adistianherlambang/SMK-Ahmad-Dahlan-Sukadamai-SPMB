@@ -237,6 +237,46 @@ Sistem membedakan postingan bertipe `berita` dan `pengumuman`. Khusus postingan 
 ### 2. Keselarasan Tema Kartu (Premium Dark Cards)
 * Halaman daya tampung `/informasi/kuota` mengadopsi styling gelap premium yang bersumber dari CSS Tokens di `variables.css`.
 * Latar belakang kartu menggunakan navy gelap (`var(--color-primary-dark)`), teks berwarna putih kontras, sisa kursi kosong diwarnai kuning emas (`var(--color-accent-yellow)`), serta status ketersediaan jalur dipetakan dalam pil hijau/merah terpadu.
+---
+
+## 📦 Dependensi Proyek (Dependencies)
+
+Aplikasi ini menggunakan berbagai dependensi modern di sisi Backend dan Frontend untuk menjamin performa, keamanan, dan fungsionalitas yang optimal.
+
+### 1. Backend Dependencies (PHP / Composer)
+
+Berikut adalah pustaka utama yang digunakan pada sisi server:
+
+* **`php (^8.3)`**: Bahasa pemrograman sisi server utama.
+* **`laravel/framework (^13.8)`**: Framework MVC PHP modern sebagai fondasi utama backend aplikasi.
+* **`inertiajs/inertia-laravel (^3.1)`**: Adapter server-side untuk menghubungkan Laravel secara erat dengan React tanpa memerlukan API REST tradisional.
+* **`barryvdh/laravel-dompdf (^3.1)`**: Pustaka untuk mengonversi tampilan HTML/CSS menjadi berkas PDF (digunakan untuk mencetak bukti pendaftaran & kartu kelulusan resmi siswa).
+* **`laravel/tinker (^3.0)`**: Alat baris perintah interaktif untuk berinteraksi langsung dengan database dan logika aplikasi Laravel.
+
+#### Dependensi Pengembangan (Development Only):
+* **`phpunit/phpunit (^12.5.12)`**: Framework pengujian unit untuk menjamin keandalan kode.
+* **`laravel/pint (^1.27)`**: Alat pemformatan kode (*code style fixer*) agar kode PHP tetap bersih dan konsisten sesuai standar PSR.
+* **`fakerphp/faker (^1.23)`**: Pustaka untuk menghasilkan data simulasi/palsu guna mempermudah proses seeding database.
+* **`laravel/pail (^1.2.5)`**: Alat penelusuran log interaktif pada terminal.
+* **`mockery/mockery (^1.6)`**: Pustaka objek tiruan (*mocking*) untuk kebutuhan pengujian tingkat lanjut.
+* **`nunomaduro/collision (^8.6)`**: Sistem pelaporan error visual yang interaktif saat menjalankan pengujian di konsol.
+
+---
+
+### 2. Frontend Dependencies (JavaScript / NPM)
+
+Berikut adalah modul utama yang digunakan pada sisi klien (React/Vite):
+
+* **`react (^19.2.6)`** & **`react-dom (^19.2.6)`**: Library antarmuka pengguna (UI) modern berbasis komponen.
+* **`@inertiajs/react (^3.3.0)`**: Adapter client-side yang memungkinkan integrasi erat antara React dan Laravel.
+* **`axios (^1.16.1)`**: Klien HTTP berbasis promise untuk melakukan request asinkron ke server.
+* **`@vitejs/plugin-react (^6.0.2)`**: Plugin resmi Vite untuk mengaktifkan dukungan penuh React (termasuk Fast Refresh).
+
+#### Dependensi Pengembangan (Development Only):
+* **`vite (^8.0.0)`**: Alat build frontend super cepat dengan fitur Hot Module Replacement (HMR).
+* **`tailwindcss (^4.0.0)`** & **`@tailwindcss/vite (^4.0.0)`**: Framework CSS utilitas terbaru (versi 4) yang terintegrasi langsung dengan compiler Vite untuk pembuatan desain premium yang responsif.
+* **`concurrently (^9.0.1)`**: Utilitas untuk menjalankan beberapa perintah di terminal secara bersamaan (seperti `php artisan serve` dan `npm run dev`).
+* **`laravel-vite-plugin (^3.1)`**: Plugin resmi dari Laravel untuk mengintegrasikan proses compile Vite di lingkungan Laravel.
 
 ---
 
