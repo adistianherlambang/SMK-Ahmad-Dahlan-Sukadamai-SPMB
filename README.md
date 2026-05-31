@@ -7,10 +7,10 @@ Sistem Pendaftaran Mahasiswa Baru (SPMB / PPDB) Mandiri SMK Ahmad Dahlan Sukadam
 
 ## 🚀 Fitur Utama & Keunggulan Sistem
 
-1. **Dashboard Statistik Admin Premium:** Menampilkan 6 indikator metrik utama (Total Pendaftar, Belum Diverifikasi, Terverifikasi, Berkas Ditolak, Dinyatakan Lulus, dan Tidak Lulus) dengan desain kartu premium berwarna *navy-gold* interaktif.
+1. **Dashboard Statistik Admin:** Menampilkan 6 indikator metrik utama (Total Pendaftar, Belum Diverifikasi, Terverifikasi, Berkas Ditolak, Dinyatakan Lulus, dan Tidak Lulus) dengan desain berwarna *navy-gold* interaktif.
 2. **Sistem Verifikasi Berkas Terintegrasi & Anti-Double-Scrollbar:** Panel peninjau dokumen (KK, Akta Kelahiran, SKHU/SKL, SKTM) dalam bentuk popup modern ber-padding rata (`24px`), bebas dari masalah penumpukan scrollbar ganda, lengkap dengan *feedback loop* penolakan berkas secara real-time.
 3. **Validasi Karakter Ketat pada Pengumuman:** Membatasi input judul berita khusus bertipe `pengumuman` maksimal 60 karakter dan deskripsi/konten maksimal 100 karakter (termasuk spasi) secara sinkron pada sisi React Frontend (dengan counter dinamis) dan Laravel Backend (menggunakan validator `mb_strlen`).
-4. **Desain Kartu Kuota & Jalur Masuk Premium:** Halaman kuota tamu (`KuotaPendaftaran.jsx`) menggunakan visualisasi kartu premium yang identik dengan widget dasbor admin, lengkap dengan sisa kuota yang di-highlight warna kuning emas (`#FDCD2D`) mewah.
+4. **Desain Kuota & Jalur Masuk:** Halaman kuota tamu (`KuotaPendaftaran.jsx`) menggunakan visualisasi yang identik dengan widget dasbor admin, lengkap dengan sisa kuota yang di-highlight warna kuning emas (`#FDCD2D`).
 5. **Footer & Navigasi Terpadu:** Komponen `<Footer />` dan `<Navbar />` terpasang rapi di seluruh halaman publik tamu maupun halaman manajemen admin.
 
 ---
@@ -57,7 +57,7 @@ Berikut adalah tata letak berkas utama di dalam repositori proyek:
 │   │   └── ...
 │   └── js/
 │       ├── Components/                              # Reusable UI Elements
-│       │   ├── Batik/                               # Aksen latar belakang Batik tradisional premium
+│       │   ├── Batik/                               # Aksen latar belakang Batik tradisional
 │       │   ├── Button/                              # Tombol kustom reusable
 │       │   ├── FileInput/                           # Input khusus upload berkas kelengkapan
 │       │   ├── Footer/                              # Footer resmi sekolah
@@ -234,9 +234,9 @@ Sistem membedakan postingan bertipe `berita` dan `pengumuman`. Khusus postingan 
   ]);
   ```
 
-### 2. Keselarasan Tema Kartu (Premium Dark Cards)
-* Halaman daya tampung `/informasi/kuota` mengadopsi styling gelap premium yang bersumber dari CSS Tokens di `variables.css`.
-* Latar belakang kartu menggunakan navy gelap (`var(--color-primary-dark)`), teks berwarna putih kontras, sisa kursi kosong diwarnai kuning emas (`var(--color-accent-yellow)`), serta status ketersediaan jalur dipetakan dalam pil hijau/merah terpadu.
+### 2. Keselarasan Tema Visual (Dark Theme)
+* Halaman daya tampung `/informasi/kuota` mengadopsi styling gelap yang bersumber dari CSS Tokens di `variables.css`.
+* Latar belakang tampilan menggunakan navy gelap (`var(--color-primary-dark)`), teks berwarna putih kontras, sisa kursi kosong diwarnai kuning emas (`var(--color-accent-yellow)`), serta status ketersediaan jalur dipetakan dalam pil hijau/merah terpadu.
 ---
 
 ## 📦 Dependensi Proyek (Dependencies)
@@ -250,7 +250,7 @@ Berikut adalah pustaka utama yang digunakan pada sisi server:
 * **`php (^8.3)`**: Bahasa pemrograman sisi server utama.
 * **`laravel/framework (^13.8)`**: Framework MVC PHP modern sebagai fondasi utama backend aplikasi.
 * **`inertiajs/inertia-laravel (^3.1)`**: Adapter server-side untuk menghubungkan Laravel secara erat dengan React tanpa memerlukan API REST tradisional.
-* **`barryvdh/laravel-dompdf (^3.1)`**: Pustaka untuk mengonversi tampilan HTML/CSS menjadi berkas PDF (digunakan untuk mencetak bukti pendaftaran & kartu kelulusan resmi siswa).
+* **`barryvdh/laravel-dompdf (^3.1)`**: Pustaka untuk mengonversi tampilan HTML/CSS menjadi berkas PDF (digunakan untuk mencetak bukti pendaftaran & lembar kelulusan resmi siswa).
 * **`laravel/tinker (^3.0)`**: Alat baris perintah interaktif untuk berinteraksi langsung dengan database dan logika aplikasi Laravel.
 
 #### Dependensi Pengembangan (Development Only):
@@ -274,7 +274,7 @@ Berikut adalah modul utama yang digunakan pada sisi klien (React/Vite):
 
 #### Dependensi Pengembangan (Development Only):
 * **`vite (^8.0.0)`**: Alat build frontend super cepat dengan fitur Hot Module Replacement (HMR).
-* **`tailwindcss (^4.0.0)`** & **`@tailwindcss/vite (^4.0.0)`**: Framework CSS utilitas terbaru (versi 4) yang terintegrasi langsung dengan compiler Vite untuk pembuatan desain premium yang responsif.
+* **`tailwindcss (^4.0.0)`** & **`@tailwindcss/vite (^4.0.0)`**: Framework CSS utilitas terbaru (versi 4) yang terintegrasi langsung dengan compiler Vite untuk pembuatan desain yang responsif.
 * **`concurrently (^9.0.1)`**: Utilitas untuk menjalankan beberapa perintah di terminal secara bersamaan (seperti `php artisan serve` dan `npm run dev`).
 * **`laravel-vite-plugin (^3.1)`**: Plugin resmi dari Laravel untuk mengintegrasikan proses compile Vite di lingkungan Laravel.
 
