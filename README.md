@@ -325,7 +325,7 @@ DB_USERNAME=username_database_anda
 DB_PASSWORD=password_database_anda
 ```
 
-Berikut adalah seluruh daftar kunci konfigurasi `.env` lengkap tanpa nilai yang dapat disalin:
+Berikut adalah seluruh daftar kunci konfigurasi `.env` lengkap:
 ```env
 APP_NAME=
 APP_ENV=
