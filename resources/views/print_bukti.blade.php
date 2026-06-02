@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <title>{{ $registration->graduation_status === 'Diterima' ? 'Bukti Penerimaan' : 'Bukti Pendaftaran' }} - {{ $registration->registration_number }}</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
         @page {
             size: a4 portrait;
             margin: 25mm 20mm 20mm 20mm;
         }
+        * {
+            font-family: 'Inter', 'Helvetica', Arial, sans-serif;
+        }
+        body, table, tr, td, th, h1, h2, h3, h4, p, div, ul, li, span, strong, b {
+            font-family: 'Inter', 'Helvetica', Arial, sans-serif;
+        }
         body {
-            font-family: 'Helvetica', Arial, sans-serif;
             margin: 0;
             padding: 0;
             color: #000;
@@ -60,6 +67,8 @@
             border-bottom: 5px double #000;
             height: 8px;
             margin: 24px 0 24px 0;
+            font-size: 1px;
+            line-height: 1px;
         }
         .meta-table {
             text-align: center;
@@ -67,7 +76,7 @@
             margin-bottom: 15px;
         }
         .meta-table h2 {
-            font-weight: 900;
+            font-weight: bold;
             color: #333;
             margin: 0;
         }
@@ -100,7 +109,6 @@
         }
         .data-table td.value {
             color: #000;
-            font-weight: 500;
         }
         .footer-table {
             width: 100%;
@@ -183,7 +191,7 @@
         <table class="header-table">
             <tr>
                 <td class="logo-cell">
-                    <img class="logo" src="/mainLogo.png" alt="Logo">
+                    <img class="logo" src="{{ public_path('mainLogo.png') }}" alt="Logo">
                 </td>
                 <td class="header-text-cell">
                     <h1>Dinas Pendidikan dan Kebudayaan</h1>

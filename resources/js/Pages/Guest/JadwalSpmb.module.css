@@ -82,6 +82,8 @@
   background-color: var(--color-accent-yellow);
   color: var(--color-text-main);
   width: fit-content;
+  padding: 0 8px;
+  border-radius: 100px;
 }
 
 .numberBadge {
