@@ -32,13 +32,6 @@
         .logo {
             width: 60px;
             height: 60px;
-            background-color: #002147;
-            color: #FDCD2D;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 60px;
-            font-weight: bold;
-            font-size: 16px;
         }
         .header-text-cell {
             text-align: center;
@@ -47,13 +40,12 @@
         .header-text-cell h1 {
             font-size: 13px;
             margin: 0 0 2px 0;
-            text-transform: uppercase;
             font-weight: normal;
             letter-spacing: 0.5px;
             color: #333;
         }
         .header-text-cell h2 {
-            font-size: 17px;
+            font-size: 21px;
             margin: 0 0 4px 0;
             color: #002147;
             font-weight: bold;
@@ -83,8 +75,6 @@
             font-weight: bold;
             font-size: 11px;
             margin-top: 12px;
-            margin-bottom: 6px;
-            border-bottom: 2px solid #002147;
             padding-bottom: 3px;
             text-transform: uppercase;
             color: #002147;
@@ -186,7 +176,7 @@
         <table class="header-table">
             <tr>
                 <td class="logo-cell">
-                    <div class="logo">SMK AD</div>
+                    <img class="logo" src="/mainLogo.png" alt="Logo">
                 </td>
                 <td class="header-text-cell">
                     <h1>Dinas Pendidikan dan Kebudayaan</h1>
@@ -226,7 +216,7 @@
         @endif
         
         <!-- Section A -->
-        <div class="section-title">A. Informasi Calon Peserta Didik</div>
+        <div class="section-title">Informasi Calon Peserta Didik</div>
         <table class="data-table">
             <tr>
                 <td class="label">Nomor Registrasi</td>
@@ -276,7 +266,7 @@
         </table>
         
         <!-- Section B -->
-        <div class="section-title">B. Keterangan Orang Tua / Wali</div>
+        <div class="section-title">Keterangan Orang Tua / Wali</div>
         <table class="data-table">
             <tr>
                 <td class="label">Nama Orang Tua / Wali</td>
@@ -296,7 +286,7 @@
         </table>
         
         <!-- Section C -->
-        <div class="section-title">C. Keterangan Asal Sekolah</div>
+        <div class="section-title">Keterangan Asal Sekolah</div>
         <table class="data-table">
             <tr>
                 <td class="label">Nama Sekolah Asal</td>
@@ -311,7 +301,7 @@
         </table>
         
         <!-- Section D -->
-        <div class="section-title">D. Kontak & Alamat Calon Siswa</div>
+        <div class="section-title">Kontak & Alamat Calon Siswa</div>
         <table class="data-table">
             <tr>
                 <td class="label">Nomor Telepon / HP</td>

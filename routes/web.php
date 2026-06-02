@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ScheduleCrudController;
 use App\Http\Controllers\Admin\QuotaCrudController;
 use App\Http\Controllers\Admin\PostCrudController;
 use App\Http\Controllers\Admin\AchievementCrudController;
+use Inertia\Inertia;
 
 // Global Logout Handler
 Route::post('/logout', function () {
@@ -18,6 +19,22 @@ Route::post('/logout', function () {
     request()->session()->regenerateToken();
     return redirect('/');
 })->name('logout');
+
+// Route testing sementara untuk melihat layout print_bukti
+Route::get('/test-pdf', function () {
+    $registration = \App\Models\Registration::with(['quota', 'document'])->first();
+    
+    if (!$registration) {
+        return "Belum ada data pendaftaran di database. Silakan isi pendaftaran terlebih dahulu untuk mengetes layout.";
+    }
+    
+    return view('print_bukti', ['registration' => $registration]);
+});
+
+// Route testing React untuk live editor print_bukti
+Route::get('/test-print', function () {
+    return Inertia::render('Guest/PrintBuktiTest');
+});
 
 // Fallback Login Route for Laravel's internal redirection
 Route::redirect('/login', '/siswa/login')->name('login');
