@@ -68,8 +68,8 @@
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
 }
 
 .headerTextCell {
@@ -78,7 +78,7 @@
 }
 
 .headerTextCell h1 {
-  font-size: 13px !important;
+  font-size: 16px !important;
   margin: 0 0 2px 0;
   font-weight: normal !important;
   letter-spacing: 0.5px;
@@ -87,7 +87,7 @@
 }
 
 .headerTextCell h2 {
-  font-size: 21px !important;
+  font-size: 28px !important;
   margin: 0 0 4px 0;
   color: #002147;
   font-weight: bold !important;
@@ -95,34 +95,34 @@
 }
 
 .headerTextCell p {
-  font-size: 10px;
+  font-size: 16px;
   margin: 0;
   color: #555;
 }
 
 .divider {
-  border-top: 1px solid #000;
-  border-bottom: 3px double #000;
-  height: 2px;
-  margin: 10px 0 15px 0;
+  border-top: 3px solid #000;
+  border-bottom: 5px double #000;
+  height: 8px;
+  margin: 24px 0 24px 0;
 }
 
 .metaTable {
+  text-align: center;
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 15px;
 }
 
-.metaTable td {
-  font-size: 10px;
-  font-weight: bold;
+.metaTable h2 {
+  font-weight: 900;
   color: #333;
 }
 
 .sectionTitle {
   font-weight: bold;
   font-size: 11px;
-  margin-top: 12px;
+  margin-top: 32px;
   padding-bottom: 3px;
   text-transform: uppercase;
   color: #002147;
@@ -159,7 +159,7 @@
 .footerTable {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 25px;
+  margin-top: 32px;
 }
 
 .footerTable td {

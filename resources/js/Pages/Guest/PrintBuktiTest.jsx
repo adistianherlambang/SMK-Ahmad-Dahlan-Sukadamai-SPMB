@@ -114,21 +114,12 @@ export default function PrintBuktiTest() {
           <div className={styles.divider}></div>
 
           {/* Meta Details */}
-          <table className={styles.metaTable}>
-            <tbody>
-              <tr>
-                <td style={{ textAlign: 'left', fontSize: '11px' }}>
-                  DOKUMEN: {isDiterima ? 'BUKTI PENERIMAAN' : 'BUKTI PENDAFTARAN'}
-                </td>
-                <td style={{ textAlign: 'right', fontSize: '11px' }}>
-                  TANGGAL CETAK: 02 Juni 2026
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className={styles.metaTable}>
+            <h2><b>Formulir Penerimaan Siswa Baru</b></h2>
+          </div>
 
           {/* Dynamic Status Alert Message */}
-          {isDiterima ? (
+          {/* {isDiterima ? (
             <div className={styles.statusAlertSuccess}>
               <strong>Selamat! Anda Dinyatakan Lulus Seleksi.</strong>
               <br />
@@ -141,10 +132,10 @@ export default function PrintBuktiTest() {
               <br />
               Simpan bukti pendaftaran ini sebagai tanda bukti pengajuan berkas pendaftaran Anda secara online. Harap bawa bukti ini beserta dokumen pendukung saat verifikasi fisik di sekolah.
             </div>
-          )}
+          )} */}
 
           {/* Section A */}
-          <div className={styles.sectionTitle}>Informasi Calon Peserta Didik</div>
+          <div className={styles.sectionTitle}>A. Informasi Calon Peserta Didik</div>
           <table className={styles.dataTable}>
             <tbody>
               <tr>
@@ -202,7 +193,7 @@ export default function PrintBuktiTest() {
           </table>
 
           {/* Section B */}
-          <div className={styles.sectionTitle}>Keterangan Orang Tua / Wali</div>
+          <div className={styles.sectionTitle}>B. Keterangan Orang Tua / Wali</div>
           <table className={styles.dataTable}>
             <tbody>
               <tr>
@@ -224,7 +215,7 @@ export default function PrintBuktiTest() {
           </table>
 
           {/* Section C */}
-          <div className={styles.sectionTitle}>Keterangan Asal Sekolah</div>
+          <div className={styles.sectionTitle}>C. Keterangan Asal Sekolah</div>
           <table className={styles.dataTable}>
             <tbody>
               <tr>
@@ -241,7 +232,7 @@ export default function PrintBuktiTest() {
           </table>
 
           {/* Section D */}
-          <div className={styles.sectionTitle}>Kontak & Alamat Calon Siswa</div>
+          <div className={styles.sectionTitle}>D. Kontak & Alamat Calon Siswa</div>
           <table className={styles.dataTable}>
             <tbody>
               <tr>
@@ -264,7 +255,7 @@ export default function PrintBuktiTest() {
                 {/* Left requirements column */}
                 <td style={{ width: '55%' }}>
                   {isDiterima ? (
-                    <div className={styles.requirementsBoxSuccess}>
+                    <div className={styles.requirementsBox}>
                       <h4>Syarat Daftar Ulang Fisik Bawaan:</h4>
                       <ul>
                         <li>Membawa Cetak Bukti Penerimaan Online ini</li>
@@ -294,7 +285,7 @@ export default function PrintBuktiTest() {
                 <td style={{ width: '45%', paddingLeft: '30px' }}>
                   <div className={styles.signatureBox}>
                     <p style={{ margin: '0 0 2px 0' }}>Mengetahui,</p>
-                    <p style={{ margin: '0 0 45px 0' }}>Orangtua/Wali Calon Siswa</p>
+                    <p style={{ margin: '0 0 90px 0' }}>Orangtua/Wali Calon Siswa</p>
                     <p style={{ margin: 0, fontWeight: 'bold' }}>( .................................................... )</p>
                   </div>
                 </td>
