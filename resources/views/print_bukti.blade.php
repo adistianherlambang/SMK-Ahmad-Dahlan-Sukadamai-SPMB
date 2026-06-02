@@ -30,51 +30,51 @@
             vertical-align: middle;
         }
         .logo {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
         }
         .header-text-cell {
             text-align: center;
             vertical-align: middle;
         }
         .header-text-cell h1 {
-            font-size: 13px;
+            font-size: 16px;
             margin: 0 0 2px 0;
             font-weight: normal;
             letter-spacing: 0.5px;
             color: #333;
         }
         .header-text-cell h2 {
-            font-size: 21px;
+            font-size: 28px;
             margin: 0 0 4px 0;
             color: #002147;
             font-weight: bold;
         }
         .header-text-cell p {
-            font-size: 10px;
+            font-size: 16px;
             margin: 0;
             color: #555;
         }
         .divider {
-            border-top: 1px solid #000;
-            border-bottom: 3px double #000;
-            height: 2px;
-            margin: 10px 0 15px 0;
+            border-top: 3px solid #000;
+            border-bottom: 5px double #000;
+            height: 8px;
+            margin: 24px 0 24px 0;
         }
         .meta-table {
+            text-align: center;
             width: 100%;
-            border-collapse: collapse;
             margin-bottom: 15px;
         }
-        .meta-table td {
-            font-size: 10px;
-            font-weight: bold;
+        .meta-table h2 {
+            font-weight: 900;
             color: #333;
+            margin: 0;
         }
         .section-title {
             font-weight: bold;
             font-size: 11px;
-            margin-top: 12px;
+            margin-top: 32px;
             padding-bottom: 3px;
             text-transform: uppercase;
             color: #002147;
@@ -105,7 +105,7 @@
         .footer-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 25px;
+            margin-top: 32px;
         }
         .footer-table td {
             vertical-align: top;
@@ -116,18 +116,25 @@
             background-color: #fafafa;
             border-radius: 4px;
         }
-        .requirements-box-success {
-            border: 1px solid #c3e6cb;
-            padding: 10px;
-            background-color: #f4faf5;
-            border-radius: 4px;
-        }
         .requirements-box h4 {
             margin: 0 0 5px 0;
             font-size: 10.5px;
             color: #002147;
             text-transform: uppercase;
             font-weight: bold;
+        }
+        .requirements-box ul {
+            margin: 0;
+            padding-left: 15px;
+            font-size: 9.5px;
+            color: #444;
+            line-height: 1.4;
+        }
+        .requirements-box-success {
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            background-color: #f4faf5;
+            border-radius: 4px;
         }
         .requirements-box-success h4 {
             margin: 0 0 5px 0;
@@ -136,7 +143,7 @@
             text-transform: uppercase;
             font-weight: bold;
         }
-        .requirements-box ul, .requirements-box-success ul {
+        .requirements-box-success ul {
             margin: 0;
             padding-left: 15px;
             font-size: 9.5px;
@@ -191,18 +198,12 @@
         <div class="divider"></div>
         
         <!-- Meta Details -->
-        <table class="meta-table">
-            <tr>
-                <td style="text-align: left; font-size: 11px;">
-                    DOKUMEN: {{ $registration->graduation_status === 'Diterima' ? 'BUKTI PENERIMAAN' : 'BUKTI PENDAFTARAN' }}
-                </td>
-                <td style="text-align: right; font-size: 11px;">
-                    TANGGAL CETAK: {{ date('d F Y') }}
-                </td>
-            </tr>
-        </table>
+        <div class="meta-table">
+            <h2><b>Formulir Penerimaan Siswa Baru</b></h2>
+        </div>
 
         <!-- Dynamic Status Alert Message -->
+        {{--
         @if($registration->graduation_status === 'Diterima')
             <div class="status-alert-success">
                 <strong>Selamat! Anda Dinyatakan Lulus Seleksi.</strong><br>
@@ -214,9 +215,10 @@
                 Simpan bukti pendaftaran ini sebagai tanda bukti pengajuan berkas pendaftaran Anda secara online. Harap bawa bukti ini beserta dokumen pendukung saat verifikasi fisik di sekolah.
             </div>
         @endif
+        --}}
         
         <!-- Section A -->
-        <div class="section-title">Informasi Calon Peserta Didik</div>
+        <div class="section-title">A. Informasi Calon Peserta Didik</div>
         <table class="data-table">
             <tr>
                 <td class="label">Nomor Registrasi</td>
@@ -266,7 +268,7 @@
         </table>
         
         <!-- Section B -->
-        <div class="section-title">Keterangan Orang Tua / Wali</div>
+        <div class="section-title">B. Keterangan Orang Tua / Wali</div>
         <table class="data-table">
             <tr>
                 <td class="label">Nama Orang Tua / Wali</td>
@@ -286,7 +288,7 @@
         </table>
         
         <!-- Section C -->
-        <div class="section-title">Keterangan Asal Sekolah</div>
+        <div class="section-title">C. Keterangan Asal Sekolah</div>
         <table class="data-table">
             <tr>
                 <td class="label">Nama Sekolah Asal</td>
@@ -301,7 +303,7 @@
         </table>
         
         <!-- Section D -->
-        <div class="section-title">Kontak & Alamat Calon Siswa</div>
+        <div class="section-title">D. Kontak & Alamat Calon Siswa</div>
         <table class="data-table">
             <tr>
                 <td class="label">Nomor Telepon / HP</td>
@@ -321,7 +323,7 @@
                 <!-- Left requirements column -->
                 <td style="width: 55%;">
                     @if($registration->graduation_status === 'Diterima')
-                        <div class="requirements-box-success">
+                        <div class="requirements-box">
                             <h4>Syarat Daftar Ulang Fisik Bawaan:</h4>
                             <ul>
                                 <li>Membawa Cetak Bukti Penerimaan Online ini</li>
@@ -353,7 +355,7 @@
                 <td style="width: 45%; padding-left: 30px;">
                     <div class="signature-box">
                         <p style="margin: 0 0 2px 0;">Mengetahui,</p>
-                        <p style="margin: 0 0 45px 0;">Orangtua/Wali Calon Siswa</p>
+                        <p style="margin: 0 0 90px 0;">Orangtua/Wali Calon Siswa</p>
                         <p style="margin: 0; font-weight: bold;">( .................................................... )</p>
                     </div>
                 </td>
