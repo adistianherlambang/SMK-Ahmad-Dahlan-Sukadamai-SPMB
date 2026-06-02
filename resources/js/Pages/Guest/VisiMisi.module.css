@@ -37,7 +37,8 @@
   box-sizing: border-box;
 }
 
-.visiSection, .misiSection {
+.visiSection,
+.misiSection {
   background-color: var(--color-white);
   border-radius: 8px;
   padding: 24px;
@@ -49,7 +50,9 @@
   margin-bottom: 12px;
 }
 
-.visiSection h2, .misiSection h2, .valuesSection h2 {
+.visiSection h2,
+.misiSection h2,
+.valuesSection h2 {
   font-size: 18px;
   font-weight: 800;
   color: var(--color-primary-dark);
@@ -58,7 +61,7 @@
 }
 
 .visiText {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.8;
   color: var(--color-text-main);
   font-weight: 600;
@@ -127,6 +130,7 @@
   .headerContent {
     max-width: 1000px;
   }
+
   .container {
     max-width: 1000px;
     display: grid;
@@ -134,14 +138,18 @@
     gap: var(--spacing-2xl);
     padding: var(--spacing-4xl) var(--spacing-lg);
   }
-  .visiSection, .misiSection {
+
+  .visiSection,
+  .misiSection {
     height: 100%;
     box-sizing: border-box;
   }
+
   .valuesSection {
     grid-column: span 2;
     margin-top: 24px;
   }
+
   .valuesGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
