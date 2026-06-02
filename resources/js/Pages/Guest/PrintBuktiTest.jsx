@@ -40,7 +40,7 @@ export default function PrintBuktiTest() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div 
+    <div
       className={styles.pageContainer}
       style={{
         backgroundColor: '#f3f4f6',
@@ -74,7 +74,7 @@ export default function PrintBuktiTest() {
       </div>
 
       {/* A4 Sheet Container */}
-      <div 
+      <div
         className={styles.a4Paper}
         style={{
           width: '210mm',
