@@ -65,7 +65,7 @@
         .divider {
             border-top: 3px solid #000;
             border-bottom: 5px double #000;
-            height: 8px;
+            height: 2px;
             margin: 24px 0 24px 0;
             font-size: 1px;
             line-height: 1px;
