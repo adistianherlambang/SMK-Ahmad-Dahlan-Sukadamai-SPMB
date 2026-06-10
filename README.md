@@ -1,7 +1,7 @@
 # Sistem Informasi Penerimaan Peserta Didik Baru (PPDB / SPMB)
 ## SMK Ahmad Dahlan Sukadamai
 
-Sistem Pendaftaran Mahasiswa Baru (SPMB / PPDB) Mandiri SMK Ahmad Dahlan Sukadamai adalah aplikasi web modern berbasis **Laravel 11**, **React 19**, **Inertia.js**, dan **Vite** yang dirancang khusus untuk memfasilitasi proses pendaftaran, seleksi, verifikasi berkas, dan pengumuman kelulusan calon siswa baru secara online, cepat, dan transparan.
+Sistem Pendaftaran Mahasiswa Baru (SPMB / PPDB) Mandiri SMK Ahmad Dahlan Sukadamai adalah aplikasi web modern berbasis **Laravel 11**, **React 19**, **Inertia.js v3**, dan **Vite** yang dirancang khusus untuk memfasilitasi proses pendaftaran, seleksi, verifikasi berkas, dan pengumuman kelulusan calon siswa baru secara online, cepat, dan transparan. Aplikasi ini dapat dijalankan menggunakan **Docker** (direkomendasikan) maupun secara manual di lingkungan lokal.
 
 ---
 
@@ -247,19 +247,19 @@ Aplikasi ini menggunakan berbagai dependensi modern di sisi Backend dan Frontend
 
 Berikut adalah pustaka utama yang digunakan pada sisi server:
 
-* **`php (^8.3)`**: Bahasa pemrograman sisi server utama.
-* **`laravel/framework (^13.8)`**: Framework MVC PHP modern sebagai fondasi utama backend aplikasi.
-* **`inertiajs/inertia-laravel (^3.1)`**: Adapter server-side untuk menghubungkan Laravel secara erat dengan React tanpa memerlukan API REST tradisional.
-* **`barryvdh/laravel-dompdf (^3.1)`**: Pustaka untuk mengonversi tampilan HTML/CSS menjadi berkas PDF (digunakan untuk mencetak bukti pendaftaran & lembar kelulusan resmi siswa).
-* **`laravel/tinker (^3.0)`**: Alat baris perintah interaktif untuk berinteraksi langsung dengan database dan logika aplikasi Laravel.
+* **`php (^8.2)`**: Bahasa pemrograman sisi server utama. Dijalankan di PHP **8.2.4** pada image Docker resmi `php:8.2.4-fpm-alpine`.
+* **`laravel/framework (^11.0)`**: Framework MVC PHP modern sebagai fondasi utama backend aplikasi (versi aktif: **v11.54.0**).
+* **`inertiajs/inertia-laravel (^3.0)`**: Adapter server-side untuk menghubungkan Laravel secara erat dengan React tanpa memerlukan API REST tradisional (versi aktif: **v3.1.0**).
+* **`barryvdh/laravel-dompdf (^2.2)`**: Pustaka untuk mengonversi tampilan HTML/CSS menjadi berkas PDF (digunakan untuk mencetak bukti pendaftaran & lembar kelulusan resmi siswa).
+* **`laravel/tinker (^2.9)`**: Alat baris perintah interaktif untuk berinteraksi langsung dengan database dan logika aplikasi Laravel.
 
 #### Dependensi Pengembangan (Development Only):
-* **`phpunit/phpunit (^12.5.12)`**: Framework pengujian unit untuk menjamin keandalan kode.
-* **`laravel/pint (^1.27)`**: Alat pemformatan kode (*code style fixer*) agar kode PHP tetap bersih dan konsisten sesuai standar PSR.
+* **`phpunit/phpunit (^11.0)`**: Framework pengujian unit untuk menjamin keandalan kode.
+* **`laravel/pint (^1.13)`**: Alat pemformatan kode (*code style fixer*) agar kode PHP tetap bersih dan konsisten sesuai standar PSR.
 * **`fakerphp/faker (^1.23)`**: Pustaka untuk menghasilkan data simulasi/palsu guna mempermudah proses seeding database.
-* **`laravel/pail (^1.2.5)`**: Alat penelusuran log interaktif pada terminal.
+* **`laravel/pail (^1.2)`**: Alat penelusuran log interaktif pada terminal.
 * **`mockery/mockery (^1.6)`**: Pustaka objek tiruan (*mocking*) untuk kebutuhan pengujian tingkat lanjut.
-* **`nunomaduro/collision (^8.6)`**: Sistem pelaporan error visual yang interaktif saat menjalankan pengujian di konsol.
+* **`nunomaduro/collision (^8.1)`**: Sistem pelaporan error visual yang interaktif saat menjalankan pengujian di konsol.
 
 ---
 
@@ -282,30 +282,112 @@ Berikut adalah modul utama yang digunakan pada sisi klien (React/Vite):
 
 ## ⚙️ Panduan Instalasi & Menjalankan Proyek (Setup & Run)
 
-Ikuti langkah-langkah terperinci di bawah ini untuk memasang dan menjalankan proyek di lingkungan pengembangan lokal Anda:
+Proyek ini mendukung **dua metode instalasi**: menggunakan **Docker** (direkomendasikan, tidak perlu install PHP/MySQL secara manual) atau secara **Manual** di lingkungan lokal.
+
+---
+
+## 🐳 Metode 1: Docker (Direkomendasikan)
+
+### Prasyarat
+Pastikan **Docker Desktop** sudah terpasang dan berjalan di komputer Anda:
+- [Download Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+### 1. Kloning Repositori
+```bash
+git clone https://github.com/adistianherlambang/SMK-Ahmad-Dahlan-Sukadamai-SPMB.git
+cd SMK-Ahmad-Dahlan-Sukadamai-SPMB
+```
+
+### 2. Konfigurasi Environment
+Salin template konfigurasi dan sesuaikan untuk Docker:
+```bash
+cp .env.example .env
+```
+Buka `.env` dan pastikan konfigurasi database sesuai dengan `docker-compose.yml`:
+```env
+APP_URL=http://localhost:8000
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=db_spmb_ahmad_dahlan
+DB_USERNAME=laravel
+DB_PASSWORD=secret
+```
+
+### 3. Jalankan Docker Compose
+Perintah berikut akan **otomatis**:
+- Build image PHP 8.2.4 + Nginx + Supervisor
+- Menjalankan MySQL 8.0
+- Menjalankan migrasi database
+- Membuat akun admin (seed otomatis)
+
+```bash
+docker compose up -d --build
+```
+
+### 4. Akses Aplikasi
+
+| Layanan | URL |
+|---------|-----|
+| 🌐 Aplikasi Laravel | http://localhost:8000 |
+| 🗄️ phpMyAdmin | http://localhost:8080 |
+| 🔌 MySQL (dari host) | localhost:3307 |
+
+### 5. Perintah Docker Harian
+```bash
+# Menjalankan semua container
+docker compose up -d
+
+# Menghentikan semua container
+docker compose down
+
+# Melihat log aplikasi secara live
+docker compose logs -f app
+
+# Menjalankan artisan dari dalam container
+docker compose exec app php artisan <perintah>
+
+# Rebuild ulang image (setelah ada perubahan Dockerfile)
+docker compose up -d --build
+```
+
+### Struktur File Docker
+
+```text
+├── Dockerfile                  # Multi-stage build (Node → PHP 8.2.4-fpm-alpine)
+├── docker-compose.yml          # Orkestrasi: App + MySQL 8.0 + phpMyAdmin
+├── .dockerignore               # File yang dikecualikan dari build context
+└── docker/
+    ├── nginx.conf              # Konfigurasi web server Nginx
+    ├── php.ini                 # Konfigurasi PHP (memory 256M, timezone Jakarta)
+    ├── supervisord.conf        # Menjalankan nginx + php-fpm + queue worker
+    └── entrypoint.sh           # Script inisialisasi (migrate + auto-seed)
+```
+
+---
+
+## 🖥️ Metode 2: Manual (Tanpa Docker)
 
 ### 1. Prasyarat Sistem
 Pastikan komputer Anda sudah terpasang perkakas berikut:
-* **PHP** (Minimal versi 8.2)
+* **PHP** versi **8.2** atau lebih baru
 * **Composer** (Manajer dependensi PHP)
 * **Node.js** (Versi LTS terbaru) & **NPM**
-* **Database Server** (MySQL, MariaDB, atau PostgreSQL)
+* **MySQL 8.0** atau **MariaDB**
 
 ### 2. Kloning Repositori
-Buka terminal/command prompt, kemudian jalankan:
 ```bash
 git clone https://github.com/adistianherlambang/SMK-Ahmad-Dahlan-Sukadamai-SPMB.git
 cd SMK-Ahmad-Dahlan-Sukadamai-SPMB
 ```
 
 ### 3. Pasang Dependensi Backend (PHP)
-Unduh seluruh library backend Laravel melalui Composer:
 ```bash
 composer install
 ```
 
 ### 4. Pasang Dependensi Frontend (NodeJS)
-Unduh seluruh modul JavaScript melalui NPM:
 ```bash
 npm install
 ```
@@ -315,8 +397,10 @@ Salin berkas template konfigurasi bawaan:
 ```bash
 cp .env.example .env
 ```
-Buka berkas `.env` baru tersebut menggunakan text editor pilihan Anda (VS Code, Notepad, dll.), lalu sesuaikan konfigurasi koneksi database Anda pada baris berikut:
+Buka berkas `.env` lalu sesuaikan konfigurasi database:
 ```env
+APP_URL=http://localhost:8000
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -325,117 +409,68 @@ DB_USERNAME=username_database_anda
 DB_PASSWORD=password_database_anda
 ```
 
-Berikut adalah seluruh daftar kunci konfigurasi `.env` lengkap:
-```env
-APP_NAME=
-APP_ENV=
-APP_KEY=
-APP_DEBUG=
-APP_URL=
-
-APP_LOCALE=
-APP_FALLBACK_LOCALE=
-APP_FAKER_LOCALE=
-
-APP_MAINTENANCE_DRIVER=
-# APP_MAINTENANCE_STORE=
-
-# PHP_CLI_SERVER_WORKERS=
-
-BCRYPT_ROUNDS=
-
-LOG_CHANNEL=
-LOG_STACK=
-LOG_DEPRECATIONS_CHANNEL=
-LOG_LEVEL=
-
-DB_CONNECTION=
-DB_HOST=
-DB_PORT=
-DB_DATABASE=
-DB_USERNAME=
-DB_PASSWORD=
-
-SESSION_DRIVER=
-SESSION_LIFETIME=
-SESSION_ENCRYPT=
-SESSION_PATH=
-SESSION_DOMAIN=
-
-BROADCAST_CONNECTION=
-FILESYSTEM_DISK=
-QUEUE_CONNECTION=
-
-CACHE_STORE=
-# CACHE_PREFIX=
-
-MEMCACHED_HOST=
-
-REDIS_CLIENT=
-REDIS_HOST=
-REDIS_PASSWORD=
-REDIS_PORT=
-
-MAIL_MAILER=
-MAIL_SCHEME=
-MAIL_HOST=
-MAIL_PORT=
-MAIL_USERNAME=
-MAIL_PASSWORD=
-MAIL_FROM_ADDRESS=
-MAIL_FROM_NAME=
-
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_DEFAULT_REGION=
-AWS_BUCKET=
-AWS_USE_PATH_STYLE_ENDPOINT=
-
-VITE_APP_NAME=
-```
-
-
 ### 6. Generate Application Key
-Buat kunci enkripsi aplikasi Laravel yang unik:
 ```bash
 php artisan key:generate
 ```
 
 ### 7. Jalankan Migrasi & Pengisian Data (Seeder)
-Buat struktur tabel pendaftaran dan isi data awal simulasi (termasuk akun admin) dengan satu perintah:
+Buat struktur tabel dan isi data awal (termasuk akun admin):
 ```bash
 php artisan migrate --seed
 ```
 
 ### 8. Hubungkan Direktori Storage
-Buat symlink folder storage agar berkas dokumen bukti pendaftaran yang diunggah siswa dapat diakses oleh publik:
 ```bash
 php artisan storage:link
 ```
 
 ### 9. Jalankan Server Pengembangan (Dev Server)
-Untuk menjalankan aplikasi secara utuh di localhost, Anda wajib menjalankan **dua perintah di bawah ini secara bersamaan** (pada dua tab terminal terpisah):
+Jalankan **dua perintah** di bawah ini secara bersamaan di dua tab terminal terpisah:
 
-#### Terminal 1: Menjalankan Backend Laravel
+#### Terminal 1: Backend Laravel
 ```bash
 php artisan serve
 ```
-Aplikasi Laravel akan aktif di alamat default: `http://127.0.0.1:8000`
+Aplikasi Laravel akan aktif di: `http://127.0.0.1:8000`
 
-#### Terminal 2: Menjalankan Compiler Vite (Hot Reload Frontend)
+#### Terminal 2: Compiler Vite (Hot Reload Frontend)
 ```bash
 npm run dev
 ```
-Compiler Vite akan aktif memantau perubahan komponen React dan CSS Modules secara real-time.
+Compiler Vite akan aktif memantau perubahan komponen React dan CSS secara real-time.
 
 ---
 
 ## 🔑 Kredensial Akun Bawaan (Default Credentials)
 
-Setelah Anda menjalankan perintah `php artisan db:seed`, Anda dapat masuk ke panel admin untuk menguji sistem dengan akun simulasi bawaan:
+Setelah migrasi dan seeder berhasil dijalankan (otomatis via Docker, atau manual via `php artisan db:seed`), gunakan akun berikut untuk masuk ke panel admin:
 
-* **Tautan Halaman Login Admin:** `http://127.0.0.1:8000/admin/login`
-* **Email Panitia Admin:** `admin@gmail.com`
-* **Kata Sandi (Password):** `password`
+| | |
+|---|---|
+| **Tautan Login Admin (Docker)** | `http://localhost:8000/admin/login` |
+| **Tautan Login Admin (Manual)** | `http://127.0.0.1:8000/admin/login` |
+| **Email Panitia Admin** | `admin@gmail.com` |
+| **Kata Sandi (Password)** | `password` |
+
+> ⚠️ **Penting:** Ubah password admin segera setelah pertama kali login di lingkungan produksi.
+
+---
+
+## 🛠️ Tech Stack Ringkasan
+
+| Komponen | Teknologi | Versi |
+|----------|-----------|-------|
+| Runtime Server | PHP (Docker: `php:8.2.4-fpm-alpine`) | ^8.2 |
+| Framework Backend | Laravel | ^11.0 (v11.54.0) |
+| Adapter SSR | Inertia.js Laravel | ^3.0 (v3.1.0) |
+| Framework Frontend | React | ^19.2 |
+| Adapter CSR | @inertiajs/react | ^3.3 |
+| Build Tool | Vite | ^8.0 |
+| CSS Framework | Tailwind CSS | ^4.0 |
+| Database | MySQL | 8.0 |
+| Web Server (Docker) | Nginx | Alpine |
+| PDF Generator | DomPDF (barryvdh) | ^2.2 |
+| Kontainerisasi | Docker + Docker Compose | - |
 
 *Selamat melakukan pengujian dan pengembangan sistem PPDB SMK Ahmad Dahlan Sukadamai!*

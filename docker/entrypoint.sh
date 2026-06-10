@@ -30,6 +30,13 @@ php artisan view:cache
 if [ "$RUN_MIGRATIONS" = "true" ]; then
     echo "🗃️  Running migrations..."
     php artisan migrate --force
+
+    # Seed hanya jika tabel users kosong (fresh database)
+    USER_COUNT=$(php artisan tinker --execute="echo App\Models\User::count();" 2>/dev/null | tail -1)
+    if [ "$USER_COUNT" = "0" ] || [ -z "$USER_COUNT" ]; then
+        echo "🌱 Seeding database (fresh install)..."
+        php artisan db:seed --force
+    fi
 fi
 
 echo "✅ Laravel is ready! Starting services..."
