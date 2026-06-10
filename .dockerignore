@@ -1,0 +1,46 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Node
+node_modules
+npm-debug.log
+
+# Laravel local files
+.env.local
+.env.*.local
+
+# Storage (akan dikelola oleh volume Docker)
+storage/app/public
+storage/framework/cache
+storage/framework/sessions
+storage/framework/views
+storage/logs/*.log
+
+# Tests
+tests/
+
+# Development tools
+.editorconfig
+.phpunit.result.cache
+phpunit.xml
+phpunit.xml.dist
+
+# Docker compose files (tidak perlu di dalam image)
+docker-compose*.yml
+docker-compose.override.yml
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs
+README.md
+CHANGELOG.md
