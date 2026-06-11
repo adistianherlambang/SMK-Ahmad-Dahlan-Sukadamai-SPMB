@@ -3,11 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable(['name', 'quota_limit', 'description'])]
 class Quota extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'quota_limit',
+        'description',
+    ];
+
     protected $appends = ['sisa'];
 
     public function registrations()

@@ -3,15 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable([
-    'title',
-    'student_name',
-    'year',
-    'image_path'
-])]
 class Achievement extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'student_name',
+        'year',
+        'image_path',
+    ];
+
     //
 }

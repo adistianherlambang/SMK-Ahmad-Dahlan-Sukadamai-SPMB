@@ -3,15 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable([
-    'title',
-    'description',
-    'start_date',
-    'end_date'
-])]
 class Schedule extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'description',
+        'start_date',
+        'end_date',
+    ];
+
     //
 }

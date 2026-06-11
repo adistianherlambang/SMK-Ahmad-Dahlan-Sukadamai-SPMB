@@ -3,15 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
 
-#[Fillable([
-    'title',
-    'type',
-    'content',
-    'image_path'
-])]
 class Post extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title',
+        'type',
+        'content',
+        'image_path',
+    ];
+
     //
 }
