@@ -30,12 +30,12 @@ export default function KuotaPendaftaran({ quotas = [] }) {
 
   return (
     <>
-      <Head title="Kuota & Jalur Pendaftaran - SMK Ahmad Dahlan" />
+      <Head title="Kuota Pendaftaran - SMK Ahmad Dahlan" />
       <Navbar links={links} />
 
       <header className={styles.header}>
         <div className={styles.headerContent}>
-          <h1>Kuota & Jalur Pendaftaran</h1>
+          <h1>Kuota Pendaftaran</h1>
           <p className={styles.breadcrumb}>
             <Link href="/">Beranda</Link> / Informasi Pendaftaran / Kuota
           </p>
@@ -44,8 +44,8 @@ export default function KuotaPendaftaran({ quotas = [] }) {
 
       <main className={styles.container}>
         <section className={styles.intro}>
-          <h2>Informasi Kapasitas & Jalur Masuk</h2>
-          <p>Rincian batas daya tampung penerimaan siswa baru berdasarkan jalur masuk yang tersedia di SMK Ahmad Dahlan Sukadamai.</p>
+          <h2>Informasi Kapasitas Penerimaan</h2>
+          <p>Rincian batas daya tampung penerimaan siswa baru di SMK Ahmad Dahlan Sukadamai.</p>
         </section>
 
         <section className={styles.quotaGrid}>
@@ -60,11 +60,11 @@ export default function KuotaPendaftaran({ quotas = [] }) {
                   </div>
                 </div>
                 <div className={styles.quotaCardBody}>
-                  <p>{item.description || 'Tidak ada deskripsi rincian untuk jalur pendaftaran ini.'}</p>
+                  <p>{item.description || 'Tidak ada deskripsi rincian untuk kuota pendaftaran ini.'}</p>
                 </div>
                 <div className={styles.quotaCardFooter}>
                   {item.sisa > 0 ? (
-                    <span className={`${styles.statusText} ${styles.statusOpen}`}>Jalur Tersedia / Terbuka</span>
+                    <span className={`${styles.statusText} ${styles.statusOpen}`}>Kuota Tersedia / Terbuka</span>
                   ) : (
                     <span className={`${styles.statusText} ${styles.statusClosed}`}>Kuota Penuh / Ditutup</span>
                   )}
@@ -72,7 +72,7 @@ export default function KuotaPendaftaran({ quotas = [] }) {
               </div>
             ))
           ) : (
-            <p className={styles.emptyText}>Belum ada data kuota jalur pendaftaran yang tersedia.</p>
+            <p className={styles.emptyText}>Belum ada data kuota pendaftaran yang tersedia.</p>
           )}
         </section>
 

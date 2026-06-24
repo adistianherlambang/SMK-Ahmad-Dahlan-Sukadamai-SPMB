@@ -147,7 +147,6 @@ class StudentAuthController extends Controller
         $temp = session('temp_registration', null);
 
         return Inertia::render('Student/Auth/Formulir', [
-            'quotas' => $quotas,
             'tempData' => $temp
         ]);
     }
@@ -159,7 +158,6 @@ class StudentAuthController extends Controller
         }
 
         $validated = $request->validate([
-            'quota_id' => 'required|exists:quotas,id',
             'jurusan' => 'required|in:teknik otomotif,manajemen dan bisnis',
             'nisn' => 'required|digits:10|unique:registrations,nisn',
             'full_name' => 'required|string|max:255',
@@ -181,6 +179,10 @@ class StudentAuthController extends Controller
             'file_skhu_skl' => 'required|file|mimes:pdf|max:2048',
             'file_sktm' => 'nullable|file|mimes:pdf|max:2048',
         ]);
+
+        // Auto assign default quota (Umum)
+        $defaultQuota = Quota::first();
+        $validated['quota_id'] = $defaultQuota ? $defaultQuota->id : 1;
 
         // Upload files and save paths
         $uploaded = [];

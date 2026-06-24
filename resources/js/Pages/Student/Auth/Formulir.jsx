@@ -8,9 +8,8 @@ import FileInput from '../../../Components/FileInput/FileInput';
 import Button from '../../../Components/Button/Button';
 import styles from './Formulir.module.css';
 
-export default function Formulir({ quotas = [], tempData = null }) {
+export default function Formulir({ tempData = null }) {
   const { data, setData, post, processing, errors } = useForm({
-    quota_id: tempData?.quota_id ?? '',
     jurusan: tempData?.jurusan ?? '',
     nisn: tempData?.nisn ?? '',
     full_name: tempData?.full_name ?? '',
@@ -74,15 +73,6 @@ export default function Formulir({ quotas = [], tempData = null }) {
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Informasi Calon Peserta</h2>
             <div className={styles.sectionBody}>
-              <Select
-                label="Jalur Pendaftaran"
-                placeholder="Pilih jalur pendaftaran..."
-                options={quotas}
-                value={data.quota_id}
-                onChange={(e) => setData('quota_id', e.target.value)}
-                required
-              />
-
               <Select
                 label="Pilihan Jurusan"
                 placeholder="Pilih jurusan..."
@@ -287,11 +277,11 @@ export default function Formulir({ quotas = [], tempData = null }) {
               />
 
               <FileInput
-                label="SKTM / KIP / PKH (Opsional - Diwajibkan untuk Jalur Afirmasi)"
+                label="SKTM / KIP / PKH (Opsional)"
                 isUploaded={!!data.file_sktm}
                 onFileView={() => window.open(URL.createObjectURL(data.file_sktm))}
                 onChange={(e) => handleFileChange('file_sktm', e.target.files[0])}
-                required={data.quota_id === '3'} // Automatically required if Jalur Afirmasi (ID 3) selected
+                required={false}
               />
             </div>
           </div>

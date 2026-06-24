@@ -22,29 +22,16 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // 2. Seed Quotas (Jalur Pendaftaran)
+        // 2. Seed Quotas (Umum)
         DB::table('quotas')->insert([
             [
-                'name' => 'Jalur Domisili',
-                'quota_limit' => 100,
-                'description' => 'Jalur pendaftaran bagi calon siswa baru berdasarkan kedekatan jarak domisili/tempat tinggal ke sekolah.',
+                'id' => 1,
+                'name' => 'Umum',
+                'quota_limit' => 300,
+                'description' => 'Jalur Pendaftaran Umum.',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
-                'name' => 'Jalur Prestasi',
-                'quota_limit' => 50,
-                'description' => 'Jalur pendaftaran bagi calon siswa baru yang memiliki prestasi akademik maupun non-akademik.',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Jalur Afirmasi',
-                'quota_limit' => 30,
-                'description' => 'Jalur khusus pendaftaran bagi calon siswa baru dari keluarga ekonomi tidak mampu atau memiliki KIP/PKH.',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+            ]
         ]);
 
         // 3. Seed Schedules (Jadwal SPMB)

@@ -126,20 +126,6 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
                   ))}
                 </select>
               </div>
-
-              <div className={styles.filterGroup}>
-                <label>Jalur Pendaftaran</label>
-                <select
-                  value={filters.quota_id ?? ''}
-                  onChange={(e) => handleFilterChange('quota_id', e.target.value)}
-                  className={styles.filterSelect}
-                >
-                  <option value="">Semua Jalur</option>
-                  {quotas.map((q) => (
-                    <option key={q.id} value={q.id}>{q.name}</option>
-                  ))}
-                </select>
-              </div>
             </div>
 
             <div className={styles.filterGroup} style={{ flex: 2 }}>
@@ -164,7 +150,7 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
                   <th>No Registrasi</th>
                   <th>Nama Lengkap</th>
                   <th>NISN</th>
-                  <th>Jalur</th>
+                  <th>Jurusan</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -175,7 +161,7 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
                       <td className={styles.boldCell}>{student.registration_number}</td>
                       <td>{student.full_name}</td>
                       <td>{student.nisn}</td>
-                      <td>{student.quota?.name}</td>
+                      <td>{student.jurusan ? student.jurusan.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') : '-'}</td>
                       <td>
                         {getUnifiedStatus(student)}
                       </td>

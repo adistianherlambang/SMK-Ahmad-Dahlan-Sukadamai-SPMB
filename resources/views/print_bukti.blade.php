@@ -269,9 +269,9 @@
                 <td class="value">{{ $registration->family_status }}</td>
             </tr>
             <tr>
-                <td class="label">Jalur Masuk</td>
+                <td class="label">Pilihan Jurusan</td>
                 <td class="colon">:</td>
-                <td class="value" style="font-weight: bold;">{{ $registration->quota->name }}</td>
+                <td class="value" style="font-weight: bold;">{{ ucwords($registration->jurusan) }}</td>
             </tr>
         </table>
         
@@ -340,7 +340,7 @@
                                 <li>Fotokopi Ijazah / SKL Terlegalisir - 2 Lembar</li>
                                 <li>Pas Foto hitam putih ukuran 3x4 - 2 Lembar</li>
                                 <li>Semua berkas dimasukkan ke dalam Map Kuning (Laki-laki) atau Map Merah (Perempuan)</li>
-                            </ul>
+                             </ul>
                         </div>
                     @else
                         <div class="requirements-box">
@@ -350,9 +350,7 @@
                                 <li>Fotokopi Kartu Keluarga (KK) - 2 Lembar</li>
                                 <li>Fotokopi Akta Kelahiran - 2 Lembar</li>
                                 <li>Fotokopi SKHU / SKL Terlegalisir - 2 Lembar</li>
-                                @if($registration->quota->name === 'Jalur Afirmasi')
-                                    <li>Fotokopi SKTM / KIP / PKH - 2 Lembar</li>
-                                @endif
+                                <li>Fotokopi SKTM / KIP / PKH (jika ada) - 2 Lembar</li>
                                 <li>Semua dokumen dimasukkan ke dalam stopmap</li>
                             </ul>
                         </div>

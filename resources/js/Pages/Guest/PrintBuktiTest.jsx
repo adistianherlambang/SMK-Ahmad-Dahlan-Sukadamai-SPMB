@@ -4,7 +4,7 @@ import styles from './PrintBuktiTest.module.css';
 export default function PrintBuktiTest() {
   // States to toggle content in real-time
   const [isDiterima, setIsDiterima] = useState(true);
-  const [isAfirmasi, setIsAfirmasi] = useState(false);
+  const [selectedJurusan, setSelectedJurusan] = useState('teknik otomotif');
 
   // Set body background to grey temporarily for this preview page
   useEffect(() => {
@@ -64,12 +64,15 @@ export default function PrintBuktiTest() {
           Status: Lulus (Diterima)
         </label>
         <label>
-          <input
-            type="checkbox"
-            checked={isAfirmasi}
-            onChange={(e) => setIsAfirmasi(e.target.checked)}
-          />
-          Jalur: Afirmasi
+          Jurusan:
+          <select
+            value={selectedJurusan}
+            onChange={(e) => setSelectedJurusan(e.target.value)}
+            style={{ marginLeft: '6px', padding: '2px 4px' }}
+          >
+            <option value="teknik otomotif">Teknik Otomotif</option>
+            <option value="manajemen dan bisnis">Manajemen dan Bisnis</option>
+          </select>
         </label>
       </div>
 
@@ -183,10 +186,10 @@ export default function PrintBuktiTest() {
                 <td className={styles.value}>{registration.family_status}</td>
               </tr>
               <tr>
-                <td className={styles.label}>Jalur Masuk</td>
+                <td className={styles.label}>Pilihan Jurusan</td>
                 <td className={styles.colon}>:</td>
                 <td className={styles.value} style={{ fontWeight: 'bold' }}>
-                  {isAfirmasi ? 'Jalur Afirmasi' : 'Jalur Zonasi'}
+                  {selectedJurusan === 'teknik otomotif' ? 'Teknik Otomotif' : 'Manajemen dan Bisnis'}
                 </td>
               </tr>
             </tbody>
@@ -274,7 +277,7 @@ export default function PrintBuktiTest() {
                         <li>Fotokopi Kartu Keluarga (KK) - 2 Lembar</li>
                         <li>Fotokopi Akta Kelahiran - 2 Lembar</li>
                         <li>Fotokopi SKHU / SKL Terlegalisir - 2 Lembar</li>
-                        {isAfirmasi && <li>Fotokopi SKTM / KIP / PKH - 2 Lembar</li>}
+                        <li>Fotokopi SKTM / KIP / PKH (jika ada) - 2 Lembar</li>
                         <li>Semua dokumen dimasukkan ke dalam stopmap</li>
                       </ul>
                     </div>

@@ -130,9 +130,9 @@ export default function DataPendaftaran({ registration = {} }) {
             <table className={styles.detailsTable}>
               <tbody>
                 <tr>
-                  <td>Jalur Masuk</td>
+                  <td>Pilihan Jurusan</td>
                   <td>:</td>
-                  <td>{registration.quota?.name}</td>
+                  <td>{registration.jurusan ? registration.jurusan.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') : '-'}</td>
                 </tr>
                 <tr>
                   <td>NISN</td>

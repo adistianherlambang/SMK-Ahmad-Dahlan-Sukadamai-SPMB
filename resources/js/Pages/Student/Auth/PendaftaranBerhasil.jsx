@@ -42,8 +42,8 @@ export default function PendaftaranBerhasil({ registration = {} }) {
               <span className={styles.detailsValue}>{registration.nisn}</span>
             </div>
             <div className={styles.detailsRowLast}>
-              <span className={styles.detailsLabel}>JALUR MASUK</span>
-              <span className={styles.detailsValue}>{registration.quota?.name}</span>
+              <span className={styles.detailsLabel}>JURUSAN</span>
+              <span className={styles.detailsValue}>{registration.jurusan ? registration.jurusan.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') : '-'}</span>
             </div>
           </div>
 
