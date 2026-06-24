@@ -25,7 +25,8 @@ export default function PeriodClosed() {
       ]
     },
     { url: '/berita', label: 'Berita' },
-    { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' }
+    { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' },
+    { url: '/admin/login', label: 'Login Admin' }
   ];
 
   return (

@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\PostCrudController;
 use App\Http\Controllers\Admin\AchievementCrudController;
 use Inertia\Inertia;
 
+// TEST123
+
 // Global Logout Handler
 Route::post('/logout', function () {
     Auth::logout();

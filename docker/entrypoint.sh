@@ -22,9 +22,15 @@ chmod -R 775 storage bootstrap/cache
 
 # Run Laravel startup commands
 echo "🔧 Running artisan commands..."
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
+if [ "$APP_ENV" = "local" ]; then
+    echo "🧹 Clearing configuration, route, and view cache for local development..."
+    php artisan optimize:clear
+else
+    echo "📦 Caching configuration, route, and view..."
+    php artisan config:cache
+    php artisan route:cache
+    php artisan view:cache
+fi
 
 # Run migrations
 if [ "$RUN_MIGRATIONS" = "true" ]; then

@@ -41,6 +41,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
     },
     { url: '/berita', label: 'Berita' },
     { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' },
+    { url: '/admin/login', label: 'Login Admin' }
   ];
 
   const fasilitas = [

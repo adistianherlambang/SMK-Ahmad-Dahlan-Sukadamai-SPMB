@@ -25,6 +25,7 @@ services:
       CACHE_STORE: database
       RUN_MIGRATIONS: "true"
     volumes:
+      - .:/var/www/html
       - app_storage:/var/www/html/storage
       - ./.env:/var/www/html/.env:ro
     depends_on:
@@ -48,7 +49,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-p${DB_ROOT_PASSWORD:-rootsecret}"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-p${DB_ROOT_PASSWORD:-rootsecret}" ]
       interval: 10s
       timeout: 5s
       retries: 10

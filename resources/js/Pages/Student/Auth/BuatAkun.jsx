@@ -31,7 +31,8 @@ export default function BuatAkun() {
       ]
     },
     { url: '/berita', label: 'Berita' },
-    { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' }
+    { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' },
+    { url: '/admin/login', label: 'Login Admin' }
   ];
 
   const handleSubmit = (e) => {

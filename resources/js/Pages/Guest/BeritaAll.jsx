@@ -34,7 +34,8 @@ export default function BeritaAll({ news = [] }) {
       ]
     },
     { url: '/berita', label: 'Berita' },
-    { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' }
+    { url: '/siswa/login', label: 'Daftar Sekarang', method: 'post' },
+    { url: '/admin/login', label: 'Login Admin' }
   ];
 
   const filteredNews = news.filter((item) =>
