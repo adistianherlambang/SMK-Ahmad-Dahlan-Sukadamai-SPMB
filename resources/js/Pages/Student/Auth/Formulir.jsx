@@ -11,6 +11,7 @@ import styles from './Formulir.module.css';
 export default function Formulir({ quotas = [], tempData = null }) {
   const { data, setData, post, processing, errors } = useForm({
     quota_id: tempData?.quota_id ?? '',
+    jurusan: tempData?.jurusan ?? '',
     nisn: tempData?.nisn ?? '',
     full_name: tempData?.full_name ?? '',
     gender: tempData?.gender ?? '',
@@ -79,6 +80,18 @@ export default function Formulir({ quotas = [], tempData = null }) {
                 options={quotas}
                 value={data.quota_id}
                 onChange={(e) => setData('quota_id', e.target.value)}
+                required
+              />
+
+              <Select
+                label="Pilihan Jurusan"
+                placeholder="Pilih jurusan..."
+                options={[
+                  { value: 'teknik otomotif', label: 'Teknik Otomotif' },
+                  { value: 'manajemen dan bisnis', label: 'Manajemen dan Bisnis' }
+                ]}
+                value={data.jurusan}
+                onChange={(e) => setData('jurusan', e.target.value)}
                 required
               />
 

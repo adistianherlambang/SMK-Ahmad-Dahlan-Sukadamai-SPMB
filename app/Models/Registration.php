@@ -33,6 +33,8 @@ class Registration extends Model
         'verification_status',
         'graduation_status',
         'rejection_reason',
+        'nis',
+        'jurusan',
     ];
 
     public function user()

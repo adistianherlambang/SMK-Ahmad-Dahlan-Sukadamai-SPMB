@@ -88,6 +88,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/penentuan-kelulusan', [AdminDashboardController::class, 'penentuanKelulusan']);
     Route::post('/penentuan-kelulusan/{id}/aksi', [AdminDashboardController::class, 'prosesKelulusan']);
     
+    // Manajemen Siswa & Absensi
+    Route::get('/siswa', [AdminDashboardController::class, 'siswaIndex']);
+    Route::put('/siswa/{id}', [AdminDashboardController::class, 'siswaUpdate']);
+    Route::get('/absensi', [AdminDashboardController::class, 'absensiIndex']);
+    Route::post('/absensi', [AdminDashboardController::class, 'absensiSave']);
+    
     // Master Data CRUD Router (Schedules, Quotas, Posts, Achievements)
     Route::resource('schedules', ScheduleCrudController::class);
     Route::resource('quotas', QuotaCrudController::class);

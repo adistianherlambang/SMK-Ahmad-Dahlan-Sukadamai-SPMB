@@ -259,8 +259,18 @@ class AdminDashboardController extends Controller
 
         if ($action === 'accept') {
             $registration->graduation_status = 'Diterima';
+            
+            if (empty($registration->nis)) {
+                $latestNis = Registration::whereNotNull('nis')
+                    ->orderByRaw('CAST(nis AS UNSIGNED) DESC')
+                    ->value('nis');
+                
+                $nextNisNum = $latestNis ? (intval($latestNis) + 1) : 435;
+                $registration->nis = sprintf('%05d', $nextNisNum);
+            }
+
             $registration->save();
-            return back()->with('success', "{$registration->full_name} berhasil dinyatakan Diterima.");
+            return back()->with('success', "{$registration->full_name} berhasil dinyatakan Diterima dengan NIS {$registration->nis}.");
         }
 
         if ($action === 'reject') {
@@ -271,6 +281,7 @@ class AdminDashboardController extends Controller
 
         if ($action === 'undo') {
             $registration->graduation_status = 'Menunggu Kelulusan';
+            $registration->nis = null;
             $registration->save();
             return back()->with('success', "Batal status kelulusan {$registration->full_name} berhasil.");
         }
@@ -307,5 +318,106 @@ class AdminDashboardController extends Controller
         }
 
         return back()->with('error', 'Aksi tidak dikenal.');
+    }
+
+    public function siswaIndex(Request $request)
+    {
+        $jurusanFilter = $request->input('jurusan', '');
+        $search = $request->input('search', '');
+
+        $query = Registration::with(['quota'])->where('graduation_status', 'Diterima');
+
+        if ($jurusanFilter) {
+            $query->where('jurusan', $jurusanFilter);
+        }
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('full_name', 'like', "%{$search}%")
+                  ->orWhere('nis', 'like', "%{$search}%")
+                  ->orWhere('nisn', 'like', "%{$search}%");
+            });
+        }
+
+        $students = $query->orderBy('nis', 'asc')->get();
+
+        return Inertia::render('Admin/Siswa', [
+            'students' => $students,
+            'filters' => [
+                'jurusan' => $jurusanFilter,
+                'search' => $search,
+            ]
+        ]);
+    }
+
+    public function siswaUpdate(Request $request, $id)
+    {
+        $registration = Registration::findOrFail($id);
+
+        $request->validate([
+            'nis' => 'required|string|max:20|unique:registrations,nis,' . $id,
+            'jurusan' => 'required|in:teknik otomotif,manajemen dan bisnis',
+            'full_name' => 'required|string|max:255',
+            'nisn' => 'required|digits:10|unique:registrations,nisn,' . $id,
+        ]);
+
+        $registration->update([
+            'nis' => $request->nis,
+            'jurusan' => $request->jurusan,
+            'full_name' => $request->full_name,
+            'nisn' => $request->nisn,
+        ]);
+
+        return back()->with('success', 'Data siswa berhasil diperbarui.');
+    }
+
+    public function absensiIndex(Request $request)
+    {
+        $date = $request->input('date', date('Y-m-d'));
+        $jurusan = $request->input('jurusan', 'teknik otomotif');
+
+        // Get students in this major
+        $students = Registration::where('graduation_status', 'Diterima')
+            ->where('jurusan', $jurusan)
+            ->orderBy('nis', 'asc')
+            ->get();
+
+        // Get attendance for this date & major
+        $studentIds = $students->pluck('id')->toArray();
+        $attendances = \App\Models\Attendance::where('date', $date)
+            ->whereIn('registration_id', $studentIds)
+            ->pluck('status', 'registration_id')
+            ->toArray();
+
+        return Inertia::render('Admin/Absensi', [
+            'students' => $students,
+            'attendances' => (object)$attendances,
+            'date' => $date,
+            'jurusan' => $jurusan,
+        ]);
+    }
+
+    public function absensiSave(Request $request)
+    {
+        $request->validate([
+            'date' => 'required|date',
+            'jurusan' => 'required|in:teknik otomotif,manajemen dan bisnis',
+            'records' => 'required|array',
+        ]);
+
+        $date = $request->date;
+        $records = $request->records; // array of registration_id => status
+
+        foreach ($records as $regId => $status) {
+            if (!in_array($status, ['Hadir', 'Sakit', 'Izin', 'Alpa'])) {
+                continue;
+            }
+            \App\Models\Attendance::updateOrCreate(
+                ['registration_id' => $regId, 'date' => $date],
+                ['status' => $status]
+            );
+        }
+
+        return back()->with('success', 'Absensi berhasil disimpan.');
     }
 }

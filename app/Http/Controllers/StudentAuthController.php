@@ -160,6 +160,7 @@ class StudentAuthController extends Controller
 
         $validated = $request->validate([
             'quota_id' => 'required|exists:quotas,id',
+            'jurusan' => 'required|in:teknik otomotif,manajemen dan bisnis',
             'nisn' => 'required|digits:10|unique:registrations,nisn',
             'full_name' => 'required|string|max:255',
             'gender' => 'required|in:L,P',
@@ -251,6 +252,7 @@ class StudentAuthController extends Controller
                 'registration_number' => $regNumber,
                 'nisn' => $tempData['nisn'],
                 'full_name' => $tempData['full_name'],
+                'jurusan' => $tempData['jurusan'],
                 'gender' => $tempData['gender'],
                 'birth_place' => $tempData['birth_place'],
                 'birth_date' => $tempData['birth_date'],
