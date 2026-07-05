@@ -323,14 +323,17 @@ class AdminDashboardController extends Controller
     public function siswaIndex(Request $request)
     {
         $jurusanFilter = $request->input('jurusan', '');
-        $search = $request->input('search', '');
+        $kelasFilter   = $request->input('kelas', '');
+        $search        = $request->input('search', '');
 
         $query = Registration::with(['quota'])->where('graduation_status', 'Diterima');
 
         if ($jurusanFilter) {
             $query->where('jurusan', $jurusanFilter);
         }
-
+        if ($kelasFilter) {
+            $query->where('kelas', $kelasFilter);
+        }
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('full_name', 'like', "%{$search}%")
@@ -339,13 +342,23 @@ class AdminDashboardController extends Controller
             });
         }
 
-        $students = $query->orderBy('nis', 'asc')->get();
+        $students = $query->orderBy('kelas', 'asc')->orderBy('nis', 'asc')->get();
+
+        // Group: jurusan -> kelas -> students
+        $grouped = [];
+        foreach ($students as $student) {
+            $j = $student->jurusan ?? 'Tidak Diketahui';
+            $k = $student->kelas   ?? 'Belum Ditentukan';
+            $grouped[$j][$k][] = $student;
+        }
 
         return Inertia::render('Admin/Siswa', [
-            'students' => $students,
-            'filters' => [
+            'students'        => $students,
+            'grouped'         => $grouped,
+            'filters'         => [
                 'jurusan' => $jurusanFilter,
-                'search' => $search,
+                'kelas'   => $kelasFilter,
+                'search'  => $search,
             ]
         ]);
     }
@@ -355,20 +368,42 @@ class AdminDashboardController extends Controller
         $registration = Registration::findOrFail($id);
 
         $request->validate([
-            'nis' => 'required|string|max:20|unique:registrations,nis,' . $id,
-            'jurusan' => 'required|in:teknik otomotif,manajemen dan bisnis',
+            'nis'       => 'required|string|max:20|unique:registrations,nis,' . $id,
+            'jurusan'   => 'required|in:teknik otomotif,manajemen dan bisnis',
+            'kelas'     => 'nullable|in:X,XI,XII',
             'full_name' => 'required|string|max:255',
-            'nisn' => 'required|digits:10|unique:registrations,nisn,' . $id,
+            'nisn'      => 'required|digits:10|unique:registrations,nisn,' . $id,
         ]);
 
         $registration->update([
-            'nis' => $request->nis,
-            'jurusan' => $request->jurusan,
+            'nis'       => $request->nis,
+            'jurusan'   => $request->jurusan,
+            'kelas'     => $request->kelas,
             'full_name' => $request->full_name,
-            'nisn' => $request->nisn,
+            'nisn'      => $request->nisn,
         ]);
 
         return back()->with('success', 'Data siswa berhasil diperbarui.');
+    }
+
+    public function siswaAbsensiPdf(Request $request)
+    {
+        $jurusan   = $request->input('jurusan', 'teknik otomotif');
+        $kelas     = $request->input('kelas', 'X');
+        $mapel     = $request->input('mapel', '');
+
+        $students = Registration::where('graduation_status', 'Diterima')
+            ->where('jurusan', $jurusan)
+            ->where('kelas', $kelas)
+            ->orderBy('nis', 'asc')
+            ->get();
+
+        return view('print_absensi', [
+            'students' => $students,
+            'jurusan'  => $jurusan,
+            'kelas'    => $kelas,
+            'mapel'    => $mapel,
+        ]);
     }
 
     public function absensiIndex(Request $request)

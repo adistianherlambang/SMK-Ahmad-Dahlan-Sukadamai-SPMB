@@ -35,6 +35,7 @@ class Registration extends Model
         'rejection_reason',
         'nis',
         'jurusan',
+        'kelas',
     ];
 
     public function user()

@@ -92,6 +92,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     
     // Manajemen Siswa & Absensi
     Route::get('/siswa', [AdminDashboardController::class, 'siswaIndex']);
+    Route::get('/siswa/pdf', [AdminDashboardController::class, 'siswaAbsensiPdf'])->name('admin.siswa.pdf');
     Route::put('/siswa/{id}', [AdminDashboardController::class, 'siswaUpdate']);
     Route::get('/absensi', [AdminDashboardController::class, 'absensiIndex']);
     Route::post('/absensi', [AdminDashboardController::class, 'absensiSave']);
