@@ -29,6 +29,7 @@ export default function VerifikasiBerkas({ applicants = [], quotas = [], years =
     { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
     { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
     { url: '/admin/siswa', label: 'Manajemen Siswa' },
+    { url: '/admin/absensi', label: 'Absensi' },
     {
       label: 'Data Master',
       dropdown: [

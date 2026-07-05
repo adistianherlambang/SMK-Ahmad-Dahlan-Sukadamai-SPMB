@@ -36,6 +36,7 @@ class Registration extends Model
         'nis',
         'jurusan',
         'kelas',
+        'classroom_id',
     ];
 
     public function user()
@@ -51,5 +52,10 @@ class Registration extends Model
     public function document()
     {
         return $this->hasOne(Document::class);
+    }
+
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class);
     }
 }

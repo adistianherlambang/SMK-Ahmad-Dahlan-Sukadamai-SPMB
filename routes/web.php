@@ -90,12 +90,18 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/penentuan-kelulusan', [AdminDashboardController::class, 'penentuanKelulusan']);
     Route::post('/penentuan-kelulusan/{id}/aksi', [AdminDashboardController::class, 'prosesKelulusan']);
     
-    // Manajemen Siswa & Absensi
+    // Manajemen Siswa
     Route::get('/siswa', [AdminDashboardController::class, 'siswaIndex']);
     Route::get('/siswa/pdf', [AdminDashboardController::class, 'siswaAbsensiPdf'])->name('admin.siswa.pdf');
     Route::put('/siswa/{id}', [AdminDashboardController::class, 'siswaUpdate']);
-    Route::get('/absensi', [AdminDashboardController::class, 'absensiIndex']);
-    Route::post('/absensi', [AdminDashboardController::class, 'absensiSave']);
+    Route::post('/siswa/assign-classroom', [AdminDashboardController::class, 'siswaAssignClassroom'])->name('admin.siswa.assign');
+
+    // Absensi & Classrooms
+    Route::get('/absensi', [AdminDashboardController::class, 'absensiIndex'])->name('admin.absensi');
+    Route::get('/absensi/{classroomId}', [AdminDashboardController::class, 'absensiShow'])->name('admin.absensi.show');
+    Route::post('/absensi/{classroomId}', [AdminDashboardController::class, 'absensiSave'])->name('admin.absensi.save');
+    Route::post('/classrooms', [AdminDashboardController::class, 'classroomStore'])->name('admin.classrooms.store');
+    Route::delete('/classrooms/{id}', [AdminDashboardController::class, 'classroomDelete'])->name('admin.classrooms.delete');
     
     // Master Data CRUD Router (Schedules, Quotas, Posts, Achievements)
     Route::resource('schedules', ScheduleCrudController::class);
