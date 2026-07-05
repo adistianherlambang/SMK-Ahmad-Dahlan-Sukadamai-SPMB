@@ -57,7 +57,7 @@ export default function Sejarah() {
           <h2>SMK Ahmad Dahlan Hari Ini</h2>
           <p>Kini, SMK Ahmad Dahlan Sukadamai telah berkembang pesat dengan memiliki gedung representatif milik sendiri, fasilitas laboratorium komputer, bank mini syariah, bengkel modern berstandar industri, serta didukung oleh tenaga pendidik profesional yang berpengalaman di bidangnya.</p>
 
-          <p>Pada akreditasi terakhir yang diselenggarakan oleh BAN-S/M, SMK Ahmad Dahlan berhasil mendapatkan predikat <strong>Akreditasi A (Unggul)</strong>. Hal ini menegaskan komitmen kami untuk terus melahirkan kader Muhammadiyah yang mandiri, islami, dan siap kerja menjawab tantangan industri masa kini.</p>
+          <p>Pada akreditasi terakhir yang diselenggarakan oleh BAN-S/M, SMK Ahmad Dahlan memperoleh predikat <strong>Akreditasi C</strong>. Hasil akreditasi ini menjadi motivasi bagi kami untuk terus meningkatkan mutu pendidikan, sarana prasarana, serta kualitas layanan pembelajaran guna mencetak lulusan yang mandiri, islami, dan siap menghadapi dunia kerja.</p>
         </article>
       </main>
 

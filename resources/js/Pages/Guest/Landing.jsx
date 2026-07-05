@@ -51,46 +51,48 @@ export default function Landing({ announcements = [], news = [], achievements = 
       "img": "/landingPage/landing/dummy.png",
     },
     {
-      "title": "Laboratorium Komputer",
-      "desc": "Laboratorium komputer digunakan untuk praktik teknologi informasi dan pembelajaran berbasis digital.",
-      "img": "/landingPage/landing/dummy.png",
+      "title": "Ruang Belajar",
+      "desc": "Ruang belajar yang nyaman menciptakan suasana pembelajaran aktif, fokus, dan menyenangkan.",
+      "img": "/landingPage/landing/kelas2.jpeg",
     },
     {
-      "title": "Perpustakaan",
-      "desc": "Perpustakaan menyediakan sumber belajar dan ruang membaca yang nyaman bagi siswa dan guru.",
-      "img": "/landingPage/landing/dummy.png",
+      "title": "Bengkel Motor",
+      "desc": "Bengkel praktik membekali siswa dengan keterampilan servis sepeda motor sesuai standar industri.",
+      "img": "/landingPage/landing/bengkel.jpeg",
     },
     {
       "title": "Sarana Ibadah",
-      "desc": "Sarana ibadah digunakan untuk kegiatan keagamaan dan pembinaan karakter spiritual siswa.",
+      "desc": "Unit sepeda motor praktik menunjang pembelajaran langsung untuk meningkatkan kompetensi siswa.",
       "img": "/landingPage/landing/dummy.png",
     },
     {
-      "title": "Kantin Sekolah",
-      "desc": "Kantin sekolah menyediakan makanan dan minuman yang bersih, sehat, dan terjangkau.",
+      "title": "Laboratorium Manajemen",
+      "desc": "Laboratorium manajemen melatih keterampilan administrasi dan pengelolaan bisnis secara profesional.",
+      "img": "/landingPage/landing/labManajemen.jpeg",
+    },
+    {
+      "title": "Lapangan Olahraga",
+      "desc": "Lapangan olahraga mendukung pengembangan kebugaran, sportivitas, dan bakat siswa.",
+      "img": "/landingPage/landing/dummy.png",
+    },
+    {
+      "title": "Masjid",
+      "desc": "Masjid menjadi pusat ibadah serta pembinaan karakter Islami bagi seluruh warga sekolah.",
       "img": "/landingPage/landing/dummy.png",
     }
   ]
 
   const ekstra = [
     {
-      "title": "Fulsal",
+      "title": "Hisbul Wathan",
       "img": "/landingPage/landing/dummy.png",
     },
     {
-      "title": "Paskibra",
+      "title": "Tapak Suci",
       "img": "/landingPage/landing/dummy.png",
     },
     {
-      "title": "Rohis",
-      "img": "/landingPage/landing/dummy.png",
-    },
-    {
-      "title": "PMR",
-      "img": "/landingPage/landing/dummy.png",
-    },
-    {
-      "title": "Pramuka",
+      "title": "Futsal",
       "img": "/landingPage/landing/dummy.png",
     }
   ]
