@@ -270,174 +270,69 @@ export default function Siswa({ students = [], grouped = {}, classrooms = [], fi
           </div>
         )}
 
-        {/* Grouped tables */}
+        {/* Flat student table */}
         {hasStudents ? (
-          jurusanKeys.length > 0 ? (
-            jurusanKeys.map(jurusanKey => {
-              const kelasByJurusan = grouped[jurusanKey] || {};
-              const kelasSorted = KELAS_ORDER.filter(k => kelasByJurusan[k])
-                .concat(Object.keys(kelasByJurusan).filter(k => !KELAS_ORDER.includes(k)));
-
-              const allInJurusan = kelasSorted.flatMap(k => kelasByJurusan[k] || []);
-
-              return (
-                <section key={jurusanKey} style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-                  {/* Jurusan heading */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-                    <div style={{ width: '4px', height: '22px', background: 'var(--color-accent-yellow)', borderRadius: '2px', flexShrink: 0 }} />
-                    <h2 style={{ fontSize: '14px', fontWeight: 800, color: 'var(--color-primary-dark)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
-                      Jurusan {formatJurusan(jurusanKey)}
-                    </h2>
-                    <span style={{ fontSize: '12px', color: '#718096', fontWeight: 400 }}>
-                      — {allInJurusan.length} siswa total
-                    </span>
-                  </div>
-
-                  {kelasSorted.map(kelas => {
-                    const kelasStudents = kelasByJurusan[kelas] || [];
-                    const allSelected  = kelasStudents.every(s => selected.has(s.id));
-
-                    return (
-                      <div key={kelas} style={{ marginBottom: '24px' }}>
-                        {/* Kelas header bar */}
-                        <div style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          background: 'var(--color-primary-dark)',
-                          color: '#fff',
-                          padding: '10px 16px',
-                          borderRadius: '6px 6px 0 0',
-                        }}>
-                          <label style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', userSelect: 'none' }}>
-                            <input
-                              type="checkbox"
-                              checked={allSelected && kelasStudents.length > 0}
-                              onChange={() => toggleSelectAll(kelasStudents)}
-                              style={{ accentColor: 'var(--color-accent-yellow)', width: '15px', height: '15px', cursor: 'pointer' }}
-                            />
-                            <span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '0.5px' }}>
-                              KELAS {kelas}
-                              <span style={{ marginLeft: '10px', fontWeight: 400, fontSize: '12px', opacity: 0.8 }}>
-                                ({kelasStudents.length} siswa)
-                              </span>
-                            </span>
-                          </label>
-                        </div>
-
-                        {/* Table */}
-                        <div className={styles.tableContainer} style={{ borderRadius: '0 0 6px 6px' }}>
-                          <table className={styles.table}>
-                            <thead>
-                              <tr>
-                                <th style={{ width: '40px', textAlign: 'center' }}></th>
-                                <th style={{ width: '44px', textAlign: 'center' }}>No.</th>
-                                <th style={{ width: '120px' }}>NIS</th>
-                                <th>Nama Lengkap</th>
-                                <th>NISN</th>
-                                <th>Kelas Saat Ini</th>
-                                <th style={{ width: '80px', textAlign: 'center' }}>Aksi</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {kelasStudents.map((student, idx) => (
-                                <tr key={student.id} style={{ background: selected.has(student.id) ? '#FEFCBF' : undefined }}>
-                                  <td style={{ textAlign: 'center' }}>
-                                    <input
-                                      type="checkbox"
-                                      checked={selected.has(student.id)}
-                                      onChange={() => toggleSelect(student.id)}
-                                      style={{ accentColor: 'var(--color-primary-dark)', width: '14px', height: '14px', cursor: 'pointer' }}
-                                    />
-                                  </td>
-                                  <td style={{ textAlign: 'center', color: '#718096', fontSize: '12px' }}>{idx + 1}</td>
-                                  <td className={styles.boldCell}>{student.nis || '-'}</td>
-                                  <td>{student.full_name}</td>
-                                  <td>{student.nisn}</td>
-                                  <td>
-                                    {student.classroom
-                                      ? <span className={`${styles.badge} ${styles.badgeSuccess}`}>{student.classroom.name}</span>
-                                      : <span className={`${styles.badge} ${styles.badgeSecondary}`}>Belum ada</span>
-                                    }
-                                  </td>
-                                  <td style={{ textAlign: 'center' }}>
-                                    <Button onClick={() => handleOpenEdit(student)} variant="secondary" size="sm">Edit</Button>
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </section>
-              );
-            })
-          ) : (
-            <div className={styles.tableContainer}>
-              <table className={styles.table}><tbody>
-                <tr><td className={styles.emptyCell}>Tidak ada data untuk filter yang dipilih.</td></tr>
-              </tbody></table>
-            </div>
-          )
+          <div className={styles.tableContainer} style={{ borderRadius: '6px' }}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th style={{ width: '40px', textAlign: 'center' }}>
+                    <input
+                      type="checkbox"
+                      checked={students.length > 0 && students.every(s => selected.has(s.id))}
+                      onChange={() => toggleSelectAll(students)}
+                      style={{ accentColor: 'var(--color-primary-dark)', width: '15px', height: '15px', cursor: 'pointer' }}
+                    />
+                  </th>
+                  <th style={{ width: '44px', textAlign: 'center' }}>No.</th>
+                  <th style={{ width: '120px' }}>NIS</th>
+                  <th>Nama Lengkap</th>
+                  <th>Jurusan</th>
+                  <th style={{ width: '80px', textAlign: 'center' }}>Tingkat</th>
+                  <th>Kelas Saat Ini</th>
+                  <th style={{ width: '80px', textAlign: 'center' }}>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {students.map((student, idx) => (
+                  <tr key={student.id} style={{ background: selected.has(student.id) ? '#FEFCBF' : undefined }}>
+                    <td style={{ textAlign: 'center' }}>
+                      <input
+                        type="checkbox"
+                        checked={selected.has(student.id)}
+                        onChange={() => toggleSelect(student.id)}
+                        style={{ accentColor: 'var(--color-primary-dark)', width: '14px', height: '14px', cursor: 'pointer' }}
+                      />
+                    </td>
+                    <td style={{ textAlign: 'center', color: '#718096', fontSize: '12px' }}>{idx + 1}</td>
+                    <td className={styles.boldCell}>{student.nis || '-'}</td>
+                    <td>{student.full_name}</td>
+                    <td>{formatJurusan(student.jurusan)}</td>
+                    <td style={{ textAlign: 'center' }}>{student.kelas || '-'}</td>
+                    <td>
+                      {student.classroom
+                        ? <span className={`${styles.badge} ${styles.badgeSuccess}`}>{student.classroom.name}</span>
+                        : <span className={`${styles.badge} ${styles.badgeSecondary}`}>Belum ada</span>
+                      }
+                    </td>
+                    <td style={{ textAlign: 'center' }}>
+                      <Button onClick={() => handleOpenEdit(student)} variant="secondary" size="sm">Edit</Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
           <div className={styles.tableContainer}>
-            <table className={styles.table}><tbody>
-              <tr><td className={styles.emptyCell}>Tidak ada data siswa terdaftar.</td></tr>
-            </tbody></table>
+            <table className={styles.table}>
+              <tbody>
+                <tr>
+                  <td className={styles.emptyCell}>Tidak ada data siswa terdaftar.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        )}
-
-        {/* Siswa tanpa kelas */}
-        {hasStudents && students.some(s => !s.kelas && (!jurusanFilter || s.jurusan === jurusanFilter)) && (
-          <section>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
-              <div style={{ width: '4px', height: '22px', background: '#E2E8F0', borderRadius: '2px' }} />
-              <h2 style={{ fontSize: '13px', fontWeight: 700, color: '#718096', textTransform: 'uppercase' }}>
-                Belum Ditetapkan Kelasnya
-              </h2>
-            </div>
-            <div className={styles.tableContainer} style={{ borderRadius: '6px' }}>
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th style={{ width: '40px', textAlign: 'center' }}></th>
-                    <th style={{ width: '44px', textAlign: 'center' }}>No.</th>
-                    <th style={{ width: '120px' }}>NIS</th>
-                    <th>Nama Lengkap</th>
-                    <th>Jurusan</th>
-                    <th>NISN</th>
-                    <th style={{ width: '80px', textAlign: 'center' }}>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {students
-                    .filter(s => !s.kelas && (!jurusanFilter || s.jurusan === jurusanFilter))
-                    .map((student, idx) => (
-                      <tr key={student.id} style={{ background: selected.has(student.id) ? '#FEFCBF' : undefined }}>
-                        <td style={{ textAlign: 'center' }}>
-                          <input
-                            type="checkbox"
-                            checked={selected.has(student.id)}
-                            onChange={() => toggleSelect(student.id)}
-                            style={{ accentColor: 'var(--color-primary-dark)', width: '14px', height: '14px', cursor: 'pointer' }}
-                          />
-                        </td>
-                        <td style={{ textAlign: 'center', color: '#718096', fontSize: '12px' }}>{idx + 1}</td>
-                        <td className={styles.boldCell}>{student.nis || '-'}</td>
-                        <td>{student.full_name}</td>
-                        <td>{formatJurusan(student.jurusan)}</td>
-                        <td>{student.nisn}</td>
-                        <td style={{ textAlign: 'center' }}>
-                          <Button onClick={() => handleOpenEdit(student)} variant="secondary" size="sm">Edit</Button>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
         )}
       </main>
 
