@@ -9,12 +9,12 @@ import Select from '../../Components/Select/Select';
 import styles from './AdminDashboard.module.css';
 
 const JURUSAN_LIST = [
-  { value: 'teknik otomotif',      label: 'Teknik Otomotif' },
+  { value: 'teknik otomotif', label: 'Teknik Otomotif' },
   { value: 'manajemen dan bisnis', label: 'Manajemen dan Bisnis' },
 ];
 const KELAS_LEVEL = [
-  { value: 'X',   label: 'Kelas X' },
-  { value: 'XI',  label: 'Kelas XI' },
+  { value: 'X', label: 'Kelas X' },
+  { value: 'XI', label: 'Kelas XI' },
   { value: 'XII', label: 'Kelas XII' },
 ];
 
@@ -26,17 +26,17 @@ const formatJurusan = (j) => {
 };
 
 const adminLinks = [
-  { url: '/admin/dashboard',           label: 'Dasbor' },
-  { url: '/admin/verifikasi-berkas',   label: 'Verifikasi Berkas' },
+  { url: '/admin/dashboard', label: 'Dasbor' },
+  { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
   { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
-  { url: '/admin/siswa',               label: 'Manajemen Siswa' },
-  { url: '/admin/absensi',             label: 'Absensi' },
+  { url: '/admin/siswa', label: 'Manajemen Siswa' },
+  { url: '/admin/absensi', label: 'Absensi' },
   {
     label: 'Data Master',
     dropdown: [
-      { url: '/admin/schedules',    label: 'Kelola Jadwal' },
-      { url: '/admin/quotas',       label: 'Kelola Kuota' },
-      { url: '/admin/posts',        label: 'Kelola Berita/Pengumuman' },
+      { url: '/admin/schedules', label: 'Kelola Jadwal' },
+      { url: '/admin/quotas', label: 'Kelola Kuota' },
+      { url: '/admin/posts', label: 'Kelola Berita/Pengumuman' },
       { url: '/admin/achievements', label: 'Kelola Prestasi' },
     ],
   },
@@ -184,10 +184,10 @@ function ClassroomCard({ classroom, onDelete }) {
         borderRadius: '4px',
       }}>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
         </svg>
         <span><strong>{classroom.student_count}</strong> siswa</span>
       </div>
@@ -216,10 +216,14 @@ function ClassroomCard({ classroom, onDelete }) {
         onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
       >
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M9 11l3 3L22 4"/>
-          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          <line x1="8" y1="6" x2="21" y2="6" />
+          <line x1="8" y1="12" x2="21" y2="12" />
+          <line x1="8" y1="18" x2="21" y2="18" />
+          <line x1="3" y1="6" x2="3.01" y2="6" />
+          <line x1="3" y1="12" x2="3.01" y2="12" />
+          <line x1="3" y1="18" x2="3.01" y2="18" />
         </svg>
-        Buka Absensi
+        Lihat Kelas & Cetak
       </button>
     </div>
   );
@@ -282,7 +286,6 @@ export default function Absensi({ classrooms = [] }) {
               <section key={jurusan} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {/* Jurusan heading */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div style={{ width: '4px', height: '22px', background: 'var(--color-accent-yellow)', borderRadius: '2px', flexShrink: 0 }} />
                   <h2 style={{ fontSize: '14px', fontWeight: 800, color: 'var(--color-primary-dark)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
                     Jurusan {formatJurusan(jurusan)}
                   </h2>

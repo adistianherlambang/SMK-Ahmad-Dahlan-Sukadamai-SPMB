@@ -522,4 +522,33 @@ class AdminDashboardController extends Controller
         $count = count($request->student_ids);
         return back()->with('success', "{$count} siswa berhasil dimasukkan ke kelas.");
     }
+
+    public function siswaAssignTingkat(Request $request)
+    {
+        $request->validate([
+            'student_ids'   => 'required|array',
+            'student_ids.*' => 'exists:registrations,id',
+            'kelas'         => 'nullable|in:X,XI,XII',
+        ]);
+
+        Registration::whereIn('id', $request->student_ids)
+            ->update(['kelas' => $request->kelas]);
+
+        $count = count($request->student_ids);
+        return back()->with('success', "Tingkat {$count} siswa berhasil diperbarui.");
+    }
+
+    public function siswaBatchDelete(Request $request)
+    {
+        $request->validate([
+            'student_ids'   => 'required|array',
+            'student_ids.*' => 'exists:registrations,id',
+        ]);
+
+        // Delete related documents first to prevent FK issues if any, or cascade handles it. Cascades handle it.
+        Registration::whereIn('id', $request->student_ids)->delete();
+
+        $count = count($request->student_ids);
+        return back()->with('success', "{$count} siswa berhasil dihapus.");
+    }
 }

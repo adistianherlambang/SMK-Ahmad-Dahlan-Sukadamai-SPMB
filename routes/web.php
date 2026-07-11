@@ -95,6 +95,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/siswa/pdf', [AdminDashboardController::class, 'siswaAbsensiPdf'])->name('admin.siswa.pdf');
     Route::put('/siswa/{id}', [AdminDashboardController::class, 'siswaUpdate']);
     Route::post('/siswa/assign-classroom', [AdminDashboardController::class, 'siswaAssignClassroom'])->name('admin.siswa.assign');
+    Route::post('/siswa/assign-tingkat', [AdminDashboardController::class, 'siswaAssignTingkat'])->name('admin.siswa.assign_tingkat');
+    Route::post('/siswa/batch-delete', [AdminDashboardController::class, 'siswaBatchDelete'])->name('admin.siswa.batch_delete');
 
     // Absensi & Classrooms
     Route::get('/absensi', [AdminDashboardController::class, 'absensiIndex'])->name('admin.absensi');

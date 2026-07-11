@@ -9,7 +9,7 @@ import Select from '../../Components/Select/Select';
 import styles from './AdminDashboard.module.css';
 
 const JURUSAN_LIST = [
-  { value: 'teknik otomotif',      label: 'Teknik Otomotif' },
+  { value: 'teknik otomotif', label: 'Teknik Otomotif' },
   { value: 'manajemen dan bisnis', label: 'Manajemen dan Bisnis' },
 ];
 
@@ -19,17 +19,17 @@ const formatJurusan = (j) => {
 };
 
 const adminLinks = [
-  { url: '/admin/dashboard',           label: 'Dasbor' },
-  { url: '/admin/verifikasi-berkas',   label: 'Verifikasi Berkas' },
+  { url: '/admin/dashboard', label: 'Dasbor' },
+  { url: '/admin/verifikasi-berkas', label: 'Verifikasi Berkas' },
   { url: '/admin/penentuan-kelulusan', label: 'Kelulusan' },
-  { url: '/admin/siswa',               label: 'Manajemen Siswa' },
-  { url: '/admin/absensi',             label: 'Absensi' },
+  { url: '/admin/siswa', label: 'Manajemen Siswa' },
+  { url: '/admin/absensi', label: 'Absensi' },
   {
     label: 'Data Master',
     dropdown: [
-      { url: '/admin/schedules',    label: 'Kelola Jadwal' },
-      { url: '/admin/quotas',       label: 'Kelola Kuota' },
-      { url: '/admin/posts',        label: 'Kelola Berita/Pengumuman' },
+      { url: '/admin/schedules', label: 'Kelola Jadwal' },
+      { url: '/admin/quotas', label: 'Kelola Kuota' },
+      { url: '/admin/posts', label: 'Kelola Berita/Pengumuman' },
       { url: '/admin/achievements', label: 'Kelola Prestasi' },
     ],
   },
@@ -86,6 +86,54 @@ function AssignModal({ isOpen, onClose, selectedIds, classrooms = [] }) {
   );
 }
 
+// ── Assign to Tingkat Modal ─────────────────────────────────────────────────
+function AssignTingkatModal({ isOpen, onClose, selectedIds }) {
+  const [tingkat, setTingkat] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    router.post('/admin/siswa/assign-tingkat', {
+      student_ids: selectedIds,
+      kelas: tingkat,
+    }, {
+      onSuccess: () => { onClose(); setTingkat(''); setErrors({}); },
+      onError: (err) => setErrors(err),
+    });
+  };
+
+  return (
+    <Popup isOpen={isOpen} onClose={onClose}>
+      <div className={styles.modalHeader}>
+        <h3 className={styles.modalTitle}>Ubah Tingkat Kelas</h3>
+      </div>
+      <form onSubmit={handleSubmit} className={styles.confirmModalForm} style={{ marginTop: '16px' }}>
+        <p className={styles.confirmModalText}>
+          <strong>{selectedIds.length} siswa</strong> akan diubah tingkat kelasnya.
+        </p>
+        <div>
+          <Select
+            label="Pilih Tingkat Kelas"
+            options={[
+              { value: '', label: '— Belum Ditentukan —' },
+              { value: 'X', label: 'Kelas X' },
+              { value: 'XI', label: 'Kelas XI' },
+              { value: 'XII', label: 'Kelas XII' },
+            ]}
+            value={tingkat}
+            onChange={(e) => setTingkat(e.target.value)}
+          />
+          {errors.kelas && <span className={styles.errorTextSmall}>{errors.kelas}</span>}
+        </div>
+        <div className={styles.btnRow}>
+          <Button type="button" variant="secondary" onClick={onClose}>Batal</Button>
+          <Button type="submit">Simpan Tingkat</Button>
+        </div>
+      </form>
+    </Popup>
+  );
+}
+
 // ── PDF Modal ───────────────────────────────────────────────────────────────
 function PdfModal({ isOpen, onClose, jurusan, kelas }) {
   const [mapel, setMapel] = useState('');
@@ -124,38 +172,39 @@ function PdfModal({ isOpen, onClose, jurusan, kelas }) {
 // ── Main Component ──────────────────────────────────────────────────────────
 export default function Siswa({ students = [], grouped = {}, classrooms = [], filters = {} }) {
   const { flash } = usePage().props;
-  const [searchTerm, setSearchTerm]       = useState(filters.search  || '');
+  const [searchTerm, setSearchTerm] = useState(filters.search || '');
   const [jurusanFilter, setJurusanFilter] = useState(filters.jurusan || '');
 
   // Edit state
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [editData, setEditData]     = useState({ id: '', nis: '', jurusan: '', kelas: '', full_name: '', nisn: '' });
-  const [errors, setErrors]         = useState({});
+  const [editData, setEditData] = useState({ id: '', nis: '', jurusan: '', kelas: '', full_name: '', nisn: '' });
+  const [errors, setErrors] = useState({});
 
   // Checkbox state (batch assign)
-  const [selected, setSelected]     = useState(new Set());
+  const [selected, setSelected] = useState(new Set());
   const [isAssignOpen, setIsAssignOpen] = useState(false);
+  const [isAssignTingkatOpen, setIsAssignTingkatOpen] = useState(false);
 
   // PDF modal
-  const [isPdfOpen, setIsPdfOpen]   = useState(false);
+  const [isPdfOpen, setIsPdfOpen] = useState(false);
   const [pdfJurusan, setPdfJurusan] = useState('');
-  const [pdfKelas, setPdfKelas]     = useState('');
+  const [pdfKelas, setPdfKelas] = useState('');
 
   const triggerFilter = (search, jurusan) => {
     router.get('/admin/siswa', { search, jurusan }, { preserveState: true });
   };
 
-  const handleSearchChange  = (val) => { setSearchTerm(val);    triggerFilter(val, jurusanFilter); };
-  const handleJurusanChange = (val) => { setJurusanFilter(val); triggerFilter(searchTerm, val);   };
+  const handleSearchChange = (val) => { setSearchTerm(val); triggerFilter(val, jurusanFilter); };
+  const handleJurusanChange = (val) => { setJurusanFilter(val); triggerFilter(searchTerm, val); };
 
   const handleOpenEdit = (student) => {
     setEditData({
-      id:        student.id,
-      nis:       student.nis       || '',
-      jurusan:   student.jurusan   || 'teknik otomotif',
-      kelas:     student.kelas     || '',
+      id: student.id,
+      nis: student.nis || '',
+      jurusan: student.jurusan || 'teknik otomotif',
+      kelas: student.kelas || '',
       full_name: student.full_name || '',
-      nisn:      student.nisn      || '',
+      nisn: student.nisn || '',
     });
     setErrors({});
     setIsEditOpen(true);
@@ -165,8 +214,18 @@ export default function Siswa({ students = [], grouped = {}, classrooms = [], fi
     e.preventDefault();
     router.put(`/admin/siswa/${editData.id}`, editData, {
       onSuccess: () => setIsEditOpen(false),
-      onError:   (err) => setErrors(err),
+      onError: (err) => setErrors(err),
     });
+  };
+
+  const handleBatchDelete = () => {
+    if (confirm(`Hapus ${selected.size} siswa terpilih secara permanen? Tindakan ini tidak dapat dibatalkan.`)) {
+      router.post('/admin/siswa/batch-delete', {
+        student_ids: [...selected],
+      }, {
+        onSuccess: () => clearSelection(),
+      });
+    }
   };
 
   // Checkbox handlers
@@ -184,7 +243,7 @@ export default function Siswa({ students = [], grouped = {}, classrooms = [], fi
     setSelected(prev => {
       const next = new Set(prev);
       if (allSelected) { ids.forEach(id => next.delete(id)); }
-      else             { ids.forEach(id => next.add(id)); }
+      else { ids.forEach(id => next.add(id)); }
       return next;
     });
   };
@@ -208,14 +267,36 @@ export default function Siswa({ students = [], grouped = {}, classrooms = [], fi
         <div className={styles.headerContent} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h1>Manajemen Siswa</h1>
-            <p>Kelola data siswa — centang siswa lalu masukkan ke kelas</p>
+            <p>Kelola data siswa dengan mencentang siswa untuk memasukkannya ke kelas.</p>
           </div>
           {selected.size > 0 && (
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-              <span style={{ fontSize: '12px', color: '#4A5568' }}>{selected.size} dipilih</span>
-              <Button onClick={() => setIsAssignOpen(true)} style={{ whiteSpace: 'nowrap' }}>
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '12px', color: '#4A5568', marginRight: '4px' }}>{selected.size} dipilih:</span>
+              <Button onClick={() => setIsAssignOpen(true)} style={{ whiteSpace: 'nowrap' }} size="sm">
                 Masukkan ke Kelas
               </Button>
+              <Button onClick={() => setIsAssignTingkatOpen(true)} variant="secondary" style={{ whiteSpace: 'nowrap' }} size="sm">
+                Ubah Tingkat
+              </Button>
+              <button
+                onClick={handleBatchDelete}
+                style={{
+                  background: '#E53E3E',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '5px',
+                  padding: '7px 12px',
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  transition: 'opacity 0.15s',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
+                onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+              >
+                Hapus Siswa
+              </button>
               <button
                 onClick={clearSelection}
                 style={{ background: 'none', border: 'none', color: '#718096', cursor: 'pointer', fontSize: '12px', textDecoration: 'underline' }}
@@ -262,13 +343,6 @@ export default function Siswa({ students = [], grouped = {}, classrooms = [], fi
             </div>
           </div>
         </section>
-
-        {/* Batch assign tip */}
-        {hasStudents && selected.size === 0 && (
-          <div style={{ fontSize: '12px', color: '#718096', fontStyle: 'italic', textAlign: 'left', marginTop: '-8px' }}>
-            💡 Centang siswa untuk mengelompokkan mereka ke dalam kelas
-          </div>
-        )}
 
         {/* Flat student table */}
         {hasStudents ? (
@@ -334,6 +408,13 @@ export default function Siswa({ students = [], grouped = {}, classrooms = [], fi
             </table>
           </div>
         )}
+
+        {/* Batch assign tip */}
+        {hasStudents && selected.size === 0 && (
+          <div style={{ fontSize: '12px', color: '#718096', fontStyle: 'italic', textAlign: 'left', marginTop: '-8px' }}>
+            Centang siswa untuk mengelompokkan mereka ke dalam kelas
+          </div>
+        )}
       </main>
 
       {/* Edit Student Popup */}
@@ -362,9 +443,9 @@ export default function Siswa({ students = [], grouped = {}, classrooms = [], fi
             <Select
               label="Kelas (Tingkat)"
               options={[
-                { value: '',    label: '— Belum Ditentukan —' },
-                { value: 'X',   label: 'Kelas X' },
-                { value: 'XI',  label: 'Kelas XI' },
+                { value: '', label: '— Belum Ditentukan —' },
+                { value: 'X', label: 'Kelas X' },
+                { value: 'XI', label: 'Kelas XI' },
                 { value: 'XII', label: 'Kelas XII' },
               ]}
               value={editData.kelas}
@@ -385,6 +466,13 @@ export default function Siswa({ students = [], grouped = {}, classrooms = [], fi
         onClose={() => { setIsAssignOpen(false); clearSelection(); }}
         selectedIds={[...selected]}
         classrooms={classrooms}
+      />
+
+      {/* Assign to Tingkat Modal */}
+      <AssignTingkatModal
+        isOpen={isAssignTingkatOpen}
+        onClose={() => { setIsAssignTingkatOpen(false); clearSelection(); }}
+        selectedIds={[...selected]}
       />
 
       {/* PDF Modal */}

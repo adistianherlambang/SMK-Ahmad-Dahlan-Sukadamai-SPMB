@@ -167,7 +167,7 @@
 
   {{-- ── HEADER ─────────────────────────────────── --}}
   <div class="school-header">
-    <div class="school-logo-placeholder">Logo</div>
+    <img src="{{ asset('mainLogo.png') }}" alt="Logo SMK" class="school-logo">
 
     <div class="school-info">
       <div class="school-name">SMK Ahmad Dahlan Sukadamai</div>
@@ -175,7 +175,7 @@
       <div class="school-contact">Telp: — &nbsp;|&nbsp; Email: smkad.sukadamai@gmail.com</div>
     </div>
 
-    <div class="school-logo-placeholder">Logo</div>
+    <div style="width: 70px; flex-shrink: 0;"></div>
   </div>
 
   {{-- ── DOCUMENT TITLE ──────────────────────────── --}}

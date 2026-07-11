@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Head, router, usePage } from '@inertiajs/react';
 import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import Button from '../../Components/Button/Button';
 import Popup from '../../Components/Popup/Popup';
 import styles from './AdminDashboard.module.css';
-
-const STATUS_LIST = ['Hadir', 'Sakit', 'Izin', 'Alpa'];
-
-const STATUS_COLOR = {
-  Hadir: { bg: '#C6F6D5', color: '#22543D' },
-  Sakit: { bg: '#BEE3F8', color: '#2A4365' },
-  Izin:  { bg: '#FEFCBF', color: '#744210' },
-  Alpa:  { bg: '#FED7D7', color: '#742A2A' },
-};
 
 const formatJurusan = (j) => {
   if (!j) return '-';
@@ -73,43 +64,14 @@ function PdfModal({ isOpen, onClose, classroomId }) {
   );
 }
 
-// ── Main ────────────────────────────────────────────────────────────────────
-export default function AbsensiKelas({ classroom, students = [], attendances = {}, date = '' }) {
+// ── Main Component ──────────────────────────────────────────────────────────
+export default function AbsensiKelas({ classroom, students = [] }) {
   const { flash } = usePage().props;
-  const [selectedDate, setSelectedDate] = useState(date);
-  const [records, setRecords] = useState({});
   const [isPdfOpen, setIsPdfOpen] = useState(false);
-
-  // Init records from server attendances
-  useEffect(() => {
-    const init = {};
-    students.forEach(s => { init[s.id] = attendances[s.id] || 'Hadir'; });
-    setRecords(init);
-  }, [students, attendances]);
-
-  const handleDateChange = (val) => {
-    setSelectedDate(val);
-    router.get(`/admin/absensi/${classroom.id}`, { date: val }, { preserveState: true });
-  };
-
-  const handleStatusChange = (studentId, status) => {
-    setRecords(prev => ({ ...prev, [studentId]: status }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    router.post(`/admin/absensi/${classroom.id}`, { date: selectedDate, records });
-  };
-
-  // Summary counts
-  const summary = STATUS_LIST.reduce((acc, s) => {
-    acc[s] = Object.values(records).filter(v => v === s).length;
-    return acc;
-  }, {});
 
   return (
     <>
-      <Head title={`Absensi ${classroom.name} - SMK Ahmad Dahlan`} />
+      <Head title={`Daftar Murid ${classroom.name} - SMK Ahmad Dahlan`} />
       <Navbar links={adminLinks} />
 
       {/* Header */}
@@ -127,17 +89,19 @@ export default function AbsensiKelas({ classroom, students = [], attendances = {
               <span>›</span>
               <span style={{ color: 'var(--color-primary-dark)', fontWeight: 600 }}>{classroom.name}</span>
             </div>
-            <h1>{classroom.name}</h1>
+            <h1>Daftar Murid {classroom.name}</h1>
             <p>{formatJurusan(classroom.jurusan)} · Tingkat {classroom.kelas_level}</p>
           </div>
-          <Button onClick={() => setIsPdfOpen(true)} style={{ whiteSpace: 'nowrap' }}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            Download PDF
-          </Button>
+          {students.length > 0 && (
+            <Button onClick={() => setIsPdfOpen(true)} style={{ whiteSpace: 'nowrap' }}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '6px' }}>
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Cetak / Download PDF
+            </Button>
+          )}
         </div>
       </header>
 
@@ -146,123 +110,47 @@ export default function AbsensiKelas({ classroom, students = [], attendances = {
           <div className={styles.alertSuccess}>{flash.success}</div>
         )}
 
-        {/* Date picker */}
-        <section className={styles.filterSection}>
-          <div className={styles.filtersGrid} style={{ alignItems: 'flex-end' }}>
-            <div className={styles.filterGroup}>
-              <label>Pilih Tanggal</label>
-              <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => handleDateChange(e.target.value)}
-                className={styles.filterInput}
-              />
-            </div>
-
-            {/* Summary pills */}
-            {students.length > 0 && (
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', paddingBottom: '2px' }}>
-                {STATUS_LIST.map(s => (
-                  <span key={s} style={{
-                    background: STATUS_COLOR[s].bg,
-                    color: STATUS_COLOR[s].color,
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    padding: '4px 10px',
-                    borderRadius: '20px',
-                    whiteSpace: 'nowrap',
-                  }}>
-                    {s}: {summary[s]}
-                  </span>
-                ))}
-              </div>
-            )}
+        <section className={styles.tableSection}>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th style={{ width: '44px', textAlign: 'center' }}>No.</th>
+                  <th style={{ width: '150px' }}>NIS</th>
+                  <th>Nama Lengkap</th>
+                  <th>NISN</th>
+                  <th>Jurusan</th>
+                </tr>
+              </thead>
+              <tbody>
+                {students.length > 0 ? (
+                  students.map((student, idx) => (
+                    <tr key={student.id}>
+                      <td style={{ textAlign: 'center', color: '#718096', fontSize: '12px' }}>{idx + 1}</td>
+                      <td className={styles.boldCell}>{student.nis || '-'}</td>
+                      <td>{student.full_name}</td>
+                      <td>{student.nisn || '-'}</td>
+                      <td>{formatJurusan(student.jurusan)}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="5" className={styles.emptyCell}>
+                      Belum ada siswa di kelas ini.{' '}
+                      <button
+                        type="button"
+                        onClick={() => router.get('/admin/siswa')}
+                        style={{ background: 'none', border: 'none', color: 'var(--color-primary-dark)', cursor: 'pointer', textDecoration: 'underline', fontSize: '13px' }}
+                      >
+                        Tambahkan dari Manajemen Siswa
+                      </button>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </section>
-
-        {/* Attendance table */}
-        <form onSubmit={handleSubmit}>
-          <section className={styles.tableSection}>
-            <div className={styles.tableContainer}>
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th style={{ width: '44px', textAlign: 'center' }}>No.</th>
-                    <th style={{ width: '120px' }}>NIS</th>
-                    <th>Nama Lengkap</th>
-                    <th style={{ width: '340px', textAlign: 'center' }}>Kehadiran</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {students.length > 0 ? (
-                    students.map((student, idx) => {
-                      const current = records[student.id] || 'Hadir';
-                      return (
-                        <tr key={student.id}>
-                          <td style={{ textAlign: 'center', color: '#718096', fontSize: '12px' }}>{idx + 1}</td>
-                          <td className={styles.boldCell}>{student.nis || '-'}</td>
-                          <td>{student.full_name}</td>
-                          <td>
-                            <div style={{ display: 'flex', justifyContent: 'space-around', gap: '8px' }}>
-                              {STATUS_LIST.map(status => (
-                                <label
-                                  key={status}
-                                  style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '5px',
-                                    cursor: 'pointer',
-                                    fontSize: '12px',
-                                    fontWeight: current === status ? 700 : 400,
-                                    color: current === status ? STATUS_COLOR[status].color : '#4A5568',
-                                    background: current === status ? STATUS_COLOR[status].bg : 'transparent',
-                                    padding: '3px 8px',
-                                    borderRadius: '20px',
-                                    transition: 'all 0.12s ease',
-                                    whiteSpace: 'nowrap',
-                                  }}
-                                >
-                                  <input
-                                    type="radio"
-                                    name={`att_${student.id}`}
-                                    value={status}
-                                    checked={current === status}
-                                    onChange={() => handleStatusChange(student.id, status)}
-                                    style={{ accentColor: 'var(--color-primary-dark)', width: '13px', height: '13px' }}
-                                  />
-                                  {status}
-                                </label>
-                              ))}
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  ) : (
-                    <tr>
-                      <td colSpan="4" className={styles.emptyCell}>
-                        Belum ada siswa di kelas ini.{' '}
-                        <button
-                          type="button"
-                          onClick={() => router.get('/admin/siswa')}
-                          style={{ background: 'none', border: 'none', color: 'var(--color-primary-dark)', cursor: 'pointer', textDecoration: 'underline', fontSize: '13px' }}
-                        >
-                          Tambahkan dari Manajemen Siswa
-                        </button>
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          {students.length > 0 && (
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-              <Button type="submit">Simpan Absensi</Button>
-            </div>
-          )}
-        </form>
       </main>
 
       <PdfModal isOpen={isPdfOpen} onClose={() => setIsPdfOpen(false)} classroomId={classroom.id} />
