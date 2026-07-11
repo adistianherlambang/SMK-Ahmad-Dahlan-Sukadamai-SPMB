@@ -126,7 +126,6 @@ function ClassroomCard({ classroom, onDelete }) {
         transition: 'box-shadow 0.15s ease',
         cursor: 'default',
       }}
-      onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)'}
       onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}
     >
       {/* Kelas level badge */}
@@ -138,9 +137,8 @@ function ClassroomCard({ classroom, onDelete }) {
           fontWeight: 800,
           padding: '3px 8px',
           borderRadius: '3px',
-          letterSpacing: '0.5px',
         }}>
-          KELAS {classroom.kelas_level}
+          Kelas{classroom.kelas_level}
         </span>
         <button
           onClick={handleDelete}
@@ -286,7 +284,7 @@ export default function Absensi({ classrooms = [] }) {
               <section key={jurusan} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {/* Jurusan heading */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <h2 style={{ fontSize: '14px', fontWeight: 800, color: 'var(--color-primary-dark)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>
+                  <h2 style={{ fontSize: '14px', fontWeight: 800, color: 'var(--color-primary-dark)', textTransform: 'uppercase', }}>
                     Jurusan {formatJurusan(jurusan)}
                   </h2>
                 </div>
@@ -294,7 +292,7 @@ export default function Absensi({ classrooms = [] }) {
                 {levelKeys.map(level => (
                   <div key={level}>
                     {/* Level sub-heading */}
-                    <p style={{ fontSize: '11px', fontWeight: 700, color: '#718096', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '10px' }}>
+                    <p style={{ fontSize: '11px', fontWeight: 700, color: '#718096', marginBottom: '10px' }}>
                       Tingkat {level}
                     </p>
                     {/* Cards grid */}
