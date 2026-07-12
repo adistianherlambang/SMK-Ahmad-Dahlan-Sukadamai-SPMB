@@ -61,19 +61,9 @@ export default function Landing({ announcements = [], news = [], achievements = 
       "img": "/landingPage/landing/bengkel.jpeg",
     },
     {
-      "title": "Sarana Ibadah",
-      "desc": "Unit sepeda motor praktik menunjang pembelajaran langsung untuk meningkatkan kompetensi siswa.",
-      "img": "/landingPage/landing/dummy.png",
-    },
-    {
       "title": "Laboratorium Manajemen",
       "desc": "Laboratorium manajemen melatih keterampilan administrasi dan pengelolaan bisnis secara profesional.",
       "img": "/landingPage/landing/labManajemen.jpeg",
-    },
-    {
-      "title": "Lapangan Olahraga",
-      "desc": "Lapangan olahraga mendukung pengembangan kebugaran, sportivitas, dan bakat siswa.",
-      "img": "/landingPage/landing/dummy.png",
     },
     {
       "title": "Masjid",
