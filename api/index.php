@@ -15,5 +15,5 @@ putenv('APP_PACKAGES_CACHE=/tmp/packages.php');
 putenv('APP_ROUTES_CACHE=/tmp/routes.php');
 putenv('APP_SERVICES_CACHE=/tmp/services.php');
 
-// Forward Vercel requests to normal index.php
+// Forward Vercel requests to normal index.ph
 require __DIR__ . '/../public/index.php';
