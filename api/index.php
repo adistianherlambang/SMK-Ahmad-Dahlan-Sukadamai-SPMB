@@ -9,6 +9,11 @@ if (!is_dir($viewPath)) {
 // Set environment variables for Vercel serverless environment
 putenv("VIEW_COMPILED_PATH={$viewPath}");
 putenv('LOG_CHANNEL=stderr');
+putenv('APP_CONFIG_CACHE=/tmp/config.php');
+putenv('APP_EVENTS_CACHE=/tmp/events.php');
+putenv('APP_PACKAGES_CACHE=/tmp/packages.php');
+putenv('APP_ROUTES_CACHE=/tmp/routes.php');
+putenv('APP_SERVICES_CACHE=/tmp/services.php');
 
 // Forward Vercel requests to normal index.php
 require __DIR__ . '/../public/index.php';
