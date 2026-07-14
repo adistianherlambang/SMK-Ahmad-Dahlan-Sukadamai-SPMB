@@ -93,6 +93,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     // Manajemen Siswa
     Route::get('/siswa', [AdminDashboardController::class, 'siswaIndex']);
     Route::get('/siswa/pdf', [AdminDashboardController::class, 'siswaAbsensiPdf'])->name('admin.siswa.pdf');
+    Route::get('/siswa/absensi-major/pdf', [AdminDashboardController::class, 'siswaAbsensiMajorPdf'])->name('admin.siswa.absensi_major.pdf');
     Route::put('/siswa/{id}', [AdminDashboardController::class, 'siswaUpdate']);
     Route::post('/siswa/assign-classroom', [AdminDashboardController::class, 'siswaAssignClassroom'])->name('admin.siswa.assign');
     Route::post('/siswa/assign-tingkat', [AdminDashboardController::class, 'siswaAssignTingkat'])->name('admin.siswa.assign_tingkat');

@@ -35,7 +35,7 @@ fi
 # Run migrations
 if [ "$RUN_MIGRATIONS" = "true" ]; then
     echo "🗃️  Running migrations..."
-    php artisan migrate --force
+    php artisan migrate --force 2>&1 || echo "⚠️  Some migrations skipped (tables may already exist)"
 
     # Seed hanya jika tabel users kosong (fresh database)
     USER_COUNT=$(php artisan tinker --execute="echo App\Models\User::count();" 2>/dev/null | tail -1)

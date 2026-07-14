@@ -403,12 +403,53 @@ class AdminDashboardController extends Controller
             ->orderBy('full_name', 'asc')
             ->get();
 
-        return view('print_absensi', [
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('print_absensi', [
             'students'  => $students,
             'jurusan'   => $classroom->jurusan,
             'kelas'     => $classroom->name,
             'mapel'     => $mapel,
         ]);
+
+        return $pdf->download('Absensi_Kelas_' . str_replace(' ', '_', $classroom->name) . '.pdf');
+    }
+
+    public function siswaAbsensiMajorPdf(Request $request)
+    {
+        $request->validate([
+            'jurusan'     => 'required|in:teknik otomotif,manajemen dan bisnis',
+            'kelas_level' => 'required|string',
+        ]);
+
+        $jurusan = $request->input('jurusan');
+        $level   = $request->input('kelas_level');
+
+        $query = Classroom::where('jurusan', $jurusan);
+        if ($level !== 'all') {
+            $query->where('kelas_level', $level);
+        }
+        $classrooms = $query->orderBy('kelas_level')->orderBy('name')->get();
+
+        $classroomsData = [];
+        foreach ($classrooms as $classroom) {
+            $students = Registration::where('graduation_status', 'Diterima')
+                ->where('classroom_id', $classroom->id)
+                ->orderBy('full_name', 'asc')
+                ->get();
+
+            $classroomsData[] = [
+                'classroom' => $classroom,
+                'students'  => $students,
+            ];
+        }
+
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('print_absensi_major', [
+            'classroomsData' => $classroomsData,
+            'jurusan'        => $jurusan,
+            'kelas_level'    => $level,
+        ]);
+
+        $fileName = 'Absensi_Jurusan_' . str_replace(' ', '_', $jurusan) . '_Tingkat_' . $level . '.pdf';
+        return $pdf->download($fileName);
     }
 
     // ── Absensi (classroom-based) ─────────────────────────────────────────

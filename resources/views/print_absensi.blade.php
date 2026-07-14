@@ -2,69 +2,72 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daftar Hadir Siswa – {{ strtoupper($jurusan) }} Kelas {{ $kelas }}</title>
   <style>
+    @font-face {
+      font-family: 'Calibri';
+      src: url('{{ public_path("fonts/calibri.ttf") }}') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Calibri';
+      src: url('{{ public_path("fonts/calibrib.ttf") }}') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 12pt;
+      font-family: 'Calibri', sans-serif;
+      font-size: 11pt;
       color: #000;
       background: #fff;
-      padding: 20mm 20mm 15mm 25mm;
+    }
+
+    @page {
+      size: A4;
+      margin: 20mm 20mm 15mm 25mm;
     }
 
     /* ── Header ─────────────────────────────── */
-    .school-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+    .header-table {
+      width: 100%;
+      border-collapse: collapse;
       border-bottom: 3px double #000;
       padding-bottom: 10px;
       margin-bottom: 14px;
     }
 
+    .header-table td {
+      border: none;
+      padding: 0;
+    }
+
     .school-logo {
       width: 70px;
       height: 70px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .school-logo-placeholder {
-      width: 70px;
-      height: 70px;
-      border: 1px solid #aaa;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 8pt;
-      color: #888;
-      flex-shrink: 0;
     }
 
     .school-info {
       text-align: center;
-      flex: 1;
     }
 
     .school-name {
-      font-size: 17pt;
+      font-size: 16pt;
       font-weight: bold;
       text-transform: uppercase;
-      letter-spacing: 1px;
       line-height: 1.2;
     }
 
     .school-address {
-      font-size: 10pt;
+      font-size: 9.5pt;
       margin-top: 3px;
     }
 
     .school-contact {
-      font-size: 9pt;
+      font-size: 8.5pt;
       color: #444;
       margin-top: 2px;
     }
@@ -72,11 +75,11 @@
     /* ── Document Title ──────────────────────── */
     .doc-title {
       text-align: center;
-      margin: 16px 0 12px;
+      margin: 10px 0 15px;
     }
 
     .doc-title h2 {
-      font-size: 14pt;
+      font-size: 13pt;
       font-weight: bold;
       text-decoration: underline;
       text-transform: uppercase;
@@ -84,35 +87,24 @@
     }
 
     /* ── Info Grid ──────────────────────────── */
-    .info-grid {
-      display: grid;
-      grid-template-columns: 150px 10px 1fr;
-      gap: 3px 0;
-      font-size: 11pt;
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10pt;
       margin-bottom: 14px;
     }
 
-    .info-grid .label  { font-weight: normal; }
-    .info-grid .sep    { text-align: center; }
-    .info-grid .value  { font-weight: normal; }
-
-    .mapel-value {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-    }
-
-    .mapel-dots {
-      flex: 1;
-      border-bottom: 1px solid #000;
-      min-width: 80px;
+    .info-table td {
+      border: none;
+      padding: 3px 0;
+      vertical-align: top;
     }
 
     /* ── Table ──────────────────────────────── */
     table.daftar {
       width: 100%;
       border-collapse: collapse;
-      font-size: 11pt;
+      font-size: 10pt;
       margin-top: 8px;
     }
 
@@ -122,61 +114,51 @@
       text-align: center;
       font-weight: bold;
       background: #f0f0f0;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
     }
 
     table.daftar tbody tr td {
       border: 1px solid #000;
-      padding: 4px 8px;
+      padding: 5px 8px;
       vertical-align: middle;
     }
 
     td.no    { text-align: center; width: 40px; }
     td.nis   { width: 100px; }
     td.nama  { }
-    td.ttd   { width: 160px; height: 38px; }
+    td.ttd   { width: 160px; height: 35px; }
 
     /* ── Footer ─────────────────────────────── */
-    .sign-area {
-      display: flex;
-      justify-content: flex-end;
+    .sign-table {
+      width: 100%;
+      border-collapse: collapse;
       margin-top: 30px;
-      font-size: 11pt;
+      font-size: 10pt;
     }
 
-    .sign-block {
+    .sign-table td {
+      border: none;
+      padding: 0;
       text-align: center;
-      width: 200px;
-    }
-
-    .sign-line {
-      margin-top: 50px;
-      border-top: 1px solid #000;
-      padding-top: 4px;
-    }
-
-    /* ── Print ──────────────────────────────── */
-    @media print {
-      body { padding: 0; }
-      @page { size: A4; margin: 20mm 20mm 15mm 25mm; }
+      vertical-align: top;
     }
   </style>
 </head>
 <body>
 
   {{-- ── HEADER ─────────────────────────────────── --}}
-  <div class="school-header">
-    <img src="{{ asset('mainLogo.png') }}" alt="Logo SMK" class="school-logo">
-
-    <div class="school-info">
-      <div class="school-name">SMK Ahmad Dahlan Sukadamai</div>
-      <div class="school-address">Jl. Ahmad Dahlan No. 1, Sukadamai, Natar, Lampung Selatan, Lampung</div>
-      <div class="school-contact">Telp: — &nbsp;|&nbsp; Email: smkad.sukadamai@gmail.com</div>
-    </div>
-
-    <div style="width: 70px; flex-shrink: 0;"></div>
-  </div>
+  <table class="header-table">
+    <tr>
+      <td style="width: 70px; vertical-align: middle;">
+        <img src="{{ public_path('mainLogo.png') }}" class="school-logo" alt="Logo">
+      </td>
+      <td class="school-info">
+        <div class="school-name">SMK Ahmad Dahlan Sukadamai</div>
+        <div class="school-address">Jl. Ahmad Dahlan No. 1, Sukadamai, Natar, Lampung Selatan, Lampung</div>
+        <div class="school-contact">Telp: — &nbsp;|&nbsp; Email: smkad.sukadamai@gmail.com</div>
+      </td>
+      <td style="width: 70px;"></td>
+    </tr>
+  </table>
 
   {{-- ── DOCUMENT TITLE ──────────────────────────── --}}
   <div class="doc-title">
@@ -184,35 +166,39 @@
   </div>
 
   {{-- ── INFO ROWS ──────────────────────────────── --}}
-  <div class="info-grid">
-    <span class="label">Jurusan</span>
-    <span class="sep">:</span>
-    <span class="value">{{ ucwords($jurusan) }}</span>
-
-    <span class="label">Kelas</span>
-    <span class="sep">:</span>
-    <span class="value">{{ $kelas }}</span>
-
-    <span class="label">Mata Pelajaran</span>
-    <span class="sep">:</span>
-    <span class="value">
-      <span class="mapel-value">
+  <table class="info-table">
+    <tr>
+      <td style="width: 130px;">Jurusan</td>
+      <td style="width: 15px; text-align: center;">:</td>
+      <td>{{ ucwords($jurusan) }}</td>
+    </tr>
+    <tr>
+      <td>Kelas</td>
+      <td style="text-align: center;">:</td>
+      <td>{{ $kelas }}</td>
+    </tr>
+    <tr>
+      <td>Mata Pelajaran</td>
+      <td style="text-align: center;">:</td>
+      <td>
         @if($mapel)
           {{ $mapel }}
         @else
-          <span class="mapel-dots">&nbsp;</span>
+          <span style="border-bottom: 1px solid #000; display: inline-block; width: 150px;">&nbsp;</span>
         @endif
-      </span>
-    </span>
-
-    <span class="label">Tanggal</span>
-    <span class="sep">:</span>
-    <span class="value"><span style="border-bottom:1px solid #000;display:inline-block;min-width:180px;">&nbsp;</span></span>
-
-    <span class="label">Pertemuan ke-</span>
-    <span class="sep">:</span>
-    <span class="value"><span style="border-bottom:1px solid #000;display:inline-block;min-width:60px;">&nbsp;</span></span>
-  </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Tanggal</td>
+      <td style="text-align: center;">:</td>
+      <td><span style="border-bottom: 1px solid #000; display: inline-block; width: 180px;">&nbsp;</span></td>
+    </tr>
+    <tr>
+      <td>Pertemuan ke-</td>
+      <td style="text-align: center;">:</td>
+      <td><span style="border-bottom: 1px solid #000; display: inline-block; width: 60px;">&nbsp;</span></td>
+    </tr>
+  </table>
 
   {{-- ── TABLE ──────────────────────────────────── --}}
   <table class="daftar">
@@ -243,20 +229,15 @@
   </table>
 
   {{-- ── SIGNATURE ──────────────────────────────── --}}
-  <div class="sign-area">
-    <div class="sign-block">
-      <div>Guru Mata Pelajaran,</div>
-      <div class="sign-line">
-        <span style="font-style:italic;">(.................................)</span>
-      </div>
-    </div>
-  </div>
+  <table class="sign-table">
+    <tr>
+      <td style="width: 60%;"></td>
+      <td style="width: 40%;">
+        <div style="margin-bottom: 50px;">Guru Mata Pelajaran,</div>
+        <div>(.................................)</div>
+      </td>
+    </tr>
+  </table>
 
-  {{-- Auto-print when opened --}}
-  <script>
-    window.onload = function () {
-      window.print();
-    };
-  </script>
 </body>
 </html>

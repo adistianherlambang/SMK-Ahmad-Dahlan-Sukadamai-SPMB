@@ -15,22 +15,21 @@ services:
       APP_DEBUG: "true"
       APP_URL: http://localhost:8000
       DB_CONNECTION: mysql
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_DATABASE: ${DB_DATABASE:-db_spmb_ahmad_dahlan}
-      DB_USERNAME: ${DB_USERNAME:-laravel}
-      DB_PASSWORD: ${DB_PASSWORD:-secret}
-      SESSION_DRIVER: database
-      QUEUE_CONNECTION: database
-      CACHE_STORE: database
+      DB_HOST: 78kyu6.h.filess.io
+      DB_PORT: 3307
+      DB_DATABASE: spmbmuadsukadamai_continent
+      DB_USERNAME: spmbmuadsukadamai_continent
+      DB_PASSWORD: 8a5ec865d06b859c147e45b3fcf739f5ed231eec
+      SESSION_DRIVER: file
+      QUEUE_CONNECTION: sync
+      CACHE_STORE: file
       RUN_MIGRATIONS: "true"
     volumes:
       - .:/var/www/html
       - app_storage:/var/www/html/storage
       - ./.env:/var/www/html/.env:ro
     depends_on:
-      mysql:
-        condition: service_healthy
+      - phpmyadmin
     networks:
       - laravel_network
 

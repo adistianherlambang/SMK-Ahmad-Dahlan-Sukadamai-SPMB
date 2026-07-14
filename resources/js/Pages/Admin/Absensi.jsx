@@ -101,6 +101,69 @@ function AddClassroomModal({ isOpen, onClose }) {
   );
 }
 
+// ── Download Absensi Modal ──────────────────────────────────────────────────
+function DownloadAbsensiModal({ isOpen, onClose }) {
+  const [form, setForm] = useState({
+    jurusan: 'teknik otomotif',
+    kelas_level: 'all',
+  });
+
+  const handleDownload = (e) => {
+    e.preventDefault();
+    const params = new URLSearchParams({
+      jurusan: form.jurusan,
+      kelas_level: form.kelas_level,
+    });
+    window.open(`/admin/siswa/absensi-major/pdf?${params.toString()}`, '_blank');
+    onClose();
+  };
+
+  const tingkatOptions = [
+    { value: 'all', label: 'Semua Tingkat' },
+    ...KELAS_LEVEL,
+  ];
+
+  return (
+    <Popup isOpen={isOpen} onClose={onClose}>
+      <div className={styles.modalHeader}>
+        <h3 className={styles.modalTitle}>Cetak Absensi Per Jurusan</h3>
+      </div>
+      <form onSubmit={handleDownload} className={styles.confirmModalForm} style={{ marginTop: '16px' }}>
+        <p className={styles.confirmModalText} style={{ marginBottom: '12px', fontSize: '13px', color: '#4A5568' }}>
+          Unduh daftar hadir dalam format PDF untuk semua siswa di jurusan dan tingkat kelas tertentu.
+        </p>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div>
+            <Select
+              label="Jurusan"
+              options={JURUSAN_LIST}
+              value={form.jurusan}
+              onChange={(e) => setForm({ ...form, jurusan: e.target.value })}
+              required
+            />
+          </div>
+
+          <div>
+            <Select
+              label="Tingkat Kelas"
+              options={tingkatOptions}
+              value={form.kelas_level}
+              onChange={(e) => setForm({ ...form, kelas_level: e.target.value })}
+              required
+            />
+          </div>
+        </div>
+
+        <div className={styles.btnRow} style={{ marginTop: '20px' }}>
+          <Button type="button" variant="secondary" onClick={onClose}>Batal</Button>
+          <Button type="submit">Download / Print PDF</Button>
+        </div>
+      </form>
+    </Popup>
+  );
+}
+
 // ── Classroom Card ──────────────────────────────────────────────────────────
 function ClassroomCard({ classroom, onDelete }) {
   const handleOpen = () => {
@@ -231,6 +294,7 @@ function ClassroomCard({ classroom, onDelete }) {
 export default function Absensi({ classrooms = [] }) {
   const { flash } = usePage().props;
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isDownloadOpen, setIsDownloadOpen] = useState(false);
 
   // Group by jurusan then kelas_level
   const grouped = {};
@@ -253,9 +317,14 @@ export default function Absensi({ classrooms = [] }) {
             <h1>Absensi Siswa</h1>
             <p>Kelola kelas dan rekam kehadiran siswa per kelas</p>
           </div>
-          <Button onClick={() => setIsAddOpen(true)} style={{ whiteSpace: 'nowrap' }}>
-            + Tambah Kelas
-          </Button>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <Button variant="secondary" onClick={() => setIsDownloadOpen(true)} style={{ whiteSpace: 'nowrap' }}>
+              Cetak Per Jurusan
+            </Button>
+            <Button onClick={() => setIsAddOpen(true)} style={{ whiteSpace: 'nowrap' }}>
+              + Tambah Kelas
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -270,9 +339,8 @@ export default function Absensi({ classrooms = [] }) {
             padding: '60px 20px',
             background: '#fff',
             borderRadius: '8px',
-            border: '1.5px dashed #CBD5E0',
+            border: '1.5px solid #CBD5E0',
           }}>
-            <div style={{ fontSize: '40px', marginBottom: '12px' }}>🏫</div>
             <p style={{ color: '#718096', fontSize: '14px' }}>Belum ada kelas. Klik <strong>"+ Tambah Kelas"</strong> untuk mulai.</p>
           </div>
         ) : (
@@ -314,6 +382,7 @@ export default function Absensi({ classrooms = [] }) {
       </main>
 
       <AddClassroomModal isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} />
+      <DownloadAbsensiModal isOpen={isDownloadOpen} onClose={() => setIsDownloadOpen(false)} />
       <Footer />
     </>
   );
