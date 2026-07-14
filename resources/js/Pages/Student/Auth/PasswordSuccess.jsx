@@ -36,7 +36,7 @@ export default function PasswordSuccess() {
 
       <main className={styles.container}>
         <div style={{ textAlign: "center", justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column", gap: "12px" }} className={styles.cardHeader}>
-          <img style={{ width: '15rem' }} src="/login/siswa/buatAkun.png" alt="" />
+          <img style={{ width: '15rem' }} src="/login/siswa/buatAkun.webp" alt="" />
           <h2>Sandi Diperbarui!</h2>
           <p>Kata sandi baru Anda berhasil disimpan. Silakan login kembali ke dalam portal siswa.</p>
         </div>

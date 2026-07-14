@@ -48,7 +48,7 @@ export default function Struktur() {
           <p>Tata kelola kepemimpinan dan manajemen operasional di SMK Ahmad Dahlan Sukadamai Tahun Ajaran 2026/2027.</p>
         </section> */}
 
-        <img style={{ width: "100%", objectFit: "contain" }} src="/landingPage/organisasi/organisasi.png" alt="" />
+        <img style={{ width: "100%", objectFit: "contain" }} src="/landingPage/organisasi/organisasi.webp" alt="" />
       </main>
 
       <Footer />

@@ -101,7 +101,7 @@ export default function PrintBuktiTest() {
             <tbody>
               <tr>
                 <td className={styles.logoCell}>
-                  <img className={styles.logo} src="/mainLogo.png" alt="Logo" />
+                  <img className={styles.logo} src="/mainLogo.webp" alt="Logo" />
                 </td>
                 <td className={styles.headerTextCell}>
                   <h1>Dinas Pendidikan dan Kebudayaan</h1>

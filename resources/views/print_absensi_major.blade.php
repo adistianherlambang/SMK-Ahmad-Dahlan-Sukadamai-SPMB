@@ -24,11 +24,12 @@
       font-size: 11pt;
       color: #000;
       background: #fff;
+      margin: 20mm 20mm 15mm 25mm !important;
     }
 
     @page {
       size: A4;
-      margin: 20mm 20mm 15mm 25mm;
+      margin: 0px;
     }
 
     .class-sheet {
@@ -122,18 +123,19 @@
       text-align: center;
       font-weight: bold;
       background: #f0f0f0;
+      vertical-align: middle;
     }
 
     table.daftar tbody tr td {
       border: 1px solid #000;
-      padding: 5px 8px;
+      padding: 6px 8px;
       vertical-align: middle;
+      line-height: 1.2;
     }
 
     td.no    { text-align: center; width: 40px; }
-    td.nis   { width: 100px; }
-    td.nama  { }
-    td.ttd   { width: 160px; height: 35px; }
+    td.nis   { text-align: center; width: 120px; }
+    td.nama  { text-align: left; }
 
     /* ── Signatures ─────────────────────────── */
     .sign-table {
@@ -192,11 +194,6 @@
           <td style="text-align: center;">:</td>
           <td>{{ $classroom->name }}</td>
         </tr>
-        <tr>
-          <td>Tanggal</td>
-          <td style="text-align: center;">:</td>
-          <td><span style="border-bottom: 1px solid #000; display: inline-block; width: 180px;">&nbsp;</span></td>
-        </tr>
       </table>
 
       {{-- ── TABLE ──────────────────────────────────── --}}
@@ -204,9 +201,8 @@
         <thead>
           <tr>
             <th style="width:40px;">No.</th>
-            <th style="width:100px;">NIS</th>
+            <th style="width:120px;">NIS</th>
             <th>Nama Siswa</th>
-            <th style="width:160px;">Tanda Tangan</th>
           </tr>
         </thead>
         <tbody>
@@ -215,11 +211,10 @@
               <td class="no">{{ $i + 1 }}</td>
               <td class="nis">{{ $student->nis ?? '-' }}</td>
               <td class="nama">{{ $student->full_name }}</td>
-              <td class="ttd"></td>
             </tr>
           @empty
             <tr>
-              <td colspan="4" style="text-align:center; padding:20px; font-style:italic;">
+              <td colspan="3" style="text-align:center; padding:20px; font-style:italic;">
                 Tidak ada siswa untuk kelas ini.
               </td>
             </tr>
@@ -228,16 +223,10 @@
       </table>
 
       {{-- ── SIGNATURES ──────────────────────────────── --}}
-      <table class="sign-table">
+      <table class="sign-table" style="width: 100%; border-collapse: collapse; margin-top: 30px;">
         <tr>
-          {{-- Left side: Guru Mata Pelajaran --}}
-          <td style="width: 50%;">
-            <div style="margin-bottom: 50px;">&nbsp;</div>
-            <div style="margin-bottom: 50px;">Guru Mata Pelajaran,</div>
-            <div>(.................................)</div>
-          </td>
-          {{-- Right side: Kepala Sekolah --}}
-          <td style="width: 50%;">
+          <td style="width: 60%; border: none;"></td>
+          <td style="width: 40%; text-align: center; border: none; vertical-align: top;">
             <div>Mengetahui,</div>
             <div style="margin-bottom: 50px;">Kepala Sekolah,</div>
             <div><strong><u>Pujiono, S.E.I.</u></strong></div>

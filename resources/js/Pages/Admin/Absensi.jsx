@@ -132,7 +132,7 @@ function DownloadAbsensiModal({ isOpen, onClose }) {
         <p className={styles.confirmModalText} style={{ marginBottom: '12px', fontSize: '13px', color: '#4A5568' }}>
           Unduh daftar hadir dalam format PDF untuk semua siswa di jurusan dan tingkat kelas tertentu.
         </p>
-        
+
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           <div>
             <Select
@@ -191,37 +191,6 @@ function ClassroomCard({ classroom, onDelete }) {
       }}
       onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}
     >
-      {/* Kelas level badge */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <span style={{
-          background: 'var(--color-accent-yellow)',
-          color: 'var(--color-primary-dark)',
-          fontSize: '10px',
-          fontWeight: 800,
-          padding: '3px 8px',
-          borderRadius: '3px',
-        }}>
-          Kelas{classroom.kelas_level}
-        </span>
-        <button
-          onClick={handleDelete}
-          title="Hapus kelas"
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#CBD5E0',
-            cursor: 'pointer',
-            fontSize: '16px',
-            lineHeight: 1,
-            padding: '0 2px',
-            transition: 'color 0.15s',
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.color = '#E53E3E'}
-          onMouseLeave={(e) => e.currentTarget.style.color = '#CBD5E0'}
-        >
-          ✕
-        </button>
-      </div>
 
       {/* Name */}
       <div>
@@ -254,38 +223,56 @@ function ClassroomCard({ classroom, onDelete }) {
       </div>
 
       {/* Action */}
-      <button
-        onClick={handleOpen}
-        style={{
-          width: '100%',
-          background: 'var(--color-primary-dark)',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '5px',
-          padding: '9px',
-          fontSize: '12px',
-          fontWeight: 700,
-          cursor: 'pointer',
-          letterSpacing: '0.3px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '6px',
-          transition: 'opacity 0.15s',
-        }}
-        onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
-        onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-      >
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="8" y1="6" x2="21" y2="6" />
-          <line x1="8" y1="12" x2="21" y2="12" />
-          <line x1="8" y1="18" x2="21" y2="18" />
-          <line x1="3" y1="6" x2="3.01" y2="6" />
-          <line x1="3" y1="12" x2="3.01" y2="12" />
-          <line x1="3" y1="18" x2="3.01" y2="18" />
-        </svg>
-        Lihat Kelas & Cetak
-      </button>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+        <button
+          onClick={handleOpen}
+          style={{
+            width: '100%',
+            background: 'var(--color-primary-dark)',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '5px',
+            padding: '9px',
+            fontSize: '12px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            letterSpacing: '0.3px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '6px',
+            transition: 'opacity 0.15s',
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+        >
+          Lihat Kelas & Cetak
+        </button>
+        <button
+          onClick={handleDelete}
+          style={{
+            width: '100%',
+            background: '#E53E3E',
+            color: '#ffffffff',
+            border: 'none',
+            borderRadius: '5px',
+            padding: '9px',
+            fontSize: '12px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            letterSpacing: '0.3px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '6px',
+            transition: 'opacity 0.15s',
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+        >
+          Hapus Kelas
+        </button>
+      </div>
     </div>
   );
 }

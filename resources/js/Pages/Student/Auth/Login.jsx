@@ -69,7 +69,7 @@ export default function Login() {
       <Navbar links={links} />
 
       <main className={styles.container}>
-        <img style={{ width: "100%" }} src="/login/siswa/login.png" alt="" />
+        <img style={{ width: "100%" }} src="/login/siswa/login.webp" alt="" />
         <div className={styles.cardHeader}>
           <h2>Selamat Datang Kembali!</h2>
           <p>Silakan masuk menggunakan akun terdaftar Anda.</p>

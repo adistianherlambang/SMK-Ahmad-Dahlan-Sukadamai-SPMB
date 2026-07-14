@@ -7,7 +7,7 @@ export default function Batik({ section, color }) {
       <div style={{
         backgroundColor: color
       }}>
-        <img src="/batik/batik1.png" alt="Batik Atas" style={{
+        <img src="/batik/batik1.webp" alt="Batik Atas" style={{
           width: "100%",
           height: "100%",
           display: "block"
@@ -21,7 +21,7 @@ export default function Batik({ section, color }) {
       <div style={{
         backgroundColor: color
       }}>
-        <img src="/batik/batik2.png" alt="Batik Bawah" style={{
+        <img src="/batik/batik2.webp" alt="Batik Bawah" style={{
           width: "100%",
           height: "100%",
           display: "block"

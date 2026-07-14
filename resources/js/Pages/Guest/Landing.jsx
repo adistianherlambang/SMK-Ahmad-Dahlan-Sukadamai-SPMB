@@ -48,42 +48,42 @@ export default function Landing({ announcements = [], news = [], achievements = 
     {
       "title": "Gedung Sekolah",
       "desc": "Gedung sekolah dan fasilitas pendukung digunakan untuk menunjang kegiatan belajar mengajar secara optimal.",
-      "img": "/landingPage/landing/dummy.png",
+      "img": "/landingPage/landing/dummy.webp",
     },
     {
       "title": "Ruang Belajar",
       "desc": "Ruang belajar yang nyaman menciptakan suasana pembelajaran aktif, fokus, dan menyenangkan.",
-      "img": "/landingPage/landing/kelas2.jpeg",
+      "img": "/landingPage/landing/kelas2.webp",
     },
     {
       "title": "Bengkel Motor",
       "desc": "Bengkel praktik membekali siswa dengan keterampilan servis sepeda motor sesuai standar industri.",
-      "img": "/landingPage/landing/bengkel.jpeg",
+      "img": "/landingPage/landing/bengkel.webp",
     },
     {
       "title": "Laboratorium Manajemen",
       "desc": "Laboratorium manajemen melatih keterampilan administrasi dan pengelolaan bisnis secara profesional.",
-      "img": "/landingPage/landing/labManajemen.jpeg",
+      "img": "/landingPage/landing/labManajemen.webp",
     },
     {
       "title": "Masjid",
       "desc": "Masjid menjadi pusat ibadah serta pembinaan karakter Islami bagi seluruh warga sekolah.",
-      "img": "/landingPage/landing/dummy.png",
+      "img": "/landingPage/landing/dummy.webp",
     }
   ]
 
   const ekstra = [
     {
       "title": "Hisbul Wathan",
-      "img": "/landingPage/landing/dummy.png",
+      "img": "/landingPage/landing/dummy.webp",
     },
     {
       "title": "Tapak Suci",
-      "img": "/landingPage/landing/dummy.png",
+      "img": "/landingPage/landing/dummy.webp",
     },
     {
       "title": "Futsal",
-      "img": "/landingPage/landing/dummy.png",
+      "img": "/landingPage/landing/dummy.webp",
     }
   ]
 
@@ -111,7 +111,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
         {fasilitas.map((item, index) => (
           <div className={styles.perkItem} key={index}>
             <div className={styles.perkImg}>
-              <img src={item.img} alt={item.title} />
+              <img src={item.img} alt={item.title} loading="lazy" />
             </div>
             <div>
               <h4>{item.title}</h4>
@@ -128,7 +128,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
         {ekstra.map((item, index) => (
           <div className={styles.perkItem} key={index}>
             <div className={styles.perkImg}>
-              <img src={item.img} alt={item.title} />
+              <img src={item.img} alt={item.title} loading="lazy" />
             </div>
             <div>
               <h4>{item.title}</h4>
@@ -160,7 +160,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
             <div key={item.id} className={styles.achievementCard}>
               <div className={styles.perkImg}>
                 {item.image_path ? (
-                  <img src={getImageUrl(item.image_path)} alt={item.student_name} />
+                  <img src={getImageUrl(item.image_path)} alt={item.student_name} loading="lazy" />
                 ) : (
                   <div className={styles.achImagePlaceholder}>{item.student_name}</div>
                 )}

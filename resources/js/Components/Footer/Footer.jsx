@@ -12,7 +12,7 @@ export default function Footer() {
       <div className={styles.footerContent}>
         <div className={styles.brand}>
           <Link href="/" className={styles.logo}>
-            <img src="/mainLogo.png" alt="" className={styles.imgLogo} />
+            <img src="/mainLogo.webp" alt="" className={styles.imgLogo} />
             <p className={styles.logoText}>SMK Ahmad<br />Dahlan Sukadamai</p>
           </Link>
           <p className={styles.desc}>SMK dengan program keahlian Teknik dan Bisnis Sepeda Motor serta Perbankan Syariah yang berlokasi di Sukadamai, Lampung Selatan.</p>

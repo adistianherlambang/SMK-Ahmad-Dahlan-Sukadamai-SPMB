@@ -9,7 +9,7 @@ export default function Navbar({ navType = 'landing', links = [] }) {
       <nav className={styles.navbar}>
         <div className={styles.navContainer}>
           <Link href="/" className={styles.logo}>
-            <img src="/mainLogo.png" alt="" className={styles.imgLogo} />
+            <img src="/mainLogo.webp" alt="" className={styles.imgLogo} />
             <p>SMK Ahmad<br />Dahlan Sukadamai</p>
           </Link>
 
@@ -94,7 +94,7 @@ export default function Navbar({ navType = 'landing', links = [] }) {
       <div className={`${styles.drawer} ${isOpen ? styles.drawerOpen : ''}`}>
         <div className={styles.navContainer} style={{ padding: "24px", borderBottom: "solid rgb(255, 255, 255) 1px" }}>
           <div className={styles.logo}>
-            <img src="/mainLogo.png" alt="" className={styles.imgLogo} />
+            <img src="/mainLogo.webp" alt="" className={styles.imgLogo} />
             <p style={{ color: "white" }}>SMK Ahmad<br />Dahlan Sukadamai</p>
           </div>
           <div className={styles.drawerHeader}>

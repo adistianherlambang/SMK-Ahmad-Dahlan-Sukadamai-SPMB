@@ -24,11 +24,12 @@
       font-size: 11pt;
       color: #000;
       background: #fff;
+      margin: 20mm 20mm 15mm 25mm !important;
     }
 
     @page {
       size: A4;
-      margin: 20mm 20mm 15mm 25mm;
+      margin: 0px;
     }
 
     /* ── Header ─────────────────────────────── */

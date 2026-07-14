@@ -36,7 +36,7 @@ export default function PeriodClosed() {
 
       <main className={styles.container}>
         <div style={{ textAlign: "center", justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column", gap: "32px" }} className={styles.cardHeader}>
-          <img src="/login/siswa/closed.png" style={{ width: "15rem" }} alt="" />
+          <img src="/login/siswa/closed.webp" style={{ width: "15rem" }} alt="" />
           <div>
             <h2>Maaf, periode pendaftaran belum dibuka / sudah ditutup</h2>
           </div>

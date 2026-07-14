@@ -77,13 +77,25 @@ class AdminDashboardController extends Controller
             $statsQuery->where('quota_id', $quotaFilter);
         }
 
+        $stats = Registration::selectRaw("
+            COUNT(*) as total,
+            SUM(verification_status = 'Menunggu Verifikasi') as menunggu,
+            SUM(verification_status = 'Berkas Ditolak') as ditolak,
+            SUM(graduation_status = 'Diterima') as lulus,
+            SUM(graduation_status = 'Tidak Lulus') as tidak_lulus,
+            SUM(verification_status = 'Terverifikasi' AND graduation_status = 'Menunggu Kelulusan') as terverifikasi
+        ")
+        ->when($yearFilter, fn($q) => $q->whereYear('created_at', $yearFilter))
+        ->when($quotaFilter, fn($q) => $q->where('quota_id', $quotaFilter))
+        ->first();
+
         $stats = [
-            'total' => (clone $statsQuery)->count(),
-            'menunggu' => (clone $statsQuery)->where('verification_status', 'Menunggu Verifikasi')->count(),
-            'terverifikasi' => (clone $statsQuery)->where('verification_status', 'Terverifikasi')->where('graduation_status', 'Menunggu Kelulusan')->count(),
-            'ditolak' => (clone $statsQuery)->where('verification_status', 'Berkas Ditolak')->count(),
-            'lulus' => (clone $statsQuery)->where('graduation_status', 'Diterima')->count(),
-            'tidak_lulus' => (clone $statsQuery)->where('graduation_status', 'Tidak Lulus')->count(),
+            'total'         => (int) $stats->total,
+            'menunggu'      => (int) $stats->menunggu,
+            'terverifikasi' => (int) $stats->terverifikasi,
+            'ditolak'       => (int) $stats->ditolak,
+            'lulus'         => (int) $stats->lulus,
+            'tidak_lulus'   => (int) $stats->tidak_lulus,
         ];
 
         $registrations = $query->orderBy('created_at', 'desc')->get();
@@ -429,16 +441,19 @@ class AdminDashboardController extends Controller
         }
         $classrooms = $query->orderBy('kelas_level')->orderBy('name')->get();
 
+        // Load all students for these classrooms in one query, grouped by classroom_id
+        $classroomIds = $classrooms->pluck('id');
+        $allStudents = Registration::where('graduation_status', 'Diterima')
+            ->whereIn('classroom_id', $classroomIds)
+            ->orderBy('full_name', 'asc')
+            ->get()
+            ->groupBy('classroom_id');
+
         $classroomsData = [];
         foreach ($classrooms as $classroom) {
-            $students = Registration::where('graduation_status', 'Diterima')
-                ->where('classroom_id', $classroom->id)
-                ->orderBy('full_name', 'asc')
-                ->get();
-
             $classroomsData[] = [
                 'classroom' => $classroom,
-                'students'  => $students,
+                'students'  => $allStudents->get($classroom->id, collect()),
             ];
         }
 

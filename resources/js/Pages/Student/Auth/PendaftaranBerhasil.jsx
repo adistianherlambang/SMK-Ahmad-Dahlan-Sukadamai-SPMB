@@ -20,7 +20,7 @@ export default function PendaftaranBerhasil({ registration = {} }) {
         <div className={styles.formCard}>
 
           <div className={styles.successHeader}>
-            <img src="/login/siswa/buatAkun.png" alt="" />
+            <img src="/login/siswa/buatAkun.webp" alt="" />
             <h2 className={styles.successTitle}>Pendaftaran Sukses!</h2>
             <p className={styles.successDescription}>
               Selamat, berkas formulir pendaftaran Anda berhasil terkirim ke sistem kami. Silakan simpan detail registrasi berikut:
