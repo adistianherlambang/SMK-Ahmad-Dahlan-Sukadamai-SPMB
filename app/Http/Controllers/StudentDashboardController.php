@@ -95,6 +95,9 @@ class StudentDashboardController extends Controller
 
     public function downloadPdf()
     {
+        ini_set('memory_limit', '512M');
+        ini_set('max_execution_time', '300');
+
         $registration = $this->getStudentRegistration();
 
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('print_bukti', ['registration' => $registration])

@@ -164,7 +164,7 @@ class AdminDashboardController extends Controller
         ]);
     }
 
-    public function prosesVerifikasi(Request $request, $id)
+    public function prosesVerifikasi(Request $request, int|string $id)
     {
         $registration = Registration::findOrFail($id);
         $action = $request->input('action');
@@ -266,7 +266,7 @@ class AdminDashboardController extends Controller
         ]);
     }
 
-    public function prosesKelulusan(Request $request, $id)
+    public function prosesKelulusan(Request $request, int|string $id)
     {
         $registration = Registration::findOrFail($id);
         $action = $request->input('action');
@@ -381,7 +381,7 @@ class AdminDashboardController extends Controller
         ]);
     }
 
-    public function siswaUpdate(Request $request, $id)
+    public function siswaUpdate(Request $request, int|string $id)
     {
         $registration = Registration::findOrFail($id);
 
@@ -406,6 +406,9 @@ class AdminDashboardController extends Controller
 
     public function siswaAbsensiPdf(Request $request)
     {
+        ini_set('memory_limit', '512M');
+        ini_set('max_execution_time', '300');
+
         $classroomId = $request->input('classroom_id');
         $mapel       = $request->input('mapel', '');
 
@@ -427,6 +430,9 @@ class AdminDashboardController extends Controller
 
     public function siswaAbsensiMajorPdf(Request $request)
     {
+        ini_set('memory_limit', '512M');
+        ini_set('max_execution_time', '300');
+
         $request->validate([
             'jurusan'     => 'required|in:teknik otomotif,manajemen dan bisnis',
             'kelas_level' => 'required|string',
@@ -486,7 +492,7 @@ class AdminDashboardController extends Controller
         ]);
     }
 
-    public function absensiShow(Request $request, $classroomId)
+    public function absensiShow(Request $request, int|string $classroomId)
     {
         $classroom = Classroom::findOrFail($classroomId);
         $date      = $request->input('date', date('Y-m-d'));
@@ -510,7 +516,7 @@ class AdminDashboardController extends Controller
         ]);
     }
 
-    public function absensiSave(Request $request, $classroomId)
+    public function absensiSave(Request $request, int|string $classroomId)
     {
         $request->validate([
             'date'    => 'required|date',
@@ -552,7 +558,7 @@ class AdminDashboardController extends Controller
         return back()->with('success', 'Kelas berhasil ditambahkan.');
     }
 
-    public function classroomDelete($id)
+    public function classroomDelete(int|string $id)
     {
         $classroom = Classroom::findOrFail($id);
         // Unlink students
