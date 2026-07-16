@@ -14,6 +14,7 @@ fi
 mkdir -p /var/log/supervisor
 mkdir -p storage/framework/{sessions,views,cache}
 mkdir -p storage/logs
+mkdir -p storage/fonts
 mkdir -p bootstrap/cache
 
 # Set permissions

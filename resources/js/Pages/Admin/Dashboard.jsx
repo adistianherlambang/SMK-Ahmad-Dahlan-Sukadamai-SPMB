@@ -73,7 +73,7 @@ export default function Dashboard({ registrations = [], quotas = [], years = [],
 
       <header className={styles.header}>
         <div className={styles.headerContent}>
-          <h1>Dasbor Admin</h1>
+          <h1>Dashboard Admin</h1>
           <p>Sistem Pemantauan & Verifikasi Data Calon Siswa Baru</p>
         </div>
       </header>

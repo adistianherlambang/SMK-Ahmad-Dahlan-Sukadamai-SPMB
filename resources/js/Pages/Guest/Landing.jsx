@@ -48,7 +48,7 @@ export default function Landing({ announcements = [], news = [], achievements = 
     {
       "title": "Gedung Sekolah",
       "desc": "Gedung sekolah dan fasilitas pendukung digunakan untuk menunjang kegiatan belajar mengajar secara optimal.",
-      "img": "/landingPage/landing/dummy.webp",
+      "img": "/landingPage/landing/gedung.jpeg",
     },
     {
       "title": "Ruang Belajar",
@@ -65,25 +65,25 @@ export default function Landing({ announcements = [], news = [], achievements = 
       "desc": "Laboratorium manajemen melatih keterampilan administrasi dan pengelolaan bisnis secara profesional.",
       "img": "/landingPage/landing/labManajemen.webp",
     },
-    {
-      "title": "Masjid",
-      "desc": "Masjid menjadi pusat ibadah serta pembinaan karakter Islami bagi seluruh warga sekolah.",
-      "img": "/landingPage/landing/dummy.webp",
-    }
+    // {
+    //   "title": "Masjid",
+    //   "desc": "Masjid menjadi pusat ibadah serta pembinaan karakter Islami bagi seluruh warga sekolah.",
+    //   "img": "/landingPage/landing/dummy.webp",
+    // }
   ]
 
   const ekstra = [
     {
       "title": "Hisbul Wathan",
-      "img": "/landingPage/landing/dummy.webp",
+      "img": "/landingPage/landing/hw.jpg",
     },
     {
       "title": "Tapak Suci",
-      "img": "/landingPage/landing/dummy.webp",
+      "img": "/landingPage/landing/ts.jpg",
     },
     {
       "title": "Futsal",
-      "img": "/landingPage/landing/dummy.webp",
+      "img": "/landingPage/landing/futsal.jpg",
     }
   ]
 
